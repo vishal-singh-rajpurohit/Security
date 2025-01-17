@@ -12,7 +12,7 @@ const Shop = () => {
     const dispatch = useDispatch();
     const setOpenReport = () => dispatch(openReportBox());
 
-    const {product} = useContext(AuthContext);
+    const { product, loggedIn, userType} = useContext(AuthContext);
 
     return (
         <main className='shop'>
@@ -49,8 +49,8 @@ const Shop = () => {
                         <div className="shop-product-name">
                             <h1 className="product-name-shop">
                                 {
-                                    // product.ProductName
-                                } jj
+                                    product.ProductName
+                                }
                             </h1>
                             <p className="last-orders">total 1500 orders last month</p>
                         </div>
@@ -59,7 +59,16 @@ const Shop = () => {
                                 <span className="price">
                                     <span className="rupee">
                                         <span className="symbol-rupee">&#x20b9;</span>
-                                        <span className="pri">3000</span>
+                                        <span className="pri">
+                                            {
+                                                !loggedIn ?
+                                                    product.PriceForCustomers
+                                                    :
+                                                    userType === "DEALER" ? product.PriceForDealers :
+                                                        userType === "INSTALLER" ? product.PriceForInstallers :
+                                                            product.PriceForCustomers
+                                            }
+                                        </span>
                                     </span>
                                 </span>
                             </div>

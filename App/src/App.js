@@ -13,7 +13,7 @@ import Cart from "./Components/Products/Cart/Cart";
 import Otp from "./Components/Otp/Otp";
 
 
-import { createBrowserRouter, createRoutesFromElements, Route, Router, RouterProvider, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import OtpLogin from "./Components/Otp/OtpLogin";
 import AuthProvider from "./context/AuthProvider.provider";
 
@@ -21,12 +21,12 @@ import AuthProvider from "./context/AuthProvider.provider";
 
 
 const App = () => {
-
+  
 
   return (
     <>
-      <AuthProvider >
-        {/* <Router> */}
+      {/* <Router> */}
+        <AuthProvider >
           <Routes >
             <Route path="/" element={<Layout />}>
               <Route path="" element={<Products />} />
@@ -41,8 +41,8 @@ const App = () => {
               <Route path="/verify/login-otp" element={<OtpLogin />} />
             </Route>
           </Routes>
-        {/* </Router> */}
-      </AuthProvider>
+        </AuthProvider>
+      {/* </Router> */}
 
       {/* <RouterProvider router={router} /> */}
     </>

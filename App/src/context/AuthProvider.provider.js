@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import AuthContext from "./AuthContext.context";
 import { useDispatch, useSelector } from "react-redux";
@@ -320,14 +320,19 @@ const AuthProvider = ({ children }) => {
                 productId: productId
             }).then((resp) => {
                 // console.log("Selected Product :", resp.data.data.Product);
-                // setProduct(resp.data.data.Product);
-
-                navigate("/user/profile");
+                setProduct(resp.data.data.Product);
+                navigate("/shop");
             })
         } catch (error) {
             console.log("Error While Selecting :", error);
         }
     }
+
+    // PAGE NUMBERS AND PRODCUT SERVING
+    useEffect(async () => {
+        await serveProducts(pageNumber, isFilterOn, filters);
+    }, [pageNumber, isFilterOn, filters]);
+
 
     const data = {
         loggedIn,

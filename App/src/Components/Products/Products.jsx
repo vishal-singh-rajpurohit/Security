@@ -23,9 +23,6 @@ const Products = () => {
     //     setSelected(e.target.name);
     // };
 
-    useEffect(async () => {
-        await serveProducts(pageNumber, isFilterOn, filters);
-    }, []);
 
     return (
         <>
@@ -248,7 +245,7 @@ const Products = () => {
                         <div className="list-style-products-display">
                             {
                                 products?.map((product) =>
-                                    <div className="box1" id="b1" key={product[0]._id} onClick={()=>selectProduct(product[0]._id)}>
+                                    <div className="box1" id="b1" key={product[0]._id} onClick={() => selectProduct(product[0]._id)}>
                                         <div className="image-of-product">
                                             <span className="image" >
                                                 <img src={product[0].FrontImage} alt="" className="box-1-product-image" />
@@ -281,7 +278,7 @@ const Products = () => {
                                                     <button className="btn-order save-button"><BiStar /> save</button>
                                                 </div>
                                                 <div className="button">
-                                                    <button className="btn-order" onClick={()=>selectProduct(product[0]._id)} >Know More</button>
+                                                    <button className="btn-order" onClick={() => selectProduct(product[0]._id)} >Know More</button>
                                                     <button className="btn-order">Book Installation</button>
                                                 </div>
                                             </div>
