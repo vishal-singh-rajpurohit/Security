@@ -1,0 +1,66 @@
+main.shop-details-page {
+    width: 100vw;
+    height: 100%;
+    display: flex
+;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    gap: 0.1rem;
+}
+main.shop-details-page {
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+}
+.submit-top- {
+    margin-bottom: 0.8rem;
+    width: 90%;
+}
+.small-parts.small-parts2 {
+    width: 90%;
+}
+.submit-points-sub {
+    width: 100%;
+    display: grid
+;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+}
+.submit-2 {
+    width: 100%;
+    display: flex
+;
+    flex-direction: column;
+    align-items: start;
+}
+label.signup-laber2 {
+    font-size: 18px;
+    padding-left: 0.5rem;
+    font-weight: 600;
+}
+input.small-texts.small-texts2 {
+    width: 100%;
+}
+textarea.small-texts {
+    width: 20rem;
+    border-radius: 7px;
+    padding-left: 4px;
+    font-size: larger;
+    border: none;
+    height: 5rem;
+}
+
+.signup-input-sections.signup-input-sections2 {
+    display: flex
+;
+    flex-direction: column;
+    gap: 0.3rem;
+    width: 100%;
+}

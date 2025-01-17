@@ -1,0 +1,167 @@
+section.report-dialouge-box {
+    position: fixed;
+    background: #ababab80;
+    width: 100%;
+    height: 100%;
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+.dialouge-box {
+    background-color: white;
+    width: 50%;
+    height: 70%;
+    display: flex
+;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    border-radius: 10px;
+    border: 2px solid #243f45;
+}
+
+.report-top {
+    width: 100%;
+    height: 30%;
+    display: flex
+;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+.report-text {
+    color: #000000;
+    font-size: x-large;
+    font-weight: 600;
+}
+.report-mid {
+    width: 100%;
+    height: 40%;
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+}
+.form {
+    display: flex
+;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+.options {
+    display: flex
+;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.2rem;
+}
+select.report-op {
+    width: 100%;
+}
+select.report-op {
+    width: 100%;
+    background: #eaeaea;
+    border: none;
+    border-radius: 3px;
+    height: 1.4rem;
+    font-size: medium;
+    border: 1px solid;
+}
+textarea.message-text {
+    width: 100%;
+    height: 5rem;
+    font-size: medium;
+    background: #eaeaea;
+    border: none;
+    border-radius: 3px;
+    padding-left: 3px;
+    border: 1px solid;
+}
+.report-bottom {
+    width: 100%;
+    height: 20%;
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+}
+.buttons-for-report {
+    display: flex
+;
+    gap: 2rem;
+}
+button.report-btn {
+    width: 6rem;
+    height: 1.5rem;
+    font-size: large;
+    background-color: #FF4D4F;
+    border: 1px solid;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+}
+button.report-btn:hover {
+    background-color: #D93639;
+    color: #fff;
+}
+button.report-btn.plane {
+    background-color: white;
+    color: black;
+}
+button.report-btn.plane:hover {
+    background-color: rgb(237, 237, 237);
+    color: black;
+}
+
+
+@media (max-width: 900px) {
+    .dialouge-box {
+        width: 70%;
+    }
+}
+@media (max-width: 600px) {
+    .form {
+        width: 100%;
+        display: flex
+    ;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .message-for-report {
+        width: 100%;
+        display: flex
+    ;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .dialouge-box {
+        width: 90%;
+        /* height: 80%; */
+    }
+    .message-for-report {
+        display: flex
+    ;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    textarea.message-text {
+        width: 80%;
+        height: 5rem;
+        font-size: medium;
+        background: #eaeaea;
+        border: none;
+        border-radius: 3px;
+        padding-left: 3px;
+        border: 1px solid;
+    }
+}

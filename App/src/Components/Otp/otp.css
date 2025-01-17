@@ -1,0 +1,16 @@
+.signup-card.otp-card-2 {
+    height: 40vh;
+    display: flex
+;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+input.inp-otp {
+    width: 10rem;
+    height: 1.5rem;
+    font-size: large;
+    text-align: center;
+    border: 1px solid darkgray;
+    border-radius: 5px;
+}

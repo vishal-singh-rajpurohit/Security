@@ -1,0 +1,349 @@
+* {
+    list-style-type: disc;
+}
+
+main {
+    background-color: white;
+}
+
+section.shop-page {
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1.8fr 3.2fr;
+    gap: 1rem;
+    padding-top: 2rem;
+}
+
+section.product-display {
+    height: 100vh;
+    margin-left: 1px;
+    border-right: 2px solid darkgrey;
+    padding-right: 0.2rem;
+}
+
+.main-display {
+    height: 80%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img.display-image {
+    height: 100%;
+    width: 100%;
+}
+
+.list-of-display {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul.display-ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+    overflow-x: scroll;
+}
+
+li.display-li {
+    width: 15%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-little-display {
+    background-image: url("../../../Assets//Cameras/c3.jpeg");
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+section.right-details-of-shop {
+    display: grid;
+    grid-template-columns: 6fr 4fr;
+    gap: 0.8rem;
+}
+
+/* shop details */
+.details-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.shop-product-name {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid darkgrey;
+}
+
+h1.product-name-shop {
+    font-size: 25px;
+    font-family: "Open Sans", serif;
+    font-weight: 500;
+    line-height: 27px;
+}
+
+.taxes {
+    font-size: 20px;
+    margin-top: 1rem;
+    color: darkgreen;
+}
+
+.pricesing {
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid darkgrey;
+}
+
+.basic-info {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid darkgrey;
+}
+
+.info-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.info-key {
+    font-weight: 600;
+}
+
+.info-box-shop {
+    display: flex;
+    gap: 1rem;
+    font-size: 16px;
+}
+
+h3.item-about-text {
+    font-size: 20px;
+}
+
+.info-key {
+    font-weight: 600;
+    width: 7rem;
+}
+
+ul.sbout-ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    margin-left: 0.8rem;
+}
+
+li.about-li {
+    font-size: 17px;
+}
+
+h3.item-about-text {
+    font-size: 20px;
+    margin-bottom: 0.6rem;
+}
+
+.report-issue {
+    margin-top: 0.3rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+}
+
+p.report-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 0.6rem;
+    cursor: pointer;
+    color: #063b8a;
+}
+
+/* shop card */
+.purchase.card {
+    display: flex;
+    justify-content: center;
+    height: 78vh;
+}
+
+.card-shop {
+    width: 100%;
+    height: 100%;
+}
+
+.card-details {
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    gap: 0.8rem;
+}
+
+span.price {
+    font-size: 20px;
+}
+
+.delivaey-date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+span.date-text {
+    width: 100%;
+    font-size: large;
+    height: 100%;
+}
+
+.quantity-meter {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+select.shop-quantity {
+    width: 7rem;
+    height: 1.6rem;
+    font-size: 18px;
+    padding-left: 4px;
+}
+
+button.btn-order2 {
+    width: 13rem;
+    height: 2rem;
+    font-size: 20px;
+}
+
+button.btn-order.save-button.btn-order2 {
+    width: 13rem;
+    height: 2rem;
+    font-size: 20px;
+}
+
+.shop-card-buttons {
+    height: 7rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+/* Responsiveness */
+
+@media (max-width: 1050px) {
+    section.shop-page {
+        grid-template-columns: 1fr;
+        align-content: center;
+        justify-items: center;
+        gap: 2rem;
+    }
+
+    section.product-display {
+        width: 80%;
+        border: none;
+    }
+
+    section.right-details-of-shop {
+        grid-template-columns: 1fr;
+        width: 95%;
+    }
+
+    .purchase.card {
+        height: 41vh;
+        padding-top: 1rem;
+        margin-top: 0;
+        border-top: 2px solid darkgrey;
+        border-radius: 0;
+    }
+
+    .card-shop {
+        width: 100%;
+        height: 100%;
+    }
+
+    span.price {
+        font-size: 23px;
+    }
+
+    .card-details {
+        gap: 0.4rem;
+        height: auto;
+    }
+
+    .quantity-meter {
+        height: 3rem;
+    }
+
+    .shop-card-buttons {
+        flex-direction: row;
+        height: 4rem;
+    }
+}
+
+@media (max-width: 650px) {
+    section.product-display {
+        width: 90%;
+        height: 50vh;
+    }
+
+    .purchase.card {
+        height: auto;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 500px) {
+    section.product-display {
+        width: 90%;
+    }
+
+    h1.product-name-shop {
+        font-size: 20px;
+    }
+
+    span.pri {
+        font-size: 22px;
+    }
+
+    .taxes {
+        font-size: 16px;
+        margin-left: 0.7rem;
+        margin-top: 0.3rem;
+    }
+
+    h3.item-about-text {
+        font-size: 18px;
+        margin-bottom: 0.3rem;
+    }
+
+    li.about-li {
+        font-size: 15px;
+    }
+}
