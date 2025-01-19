@@ -5,27 +5,27 @@ const newSchema = new mongoose.Schema(
     UserId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User" || "Dealer" || "Installer",
-      require: true,
+      required: true,
     },
     FirstName: {
       type: String,
-      require: true,
+      required: true,
     },
     LastName: {
       type: String,
-      require: true,
+      required: true,
     },
     MobileNumber: {
       type: Number,
       index: true,
-      require: true,
+      required: true,
       unique: true,
     },
     Email: {
       type: String,
       unique: true,
       index: true,
-      require: true,
+      required: true,
     },
     AadharNumber: {
       type: Number,
@@ -39,7 +39,7 @@ const newSchema = new mongoose.Schema(
     UserType: {
       type: String,
       default: "DEALER",
-      require: true,
+      required: true,
     },
     Address1: {
       type: String,

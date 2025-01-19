@@ -58,56 +58,6 @@ const AuthProvider = ({ children }) => {
 
     const requestUserType = setUserRoutes(tempUserType);
 
-    // first time while app is loading
-    // useEffect(async () => {
-    //     await axios.post(`/api/v1${API[16]}`, {})
-    //         .then((resp) => {
-    //             console.log("User Logged in Successfully", resp);
-    //             const {
-    //                 FirstName,
-    //                 LastName,
-    //                 Email,
-    //                 MobileNumber,
-    //                 MobileNumber2,
-    //                 UserType,
-    //                 TotalOrders,
-    //                 Avatar,
-    //                 Address,
-    //                 City,
-    //                 PostCode,
-    //                 VerificationStatus,
-    //                 UpiMobileNumber,
-    //                 TotalEarnings,
-    //                 PendingOrders,
-    //                 CraditPayments,
-    //             } = resp.data.data.User;
-
-    //             dispatch(
-    //                 setUserDetails({
-    //                     FirstName: FirstName,
-    //                     LastName: LastName,
-    //                     Email: Email,
-    //                     MobileNumber: MobileNumber,
-    //                     Avatar: Avatar || "",
-    //                     MobileNumber2: MobileNumber2 || 91,
-    //                     UserType: UserType,
-    //                     Address: Address || "",
-    //                     City: City || "",
-    //                     PostCode: PostCode || 0,
-    //                     VerificationStatus: VerificationStatus,
-    //                     UpiMobileNumber: UpiMobileNumber || 0,
-    //                     TotalOrders: TotalOrders || 0,
-    //                     TotalEarnings: TotalEarnings || 0,
-    //                     PendingOrders: PendingOrders || 0,
-    //                     CraditPayments: CraditPayments || 0,
-    //                 })
-    //             );
-    //             navigate("/");
-    //         }).catch((e) => {
-    //             console.log("Auautharized User ", e);
-    //         })
-    // }, [])
-
     const sendRegistrationOtp = async () => {
         console.log(authMail, authPass);
         try {
@@ -305,8 +255,8 @@ const AuthProvider = ({ children }) => {
 
     }
 
-    const serveProducts = async (pageNumber, isFilterOn, filters) => {
-        await axios.post(`/api/v1/main/serve/products?page=${pageNumber}&filteron=${isFilterOn}`, {})
+    const serveProducts = async (pageNumber, isFilterOn, filters, UserType) => {
+        await axios.post(`/api/v1/main/serve/products?page=${pageNumber}&filteron=${isFilterOn}`, {UserType})
             .then((resp) => {
                 setProducts((prev) => [...prev, resp.data.data.Products])
             }).catch((error) => {
@@ -314,13 +264,14 @@ const AuthProvider = ({ children }) => {
             })
     }
 
-    const selectProduct = async (productId) => {
+    const selectProduct = async (productId, UserType) => {
+        console.log("product id: ", productId)
         try {
             await axios.post(`/api/v1/main/serve/selected-product`, {
-                productId: productId
+                ProductId: productId,
+                UserType: UserType
             }).then((resp) => {
-                // console.log("Selected Product :", resp.data.data.Product);
-                setProduct(resp.data.data.Product);
+                setProduct(resp.data.data.Product[0]);
                 navigate("/shop");
             })
         } catch (error) {
@@ -330,7 +281,7 @@ const AuthProvider = ({ children }) => {
 
     // PAGE NUMBERS AND PRODCUT SERVING
     useEffect(async () => {
-        await serveProducts(pageNumber, isFilterOn, filters);
+        await serveProducts(pageNumber, isFilterOn, filters, (userType || tempUserType));
     }, [pageNumber, isFilterOn, filters]);
 
 

@@ -5,27 +5,27 @@ const newSchema = new mongoose.Schema(
     UserId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User" || "Dealer" || "Installer",
-      require: true
+      required: true
     },
     OrderId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Order",
-      require: true
+      required: true
     },
     TroubleType: {
       type: String,
       enum: ["PAYMENTS", "DELIVARY", "BUG", "OTHER"],
-      require: true,
+      required: true,
     },
     Message: {
       type: String,
-      require: true,
+      required: true,
     },
     Status: {
       type: String,
       enum: ["UNREAD", "READ", "READ AND REJECTED", "READ AND APPROVED"],
       default: "UNREAD",  
-      require: true
+      required: true
     }
   },
   {

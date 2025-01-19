@@ -7,15 +7,15 @@ const newSchema = new mongoose.Schema(
   {
     FirstName: {
       type: String,
-      require: true,
+      required: true,
     },
     LastName: {
       type: String,
-      require: true,
+      required: true,
     },
     Password: {
       type: String,
-      require: true
+      required: true
     },
     refreshToken: {
       type: String
@@ -23,7 +23,7 @@ const newSchema = new mongoose.Schema(
     MobileNumber: {
       type: Number,
       index: true,
-      require: true,
+      required: true,
       unique: true
     },
     MobilerNumber2: {
@@ -35,11 +35,11 @@ const newSchema = new mongoose.Schema(
       type: String,
       unique: true,
       index: true,
-      require: true,
+      required: true,
     },
     Avatar: {
       type: String,
-      require: true,
+      required: true,
     },
     AadharNumber: {
       type: Number,
@@ -53,7 +53,7 @@ const newSchema = new mongoose.Schema(
     UserType: {
       type: String,
       default: "DEALER",
-      require: true,
+      required: true,
     },
     IdPhoto: {
       type: String,

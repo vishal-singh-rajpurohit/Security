@@ -3,6 +3,7 @@ const User = require("./models/user.model");
 const Dealer = require("./models/dealer.model");
 const ApiError = require("./utils/ApiError.utils");
 
+const limit = 15;
 const Options = {
   httpOnly: true,
   secure: false, // turn true in production
@@ -54,4 +55,4 @@ const checkUserType = (userType) => {
   return Model;
 };
 
-module.exports = { genreateId, checkUserType, Options, genreateOtp, paginate };
+module.exports = { genreateId, checkUserType, Options, limit, genreateOtp, paginate };

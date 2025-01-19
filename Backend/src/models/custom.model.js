@@ -4,43 +4,43 @@ const newSchema = new mongoose.Schema(
     {
         UserId: {
             type: mongoose.Schema.Types.ObjectId,
-            require: "User" || "Dealer" || "Installer"
+            required: "User" || "Dealer" || "Installer"
         },
         CameraType: {
             type: String,
             enum: ["IP", "HD"],
-            require: true
+            required: true
         },
         MegaPixels: {
             type: Number,
-            require: true
+            required: true
         },
         IndoorCam: {
             type: Number,
-            require: true
+            required: true
         },
         OutdoorCam: {
             type: Number,
-            require: true
+            required: true
         },
         Channels: {
             type: Number,
-            require: true
+            required: true
         },
         HardDisk: {
             type: Number,
-            require: true
+            required: true
         },
         Area: {
             type: String,
             enum: ["SMALL", "MEDIUM", "LARGE"],
-            require: true
+            required: true
         },
         STATUS: {
             type: String,
             enum: ["PENDING", "REVIEWING", "CONFORMED", "CANCELLED"],
             default: "PENDING",
-            require: true
+            required: true
         }
 
     },

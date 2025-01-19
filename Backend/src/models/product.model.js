@@ -4,44 +4,74 @@ const newSchema = new mongoose.Schema(
   {
     ProductName: {
         type: String,
-        require: true
+        required: true
     },
     PriceForDealers: {
       type: Number,
-      require: true
+      required: true
     },
     PriceForInstallers: {
       type: Number,
-      require: true
+      required: true
     },
     PriceForCustomers: {
       type: Number,
-      require: true
+      required: true
     },
     AdvancedPaymentAmmount: {
       type: Number,
-      require: true
+      required: true
+    },
+    Premium: {
+      type: Boolean,
+      default: false,
+      required: true
+    },
+    Branded: {
+      type: Boolean,
+      default: false,
+      required: true
+    },
+    Brand: {
+      type: String,
+      enum: [],
+      required: true
+    },
+    CameraType: {
+      type: String,
+      required: true,
+      enum: ["HD", "IP", "BOTH"]
+    },
+    PlaceOfInstallation: {
+      type: String,
+      required: true,
+      enum: ["INDOOR", "OUTDOOR", "COMBINED"]
+    },
+    InstallationAreaSize: {
+      type: String,
+      required: true,
+      enum: ["INDOOR", "OUTDOOR", "COMBINED"]
     },
     KeyWords: {
         type: String,
-        require: true
+        required: true
     },
     Description: {
         type: String,
-        require: true
+        required: true
     },
     FrontImage:{
       type: String,
-      require: true
+      required: true
     },
     ShowCaseImages: {
       type: [String],
       valida : [arrayLimit , 'ShowCaseImages exceeds the limit of 6'],
-      require: true
+      required: true
     },
     Explaination: {
         type: String,
-        require: false
+        required: false
     }
   },
   {

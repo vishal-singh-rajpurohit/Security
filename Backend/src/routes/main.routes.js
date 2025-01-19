@@ -9,12 +9,11 @@ const deleteAccount = require("../controllers/users/deleteAccount.controller");
 const addreport = require("../controllers/report/addreport.controller");
 const { addSatisfaction, getReviews } = require("../controllers/report/reviews.controller");
 const addtocart = require("../controllers/shop/cart/addtocart.controller");
-const getCart = require("../controllers/shop/cart/getCart.controller");
 const removefromcart = require("../controllers/shop/cart/removerfromcart.controller");
 const changePassword = require("../controllers/users/update/changePassword.controller");
 const changeUserType = require("../controllers/users/update/changeUserType.controller");
 const refreshAccessAndRefreshToken = require("../controllers/users/refreshAccessAndRefreshToken.controller");
-const { serverProducts, serveSelectedProduct } = require("../controllers/Products/products.controller");
+const { serverProducts, serveSelectedProduct, serveCartItems } = require("../controllers/Products/products.controller");
 
 const mainRoutes = express.Router();
 
@@ -40,7 +39,7 @@ mainRoutes.route("/report/get-reviews").get(Auth, getReviews);
 
 // cart
 mainRoutes.route("/cart/add-to-cart").post(Auth, addtocart);
-mainRoutes.route("/cart/get-cart").get(Auth, getCart);
+mainRoutes.route("/cart/get-cart").post(Auth, serveCartItems);
 mainRoutes.route("/cart/remove-from-cart").delete(Auth, removefromcart);
 
 // User Modification

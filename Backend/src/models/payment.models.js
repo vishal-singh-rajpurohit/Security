@@ -5,16 +5,16 @@ const newSchema = new mongoose.Schema(
     OrderId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Order",
-      require: true,
+      required: true,
     },
     PayType: {
       type: String,
       enum: ["ADVANCED" , "PENDING"],
-      require: true
+      required: true
     },
     Amount: {
       type: Number,
-      require: true,
+      required: true,
     },
     PaymentDate: {
       type: Date,
@@ -27,7 +27,7 @@ const newSchema = new mongoose.Schema(
     },
     PendingAmmountForOrder: {
       type: Number,
-      require: true,
+      required: true,
     }
   },
 

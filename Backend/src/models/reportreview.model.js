@@ -9,17 +9,17 @@ const newSchema = new mongoose.Schema(
     UserId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User" || "Dealer" || "Installer",
-      require: true,
+      required: true,
     },
     Message: {
       type: String,
-      require: true,
+      required: true,
     },
     Status: {
       type: String,
       enum: ["UNSATISFIED", "SATISFIED", "UNREAD"],
       default: "UNREAD",
-      require: true
+      required: true
     }
   },
   {

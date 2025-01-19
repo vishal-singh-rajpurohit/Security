@@ -7,15 +7,15 @@ const newSchema = new mongoose.Schema(
   {
     FirstName: {
       type: String,
-      require: true,
+      required: true,
     },
     LastName: {
       type: String,
-      require: true,
+      required: true,
     },
     Password: {
       type: String,
-      require: true
+      required: true
     },
     refreshToken: {
       type: String
@@ -23,7 +23,7 @@ const newSchema = new mongoose.Schema(
     MobileNumber: {
       type: Number,
       unique: true,
-      require: true,
+      required: true,
     },
     MobileNumber2: {
       type: Number,
@@ -32,12 +32,12 @@ const newSchema = new mongoose.Schema(
     Email: {
       type: String,
       unique: true,
-      require: true,
+      required: true,
     },
     UserType: {
       type: String,
       default: "CUSTOMER",
-      require: true,
+      required: true,
     },
     Address1: {
       type: String,

@@ -13,47 +13,47 @@ const newSchema = new mongoose.Schema(
     UserType: {
       type: String,
       enum: ["CUSTOMER", "INSTALLER", "DEALER"],
-      require: true
+      required: true
     },
     CustomerType: {
       type: String,
       enum: ["CUSTOMER", "DEALER", "INSTALLER"],
-      require: true,
+      required: true,
     },
     TotalAmmount: {
       type: Number,
-      require: true,
+      required: true,
     },
     AdvancedPaymentAmmout: {
       type: Number,
-      // require: true
+      // required: true
     },
     AdvancedPaymentId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Payment"
-      // require: true,
+      // required: true,
     },
     FinalPaymentId: {
       type: String,
       default: "PENDING",
-      // require: true,
+      // required: true,
     },
     PendingAmmount: {
       type: Number,
-      // require: true,
+      // required: true,
     },
     NextPaymentDate: {
       type: Date,
-      // require: true,
+      // required: true,
     },
     DelivaryDate: {
       type: Date,
-      // require: true,
+      // required: true,
     },
     Status: {
       type: String,
       enum: ["PENDING", "CONFORMED", "SHIPPING", "DELIVERED", "COMPLETED", "CANCELLED"],
-      // require: true,
+      // required: true,
       default: "PENDING",
     },
   },
