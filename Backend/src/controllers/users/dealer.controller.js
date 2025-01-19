@@ -6,6 +6,8 @@ const ApiResponse = require("../../utils/ApiResponse.utils");
 const Dealer = require('../../models/dealer.model');
 const User = require('../../models/user.model');
 const Installer = require('../../models/installer.model');
+const {Options} = require("../../methods")
+
 
 const jwt = require("jsonwebtoken");
 
@@ -19,8 +21,7 @@ const registerDealer = asyncHandler(async (req, resp) => {
         throw new ApiError(401, "User Already Exists");
     }
 
-    console.log("file ", req.file);
-
+    console.log(req.file)
     if (!req.file) {
         throw new ApiError(400, "req.files not found")
     }
@@ -50,6 +51,7 @@ const registerDealer = asyncHandler(async (req, resp) => {
         PostCode,
         UpiMobileNumber
     });
+
     let user = await newDealer.save();
 
     
@@ -65,8 +67,8 @@ const registerDealer = asyncHandler(async (req, resp) => {
         throw new ApiError(500, "Invalid Token");
     }
 
-    const authenticatedUser = await User.findOneAndUpdate(
-        { _id: decodedToken._id },
+    const authenticatedUser = await Dealer.findOneAndUpdate(
+        { _id: user._id },
         {
             $set: {
                 refreshToken: refreshToken
@@ -74,8 +76,10 @@ const registerDealer = asyncHandler(async (req, resp) => {
         },
     ).select("-Password -refreshToken");
 
+ 
+
     if(!authenticatedUser){
-        throw new ApiError("Somthing went Wrong while Saving refreshToke to User");
+        throw new ApiError(400, "Somthing went Wrong while Saving refreshToke to User");
     }
 
     resp.status(200)

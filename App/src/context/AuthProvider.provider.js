@@ -12,7 +12,7 @@ import { clearUserDetails, setUserDetails } from "../Functions/User/userSlice";
 const AuthProvider = ({ children }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    const formData = new FormData();
     const setFormError = (status) => dispatch(openWarning({ status: status }));
 
     // TEPERORY ATTRIBUTES
@@ -29,13 +29,15 @@ const AuthProvider = ({ children }) => {
     let loggedIn = useSelector((state) => state.user.isLoggedIn);
 
     // TEMP FORM DATA
-    const authImage = useSelector((state) => state.authform.image)
+    const authImage = useSelector((state) => state.authform.image);
     const authFirstName = useSelector((state) => state.authform.firstName);
     const authLastName = useSelector((state) => state.authform.lastName);
     const authMail = useSelector((state) => state.authform.email);
     const authMobileNumber = useSelector((state) => state.authform.mobileNumber);
     const authPass = useSelector((state) => state.authform.password);
-    const authConformPass = useSelector((state) => state.authform.conformPassword);
+    const authConformPass = useSelector(
+        (state) => state.authform.conformPassword
+    );
 
     // TEMP USER DATA AFTER LOGIN
     const userFirstName = useSelector((state) => state.user.firstName);
@@ -48,15 +50,21 @@ const AuthProvider = ({ children }) => {
     const userAddress = useSelector((state) => state.user.Address);
     const userCity = useSelector((state) => state.user.city);
     const userPostCode = useSelector((state) => state.user.postCode);
-    const userVerificationStatus = useSelector((state) => state.user.verificationStatus);
+    const userVerificationStatus = useSelector(
+        (state) => state.user.verificationStatus
+    );
     const userUpiNumber = useSelector((state) => state.user.upiMobileNumber);
     const userTotalOrders = useSelector((state) => state.user.totalOrders);
     const userPendingOrders = useSelector((state) => state.user.pendingOrders);
     const userTotalEarnings = useSelector((state) => state.user.totalEarnings);
-    const userCraditPayments = useSelector((state) => state.user.craditPayments)
+    const userCraditPayments = useSelector((state) => state.user.craditPayments);
     const userActiveOrders = useSelector((state) => state.user.activeOrders);
 
     const requestUserType = setUserRoutes(tempUserType);
+
+    useEffect(() => {
+        console.log("auth image is ", authImage);
+    });
 
     const sendRegistrationOtp = async () => {
         console.log(authMail, authPass);
@@ -94,58 +102,64 @@ const AuthProvider = ({ children }) => {
     };
 
     const register = async (Otp) => {
-        console.log("first Name auth: ", authFirstName);
-        try {
-            await axios.post(`/api/v1/${requestUserType}${API[0]}`,
-                {
-                    image: authImage,
-                    Otp: Otp,
-                    FirstName: authFirstName,
-                    LastName: authLastName,
-                    Email: authMail,
-                    MobileNumber: authMobileNumber,
-                    UserType: tempUserType,
-                    Password: authPass,
-                    ConformPassword: authConformPass,
-                },
-                {
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                }
-            )
-                .then((resp) => {
-                    console.log("Login Successful successful", resp);
+        formData.set("Otp", Otp);
+        formData.set("image", authImage);
+        formData.set("FirstName", authFirstName);
+        formData.set("LastName", authLastName);
+        formData.set("Email", authMail);
+        formData.set("MobileNumber", authMobileNumber);
+        formData.set("UserType", tempUserType);
+        formData.set("Password", authPass);
+        formData.set("ConformPassword", authConformPass);
 
-                    const { FirstName, LastName, Email, MobileNumber, MobileNumber2, UserType, TotalOrders, Avatar, Address, City, PostCode, VerificationStatus, UpiMobileNumber, TotalEarnings, PendingOrders, CraditPayments } = resp.data.data.User;
+        try {
+            await axios
+                .post(`/api/v1/${requestUserType}${API[0]}`, formData, {
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                })
+                .then((resp) => {
+                    const {
+                        FirstName,
+                        LastName,
+                        Email,
+                        MobileNumber,
+                        UserType,
+                        TotalOrders,
+                        Avatar,
+                        VerificationStatus,
+                        UpiMobileNumber,
+                        TotalEarnings,
+                        PendingOrders,
+                        CraditPayments,
+                    } = resp.data.data.User;
 
                     console.log("user NAme ", FirstName, LastName);
 
                     dispatch(
-                        setUserDetails({
-                            isLoggedIn: true,
-                            fullName: FirstName,
-                            lastName: LastName,
-                            email: Email,
-                            mobileNumber: MobileNumber || 91,
-                            avatar: Avatar || "",
-                            mobileNumber2: MobileNumber2 || 91,
-                            userType: UserType,
-                            address: Address || "",
-                            city: City || "",
-                            postCode: PostCode || 0,
-                            verificationStatus: VerificationStatus,
-                            upiMobileNumber: UpiMobileNumber || 0,
-                            totalOrders: TotalOrders || 0,
-                            totalEarnings: TotalEarnings || 0,
-                            pendingOrders: PendingOrders || 0,
-                            craditPayments: CraditPayments || 0,
-                        })
+                        clearFormStates()
                     );
-
-                    dispatch(clearFormStates());
-                    // navigate("/");
+                    dispatch(setUserDetails({
+                        isLoggedIn: true,
+                        FirstName,
+                        LastName,
+                        Email,
+                        MobileNumber,
+                        UserType,
+                        TotalOrders,
+                        Avatar,
+                        VerificationStatus,
+                        UpiMobileNumber,
+                        TotalEarnings,
+                        PendingOrders,
+                        CraditPayments
+                    }));
+                    navigate("/");
                 });
         } catch (error) {
-            console.log("error while submitting otp in registration function ", error)
+            console.log(
+                "error while submitting otp in registration function ",
+                error
+            );
         }
     };
 
@@ -179,7 +193,6 @@ const AuthProvider = ({ children }) => {
                         CraditPayments,
                     } = resp.data.data.User;
 
-
                     dispatch(
                         setUserDetails({
                             FirstName: FirstName,
@@ -212,9 +225,10 @@ const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            await axios.post(`/api/v1/${requestUserType}${API[2]}`, {})
+            await axios
+                .post(`/api/v1/${requestUserType}${API[2]}`, {})
                 .then((resp) => {
-                    dispatch(clearUserDetails())
+                    dispatch(clearUserDetails());
                     navigate("/");
                 });
         } catch (error) {
@@ -222,18 +236,15 @@ const AuthProvider = ({ children }) => {
         }
     };
 
-    const deleteAccount = async () => {
-
-    }
+    const deleteAccount = async () => { };
 
     const addToCart = async () => {
         try {
             console.log("add to cart called");
-
         } catch (error) {
             console.log("error while add to cart the product :", error);
         }
-    }
+    };
 
     const placeOrder = async () => {
         try {
@@ -241,49 +252,58 @@ const AuthProvider = ({ children }) => {
         } catch (error) {
             console.log("error while add to cart the product :", error);
         }
-    }
+    };
 
     const cancleOrder = async () => {
         try {
-            console.log("cancel order called")
+            console.log("cancel order called");
         } catch (error) {
             console.log("error in order cancellation ", error);
         }
-    }
+    };
 
-    const shareProduct = async () => {
-
-    }
+    const shareProduct = async () => { };
 
     const serveProducts = async (pageNumber, isFilterOn, filters, UserType) => {
-        await axios.post(`/api/v1/main/serve/products?page=${pageNumber}&filteron=${isFilterOn}`, {UserType})
+        await axios
+            .post(
+                `/api/v1/main/serve/products?page=${pageNumber}&filteron=${isFilterOn}`,
+                { UserType }
+            )
             .then((resp) => {
-                setProducts((prev) => [...prev, resp.data.data.Products])
-            }).catch((error) => {
-                console.log("error while hitting serve products ", error);
+                setProducts((prev) => [...prev, resp.data.data.Products]);
             })
-    }
+            .catch((error) => {
+                console.log("error while hitting serve products ", error);
+            });
+    };
 
     const selectProduct = async (productId, UserType) => {
-        console.log("product id: ", productId)
+        console.log("product id: ", productId);
         try {
-            await axios.post(`/api/v1/main/serve/selected-product`, {
-                ProductId: productId,
-                UserType: UserType
-            }).then((resp) => {
-                setProduct(resp.data.data.Product[0]);
-                navigate("/shop");
-            })
+            await axios
+                .post(`/api/v1/main/serve/selected-product`, {
+                    ProductId: productId,
+                    UserType: UserType,
+                })
+                .then((resp) => {
+                    setProduct(resp.data.data.Product[0]);
+                    navigate("/shop");
+                });
         } catch (error) {
             console.log("Error While Selecting :", error);
         }
-    }
+    };
 
     // PAGE NUMBERS AND PRODCUT SERVING
     useEffect(async () => {
-        await serveProducts(pageNumber, isFilterOn, filters, (userType || tempUserType));
+        await serveProducts(
+            pageNumber,
+            isFilterOn,
+            filters,
+            userType || tempUserType
+        );
     }, [pageNumber, isFilterOn, filters]);
-
 
     const data = {
         loggedIn,
@@ -328,7 +348,8 @@ const AuthProvider = ({ children }) => {
         placeOrder,
         cancleOrder,
         shareProduct,
-        selectProduct
+        selectProduct,
+        formData,
     };
     return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 };

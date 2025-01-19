@@ -29,8 +29,7 @@ function ClearFormStates(state, action) {
 }
 
 function SetFormStates(state, action) {
-    console.log(action.payload)
-    state.Image = action.payload.image
+    state.image = action.payload.image
     state.firstName = action.payload.FirstName
     state.lastName = action.payload.LastName
     state.email = action.payload.Email

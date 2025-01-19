@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom'
 
 
 const Otp = () => {
-  const nevigate = useNavigate()
   const dispatch = useDispatch()
   const { formError, setFormError, register } = useContext(AuthContext);
   const [OtpTemp, setOtpTemp] = useState();

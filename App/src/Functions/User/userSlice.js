@@ -28,18 +28,18 @@ function SetUserDetails(state, action) {
     state.email = action.payload.Email
     state.mobileNumber = action.payload.MobileNumber
     state.avatar = action.payload.Avatar
+    state.verificationStatus = action.payload.VerificationStatus
     if (action.payload?.Verified === "APPROVED") {
-        state.mobileNumber2 = action.payload.mobileNumber2
-        state.userType = action.payload.userType
-        state.address = action.payload.address
-        state.city = action.payload.city
-        state.postCode = action.payload.postCode
-        state.verificationStatus = action.payload.verificationStatus
-        state.UpiMobileNumber = action.payload.upiMobileNumber
-        state.totalOrders = action.payload.totalOrders
-        state.totalEarnings = action.payload.totalEarnings
-        state.pendingOrders = action.payload.pendingOrders
-        state.craditPayments = action.payload.craditPayments
+        state.mobileNumber2 = action.payload.MobileNumber2
+        state.userType = action.payload.UserType
+        state.address = action.payload.Address
+        state.city = action.payload.City
+        state.postCode = action.payload.PostCode
+        state.UpiMobileNumber = action.payload.UpiMobileNumber
+        state.totalOrders = action.payload.TotalOrders
+        state.totalEarnings = action.payload.TotalEarnings
+        state.pendingOrders = action.payload.PendingOrders
+        state.craditPayments = action.payload.CraditPayments
     }
     console.log("first name ",state.firstName);
 }

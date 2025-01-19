@@ -34,7 +34,6 @@ const newSchema = new mongoose.Schema(
     },
     Brand: {
       type: String,
-      enum: [],
       required: true
     },
     CameraType: {
@@ -55,6 +54,10 @@ const newSchema = new mongoose.Schema(
     KeyWords: {
         type: String,
         required: true
+    },
+    AboutItem: {
+      type: Array,
+      required: true
     },
     Description: {
         type: String,

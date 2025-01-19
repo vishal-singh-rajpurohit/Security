@@ -6,7 +6,6 @@ const ApiError = require("../../utils/ApiError.utils");
 const ApiResponse = require("../../utils/ApiResponse.utils");
 const { paginate, limit } = require("../../methods");
 
-
 const serverProducts = asyncHandler(async (req, resp) => {
   const page = Number(req.query.page) || 0;
   const isFilterOn = req.query.filteron;
@@ -142,9 +141,6 @@ const serveSelectedProduct = asyncHandler(async (req, resp) => {
     throw new ApiError(400, "Must Provide Product Id");
   }
 
-  console.log("Prodcut Id ", ProductId, typeof ProductId);
-
-
   const Item = await Product.aggregate([
     {
       $match: {
@@ -180,16 +176,15 @@ const serveSelectedProduct = asyncHandler(async (req, resp) => {
         AdvancedPaymentAmmount: 1,
         Description: 1,
         FrontImage: 1,
-        Explaination: 1
+        Explaination: 1,
+        AboutItem: 1
       }
     }
   ])
   if (!Item) {
     throw new ApiError(400, "Item Not Found");
   }
-
-  console.log("Ites ", Item)
-
+  
   resp.status(200)
     .json(new ApiResponse(200, { Product: Item }, "Here is the item"));
 

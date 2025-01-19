@@ -17,9 +17,12 @@ const dealerAddInfo = asyncHandler(async (req, resp)=>{
         throw new ApiError(400 , "All Values Must Require");
     }
 
+    console.log("req.file.path ", req.file.path )
     if(!req.file.path){
         throw new ApiError(400, "Must Provide Image");
     }
+
+
 
     const IdPhoto =  await uploadOnCloud(req.file.path);
 

@@ -1,14 +1,14 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './signup.css'
 import { NavLink } from 'react-router-dom';
 import AuthContext from '../../context/AuthContext.context';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFormStates } from '../../Functions/Auth/formSlice';
-import { ImGlass } from 'react-icons/im';
 
 const Signup = () => {
     const dispatch = useDispatch();
     const { tempUserType, setTempUserType, setFormError, sendRegistrationOtp } = useContext(AuthContext);
+    const { formData } = useContext(AuthContext);
     const isSubmitError = useSelector((state) => state.modals.OpenWarning);
     const [errorMessage, setErrorMessage] = useState('');
     const [image, setImage] = useState(null);
@@ -19,12 +19,12 @@ const Signup = () => {
     const [Password, setPassword] = useState('');
     const [ConformPassword, setConformPassword] = useState('');
 
-    const userName = useSelector((state) => state.authform.firstName)
+    const userName = useSelector((state) => state.authform.firstName);
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (tempUserType !== 'CUSTOMER' && image.length === 0) {
+        if (tempUserType !== 'CUSTOMER' && !image) {
             setErrorMessage("Avatar Imgae Require");
             setFormError(true)
         }
@@ -57,13 +57,10 @@ const Signup = () => {
                 Password,
                 ConformPassword
             }))
-
-            console.log(image)
-
+            console.log("image is :", image);
             await sendRegistrationOtp();
         }
     }
-
 
     return (
         <main className='signpu-page'>
@@ -81,7 +78,7 @@ const Signup = () => {
                         >
                             <div className="-image-input">
                                 <label htmlFor="avatar" className="signup-laber">Enter Your Avatar</label>
-                                <input type="file" accept='image' onChange={(e) => setImage(e.target.value)} name='image' />
+                                <input type="file" accept='image/*' onChange={(e) => setImage(e.target.files[0])} name='image' />
                             </div>
                         </div>
                         <div className="small-parts small-parts2">
