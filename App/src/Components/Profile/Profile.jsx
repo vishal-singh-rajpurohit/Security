@@ -13,7 +13,7 @@ const Profile = () => {
     const setOpenMessages = () => dispatch(openMessages());
     const setOpenReport = () => dispatch(openReportBox());
 
-    const {logout} = useContext(AuthContext)
+    const {logout, userAvater} = useContext(AuthContext)
 
     const {
         userFirstName,
@@ -43,7 +43,7 @@ const Profile = () => {
                     <div className="top1-part">
                         <div className="left-part-top1">
                             <div className="image-box">
-                                <span className="-image-profile"></span>
+                                <span className="-image-profile" style={{backgroundImage: `url(${userAvater})`}}></span>
                             </div>
                         </div>
                         <div className="right-part-top1">

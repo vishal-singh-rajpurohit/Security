@@ -13,7 +13,7 @@ const removefromcart = require("../controllers/shop/cart/removerfromcart.control
 const changePassword = require("../controllers/users/update/changePassword.controller");
 const changeUserType = require("../controllers/users/update/changeUserType.controller");
 const refreshAccessAndRefreshToken = require("../controllers/users/refreshAccessAndRefreshToken.controller");
-const { serverProducts, serveSelectedProduct, serveCartItems } = require("../controllers/Products/products.controller");
+const { serverProducts, serveSelectedProduct, serveCartItems, servePremium } = require("../controllers/Products/products.controller");
 
 const mainRoutes = express.Router();
 
@@ -27,6 +27,7 @@ mainRoutes.route("/danger/delete-account").post(checkOtp, Auth, deleteAccount);
 
 // SERVE PRODUCTS
 mainRoutes.route("/serve/products").post(serverProducts);
+mainRoutes.route("/serve/premium-products").post(servePremium);
 mainRoutes.route("/serve/selected-product").post(serveSelectedProduct);
 
 // Reports

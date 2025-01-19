@@ -6,6 +6,7 @@ const ApiResponse = require("../../utils/ApiResponse.utils");
 const Dealer = require('../../models/dealer.model');
 const User = require('../../models/user.model');
 const Installer = require('../../models/installer.model');
+const {Options} = require("../../methods")
 
 const jwt = require("jsonwebtoken");
 
@@ -57,8 +58,8 @@ const registerInstaller = asyncHandler(async (req, resp) => {
         throw new ApiError(500, "Invalid Token");
     }
 
-    const authenticatedUser = await User.findOneAndUpdate(
-        { _id: decodedToken._id },
+    const authenticatedUser = await Installer.findOneAndUpdate(
+        { _id: newImage._id },
         {
             $set: {
                 refreshToken: refreshToken

@@ -134,6 +134,63 @@ const serverProducts = asyncHandler(async (req, resp) => {
   }
 });
 
+const servePremium = asyncHandler(async (req, resp)=>{
+  const page = Number(req.query.page) || 0;
+  const {UserType } = req.body;
+  
+  const skipped = paginate(page, 4);
+
+    const Products = await Product.aggregate([
+      {
+        $match: {
+          Premium: true
+        }
+      },
+      {
+        $project: {
+          _id: 1,
+          ProductName: 1,
+          PriceForDealers: {
+            $cond: {
+              if: { $eq: [UserType, "DEALER"] },
+              then: "$PriceForDealers",
+              else: "$$REMOVE"
+            }
+          },
+          PriceForInstallers: {
+            $cond: {
+              if: { $eq: [UserType, "INSTALLER"] },
+              then: "$PriceForInstallers",
+              else: "$$REMOVE"
+            }
+          },
+          PriceForCustomers: {
+            $cond: {
+              if: { $eq: [UserType, "CUSTOMER"] },
+              then: "$PriceForCustomers",
+              else: "$$REMOVE"
+            }
+          }
+        }
+      }
+    ]).skip(skipped).limit(4);
+
+    if (!Products) {
+      throw new ApiError(400, "Not Any Product Found");
+    }
+
+    resp.status(200).json(
+      new ApiResponse(
+        200,
+        {
+          Premium: Products,
+          LimitPerPage: limit,
+        },
+        "Here All Premium Products"
+      )
+    );
+});
+
 const serveSelectedProduct = asyncHandler(async (req, resp) => {
   const { ProductId, UserType } = req.body;
 
@@ -258,4 +315,4 @@ const serveCartItems = asyncHandler(async (req, resp) => {
 
 });
 
-module.exports = { serverProducts, serveSelectedProduct, serveCartItems }
+module.exports = { serverProducts, serveSelectedProduct, serveCartItems, servePremium }
