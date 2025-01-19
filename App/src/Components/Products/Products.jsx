@@ -11,7 +11,8 @@ import AuthContext from '../../context/AuthContext.context';
 
 const Products = () => {
 
-    const { products, pageNumber, isFilterOn, filters, serveProducts, loggedIn, userType,tempUserType, selectProduct } = useContext(AuthContext);
+    const { products, pageNumber, isFilterOn, filters, loggedIn, userType,tempUserType } = useContext(AuthContext);
+    const { addToCart, selectProduct, serveProducts  } = useContext(AuthContext);
 
 
     const dispatch = useDispatch();
@@ -245,7 +246,7 @@ const Products = () => {
                         <div className="list-style-products-display">
                             {
                                 products?.map((product) =>
-                                    <div className="box1" id="b1" key={product[0]._id} onClick={() => selectProduct(product[0]._id, (userType ||tempUserType))}>
+                                    <div className="box1" id="b1" key={product[0]._id}>
                                         <div className="image-of-product">
                                             <span className="image" >
                                                 <img src={product[0].FrontImage} alt="" className="box-1-product-image" />
@@ -275,7 +276,7 @@ const Products = () => {
                                                     </span>
                                                 </div>
                                                 <div className="save-button">
-                                                    <button className="btn-order save-button"><BiStar /> save</button>
+                                                    <button className="btn-order save-button" onClick={()=>addToCart(product[0]._id)}><BiStar /> save</button>
                                                 </div>
                                                 <div className="button">
                                                     <button className="btn-order" onClick={() => selectProduct(product[0]._id, (userType ||tempUserType))} >Know More</button>

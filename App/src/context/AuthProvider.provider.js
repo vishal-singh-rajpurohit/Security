@@ -62,10 +62,6 @@ const AuthProvider = ({ children }) => {
 
     const requestUserType = setUserRoutes(tempUserType);
 
-    useEffect(() => {
-        console.log("auth image is ", authImage);
-    });
-
     const sendRegistrationOtp = async () => {
         console.log(authMail, authPass);
         try {
@@ -238,9 +234,12 @@ const AuthProvider = ({ children }) => {
 
     const deleteAccount = async () => { };
 
-    const addToCart = async () => {
+    const addToCart = async (productId) => {
         try {
-            console.log("add to cart called");
+            await axios.post(`/api/v1${API[13]}`, {ProdcutId : productId})
+            .then((resp)=>{
+                console.log("added to cart");
+            })
         } catch (error) {
             console.log("error while add to cart the product :", error);
         }
