@@ -11,7 +11,7 @@ const checkOtp =asyncHandler((req, resp, next) => {
     }
 
     const Otp  = Number(req.body?.Otp);
-    console.log("Otp is :", Otp, req.body?.Otp);
+    console.log("Body is :",req.body);
     if(!Otp){
         throw new ApiError(400, "Must Provide Otp");
     }

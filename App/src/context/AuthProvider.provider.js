@@ -20,11 +20,12 @@ const AuthProvider = ({ children }) => {
     const [isFilterOn, setIsFilterOn] = useState(false);
     const [pageNumber, setPageNumber] = useState(0);
     const [filters, setFilters] = useState({});
-    const [showCaseImage, setShowCaseImage] = useState('')
+    const [showCaseImage, setShowCaseImage] = useState('');
 
     // PRODUCTS
     const [products, setProducts] = useState([]);
     const [product, setProduct] = useState();
+    const [cartProducts, setCartProducts] = useState()
 
     // LOGGED IN STATE
     let loggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -99,21 +100,31 @@ const AuthProvider = ({ children }) => {
     };
 
     const register = async (Otp) => {
-        formData.set("Otp", Otp);
-        formData.set("image", authImage);
-        formData.set("FirstName", authFirstName);
-        formData.set("LastName", authLastName);
-        formData.set("Email", authMail);
-        formData.set("MobileNumber", authMobileNumber);
-        formData.set("UserType", tempUserType);
-        formData.set("Password", authPass);
-        formData.set("ConformPassword", authConformPass);
 
         try {
-            await axios
-                .post(`/api/v1/${requestUserType}${API[0]}`, formData, {
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                })
+            const formData = new FormData();
+            formData.set("Otp", Otp);
+            if (authImage) {
+
+            }
+            formData.set("image", authImage)
+            formData.set("FirstName", authFirstName);
+            formData.set("LastName", authLastName);
+            formData.set("Email", authMail);
+            formData.set("MobileNumber", authMobileNumber);
+            formData.set("UserType", tempUserType);
+            formData.set("Password", authPass);
+            formData.set("ConformPassword", authConformPass);
+
+
+            await axios.post(`/api/v1/${requestUserType}${API[0]}`,
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data", // Axios handles boundaries automatically
+                    },
+                }
+            )
                 .then((resp) => {
                     const {
                         FirstName,
@@ -236,13 +247,13 @@ const AuthProvider = ({ children }) => {
     const deleteAccount = async () => {
         try {
             await axios.post(`/api/v1${API[7]}`, {})
-            .then((resp)=>{
-                dispatch(
-                    clearUserDetails()
-                );
-                console.log("Account Deleted Successfully ", resp);
+                .then((resp) => {
+                    dispatch(
+                        clearUserDetails()
+                    );
+                    console.log("Account Deleted Successfully ", resp);
 
-            })
+                })
         } catch (error) {
             console.log("Somthing Went Wrong While Deleting :", error);
         }
@@ -250,21 +261,35 @@ const AuthProvider = ({ children }) => {
 
     const addToCart = async (productId) => {
         try {
-            await axios.post(`/api/v1${API[13]}`, {ProdcutId : productId})
-            .then((resp)=>{
-                console.log("added to cart");
-            })
+            await axios.post(`/api/v1${API[13]}`, { ProdcutId: productId })
+                .then((resp) => {
+                    console.log("added to cart");
+                })
         } catch (error) {
             console.log("error while add to cart the product :", error);
         }
     };
 
-    const serveCart = async () =>{
+    const removeFromCart = async (cartID) => {
+        console.log("cart Product Id: ", cartID)
         try {
-            await axios.post(`/api/v1${API[14]}`, {UserType: (tempUserType || userType)})
-            .then((resp)=>{
-                console.log("cart from item :", resp.data.data.ProductsInCart);
-            })
+            await axios.delete(`/api/v1${API[15]}?id=${cartID}`)
+                .then((resp) => {
+                    console.log("Removed From Cart Successfully ", resp);
+                    setCartProducts(resp.data.data.ProductsInCart);
+                })
+        } catch (error) {
+            console.log("Error While Removing Form Cart ", error);
+
+        }
+    }
+
+    const serveCart = async () => {
+        try {
+            await axios.post(`/api/v1${API[14]}`, { UserType: (tempUserType || userType) })
+                .then((resp) => {
+                    setCartProducts(resp.data.data.ProductsInCart);
+                })
         } catch (error) {
             console.log("Error While Serving From Carts", error);
         }
@@ -334,7 +359,7 @@ const AuthProvider = ({ children }) => {
         loggedIn,
         tempUserType,
         setTempUserType,
-        showCaseImage, 
+        showCaseImage,
         setShowCaseImage,
         isFilterOn,
         setIsFilterOn,
@@ -342,6 +367,8 @@ const AuthProvider = ({ children }) => {
         setPageNumber,
         product,
         setProduct,
+        cartProducts,
+        setCartProducts,
         filters,
         setFilters,
         products,
@@ -372,6 +399,7 @@ const AuthProvider = ({ children }) => {
         serveProducts,
         deleteAccount,
         addToCart,
+        removeFromCart,
         serveCart,
         placeOrder,
         cancleOrder,

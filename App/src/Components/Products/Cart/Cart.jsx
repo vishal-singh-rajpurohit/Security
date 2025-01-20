@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import "./Cart.css";
-import { BiRupee} from "react-icons/bi";
+import { BiRupee } from "react-icons/bi";
 import a from "../../../Assets/Cameras/v.webp"
 import { MdDeleteForever } from "react-icons/md";
 import { NavLink } from "react-router-dom";
@@ -8,11 +8,12 @@ import AuthContext from "../../../context/AuthContext.context";
 
 const Cart = () => {
 
-    const {serveCart} = useContext(AuthContext);
+    const { serveCart, selectProduct, removeFromCart } = useContext(AuthContext);
+    const { cartProducts, tempUserType, userType } = useContext(AuthContext);
 
-    useEffect(async ()=>{
+    useEffect(async () => {
         await serveCart();
-    },[])
+    }, [])
 
     return (
         <main className="cart-page">
@@ -22,18 +23,21 @@ const Cart = () => {
             <section className="cart-section">
                 <div className="right-cart-page">
                     <div className="list-style-products-display">
-                        <div className="box1 box-card1" id="b1">
+                        {
+                            cartProducts? (
+                            cartProducts?.map((product)=><div className="box1 box-card1" id="b1">
                             <div className="image-of-product">
                                 <span className="image">
-                                    <img src={a} alt="" className="box-1-product-image" />
+                                    <img src={product.Product.FrontImage} alt="" className="box-1-product-image" />
                                 </span>
                             </div>
                             <div className="description">
                                 <div className="product-description">
                                     <div className="for-overflow">
                                         <h2 className="product-name">
-                                            4 IP Camera Setup, Full Colour with Audio Camera 2 Way
-                                            Talk (Communication) , 500gb Hard Disk{" "}
+                                           {
+                                            product.Product.ProductName
+                                           }
                                         </h2>
                                     </div>
                                     <div className="total-orders">
@@ -46,22 +50,24 @@ const Cart = () => {
                                             <span className="rupee">
                                                 {" "}
                                                 <span className="symbol-rupee">&#x20b9;</span>
-                                                <span className="pri">3000</span>
+                                                <span className="pri">{product.Product.Price}</span>
                                             </span>
                                         </span>
                                     </div>
                                     <div className="save-button">
-                                        <button className="btn-order save-button remove-button">
+                                        <button className="btn-order save-button remove-button" onClick={()=>removeFromCart(product._id)}>
                                             <MdDeleteForever /> ramove from cart
                                         </button>
                                     </div>
                                     <div className="button">
-                                        <button className="btn-order">Know More</button>
+                                        <button className="btn-order" onClick={() => selectProduct(product._id, (userType ||tempUserType))}>Know More</button>
                                         <button className="btn-order">Book Installation</button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>)) : null
+                        }
+                       
                     </div>
                 </div>
                 <div className="left-cart-page">
@@ -89,7 +95,7 @@ const Cart = () => {
                         <div className="continue-shoping">
                             <NavLink className="continue-shoping-btn" to={""}>
                                 <button className="continue-shoping-btn">Continue Shoping</button>
-                                </NavLink>
+                            </NavLink>
                         </div>
                     </div>
                 </div>

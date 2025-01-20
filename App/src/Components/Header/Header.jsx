@@ -25,7 +25,7 @@ const Header = () => {
             {
               loggedIn ? <>
                 <li id='profile'><NavLink to={'/user/profile'}><FaUser size={20} /></NavLink></li>
-                <li id='profile'><NavLink to={'/user/profile'}><FaCartShopping size={20} /></NavLink></li>
+                <li id='profile'><NavLink to={'/shop/cart'}><FaCartShopping size={20} /></NavLink></li>
               </>
                 :
                 <li><NavLink to={'/user/register'} >Signup</NavLink></li>

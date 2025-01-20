@@ -271,7 +271,7 @@ const serveCartItems = asyncHandler(async (req, resp) => {
     {
       $lookup: {
         from: "products",
-        localField: "ProductId",
+        localField: "ProdcutId",
         foreignField: "_id",
         as: "product"
       }
@@ -286,29 +286,18 @@ const serveCartItems = asyncHandler(async (req, resp) => {
     {
       $project: {
         "Product.ProductName": 1,
-        "Product.PriceForDealers": {
-          $cond: {
-            if: { $eq: [UserType, "DEALER"] },
-            then: "$PriceForDealers",
-            else: "$$REMOVE"
-          }
-        },
-        "Product.PriceForInstallers": {
-          $cond: {
-            if: { $eq: [UserType, "INSTALLER"] },
-            then: "$PriceForInstallers",
-            else: "$$REMOVE"
-          }
-        },
-        "Product.PriceForCustomers": {
-          $cond: {
-            if: { $eq: [UserType, "CUSTOMER"] },
-            then: "$PriceForCustomers",
-            else: "$$REMOVE"
-          }
-        },
         "Product.FrontImage": 1,
         "Product.Explaination": 1,
+        "Product.Price": {
+          $switch: {
+            branches: [
+              { case: { $eq: [UserType, "DEALER"] }, then: "$Product.PriceForDealers" },
+              { case: { $eq: [UserType, "INSTALLER"] }, then: "$Product.PriceForInstallers" },
+              { case: { $eq: [UserType, "CUSTOMER"] }, then: "$Product.PriceForCustomers" }
+            ],
+            default: "$Product.PriceForCustomers" // Handle other cases or mismatched UserTypes
+          }
+        }
       }
     }
   ]).skip(skipped).limit(limit);

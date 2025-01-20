@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import './shop.css'
 import '../../../css/Projucts.css'
-import b from "../../../Assets/Cameras/c3.jpeg"
 import { BiStar } from 'react-icons/bi'
 import { GoReport } from 'react-icons/go'
 import { useDispatch } from 'react-redux'

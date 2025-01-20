@@ -9,7 +9,7 @@ const removefromcart = asyncHandler(async (req, resp) => {
     throw new ApiError(400, "Unautharized Request");
   }
 
-  const { cartId } = req.body;
+  const cartId = req.query.id;
 
   if (!cartId) {
     throw new ApiError(400, "Cart Id Not Found");
@@ -21,7 +21,13 @@ const removefromcart = asyncHandler(async (req, resp) => {
     throw new ApiError(400, "Error in Deleting the Item From Cart");
   }
 
-  resp.status(200).json(new ApiResponse(200, {}, "Item Deleted Successfully"));
+  const updatedCart = await Cart.find({});
+
+  if(!updatedCart){
+    throw new ApiError(400, "Somthing Went Wrong While Getting Cart Items")
+  }
+
+  resp.status(200).json(new ApiResponse(200, {ProductsInCart: updatedCart}, "Item Deleted Successfully"));
 });
 
 module.exports = removefromcart;

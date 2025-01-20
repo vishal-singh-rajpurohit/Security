@@ -4,7 +4,6 @@ import './otp.css'
 import AuthContext from '../../context/AuthContext.context'
 import { useDispatch } from 'react-redux'
 import { setOtp } from '../../Functions/Auth/formSlice'
-import { useNavigate } from 'react-router-dom'
 
 
 const Otp = () => {
@@ -14,17 +13,12 @@ const Otp = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async () => {
-    // e.preventDefault();
-    console.log("submit called");
-    
     if (!OtpTemp) {
       setErrorMessage("Otp Must Required");
       setFormError(true)
       console.log("Provide Otp");
     }
     else {
-      console.log('otp submitted');
-      
       setErrorMessage('');
       setFormError(false);
 
