@@ -320,9 +320,6 @@ const AuthProvider = ({ children }) => {
         }
     };
 
-    const selectShowCaseImages = () =>{
-
-    }
     // PAGE NUMBERS AND PRODCUT SERVING
     useEffect(async () => {
         await serveProducts(

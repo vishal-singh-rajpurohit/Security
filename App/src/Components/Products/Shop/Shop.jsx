@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './shop.css'
 import '../../../css/Projucts.css'
 import b from "../../../Assets/Cameras/c3.jpeg"
@@ -13,6 +13,13 @@ const Shop = () => {
     const setOpenReport = () => dispatch(openReportBox());
 
     const { product, loggedIn, userType, showCaseImage, setShowCaseImage} = useContext(AuthContext);
+
+    useEffect(()=>{
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+    },[]);
 
     return (
         <main className='shop'>

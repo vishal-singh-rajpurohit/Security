@@ -280,45 +280,13 @@ const Products = () => {
                                                 </div>
                                                 <div className="button">
                                                     <button className="btn-order" onClick={() => selectProduct(product[0]._id, (userType ||tempUserType))} >Know More</button>
-                                                    <button className="btn-order">Book Installation</button>
+                                                    <button className="btn-order">Order Now</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 )
                             }
-
-                            {/* <div className="box1" id="b1">
-                                <div className="image-of-product">
-                                    <span className="image" >
-                                        <img src={a} alt="" className="box-1-product-image" />
-                                    </span>
-                                </div>
-                                <div className="description">
-                                    <div className="product-description">
-                                        <div className="for-overflow">
-                                            <h2 className="product-name">4 IP Camera Setup, Full Colour with Audio Camera 2 Way Talk
-                                                (Communication) , 500gb Hard Disk </h2>
-                                        </div>
-                                        <div className="total-orders">
-                                            <span className="last-orders">total 1500 orders last month</span>
-                                        </div>
-                                        <div className="price">
-                                            <span className="price">
-                                                <span className="rupee"> <span className="symbol-rupee">&#x20b9;</span><span
-                                                    className="pri">3000</span></span>
-                                            </span>
-                                        </div>
-                                        <div className="save-button">
-                                            <button className="btn-order save-button"><BiStar /> save</button>
-                                        </div>
-                                        <div className="button">
-                                            <button className="btn-order">Know More</button>
-                                            <button className="btn-order">Book Installation</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> */}
                         </div>
                     </div>
                 </section>
