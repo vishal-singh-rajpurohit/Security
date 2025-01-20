@@ -233,6 +233,7 @@ const serveSelectedProduct = asyncHandler(async (req, resp) => {
         AdvancedPaymentAmmount: 1,
         Description: 1,
         FrontImage: 1,
+        ShowCaseImages: 1,
         Explaination: 1,
         AboutItem: 1
       }
@@ -248,14 +249,23 @@ const serveSelectedProduct = asyncHandler(async (req, resp) => {
 });
 
 const serveCartItems = asyncHandler(async (req, resp) => {
+  const user = req.user;
   const page = Number(req.query.page) || 0;
   const skipped = paginate(page, 15);
-  const { UserId, UserType } = req.body;
+  const { UserType } = req.body;
+
+  if(!user){
+    throw new ApiError(400, "Unautharized Request");
+  }
+
+  if(!UserType){
+    throw new ApiError(400, "Should be know UserType");
+  }
 
   const CartProducts = await Cart.aggregate([
     {
       $match: {
-        UserId: UserId
+        UserId: user._id
       },
     },
     {

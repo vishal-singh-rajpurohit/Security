@@ -12,35 +12,22 @@ const Shop = () => {
     const dispatch = useDispatch();
     const setOpenReport = () => dispatch(openReportBox());
 
-    const { product, loggedIn, userType} = useContext(AuthContext);
+    const { product, loggedIn, userType, showCaseImage, setShowCaseImage} = useContext(AuthContext);
 
     return (
         <main className='shop'>
             <section className="shop-page">
                 <section className="product-display">
                     <div className="main-display">
-                        <img src={b} alt="" className="display-image" />
+                        <img src={showCaseImage} alt="" className="display-image" />
                     </div>
                     <div className="list-of-display">
                         <ul className="display-ul">
-                            <li className="display-li">
-                                <span className="image-little-display"></span>
-                            </li>
-                            <li className="display-li">
-                                <span className="image-little-display"></span>
-                            </li>
-                            <li className="display-li">
-                                <span className="image-little-display"></span>
-                            </li>
-                            <li className="display-li">
-                                <span className="image-little-display"></span>
-                            </li>
-                            <li className="display-li">
-                                <span className="image-little-display"></span>
-                            </li>
-                            <li className="display-li">
-                                <span className="image-little-display"></span>
-                            </li>
+                            {
+                                product?.ShowCaseImages.map((i)=><li className="display-li">
+                                <span className="image-little-display" onClick={()=>setShowCaseImage(i)} style={{backgroundImage: `url(${i})`}}></span>
+                            </li>)
+                            }
                         </ul>
                     </div>
                 </section>

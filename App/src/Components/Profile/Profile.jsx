@@ -7,13 +7,14 @@ import { openMessages, openReportBox } from '../../Functions/Ui/modalSlice'
 import AuthContext from '../../context/AuthContext.context'
 
 
+
 const Profile = () => {
 
     const dispatch = useDispatch();
     const setOpenMessages = () => dispatch(openMessages());
     const setOpenReport = () => dispatch(openReportBox());
 
-    const {logout, userAvater} = useContext(AuthContext)
+    const {logout, userAvater, deleteAccount} = useContext(AuthContext)
 
     const {
         userFirstName,
@@ -95,6 +96,9 @@ const Profile = () => {
                                     </li>
                                     <li className="profile-button-li">
                                         <button className="button-li">Share</button>
+                                    </li>
+                                    <li className="profile-button-li">
+                                        <button className="button-li" onClick={()=>deleteAccount()}>Delete</button>
                                     </li>
                                     <li className="profile-button-li">
                                         <button className="button-li" onClick={logout}>Log Out</button>

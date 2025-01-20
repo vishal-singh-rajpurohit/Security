@@ -23,7 +23,8 @@ mainRoutes.route("/auth/login").post(Auth, refreshAccessAndRefreshToken);
 // otps
 mainRoutes.route("/otp/send-otp-signup").post(isNotExists, otpVerification);
 mainRoutes.route("/otp/send-otp-login").post(isExists, otpVerification);
-mainRoutes.route("/danger/delete-account").post(checkOtp, Auth, deleteAccount);
+mainRoutes.route("/danger/delete-account").post(Auth, otpVerification);
+mainRoutes.route("/otp/send-delete-otp").post(checkOtp, Auth, deleteAccount);
 
 // SERVE PRODUCTS
 mainRoutes.route("/serve/products").post(serverProducts);
@@ -35,12 +36,9 @@ mainRoutes.route("/report/new-report").post(Auth, addreport);
 mainRoutes.route("/report/set-satisfied").put(Auth, addSatisfaction);
 mainRoutes.route("/report/get-reviews").get(Auth, getReviews);
 
-// Place Order
-
-
-// cart
+// CART
 mainRoutes.route("/cart/add-to-cart").post(Auth, addtocart);
-mainRoutes.route("/cart/get-cart").post(Auth, serveCartItems);
+mainRoutes.route("/cart/serve-cart").post(Auth, serveCartItems);
 mainRoutes.route("/cart/remove-from-cart").delete(Auth, removefromcart);
 
 // User Modification

@@ -21,7 +21,7 @@ const Bottomnav = () => {
             {
               loggedIn ? <>
                 <li className="btm-nav-li"><NavLink to={'/user/profile'}><button className="btm-nav-btn"><FaUser size={20} /></button></NavLink></li>
-                <li className="btm-nav-li"><NavLink to={'/contacts'}><button className="btm-nav-btn"><FaCartShopping size={20} /></button></NavLink></li>
+                <li className="btm-nav-li"><NavLink to={'/shop/cart'}><button className="btm-nav-btn"><FaCartShopping size={20} /></button></NavLink></li>
               </>
                 :
                 <li className="btm-nav-li"><NavLink to={'/user/register'}><button className="btm-nav-btn">Signup</button></NavLink></li>

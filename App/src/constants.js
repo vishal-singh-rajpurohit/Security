@@ -29,7 +29,7 @@ export const API = [
     "/modify/change-password",
     "/modify/change-user-type",
     // Delete 7
-    "/danger/delete-account",
+    "/main/danger/delete-account",
     // Otp 8, 9
     "/main/otp/send-otp-signup",
     "/main/otp/send-otp-login",
@@ -39,7 +39,7 @@ export const API = [
     "/main/report/get-reviews",
     // Cart 13 , 14 , 15 
     "/main/cart/add-to-cart",
-    "/main/cart/get-cart",
+    "/main/cart/serve-cart",
     "/main/cart/remove-from-cart",
     // Order Routes 
     // ENTRY AUTH 16

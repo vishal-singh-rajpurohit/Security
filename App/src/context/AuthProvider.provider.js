@@ -20,6 +20,7 @@ const AuthProvider = ({ children }) => {
     const [isFilterOn, setIsFilterOn] = useState(false);
     const [pageNumber, setPageNumber] = useState(0);
     const [filters, setFilters] = useState({});
+    const [showCaseImage, setShowCaseImage] = useState('')
 
     // PRODUCTS
     const [products, setProducts] = useState([]);
@@ -232,7 +233,20 @@ const AuthProvider = ({ children }) => {
         }
     };
 
-    const deleteAccount = async () => { };
+    const deleteAccount = async () => {
+        try {
+            await axios.post(`/api/v1${API[7]}`, {})
+            .then((resp)=>{
+                dispatch(
+                    clearUserDetails()
+                );
+                console.log("Account Deleted Successfully ", resp);
+
+            })
+        } catch (error) {
+            console.log("Somthing Went Wrong While Deleting :", error);
+        }
+    };
 
     const addToCart = async (productId) => {
         try {
@@ -244,6 +258,17 @@ const AuthProvider = ({ children }) => {
             console.log("error while add to cart the product :", error);
         }
     };
+
+    const serveCart = async () =>{
+        try {
+            await axios.post(`/api/v1${API[14]}`, {UserType: (tempUserType || userType)})
+            .then((resp)=>{
+                console.log("cart from item :", resp.data.data.ProductsInCart);
+            })
+        } catch (error) {
+            console.log("Error While Serving From Carts", error);
+        }
+    }
 
     const placeOrder = async () => {
         try {
@@ -287,6 +312,7 @@ const AuthProvider = ({ children }) => {
                 })
                 .then((resp) => {
                     setProduct(resp.data.data.Product[0]);
+                    setShowCaseImage(resp.data.data.Product[0].FrontImage);
                     navigate("/shop");
                 });
         } catch (error) {
@@ -294,6 +320,9 @@ const AuthProvider = ({ children }) => {
         }
     };
 
+    const selectShowCaseImages = () =>{
+
+    }
     // PAGE NUMBERS AND PRODCUT SERVING
     useEffect(async () => {
         await serveProducts(
@@ -308,6 +337,8 @@ const AuthProvider = ({ children }) => {
         loggedIn,
         tempUserType,
         setTempUserType,
+        showCaseImage, 
+        setShowCaseImage,
         isFilterOn,
         setIsFilterOn,
         pageNumber,
@@ -344,6 +375,7 @@ const AuthProvider = ({ children }) => {
         serveProducts,
         deleteAccount,
         addToCart,
+        serveCart,
         placeOrder,
         cancleOrder,
         shareProduct,
