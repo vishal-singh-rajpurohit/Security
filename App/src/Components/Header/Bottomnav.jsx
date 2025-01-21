@@ -16,6 +16,7 @@ const Bottomnav = () => {
       <nav className='bottom-navigation' style={{ display: openNavBar ? 'flex' : 'none' }}>
         <div className="bottom-nav-container">
           <ul className="btm-nav-ul">
+            <li className="btm-nav-li"><NavLink to={'/'}><button className="btm-nav-btn">Home</button></NavLink></li>
             <li className="btm-nav-li"><NavLink to={'/about'}><button className="btm-nav-btn">About</button></NavLink></li>
             <li className="btm-nav-li"><NavLink to={'/contacts'}><button className="btm-nav-btn">Contact</button></NavLink></li>
             {

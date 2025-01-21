@@ -20,9 +20,15 @@ const Products = () => {
 
     const SetOpenFilter = () => dispatch(setOpenFilter());
 
-    // const handleCheckboxChange = (e) => {
-    //     setSelected(e.target.name);
-    // };
+   // PAGE NUMBERS AND PRODCUT SERVING
+   useEffect(() => {
+    serveProducts(
+        pageNumber,
+        isFilterOn,
+        filters,
+        userType || tempUserType
+    );
+}, [pageNumber, isFilterOn, filters]);
 
 
     return (

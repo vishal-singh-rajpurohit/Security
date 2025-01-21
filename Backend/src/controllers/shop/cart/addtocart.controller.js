@@ -9,11 +9,22 @@ const addtocart = asyncHandler(async (req, resp) => {
     throw new ApiError(400, "Unautharized Request");
   }
 
+
   const { ProdcutId } = req.body;
 
   if (!ProdcutId ) {
     throw new ApiError(400, "ProductId and UserId are required");
   }
+
+  const isProductInCart = await Cart.findOne({
+    UserId : user._id,
+    ProdcutId: ProdcutId
+  })
+
+  if(isProductInCart){
+    throw new ApiError(400, "Product is Already in Cart");
+  }
+
 
   const newCartProduct = new Cart({
     ProdcutId,

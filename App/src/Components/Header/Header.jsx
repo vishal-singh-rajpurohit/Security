@@ -18,7 +18,7 @@ const Header = () => {
     <>
       <nav className="navbar">
         <div className="navbar-container">
-          <NavLink className={"logo-text"} to={""}>AJ</NavLink>
+          <NavLink className={"logo-text"} to={"/"}>AJ</NavLink>
           <ul className="nav-links">
             <li><NavLink to={'/about'}>About</NavLink></li>
             <li><NavLink to={'/contacts'}>Contacts</NavLink></li>

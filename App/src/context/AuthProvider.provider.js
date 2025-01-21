@@ -289,6 +289,7 @@ const AuthProvider = ({ children }) => {
             await axios.post(`/api/v1${API[14]}`, { UserType: (tempUserType || userType) })
                 .then((resp) => {
                     setCartProducts(resp.data.data.ProductsInCart);
+                    console.log("resp.data.data.ProductsInCart ", resp.data.data.ProductsInCart);
                 })
         } catch (error) {
             console.log("Error While Serving From Carts", error);
@@ -345,15 +346,7 @@ const AuthProvider = ({ children }) => {
         }
     };
 
-    // PAGE NUMBERS AND PRODCUT SERVING
-    useEffect(async () => {
-        await serveProducts(
-            pageNumber,
-            isFilterOn,
-            filters,
-            userType || tempUserType
-        );
-    }, [pageNumber, isFilterOn, filters]);
+    
 
     const data = {
         loggedIn,

@@ -11,9 +11,13 @@ const Cart = () => {
     const { serveCart, selectProduct, removeFromCart } = useContext(AuthContext);
     const { cartProducts, tempUserType, userType } = useContext(AuthContext);
 
-    useEffect(async () => {
-        await serveCart();
+    useEffect(() => {
+        serveCart();
     }, [])
+
+    useEffect(()=>{
+        console.log("Cart Items :", cartProducts); 
+    });
 
     return (
         <main className="cart-page">
@@ -24,7 +28,6 @@ const Cart = () => {
                 <div className="right-cart-page">
                     <div className="list-style-products-display">
                         {
-                            cartProducts? (
                             cartProducts?.map((product)=><div className="box1 box-card1" id="b1">
                             <div className="image-of-product">
                                 <span className="image">
@@ -65,7 +68,7 @@ const Cart = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>)) : null
+                        </div>)
                         }
                        
                     </div>
