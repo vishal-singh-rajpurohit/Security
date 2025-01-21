@@ -71,11 +71,20 @@ const removefromcart = asyncHandler(async (req, resp) => {
     }
   ]);
 
+  let TotalAmmount = 0;
+
+  updatedCart.map((product)=>{
+    TotalAmmount += product.Product.Price;
+  })
+
   if(!updatedCart){
     throw new ApiError(400, "Somthing Went Wrong While Getting Cart Items")
   }
 
-  resp.status(200).json(new ApiResponse(200, {ProductsInCart: updatedCart}, "Item Deleted Successfully"));
+  resp.status(200).json(new ApiResponse(200, {
+    ProductsInCart: updatedCart,
+    TotalAmmount
+  }, "Item Deleted Successfully"));
 });
 
 module.exports = removefromcart;

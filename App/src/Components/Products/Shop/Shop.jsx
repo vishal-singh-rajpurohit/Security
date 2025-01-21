@@ -11,6 +11,7 @@ const Shop = () => {
     const dispatch = useDispatch();
     const setOpenReport = () => dispatch(openReportBox());
 
+    const { addToCart } = useContext(AuthContext);
     const { product, loggedIn, userType, showCaseImage, setShowCaseImage} = useContext(AuthContext);
 
     useEffect(()=>{
@@ -139,7 +140,7 @@ const Shop = () => {
                                 </div>
                             </div>
                             <div className="shop-card-buttons">
-                                <button className="btn-order save-button btn-order2"><BiStar /> save</button>
+                                <button className="btn-order save-button btn-order2" onClick={()=>addToCart(product._id)}><BiStar /> save</button>
                                 <button className="btn-order btn-order2">Order Now</button>
                             </div>
                         </div>

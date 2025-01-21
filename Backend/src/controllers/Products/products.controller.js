@@ -302,13 +302,24 @@ const serveCartItems = asyncHandler(async (req, resp) => {
     }
   ]).skip(skipped).limit(limit);
 
+  let TotalAmmount = 0;
+
+  CartProducts.map((product)=>{
+    TotalAmmount += product.Product.Price;
+  })
+
+  
+
   if (!CartProducts) {
     throw new ApiError(400, "Cart Item Not Found");
   }
 
+  console.log("All Total Ammout :", TotalAmmount);
+
   resp.status(200)
     .json(new ApiResponse(200, {
       ProductsInCart: CartProducts,
+      TotalAmmount: TotalAmmount,
       LimitPerPage: 15
     }))
 

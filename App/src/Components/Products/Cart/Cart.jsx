@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Cart.css";
 import { BiRupee } from "react-icons/bi";
 import a from "../../../Assets/Cameras/v.webp"
@@ -9,15 +9,13 @@ import AuthContext from "../../../context/AuthContext.context";
 const Cart = () => {
 
     const { serveCart, selectProduct, removeFromCart } = useContext(AuthContext);
-    const { cartProducts, tempUserType, userType } = useContext(AuthContext);
+    const { cartProducts, tempUserType, userType, totalAmmount } = useContext(AuthContext);
+
 
     useEffect(() => {
         serveCart();
     }, [])
 
-    useEffect(()=>{
-        console.log("Cart Items :", cartProducts); 
-    });
 
     return (
         <main className="cart-page">
@@ -86,17 +84,17 @@ const Cart = () => {
                     <div className="cart-details-main">
                         <div className="cart-main-top">
                             <p className="total-ammount-saving">
-                                <BiRupee />{4455} Total Ammount
+                                <BiRupee />{totalAmmount} Total Ammount
                             </p>
                             <p className="total-ammount-saving">
-                                <BiRupee />{4455} Total Savings
+                                {/* <BiRupee />{4455} Total Savings */}
                             </p>
                         </div>
                         <div className="cart-main-shop-now">
                             <button className="shop-now-btn">Order Now</button>
                         </div>
                         <div className="continue-shoping">
-                            <NavLink className="continue-shoping-btn" to={""}>
+                            <NavLink to={'/'} style={{width: "90%"}}>
                                 <button className="continue-shoping-btn">Continue Shoping</button>
                             </NavLink>
                         </div>

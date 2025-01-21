@@ -21,6 +21,7 @@ const AuthProvider = ({ children }) => {
     const [pageNumber, setPageNumber] = useState(0);
     const [filters, setFilters] = useState({});
     const [showCaseImage, setShowCaseImage] = useState('');
+    const [totalAmmount, setTotalAmmount] = useState(0);
 
     // PRODUCTS
     const [products, setProducts] = useState([]);
@@ -275,8 +276,8 @@ const AuthProvider = ({ children }) => {
         try {
             await axios.delete(`/api/v1${API[15]}?id=${cartID}`)
                 .then((resp) => {
-                    console.log("Removed From Cart Successfully ", resp);
                     setCartProducts(resp.data.data.ProductsInCart);
+                    setTotalAmmount(resp.data.data.TotalAmmount);
                 })
         } catch (error) {
             console.log("Error While Removing Form Cart ", error);
@@ -289,6 +290,7 @@ const AuthProvider = ({ children }) => {
             await axios.post(`/api/v1${API[14]}`, { UserType: (tempUserType || userType) })
                 .then((resp) => {
                     setCartProducts(resp.data.data.ProductsInCart);
+                    setTotalAmmount(resp.data.data.TotalAmmount);
                     console.log("resp.data.data.ProductsInCart ", resp.data.data.ProductsInCart);
                 })
         } catch (error) {
@@ -346,7 +348,7 @@ const AuthProvider = ({ children }) => {
         }
     };
 
-    
+
 
     const data = {
         loggedIn,
@@ -356,6 +358,7 @@ const AuthProvider = ({ children }) => {
         setShowCaseImage,
         isFilterOn,
         setIsFilterOn,
+        totalAmmount,
         pageNumber,
         setPageNumber,
         product,
