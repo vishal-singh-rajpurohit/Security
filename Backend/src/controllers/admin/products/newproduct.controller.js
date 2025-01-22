@@ -5,7 +5,7 @@ const asyncHandler = require("../../../utils/asyncHandler.utils");
 const ApiResponse = require("../../../utils/ApiResponse.utils");
 
 const newproduct = asyncHandler(async (req, resp) => {
-  const { ProductName, KeyWords, PriceForDealers, PriceForInstallers, PriceForCustomers, AdvancedPaymentAmmount, Description, Explaination } = req.body;
+  const { ProductName, KeyWords, PriceForDealers, PriceForInstallers, PriceForCustomers, AdvancedPaymentAmmount, Description, Explaination, Premium, CameraType, PlaceOfInstallation,   } = req.body;
 
   if ([ProductName, KeyWords, PriceForDealers, PriceForInstallers, PriceForCustomers, Description, Explaination].some((field) => field?.trim() === "")) {
     throw new ApiError(400, "All fields must required");
@@ -50,7 +50,10 @@ const newproduct = asyncHandler(async (req, resp) => {
     Description,
     FrontImage,
     ShowCaseImages,
-    Explaination
+    Explaination,
+    Premium,
+    CameraType,
+    PlaceOfInstallation
   })
   await pushResult.save();
 

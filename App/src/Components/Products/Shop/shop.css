@@ -259,15 +259,20 @@ button.btn-order.save-button.btn-order2 {
 
 @media (max-width: 1050px) {
     section.shop-page {
-        grid-template-columns: 1fr;
-        align-content: center;
+        display: flex
+;
+        align-items: center;
         justify-items: center;
         gap: 2rem;
+        flex-direction: column;
     }
 
     section.product-display {
-        width: 80%;
-        border: none;
+        width: 97%;
+    }
+    .main-display {
+        border: 1px solid;
+        border-radius: 3px 3px 0px 0px;
     }
 
     section.right-details-of-shop {

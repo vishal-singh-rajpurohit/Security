@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './profile.css'
 import MessageInbox from '../Modal/MessageInbox'
 import { AiTwotoneMail } from 'react-icons/ai'
@@ -14,7 +14,7 @@ const Profile = () => {
     const setOpenMessages = () => dispatch(openMessages());
     const setOpenReport = () => dispatch(openReportBox());
 
-    const {logout, userAvater, deleteAccount} = useContext(AuthContext)
+    const { logout, userAvater, deleteAccount } = useContext(AuthContext)
 
     const {
         userFirstName,
@@ -36,6 +36,8 @@ const Profile = () => {
         userCraditPayments
     } = useContext(AuthContext);
 
+    
+
     return (
         <>
             <MessageInbox />
@@ -44,7 +46,7 @@ const Profile = () => {
                     <div className="top1-part">
                         <div className="left-part-top1">
                             <div className="image-box">
-                                <span className="-image-profile" style={{backgroundImage: `url(${userAvater})`}}></span>
+                                <span className="-image-profile" style={{ backgroundImage: `url(${userAvater})` }}></span>
                             </div>
                         </div>
                         <div className="right-part-top1">
@@ -54,7 +56,7 @@ const Profile = () => {
                                         <p className="user-name">{`${userFirstName} ${userLastName}`}</p>
                                     </div>
                                     <div className="box-mail">
-                                        <AiTwotoneMail style={{cursor: 'pointer'}} onClick={setOpenMessages} size={25} color='red' />
+                                        <AiTwotoneMail style={{ cursor: 'pointer' }} onClick={setOpenMessages} size={25} color='red' />
                                     </div>
                                 </div>
                                 <div className="details-box-bottom">
@@ -98,7 +100,7 @@ const Profile = () => {
                                         <button className="button-li">Share</button>
                                     </li>
                                     <li className="profile-button-li">
-                                        <button className="button-li" onClick={()=>deleteAccount()}>Delete</button>
+                                        <button className="button-li" onClick={() => deleteAccount()}>Delete</button>
                                     </li>
                                     <li className="profile-button-li">
                                         <button className="button-li" onClick={logout}>Log Out</button>

@@ -27,26 +27,15 @@ const newSchema = new mongoose.Schema(
       default: false,
       required: true
     },
-    Branded: {
-      type: Boolean,
-      default: false,
-      required: true
-    },
-    Brand: {
-      type: String,
-      required: true
-    },
     CameraType: {
       type: String,
       required: true,
       enum: ["HD", "IP", "BOTH"]
     },
+    // Hot: {
+
+    // },
     PlaceOfInstallation: {
-      type: String,
-      required: true,
-      enum: ["INDOOR", "OUTDOOR", "COMBINED"]
-    },
-    InstallationAreaSize: {
       type: String,
       required: true,
       enum: ["INDOOR", "OUTDOOR", "COMBINED"]

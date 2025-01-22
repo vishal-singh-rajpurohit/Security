@@ -10,8 +10,8 @@ import { MdTransitEnterexit } from 'react-icons/md';
 
 const Products = () => {
 
-    const { products, pageNumber, isFilterOn, filters, loggedIn, userType, tempUserType, filterAts, setFilterAts, filterKeys, setFilterKeys, filterObject  } = useContext(AuthContext);
-    const { addToCart, selectProduct, serveProducts, setFilterItems, setFilterValues  } = useContext(AuthContext);
+    const { products, pageNumber, isFilterOn, filters, loggedIn, userType, tempUserType, filterAts, setFilterAts, filterKeys, setFilterKeys, filterObject } = useContext(AuthContext);
+    const { addToCart, selectProduct, serveProducts, setFilterItems, setFilterValues } = useContext(AuthContext);
     const [selectedOption, setSelectedOption] = useState(null);
 
     const dispatch = useDispatch();
@@ -19,8 +19,8 @@ const Products = () => {
 
     const SetOpenFilter = () => dispatch(setOpenFilter());
 
-    const handleCheckBox = (value) =>{
-        setSelectedOption(selectedOption === value ? null: value);
+    const handleCheckBox = (value) => {
+        setSelectedOption(selectedOption === value ? null : value);
     }
 
     // PAGE NUMBERS AND PRODCUT SERVING
@@ -33,10 +33,6 @@ const Products = () => {
         );
     }, [pageNumber, isFilterOn, filters]);
 
-    // useEffect(()=>{
-    //     console.log("filters is:", filters);
-    //     console.log("filters Obj is:", filterObject);
-    // },[filterKeys, filterAts, selectedOption]);
 
 
     return (
@@ -56,13 +52,13 @@ const Products = () => {
                         <div className="lefl-b-filter">
                             <ul className="filter-slide-bottom">
                                 {/* <li id='active-filter' className="bottom-filter-item">Price</li> */}
-                                <li className="bottom-filter-item" onClick={()=>setFilterItems("price")}>Price</li>
+                                <li className="bottom-filter-item" onClick={() => setFilterItems("price")}>Price</li>
                                 {/* <li className="bottom-filter-item" onClick={()=>setFilterItems("brand")}>Brands</li> */}
-                                <li className="bottom-filter-item" onClick={()=>setFilterItems("number_of_cameras")}>Number of Cameras</li>
-                                <li className="bottom-filter-item" onClick={()=>setFilterItems("camera_type")}>Camera Type</li>
-                                <li className="bottom-filter-item" onClick={()=>setFilterItems("camera_quality")}>Camera Quality</li>
-                                <li className="bottom-filter-item" onClick={()=>setFilterItems("mp")}>Mega Pixel</li>
-                                <li className="bottom-filter-item" onClick={()=>setFilterItems("indoor_outdoor")}>Indoor / Outdoor</li>
+                                <li className="bottom-filter-item" onClick={() => setFilterItems("number_of_cameras")}>Number of Cameras</li>
+                                <li className="bottom-filter-item" onClick={() => setFilterItems("camera_type")}>Camera Type</li>
+                                <li className="bottom-filter-item" onClick={() => setFilterItems("camera_quality")}>Camera Quality</li>
+                                <li className="bottom-filter-item" onClick={() => setFilterItems("mp")}>Mega Pixel</li>
+                                <li className="bottom-filter-item" onClick={() => setFilterItems("indoor_outdoor")}>Indoor / Outdoor</li>
                                 {/* <li className="bottom-filter-item" onClick={()=>setFilterItems("area_size")}>Area Size</li> */}
                                 {/* <li className="bottom-filter-item" onClick={()=>setFilterItems("premium")}>Premium</li> */}
                             </ul>
@@ -73,12 +69,12 @@ const Products = () => {
                                     <ul className="filter-cb-ul">
                                         <li className="filter-li"> <p className="bold-text">filter items by:</p></li>
                                         {
-                                            filterAts?.map((atts)=><li className="filter-li btm-li-items">
-                                            <input type="checkbox" name="sp1" id={atts}  onClick={()=>setFilterValues(filterKeys, atts)} checked={selectedOption === atts} onChange={()=>handleCheckBox(atts)} className="filter-cb-btm-filter" />
-                                            <label htmlFor="sp1" onClick={()=>setFilterValues(filterKeys, atts)} >{atts}</label>
-                                        </li>)
+                                            filterAts?.map((atts) => <li className="filter-li btm-li-items">
+                                                <input type="checkbox" name="sp1" id={atts} onClick={() => setFilterValues(filterKeys, atts)} checked={selectedOption === atts} onChange={() => handleCheckBox(atts)} className="filter-cb-btm-filter" />
+                                                <label htmlFor="sp1" onClick={() => setFilterValues(filterKeys, atts)} >{atts}</label>
+                                            </li>)
                                         }
-                                        
+
                                     </ul>
                                 </ul>
                             </div>
@@ -267,46 +263,45 @@ const Products = () => {
                         </div>
                         <div className="list-style-products-display">
                             {
-                                products?.map((product) =>
-                                    <div className="box1" id="b1" key={product[0]._id}>
-                                        <div className="image-of-product">
-                                            <span className="image" >
-                                                <img src={product[0].FrontImage} alt="" className="box-1-product-image" />
-                                            </span>
-                                        </div>
-                                        <div className="description">
-                                            <div className="product-description">
-                                                <div className="for-overflow">
-                                                    <h2 className="product-name">{product[0].ProductName}</h2>
-                                                </div>
-                                                <div className="total-orders">
-                                                    <span className="last-orders">total 1500 orders last month</span>
-                                                </div>
-                                                <div className="price">
-                                                    <span className="price">
-                                                        <span className="rupee"> <span className="symbol-rupee">&#x20b9;</span><span
-                                                            className="pri">
-                                                            {
-                                                                !loggedIn ?
-                                                                    product[0]?.PriceForCustomers
-                                                                    :
-                                                                    userType === "DEALER" ? product[0]?.PriceForDealers :
-                                                                        userType === "INSTALLER" ? product[0]?.PriceForInstallers :
-                                                                            product[0]?.PriceForCustomers
-                                                            }
-                                                        </span></span>
-                                                    </span>
-                                                </div>
-                                                <div className="save-button">
-                                                    <button className="btn-order save-button" onClick={() => addToCart(product[0]._id)}><BiStar /> save</button>
-                                                </div>
-                                                <div className="button">
-                                                    <button className="btn-order" onClick={() => selectProduct(product[0]._id, (userType || tempUserType))} >Know More</button>
-                                                    <button className="btn-order">Order Now</button>
-                                                </div>
+                                products?.map((product, index) => <div className="box1" id="b1" key={product._id}>
+                                    <div className="image-of-product">
+                                        <span className="image" >
+                                            <img src={product.FrontImage} alt="" className="box-1-product-image" />
+                                        </span>
+                                    </div>
+                                    <div className="description">
+                                        <div className="product-description">
+                                            <div className="for-overflow">
+                                                <h2 className="product-name">{product.ProductName}</h2>
+                                            </div>
+                                            <div className="total-orders">
+                                                <span className="last-orders">total 1500 orders last month</span>
+                                            </div>
+                                            <div className="price">
+                                                <span className="price">
+                                                    <span className="rupee"> <span className="symbol-rupee">&#x20b9;</span><span
+                                                        className="pri">
+                                                        {
+                                                            !loggedIn ?
+                                                                product?.PriceForCustomers
+                                                                :
+                                                                userType === "DEALER" ? product?.PriceForDealers :
+                                                                    userType === "INSTALLER" ? product?.PriceForInstallers :
+                                                                        product?.PriceForCustomers
+                                                        }
+                                                    </span></span>
+                                                </span>
+                                            </div>
+                                            <div className="save-button">
+                                                <button className="btn-order save-button" onClick={() => addToCart(product._id)}><BiStar /> save</button>
+                                            </div>
+                                            <div className="button">
+                                                <button className="btn-order" onClick={() => selectProduct(product._id, (userType || tempUserType))} >Know More</button>
+                                                <button className="btn-order">Order Now</button>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                                 )
                             }
                         </div>

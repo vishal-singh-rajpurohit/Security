@@ -340,7 +340,8 @@ const AuthProvider = ({ children }) => {
                 { UserType }
             )
             .then((resp) => {
-                setProducts((prev) => [...prev, resp.data.data.Products]);
+                console.log("Product is :", resp.data.data.Products)
+                setProducts((prev) => [...prev, ...resp.data.data.Products]);
             })
             .catch((error) => {
                 console.log("error while hitting serve products ", error);
@@ -487,6 +488,18 @@ const AuthProvider = ({ children }) => {
         }
 
     }
+
+    const submitFilter = async () =>{
+
+    }
+
+    
+    useEffect(()=>{
+        console.log("product_id ");
+        products.map((item , index)=>{
+            console.log("item: ", item, " index ", index);
+        })
+    })
 
 
     const data = {
