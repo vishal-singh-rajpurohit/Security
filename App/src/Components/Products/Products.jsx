@@ -1,34 +1,42 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../../css/Projucts.css'
-import a from '../../Assets/Cameras/v.webp'
 import { BiCustomize, BiStar } from 'react-icons/bi';
 import { FaFilter } from 'react-icons/fa';
-import { BsArrow90DegDown } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOpenFilter } from '../../Functions/Ui/modalSlice'
 import AuthContext from '../../context/AuthContext.context';
+import { MdTransitEnterexit } from 'react-icons/md';
 
 const Products = () => {
 
-    const { products, pageNumber, isFilterOn, filters, loggedIn, userType,tempUserType } = useContext(AuthContext);
-    const { addToCart, selectProduct, serveProducts  } = useContext(AuthContext);
-
+    const { products, pageNumber, isFilterOn, filters, loggedIn, userType, tempUserType, filterAts, setFilterAts, filterKeys, setFilterKeys, filterObject  } = useContext(AuthContext);
+    const { addToCart, selectProduct, serveProducts, setFilterItems, setFilterValues  } = useContext(AuthContext);
+    const [selectedOption, setSelectedOption] = useState(null);
 
     const dispatch = useDispatch();
     const openFilter = useSelector((state) => state.modals.openBottomFilter)
 
     const SetOpenFilter = () => dispatch(setOpenFilter());
 
-   // PAGE NUMBERS AND PRODCUT SERVING
-   useEffect(() => {
-    serveProducts(
-        pageNumber,
-        isFilterOn,
-        filters,
-        userType || tempUserType
-    );
-}, [pageNumber, isFilterOn, filters]);
+    const handleCheckBox = (value) =>{
+        setSelectedOption(selectedOption === value ? null: value);
+    }
+
+    // PAGE NUMBERS AND PRODCUT SERVING
+    useEffect(() => {
+        serveProducts(
+            pageNumber,
+            isFilterOn,
+            filters,
+            userType || tempUserType
+        );
+    }, [pageNumber, isFilterOn, filters]);
+
+    // useEffect(()=>{
+    //     console.log("filters is:", filters);
+    //     console.log("filters Obj is:", filterObject);
+    // },[filterKeys, filterAts, selectedOption]);
 
 
     return (
@@ -42,27 +50,35 @@ const Products = () => {
                 </section>
                 <section className="product-filter-modal" style={{ display: openFilter ? 'flex' : 'none', zIndex: '999' }}>
                     <div className="close-key-filter-bottom">
-                        <button-bottom-filter-close onClick={SetOpenFilter} ><BsArrow90DegDown /></button-bottom-filter-close>
+                        <button-bottom-filter-close onClick={SetOpenFilter} ><MdTransitEnterexit size={40} cursor={'pointer'} /></button-bottom-filter-close>
                     </div>
                     <div className="product-filter-bottom-slid">
                         <div className="lefl-b-filter">
                             <ul className="filter-slide-bottom">
-                                <li id='active-filter' className="bottom-filter-item">Price</li>
-                                <li className="bottom-filter-item">Price</li>
-                                <li className="bottom-filter-item">Price</li>
-                                <li className="bottom-filter-item">Price</li>
-                                <li className="bottom-filter-item">Price</li>
+                                {/* <li id='active-filter' className="bottom-filter-item">Price</li> */}
+                                <li className="bottom-filter-item" onClick={()=>setFilterItems("price")}>Price</li>
+                                {/* <li className="bottom-filter-item" onClick={()=>setFilterItems("brand")}>Brands</li> */}
+                                <li className="bottom-filter-item" onClick={()=>setFilterItems("number_of_cameras")}>Number of Cameras</li>
+                                <li className="bottom-filter-item" onClick={()=>setFilterItems("camera_type")}>Camera Type</li>
+                                <li className="bottom-filter-item" onClick={()=>setFilterItems("camera_quality")}>Camera Quality</li>
+                                <li className="bottom-filter-item" onClick={()=>setFilterItems("mp")}>Mega Pixel</li>
+                                <li className="bottom-filter-item" onClick={()=>setFilterItems("indoor_outdoor")}>Indoor / Outdoor</li>
+                                {/* <li className="bottom-filter-item" onClick={()=>setFilterItems("area_size")}>Area Size</li> */}
+                                {/* <li className="bottom-filter-item" onClick={()=>setFilterItems("premium")}>Premium</li> */}
                             </ul>
                         </div>
                         <div className="rigth-b-filter">
                             <div className="values-of-filter-bottom">
                                 <ul className="filter-tem">
                                     <ul className="filter-cb-ul">
-                                        <li className="filter-li"> <p className="bold-text">filter items by Price</p></li>
-                                        <li className="filter-li btm-li-items">
-                                            <input type="checkbox" name="sp1" id="" className="filter-cb-btm-filter" />
-                                            <label htmlFor="sp1">Night Vision</label>
-                                        </li>
+                                        <li className="filter-li"> <p className="bold-text">filter items by:</p></li>
+                                        {
+                                            filterAts?.map((atts)=><li className="filter-li btm-li-items">
+                                            <input type="checkbox" name="sp1" id={atts}  onClick={()=>setFilterValues(filterKeys, atts)} checked={selectedOption === atts} onChange={()=>handleCheckBox(atts)} className="filter-cb-btm-filter" />
+                                            <label htmlFor="sp1" onClick={()=>setFilterValues(filterKeys, atts)} >{atts}</label>
+                                        </li>)
+                                        }
+                                        
                                     </ul>
                                 </ul>
                             </div>
@@ -282,10 +298,10 @@ const Products = () => {
                                                     </span>
                                                 </div>
                                                 <div className="save-button">
-                                                    <button className="btn-order save-button" onClick={()=>addToCart(product[0]._id)}><BiStar /> save</button>
+                                                    <button className="btn-order save-button" onClick={() => addToCart(product[0]._id)}><BiStar /> save</button>
                                                 </div>
                                                 <div className="button">
-                                                    <button className="btn-order" onClick={() => selectProduct(product[0]._id, (userType ||tempUserType))} >Know More</button>
+                                                    <button className="btn-order" onClick={() => selectProduct(product[0]._id, (userType || tempUserType))} >Know More</button>
                                                     <button className="btn-order">Order Now</button>
                                                 </div>
                                             </div>

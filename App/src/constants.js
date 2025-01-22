@@ -46,3 +46,80 @@ export const API = [
     "/main/auth/login"
 ]
 
+export const filterAttributes = [
+    {
+        name : "price",
+        attributes: [
+            5000,
+            7000,
+            10000,
+            15000,
+            20000,
+            25000
+        ]
+    },
+    {
+        name : "brand",
+        attributes: [
+            "brand 1",
+            "brand 2",
+            "brand 3",
+            "brand 4",
+        ]
+    },
+    {
+        name : "number_of_cameras",
+        attributes: [
+            3,
+            5,
+            8,
+            10,
+            15,
+            20
+        ]
+    },
+    {
+        name : "camera_type",
+        attributes: [
+            "dome",
+            "bullet"
+        ]
+    },
+    {
+        name : "camera_quality",
+        attributes: [
+            "hd_cameras",
+            "ip_cameras"
+        ]
+    },
+    {
+        name : "mp",
+        attributes: [
+            8,
+            10,
+            12
+        ]
+    },
+    {
+        name : "area_size",
+        attributes: [
+            "small",
+            "medium",
+            "large"
+        ]
+    },
+    {
+        name : "indoor_outdoor",
+        attributes: [
+           "indoor",
+           "outdoor",
+        ]
+    },
+    {
+        name : "premium",
+        attributes: [
+            "only_premium",
+            "all"
+        ]
+    },
+]

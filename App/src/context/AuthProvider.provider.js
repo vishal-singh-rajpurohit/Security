@@ -8,6 +8,7 @@ import { API, setUserRoutes } from "../constants";
 import { clearFormStates } from "../Functions/Auth/formSlice";
 import { useNavigate } from "react-router-dom";
 import { clearUserDetails, setUserDetails } from "../Functions/User/userSlice";
+import { filterAttributes } from '../constants'
 
 const AuthProvider = ({ children }) => {
     const dispatch = useDispatch();
@@ -19,14 +20,30 @@ const AuthProvider = ({ children }) => {
     const [tempUserType, setTempUserType] = useState("CUSTOMER");
     const [isFilterOn, setIsFilterOn] = useState(false);
     const [pageNumber, setPageNumber] = useState(0);
-    const [filters, setFilters] = useState({});
     const [showCaseImage, setShowCaseImage] = useState('');
     const [totalAmmount, setTotalAmmount] = useState(0);
 
-    // PRODUCTS
+    // PRODUCTS AND FILTER
     const [products, setProducts] = useState([]);
     const [product, setProduct] = useState();
-    const [cartProducts, setCartProducts] = useState()
+    const [cartProducts, setCartProducts] = useState();
+    // FILTERS
+    const [filterObject, setFilterObject] = useState({
+        price: null,
+        brand: null,
+        number_of_cameras: null,
+        camera_type: null,
+        camera_quality: null,
+        indoor_outdoor: null,
+        mp: null,
+        area_size: null,
+        premium: false
+    });
+
+    const [filters, setFilters] = useState(filterObject);
+    const [filterKeys, setFilterKeys] = useState("");
+    const [filterAts, setFilterAts] = useState([]);
+
 
     // LOGGED IN STATE
     let loggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -348,6 +365,128 @@ const AuthProvider = ({ children }) => {
         }
     };
 
+    const setFilterItems = (attributeName) => {
+        setFilterKeys(attributeName)
+        filterAttributes?.map((filter) => {
+            if (filter.name === attributeName) {
+                setFilterAts(filter.attributes);
+                return;
+            }
+        })
+    }
+
+    const setFilterValues = (attributeName, value) => {
+        if (attributeName === "price") {
+            filterObject.price === value ?
+                setFilterObject((prev) => ({
+                    ...prev,
+                    ["price"]: null
+                })) :
+                setFilterObject((prev) => ({
+                    ...prev,
+                    ["price"]: value
+                }))
+            return;
+        }
+        else if (attributeName === "brand") {
+            filterObject.brand === value ?
+                setFilterObject((prev) => ({
+                    ...prev,
+                    ["brand"]: null
+                })) :
+                setFilterObject((prev) => ({
+                    ...prev,
+                    ["brand"]: value
+                }))
+
+            return;
+        }
+        else if (attributeName === "number_of_cameras") {
+            filterObject.number_of_cameras === value ?
+                setFilterObject((prev) => ({
+                    ...prev,
+                    ["number_of_cameras"]: null
+                })) :
+                setFilterObject((prev) => ({
+                    ...prev,
+                    ["number_of_cameras"]: value
+                }))
+            return;
+        }
+        else if (attributeName === "camera_type") {
+            filterObject.camera_type === value ?
+                setFilterObject((prev) => ({
+                    ...prev,
+                    ["camera_type"]: null
+                })) :
+                setFilterObject((prev) => ({
+                    ...prev,
+                    ["camera_type"]: value
+                }))
+            return;
+        }
+        else if (attributeName === "camera_quality") {
+            filterObject.camera_quality === value ?
+                setFilterObject((prev) => ({
+                    ...prev,
+                    ["camera_quality"]: null
+                })) :
+                setFilterObject((prev) => ({
+                    ...prev,
+                    ["camera_quality"]: value
+                }))
+            return;
+        }
+        else if (attributeName === "mp") {
+            filterObject.mp === value ?
+                setFilterObject((prev) => ({
+                    ...prev,
+                    ["mp"]: null
+                })) :
+                setFilterObject((prev) => ({
+                    ...prev,
+                    ["mp"]: value
+                }))
+            return;
+        }
+        else if (attributeName === "area_size") {
+            filterObject.area_size === value ?
+                setFilterObject((prev) => ({
+                    ...prev,
+                    ["area_size"]: null
+                })) :
+                setFilterObject((prev) => ({
+                    ...prev,
+                    ["area_size"]: value
+                }))
+            return;
+        }
+        else if (attributeName === "indoor_outdoor") {
+            filterObject.indoor_outdoor === value ?
+                setFilterObject((prev) => ({
+                    ...prev,
+                    ["indoor_outdoor"]: null
+                })) :
+                setFilterObject((prev) => ({
+                    ...prev,
+                    ["indoor_outdoor"]: value
+                }))
+            return;
+        }
+        else if (attributeName === "premium") {
+            filterObject.premium === value ?
+                setFilterObject((prev) => ({
+                    ...prev,
+                    ["premium"]: null
+                })) :
+                setFilterObject((prev) => ({
+                    ...prev,
+                    ["premium"]: value
+                }))
+            return;
+        }
+
+    }
 
 
     const data = {
@@ -358,6 +497,7 @@ const AuthProvider = ({ children }) => {
         setShowCaseImage,
         isFilterOn,
         setIsFilterOn,
+        filterObject,
         totalAmmount,
         pageNumber,
         setPageNumber,
@@ -367,6 +507,10 @@ const AuthProvider = ({ children }) => {
         setCartProducts,
         filters,
         setFilters,
+        filterKeys,
+        setFilterKeys,
+        filterAts,
+        setFilterAts,
         products,
         setProducts,
         setFormError,
@@ -401,6 +545,8 @@ const AuthProvider = ({ children }) => {
         cancleOrder,
         shareProduct,
         selectProduct,
+        setFilterValues,
+        setFilterItems,
         formData,
     };
     return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;

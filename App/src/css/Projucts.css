@@ -381,6 +381,12 @@ li.bottom-filter-item {
     align-items: center;
     padding-left: 5px;
     font-size: 18px;
+    cursor: pointer;
+}
+li.bottom-filter-item:hover{
+    color: #10b0b0;
+    border-left: 2px solid;
+    /* background-color: white; */
 }
 
 li#active-filter {
