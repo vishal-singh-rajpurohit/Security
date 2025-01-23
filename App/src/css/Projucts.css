@@ -190,6 +190,7 @@ img.box-1-product-image {
     margin: auto;
     max-width: 100%;
     max-height: 100%;
+    min-height: 26vh;
 }
 
 .for-overflow {
@@ -443,7 +444,7 @@ button-bottom-filter-close {
     }
 
     div#b1 {
-        height: 27vh;
+        height: auto;
     }
 
     .list-style-products-display {
@@ -452,7 +453,7 @@ button-bottom-filter-close {
     }
 
     div#b1 {
-        height: 50vh;
+        height: auto;
         width: 100%;
         overflow: hidden;
     }

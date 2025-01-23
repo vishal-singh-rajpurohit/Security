@@ -32,9 +32,22 @@ const newSchema = new mongoose.Schema(
       required: true,
       enum: ["HD", "IP", "BOTH"]
     },
-    // Hot: {
-
-    // },
+    CameraTp: {
+      type: String,
+      required: true
+    },
+    NumberOfCameras: {
+      type: Number,
+      required: true
+    },
+    MP:{
+      type: Number,
+      required: true
+    },
+    InOut: {
+      type: String,
+      required: true
+    },
     PlaceOfInstallation: {
       type: String,
       required: true,

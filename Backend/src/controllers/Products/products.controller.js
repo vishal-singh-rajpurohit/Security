@@ -8,29 +8,33 @@ const { paginate, limit } = require("../../methods");
 
 const serverProducts = asyncHandler(async (req, resp) => {
   const page = Number(req.query.page) || 0;
-  const isFilterOn = req.query.filteron;
-  const { MinPrice, MaxPrice, Premium, CameraType, PlaceOfInstallation, AreaSize, Brand, UserType } = req.body;
-  
+  // let isFilterOn = false;
+  const { CameraType, NumberOfCameras, CameraQuality, MegaPixels,IndoorOutdoor } = req.body.Filters;
+  const {UserType} = req.body
+// fiter by price will be added soon Premium
+
+
+
   const skipped = paginate(page, 15);
-  if (isFilterOn === true) {
+  if (CameraType || NumberOfCameras || CameraQuality || MegaPixels || IndoorOutdoor) {
     const Products = await Product.aggregate([
       {
         $match: {
-          $and: [
-            {
-              $or: [
-                { PriceForDealers: { $gte: MinPrice, $lte: MaxPrice } },
-                { PriceForInstallers: { $gte: MinPrice, $lte: MaxPrice } },
-                { PriceForCustomers: { $gte: MinPrice, $lte: MaxPrice } },
-              ]
-            }
-          ],
-          Premium: Premium,
+          // $and: [
+          //   {
+          //     $or: [
+          //       { PriceForDealers: { $gte: MinPrice, $lte: MaxPrice } },
+          //       { PriceForInstallers: { $gte: MinPrice, $lte: MaxPrice } },
+          //       { PriceForCustomers: { $gte: MinPrice, $lte: MaxPrice } },
+          //     ]
+          //   }
+          // ],
+          // Premium: Premium,
           CameraType: CameraType,
-          Brand: Brand,
-          PlaceOfInstallation: PlaceOfInstallation,
-          InstallationAreaSize: AreaSize
-
+          CameraTp: CameraQuality,
+          NumberOfCameras: NumberOfCameras,
+          MP:MegaPixels,
+          InOut: IndoorOutdoor
         }
       },
       {
