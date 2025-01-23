@@ -48,7 +48,7 @@ export const API = [
 
 export const filterAttributes = [
     {
-        name : "price",
+        name : "Price",
         attributes: [
             5000,
             7000,
@@ -59,7 +59,7 @@ export const filterAttributes = [
         ]
     },
     {
-        name : "brand",
+        name : "Brand",
         attributes: [
             "brand 1",
             "brand 2",
@@ -68,7 +68,7 @@ export const filterAttributes = [
         ]
     },
     {
-        name : "number_of_cameras",
+        name : "NumberOfCameras",
         attributes: [
             3,
             5,
@@ -79,21 +79,21 @@ export const filterAttributes = [
         ]
     },
     {
-        name : "camera_type",
+        name : "CameraType",
         attributes: [
-            "dome",
-            "bullet"
+            "DOME",
+            "BULLET"
         ]
     },
     {
-        name : "camera_quality",
+        name : "CameraQuality",
         attributes: [
-            "hd_cameras",
-            "ip_cameras"
+            "HD",
+            "IP"
         ]
     },
     {
-        name : "mp",
+        name : "MegaPixels",
         attributes: [
             8,
             10,
@@ -101,25 +101,25 @@ export const filterAttributes = [
         ]
     },
     {
-        name : "area_size",
+        name : "AreaSize",
         attributes: [
-            "small",
-            "medium",
-            "large"
+            "SMALL",
+            "MEDIUM",
+            "LARGE"
         ]
     },
     {
-        name : "indoor_outdoor",
+        name : "IndoorOutdoor",
         attributes: [
-           "indoor",
-           "outdoor",
+           "INDOOR",
+           "OUTDOOR",
         ]
     },
-    {
-        name : "premium",
-        attributes: [
-            "only_premium",
-            "all"
-        ]
-    },
+    // {
+    //     name : "Premium",
+    //     attributes: [
+    //         ""
+    //         "all"
+    //     ]
+    // },
 ]

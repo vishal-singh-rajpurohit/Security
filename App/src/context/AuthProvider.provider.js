@@ -29,19 +29,19 @@ const AuthProvider = ({ children }) => {
     const [cartProducts, setCartProducts] = useState();
     // FILTERS
     const [filterObject, setFilterObject] = useState({
-        price: null,
-        brand: null,
-        number_of_cameras: null,
-        camera_type: null,
-        camera_quality: null,
-        indoor_outdoor: null,
-        mp: null,
-        area_size: null,
-        premium: false
+        Price: null,
+        Brand: null,
+        NumberOfCameras: null,
+        CameraType: null,
+        CameraQuality: null,
+        IndoorOutdoor: null,
+        MegaPixels: null,
+        // area_size: null,
+        // premium: false
     });
 
     const [filters, setFilters] = useState(filterObject);
-    const [filterKeys, setFilterKeys] = useState("");
+    const [filterKeys, setFilterKeys] = useState("NumberOfCameras");
     const [filterAts, setFilterAts] = useState([]);
 
 
@@ -333,11 +333,11 @@ const AuthProvider = ({ children }) => {
 
     const shareProduct = async () => { };
 
-    const serveProducts = async (pageNumber, isFilterOn, filters, UserType) => {
+    const serveProducts = async (pageNumber, filters, UserType) => {
         await axios
             .post(
-                `/api/v1/main/serve/products?page=${pageNumber}&filteron=${isFilterOn}`,
-                { UserType }
+                `/api/v1/main/serve/products?page=${pageNumber}`,
+                { UserType, Filters:filters }
             )
             .then((resp) => {
                 console.log("Product is :", resp.data.data.Products)
@@ -347,6 +347,23 @@ const AuthProvider = ({ children }) => {
                 console.log("error while hitting serve products ", error);
             });
     };
+
+    const serveFilterProducts = async (pageNumber, filters, UserType) => {
+        setPageNumber(0);
+
+            await axios
+                .post(
+                    `/api/v1/main/serve/products?page=${pageNumber}`,
+                    { UserType, Filters:filters }
+                )
+                .then((resp) => {
+                    console.log("Product is :", resp.data.data.Products)
+                    setProducts(resp.data.data.Products);
+                })
+                .catch((error) => {
+                    console.log("error while hitting serve products ", error);
+                });
+    }
 
     const selectProduct = async (productId, UserType) => {
         console.log("product id: ", productId);
@@ -377,96 +394,96 @@ const AuthProvider = ({ children }) => {
     }
 
     const setFilterValues = (attributeName, value) => {
-        if (attributeName === "price") {
-            filterObject.price === value ?
+        if (attributeName === "Price") {
+            filterObject.Price === value ?
                 setFilterObject((prev) => ({
                     ...prev,
-                    ["price"]: null
+                    ["Price"]: null
                 })) :
                 setFilterObject((prev) => ({
                     ...prev,
-                    ["price"]: value
+                    ["Price"]: value
                 }))
             return;
         }
-        else if (attributeName === "brand") {
-            filterObject.brand === value ?
+        else if (attributeName === "Brand") {
+            filterObject.Brand === value ?
                 setFilterObject((prev) => ({
                     ...prev,
-                    ["brand"]: null
+                    ["Brand"]: null
                 })) :
                 setFilterObject((prev) => ({
                     ...prev,
-                    ["brand"]: value
+                    ["Brand"]: value
                 }))
 
             return;
         }
-        else if (attributeName === "number_of_cameras") {
-            filterObject.number_of_cameras === value ?
+        else if (attributeName === "NumberOfCameras") {
+            filterObject.NumberOfCameras === value ?
                 setFilterObject((prev) => ({
                     ...prev,
-                    ["number_of_cameras"]: null
+                    ["NumberOfCameras"]: null
                 })) :
                 setFilterObject((prev) => ({
                     ...prev,
-                    ["number_of_cameras"]: value
+                    ["NumberOfCameras"]: value
                 }))
             return;
         }
-        else if (attributeName === "camera_type") {
-            filterObject.camera_type === value ?
+        else if (attributeName === "CameraType") {
+            filterObject.CameraType === value ?
                 setFilterObject((prev) => ({
                     ...prev,
-                    ["camera_type"]: null
+                    ["CameraType"]: null
                 })) :
                 setFilterObject((prev) => ({
                     ...prev,
-                    ["camera_type"]: value
+                    ["CameraType"]: value
                 }))
             return;
         }
-        else if (attributeName === "camera_quality") {
-            filterObject.camera_quality === value ?
+        else if (attributeName === "CameraQuality") {
+            filterObject.CameraQuality === value ?
                 setFilterObject((prev) => ({
                     ...prev,
-                    ["camera_quality"]: null
+                    ["CameraQuality"]: null
                 })) :
                 setFilterObject((prev) => ({
                     ...prev,
-                    ["camera_quality"]: value
+                    ["CameraQuality"]: value
                 }))
             return;
         }
-        else if (attributeName === "mp") {
-            filterObject.mp === value ?
+        else if (attributeName === "MegaPixels") {
+            filterObject.MegaPixels === value ?
                 setFilterObject((prev) => ({
                     ...prev,
-                    ["mp"]: null
+                    ["MegaPixels"]: null
                 })) :
                 setFilterObject((prev) => ({
                     ...prev,
-                    ["mp"]: value
+                    ["MegaPixels"]: value
                 }))
             return;
         }
-        else if (attributeName === "area_size") {
-            filterObject.area_size === value ?
+        else if (attributeName === "AreaSize") {
+            filterObject.AreaSize === value ?
                 setFilterObject((prev) => ({
                     ...prev,
-                    ["area_size"]: null
+                    ["AreaSize"]: null
                 })) :
                 setFilterObject((prev) => ({
                     ...prev,
-                    ["area_size"]: value
+                    ["AreaSize"]: value
                 }))
             return;
         }
-        else if (attributeName === "indoor_outdoor") {
-            filterObject.indoor_outdoor === value ?
+        else if (attributeName === "IndoorOutdoor") {
+            filterObject.IndoorOutdoor === value ?
                 setFilterObject((prev) => ({
                     ...prev,
-                    ["indoor_outdoor"]: null
+                    ["IndoorOutdoor"]: null
                 })) :
                 setFilterObject((prev) => ({
                     ...prev,
@@ -474,32 +491,13 @@ const AuthProvider = ({ children }) => {
                 }))
             return;
         }
-        else if (attributeName === "premium") {
-            filterObject.premium === value ?
-                setFilterObject((prev) => ({
-                    ...prev,
-                    ["premium"]: null
-                })) :
-                setFilterObject((prev) => ({
-                    ...prev,
-                    ["premium"]: value
-                }))
-            return;
-        }
 
     }
 
-    const submitFilter = async () =>{
+    useEffect(() => {
+        console.log("filter is: ", filterObject)
+    }, [filterObject])
 
-    }
-
-    
-    useEffect(()=>{
-        console.log("product_id ");
-        products.map((item , index)=>{
-            console.log("item: ", item, " index ", index);
-        })
-    })
 
 
     const data = {
@@ -558,6 +556,7 @@ const AuthProvider = ({ children }) => {
         cancleOrder,
         shareProduct,
         selectProduct,
+        serveFilterProducts,
         setFilterValues,
         setFilterItems,
         formData,

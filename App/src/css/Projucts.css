@@ -301,6 +301,15 @@ button.btn-order:hover {
 section.product-filter-responsive {
     display: none;
 }
+button#apply {
+    border: 1px solid;
+    padding: 1px;
+    border-radius: 5px;
+    border: navajowhite;
+    background: white;
+    font-size: medium;
+    cursor: pointer;
+}
 .product-filter- {
     width: 100%;
     height: 3rem;

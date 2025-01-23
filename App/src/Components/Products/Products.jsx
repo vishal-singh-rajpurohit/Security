@@ -10,30 +10,52 @@ import { MdTransitEnterexit } from 'react-icons/md';
 
 const Products = () => {
 
-    const { products, pageNumber, isFilterOn, filters, loggedIn, userType, tempUserType, filterAts, setFilterAts, filterKeys, setFilterKeys, filterObject } = useContext(AuthContext);
-    const { addToCart, selectProduct, serveProducts, setFilterItems, setFilterValues } = useContext(AuthContext);
+    const { products, pageNumber, isFilterOn, loggedIn, userType, tempUserType, filterAts, filterKeys, filterObject } = useContext(AuthContext);
+    const { addToCart, selectProduct, serveProducts, setFilterItems, setFilterValues, serveFilterProducts, NumberOfCameras } = useContext(AuthContext);
     const [selectedOption, setSelectedOption] = useState(null);
 
     const dispatch = useDispatch();
-    const openFilter = useSelector((state) => state.modals.openBottomFilter)
+    const openFilter = useSelector((state) => state.modals.openBottomFilter);
 
-    const SetOpenFilter = () => dispatch(setOpenFilter());
+    const SetOpenFilter = () => {
+        setFilterItems("NumberOfCameras")
+        dispatch(setOpenFilter())
+    };
 
-    const handleCheckBox = (value) => {
+    const handleCheckBox = async (value) => {
         setSelectedOption(selectedOption === value ? null : value);
+        if (selectedOption) {
+            await serveFilterProducts(
+                pageNumber,
+                filterObject,
+                userType || tempUserType
+            );
+        }
+        else if(!selectedOption){
+            await serveFilterProducts(
+                pageNumber,
+                filterObject,
+                userType || tempUserType
+            );
+        }
     }
+
 
     // PAGE NUMBERS AND PRODCUT SERVING
     useEffect(() => {
+        console.log("second one");
+
         serveProducts(
             pageNumber,
-            isFilterOn,
-            filters,
+            filterObject,
             userType || tempUserType
         );
-    }, [pageNumber, isFilterOn, filters]);
+    }, [pageNumber, isFilterOn,]);
 
 
+    useEffect(() => {
+        console.log("hii ", selectedOption);
+    }, [selectedOption])
 
     return (
         <>
@@ -46,21 +68,17 @@ const Products = () => {
                 </section>
                 <section className="product-filter-modal" style={{ display: openFilter ? 'flex' : 'none', zIndex: '999' }}>
                     <div className="close-key-filter-bottom">
+                        {/* <button className="apply" id="apply">Apply</button> */}
                         <button-bottom-filter-close onClick={SetOpenFilter} ><MdTransitEnterexit size={40} cursor={'pointer'} /></button-bottom-filter-close>
                     </div>
                     <div className="product-filter-bottom-slid">
                         <div className="lefl-b-filter">
                             <ul className="filter-slide-bottom">
-                                {/* <li id='active-filter' className="bottom-filter-item">Price</li> */}
-                                <li className="bottom-filter-item" onClick={() => setFilterItems("price")}>Price</li>
-                                {/* <li className="bottom-filter-item" onClick={()=>setFilterItems("brand")}>Brands</li> */}
-                                <li className="bottom-filter-item" onClick={() => setFilterItems("number_of_cameras")}>Number of Cameras</li>
-                                <li className="bottom-filter-item" onClick={() => setFilterItems("camera_type")}>Camera Type</li>
-                                <li className="bottom-filter-item" onClick={() => setFilterItems("camera_quality")}>Camera Quality</li>
-                                <li className="bottom-filter-item" onClick={() => setFilterItems("mp")}>Mega Pixel</li>
-                                <li className="bottom-filter-item" onClick={() => setFilterItems("indoor_outdoor")}>Indoor / Outdoor</li>
-                                {/* <li className="bottom-filter-item" onClick={()=>setFilterItems("area_size")}>Area Size</li> */}
-                                {/* <li className="bottom-filter-item" onClick={()=>setFilterItems("premium")}>Premium</li> */}
+                                <li className="bottom-filter-item" onClick={() => setFilterItems("NumberOfCameras")}>Number of Cameras</li>
+                                <li className="bottom-filter-item" onClick={() => setFilterItems("CameraType")}>Camera Type</li>
+                                <li className="bottom-filter-item" onClick={() => setFilterItems("CameraQuality")}>Camera Quality</li>
+                                <li className="bottom-filter-item" onClick={() => setFilterItems("MegaPixels")}>Mega Pixel</li>
+                                <li className="bottom-filter-item" onClick={() => setFilterItems("IndoorOutdoor")}>Indoor / Outdoor</li>
                             </ul>
                         </div>
                         <div className="rigth-b-filter">

@@ -1,5 +1,5 @@
 const Product = require("../../models/product.model");
-const {ObjectId} = require("mongodb")
+const { ObjectId } = require("mongodb")
 const Cart = require("../../models/cart.model")
 const asyncHandler = require("../../utils/asyncHandler.utils");
 const ApiError = require("../../utils/ApiError.utils");
@@ -9,33 +9,32 @@ const { paginate, limit } = require("../../methods");
 const serverProducts = asyncHandler(async (req, resp) => {
   const page = Number(req.query.page) || 0;
   // let isFilterOn = false;
-  const { CameraType, NumberOfCameras, CameraQuality, MegaPixels,IndoorOutdoor } = req.body.Filters;
-  const {UserType} = req.body
-// fiter by price will be added soon Premium
+  const { CameraType, NumberOfCameras, CameraQuality, MegaPixels, IndoorOutdoor } = req.body.Filters;
+  const { UserType } = req.body
+  // fiter by price will be added soon Premium
+
+  console.log("req.body.Filters :", req.body.Filters);
+
+
+  // filter matching queries for optimization
+  let matchQuery = {}
+  if (CameraType) matchQuery.CameraType = CameraType;
+  if (NumberOfCameras) matchQuery.NumberOfCameras = NumberOfCameras;
+  if (CameraQuality) matchQuery.CameraQuality = CameraQuality;
+  if (MegaPixels) matchQuery.MegaPixels = MegaPixels;
+  if (IndoorOutdoor) matchQuery.InOut = IndoorOutdoor;
+
+  console.log("matchQuery :", matchQuery);
 
 
 
   const skipped = paginate(page, 15);
-  if (CameraType || NumberOfCameras || CameraQuality || MegaPixels || IndoorOutdoor) {
+  if (Object.keys(matchQuery).length === 0) {
+    console.log("Filter prodcuts called");
+
     const Products = await Product.aggregate([
       {
-        $match: {
-          // $and: [
-          //   {
-          //     $or: [
-          //       { PriceForDealers: { $gte: MinPrice, $lte: MaxPrice } },
-          //       { PriceForInstallers: { $gte: MinPrice, $lte: MaxPrice } },
-          //       { PriceForCustomers: { $gte: MinPrice, $lte: MaxPrice } },
-          //     ]
-          //   }
-          // ],
-          // Premium: Premium,
-          CameraType: CameraType,
-          CameraTp: CameraQuality,
-          NumberOfCameras: NumberOfCameras,
-          MP:MegaPixels,
-          InOut: IndoorOutdoor
-        }
+        $match: req.body.Filters
       },
       {
         $project: {
@@ -87,6 +86,8 @@ const serverProducts = asyncHandler(async (req, resp) => {
     );
   }
   else {
+    console.log("Filter prodcuts called");
+
     const Products = await Product.aggregate([
       {
         $project: {
@@ -138,61 +139,61 @@ const serverProducts = asyncHandler(async (req, resp) => {
   }
 });
 
-const servePremium = asyncHandler(async (req, resp)=>{
+const servePremium = asyncHandler(async (req, resp) => {
   const page = Number(req.query.page) || 0;
-  const {UserType } = req.body;
-  
+  const { UserType } = req.body;
+
   const skipped = paginate(page, 4);
 
-    const Products = await Product.aggregate([
-      {
-        $match: {
-          Premium: true
-        }
-      },
-      {
-        $project: {
-          _id: 1,
-          ProductName: 1,
-          PriceForDealers: {
-            $cond: {
-              if: { $eq: [UserType, "DEALER"] },
-              then: "$PriceForDealers",
-              else: "$$REMOVE"
-            }
-          },
-          PriceForInstallers: {
-            $cond: {
-              if: { $eq: [UserType, "INSTALLER"] },
-              then: "$PriceForInstallers",
-              else: "$$REMOVE"
-            }
-          },
-          PriceForCustomers: {
-            $cond: {
-              if: { $eq: [UserType, "CUSTOMER"] },
-              then: "$PriceForCustomers",
-              else: "$$REMOVE"
-            }
+  const Products = await Product.aggregate([
+    {
+      $match: {
+        Premium: true
+      }
+    },
+    {
+      $project: {
+        _id: 1,
+        ProductName: 1,
+        PriceForDealers: {
+          $cond: {
+            if: { $eq: [UserType, "DEALER"] },
+            then: "$PriceForDealers",
+            else: "$$REMOVE"
+          }
+        },
+        PriceForInstallers: {
+          $cond: {
+            if: { $eq: [UserType, "INSTALLER"] },
+            then: "$PriceForInstallers",
+            else: "$$REMOVE"
+          }
+        },
+        PriceForCustomers: {
+          $cond: {
+            if: { $eq: [UserType, "CUSTOMER"] },
+            then: "$PriceForCustomers",
+            else: "$$REMOVE"
           }
         }
       }
-    ]).skip(skipped).limit(4);
-
-    if (!Products) {
-      throw new ApiError(400, "Not Any Product Found");
     }
+  ]).skip(skipped).limit(4);
 
-    resp.status(200).json(
-      new ApiResponse(
-        200,
-        {
-          Premium: Products,
-          LimitPerPage: limit,
-        },
-        "Here All Premium Products"
-      )
-    );
+  if (!Products) {
+    throw new ApiError(400, "Not Any Product Found");
+  }
+
+  resp.status(200).json(
+    new ApiResponse(
+      200,
+      {
+        Premium: Products,
+        LimitPerPage: limit,
+      },
+      "Here All Premium Products"
+    )
+  );
 });
 
 const serveSelectedProduct = asyncHandler(async (req, resp) => {
@@ -205,7 +206,7 @@ const serveSelectedProduct = asyncHandler(async (req, resp) => {
   const Item = await Product.aggregate([
     {
       $match: {
-        _id: new ObjectId (ProductId)
+        _id: new ObjectId(ProductId)
       }
     },
     {
@@ -246,7 +247,7 @@ const serveSelectedProduct = asyncHandler(async (req, resp) => {
   if (!Item) {
     throw new ApiError(400, "Item Not Found");
   }
-  
+
   resp.status(200)
     .json(new ApiResponse(200, { Product: Item }, "Here is the item"));
 
@@ -258,11 +259,11 @@ const serveCartItems = asyncHandler(async (req, resp) => {
   const skipped = paginate(page, 15);
   const { UserType } = req.body;
 
-  if(!user){
+  if (!user) {
     throw new ApiError(400, "Unautharized Request");
   }
 
-  if(!UserType){
+  if (!UserType) {
     throw new ApiError(400, "Should be know UserType");
   }
 
@@ -308,11 +309,11 @@ const serveCartItems = asyncHandler(async (req, resp) => {
 
   let TotalAmmount = 0;
 
-  CartProducts.map((product)=>{
+  CartProducts.map((product) => {
     TotalAmmount += product.Product.Price;
   })
 
-  
+
 
   if (!CartProducts) {
     throw new ApiError(400, "Cart Item Not Found");

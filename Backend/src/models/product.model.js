@@ -27,12 +27,12 @@ const newSchema = new mongoose.Schema(
       default: false,
       required: true
     },
-    CameraType: {
+    CameraQuality: {
       type: String,
       required: true,
       enum: ["HD", "IP", "BOTH"]
     },
-    CameraTp: {
+    CameraType: {
       type: String,
       required: true
     },
@@ -40,11 +40,11 @@ const newSchema = new mongoose.Schema(
       type: Number,
       required: true
     },
-    MP:{
+    MegaPixels:{
       type: Number,
       required: true
     },
-    InOut: {
+    IndoorOutdoor: {
       type: String,
       required: true
     },
