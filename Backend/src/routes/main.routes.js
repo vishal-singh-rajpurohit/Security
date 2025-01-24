@@ -18,7 +18,7 @@ const { serverProducts, serveSelectedProduct, serveCartItems, servePremium } = r
 const mainRoutes = express.Router();
 
 // CHECK AUTHENTICATION
-mainRoutes.route("/auth/login").post(Auth, refreshAccessAndRefreshToken);
+mainRoutes.route("/auth/refresh-Tokens").post(Auth, refreshAccessAndRefreshToken);
 
 // otps
 mainRoutes.route("/otp/send-otp-signup").post(isNotExists, otpVerification);

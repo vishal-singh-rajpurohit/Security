@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import './profile.css'
 import MessageInbox from '../Modal/MessageInbox'
 import { AiTwotoneMail } from 'react-icons/ai'

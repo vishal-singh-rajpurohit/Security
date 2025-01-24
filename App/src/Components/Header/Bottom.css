@@ -10,12 +10,12 @@ nav.bottom-navigation {
 
 .bottom-nav-container {
     width: 100%;
-    display: flex;
-    justify-content: center;
+    display: flex
+;
+    justify-content: end;
     align-items: center;
     margin-bottom: 0.3rem;
 }
-
 ul.btm-nav-ul {
     display: flex;
     justify-content: center;
@@ -29,7 +29,7 @@ li.btm-nav-li {
 button.btm-nav-btn {
     width: 7rem;
     background-color: #333333;
-    border: 1px solid white;
+    border: none;
     height: 1.5rem;
     color: white;
     border-radius: 2px;

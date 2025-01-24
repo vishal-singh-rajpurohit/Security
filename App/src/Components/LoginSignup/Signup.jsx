@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './signup.css'
 import { NavLink } from 'react-router-dom';
 import AuthContext from '../../context/AuthContext.context';
@@ -8,7 +8,6 @@ import { setFormStates } from '../../Functions/Auth/formSlice';
 const Signup = () => {
     const dispatch = useDispatch();
     const { tempUserType, setTempUserType, setFormError, sendRegistrationOtp } = useContext(AuthContext);
-    const { formData } = useContext(AuthContext);
     const isSubmitError = useSelector((state) => state.modals.OpenWarning);
     const [errorMessage, setErrorMessage] = useState('');
     const [image, setImage] = useState(null);
@@ -18,9 +17,6 @@ const Signup = () => {
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
     const [ConformPassword, setConformPassword] = useState('');
-
-    const userName = useSelector((state) => state.authform.firstName);
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -116,8 +112,8 @@ const Signup = () => {
                             <div className="dalouge-div">
                                 <p className="policy text">
                                     By continuing, you agree to Data Secourity's
-                                    <a href="" className='policy-link'> Conditions of Use</a> and
-                                    <a href="" className='policy-link'>Privacy Notice</a>
+                                    <a  className='policy-link'> Conditions of Use</a> and
+                                    <a className='policy-link'>Privacy Notice</a>
                                     .</p>
                             </div>
                         </div>

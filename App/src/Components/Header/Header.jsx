@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import './Header.css'
 import { FaUser } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import { FaCartShopping } from 'react-icons/fa6';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setBottomNav } from '../../Functions/Ui/modalSlice';
 import AuthContext from '../../context/AuthContext.context';
 

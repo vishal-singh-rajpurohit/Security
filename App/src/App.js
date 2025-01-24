@@ -13,7 +13,7 @@ import Cart from "./Components/Products/Cart/Cart";
 import Otp from "./Components/Otp/Otp";
 
 
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {Route, Routes } from "react-router-dom";
 import OtpLogin from "./Components/Otp/OtpLogin";
 import AuthProvider from "./context/AuthProvider.provider";
 
@@ -21,6 +21,7 @@ import AuthProvider from "./context/AuthProvider.provider";
 
 
 const App = () => {
+  
   
 
   return (

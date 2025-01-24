@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import "./Cart.css";
 import { BiRupee } from "react-icons/bi";
-import a from "../../../Assets/Cameras/v.webp"
 import { MdDeleteForever } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import AuthContext from "../../../context/AuthContext.context";

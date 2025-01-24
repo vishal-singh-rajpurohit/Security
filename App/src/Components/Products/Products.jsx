@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import '../../css/Projucts.css'
 import { BiCustomize, BiStar } from 'react-icons/bi';
-import { FaFilter } from 'react-icons/fa';
+import { FaArrowDown, FaFilter } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOpenFilter } from '../../Functions/Ui/modalSlice'
@@ -10,8 +10,8 @@ import { MdTransitEnterexit } from 'react-icons/md';
 
 const Products = () => {
 
-    const { products, pageNumber, isFilterOn, loggedIn, userType, tempUserType, filterAts, filterKeys, filterObject } = useContext(AuthContext);
-    const { addToCart, selectProduct, serveProducts, setFilterItems, setFilterValues, serveFilterProducts, NumberOfCameras } = useContext(AuthContext);
+    const { products, pageNumber, isFilterOn, loggedIn, userType, tempUserType, filterAts, filterKeys, filterObject, setPageNumber } = useContext(AuthContext);
+    const { addToCart, selectProduct, serveProducts, setFilterItems, setFilterValues, serveFilterProducts } = useContext(AuthContext);
     const [selectedOption, setSelectedOption] = useState(null);
 
     const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const Products = () => {
                 userType || tempUserType
             );
         }
-        else if(!selectedOption){
+        else if (!selectedOption) {
             await serveFilterProducts(
                 pageNumber,
                 filterObject,
@@ -43,19 +43,15 @@ const Products = () => {
 
     // PAGE NUMBERS AND PRODCUT SERVING
     useEffect(() => {
-        console.log("second one");
+        console.log("page number updated");
 
         serveProducts(
             pageNumber,
-            filterObject,
+            {},
             userType || tempUserType
         );
     }, [pageNumber, isFilterOn,]);
 
-
-    useEffect(() => {
-        console.log("hii ", selectedOption);
-    }, [selectedOption])
 
     return (
         <>
@@ -232,10 +228,16 @@ const Products = () => {
                         <div className="card-style-display">
                             <div className="card">
                                 <div className="image-of-card-box">
-                                    <span className="card-image-box"></span>
+                                    {/* <div className="premium-text">
+                                        <div className="premium-txt">Premium</div>
+                                    </div> */}
+                                    <span className="card-image-box">
+                                        <div className="premium-txt">Premium</div>
+                                    </span>
                                 </div>
                                 <div className="card-details">
-                                    <p className="text-o-cart">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam illo fugiat quod obcaecati ratione sint beatae tenetur? Eos, illum cupiditate!</p>
+                                    {/* <button className="premium-button">Premium</button> */}
+                                    {/* <p className="text-o-cart">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam illo fugiat quod obcaecati ratione sint beatae tenetur? Eos, illum cupiditate!</p> */}
                                     <div className="price-o-card">
                                         <span className="rupee">&#8377;</span>
                                         <span className="ammount">15000</span>
@@ -244,10 +246,16 @@ const Products = () => {
                             </div>
                             <div className="card">
                                 <div className="image-of-card-box">
-                                    <span className="card-image-box"></span>
+                                    {/* <div className="premium-text">
+                                        <div className="premium-txt">Premium</div>
+                                    </div> */}
+                                    <span className="card-image-box">
+                                        <div className="premium-txt">Premium</div>
+                                    </span>
                                 </div>
                                 <div className="card-details">
-                                    <p className="text-o-cart">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam illo fugiat quod obcaecati ratione sint beatae tenetur? Eos, illum cupiditate!</p>
+                                    {/* <button className="premium-button">Premium</button> */}
+                                    {/* <p className="text-o-cart">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam illo fugiat quod obcaecati ratione sint beatae tenetur? Eos, illum cupiditate!</p> */}
                                     <div className="price-o-card">
                                         <span className="rupee">&#8377;</span>
                                         <span className="ammount">15000</span>
@@ -256,10 +264,16 @@ const Products = () => {
                             </div>
                             <div className="card">
                                 <div className="image-of-card-box">
-                                    <span className="card-image-box"></span>
+                                    {/* <div className="premium-text">
+                                        <div className="premium-txt">Premium</div>
+                                    </div> */}
+                                    <span className="card-image-box">
+                                        <div className="premium-txt">Premium</div>
+                                    </span>
                                 </div>
                                 <div className="card-details">
-                                    <p className="text-o-cart">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam illo fugiat quod obcaecati ratione sint beatae tenetur? Eos, illum cupiditate!</p>
+                                    {/* <button className="premium-button">Premium</button> */}
+                                    {/* <p className="text-o-cart">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam illo fugiat quod obcaecati ratione sint beatae tenetur? Eos, illum cupiditate!</p> */}
                                     <div className="price-o-card">
                                         <span className="rupee">&#8377;</span>
                                         <span className="ammount">15000</span>
@@ -268,10 +282,16 @@ const Products = () => {
                             </div>
                             <div className="card">
                                 <div className="image-of-card-box">
-                                    <span className="card-image-box"></span>
+                                    {/* <div className="premium-text">
+                                        <div className="premium-txt">Premium</div>
+                                    </div> */}
+                                    <span className="card-image-box">
+                                        <div className="premium-txt">Premium</div>
+                                    </span>
                                 </div>
                                 <div className="card-details">
-                                    <p className="text-o-cart">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam illo fugiat quod obcaecati ratione sint beatae tenetur? Eos, illum cupiditate!</p>
+                                    {/* <button className="premium-button">Premium</button> */}
+                                    {/* <p className="text-o-cart">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam illo fugiat quod obcaecati ratione sint beatae tenetur? Eos, illum cupiditate!</p> */}
                                     <div className="price-o-card">
                                         <span className="rupee">&#8377;</span>
                                         <span className="ammount">15000</span>
@@ -311,17 +331,20 @@ const Products = () => {
                                                 </span>
                                             </div>
                                             <div className="save-button">
-                                                <button className="btn-order save-button" onClick={() => addToCart(product._id)}><BiStar /> save</button>
+                                                <button className="btn-order save-button" disabled={loggedIn ? false : true} onClick={() => addToCart(product._id)}><BiStar /> save</button>
                                             </div>
                                             <div className="button">
                                                 <button className="btn-order" onClick={() => selectProduct(product._id, (userType || tempUserType))} >Know More</button>
-                                                <button className="btn-order">Order Now</button>
+                                                <button className="btn-order"disabled={loggedIn ? false : true} >Order Now</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 )
                             }
+                        </div>
+                        <div className="load-more">
+                            <button className="load-more-button"onClick={()=>setPageNumber(pageNumber = pageNumber + 1)}><FaArrowDown /> Show More</button>
                         </div>
                     </div>
                 </section>

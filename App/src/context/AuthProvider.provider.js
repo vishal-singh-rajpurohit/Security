@@ -9,6 +9,7 @@ import { clearFormStates } from "../Functions/Auth/formSlice";
 import { useNavigate } from "react-router-dom";
 import { clearUserDetails, setUserDetails } from "../Functions/User/userSlice";
 import { filterAttributes } from '../constants'
+import { reverseLogin } from "../Functions/Ui/interfaceSlice";
 
 const AuthProvider = ({ children }) => {
     const dispatch = useDispatch();
@@ -81,6 +82,17 @@ const AuthProvider = ({ children }) => {
     const userActiveOrders = useSelector((state) => state.user.activeOrders);
 
     const requestUserType = setUserRoutes(tempUserType);
+
+    const checkLoggedIn = async () =>{
+        try {
+            await axios.post('/api/v1/main/auth/refresh-Tokens', {})
+            .then((resp)=>{
+                console.log("User is Already logged in :", resp)
+            })
+        } catch (error) {
+            console.log("User is not logged in :", error)
+        }
+    }
 
     const sendRegistrationOtp = async () => {
         console.log(authMail, authPass);
@@ -179,6 +191,9 @@ const AuthProvider = ({ children }) => {
                         PendingOrders,
                         CraditPayments
                     }));
+                    dispatch(reverseLogin({
+                        status: true
+                    }))
                     navigate("/");
                 });
         } catch (error) {
@@ -198,8 +213,6 @@ const AuthProvider = ({ children }) => {
                     Password: authPass,
                 })
                 .then((resp) => {
-                    console.log("user detail ", resp.data.data.User);
-
                     const {
                         FirstName,
                         LastName,
@@ -239,6 +252,9 @@ const AuthProvider = ({ children }) => {
                             CraditPayments: CraditPayments || 0,
                         })
                     );
+                    dispatch(reverseLogin({
+                        status: true
+                    }))
 
                     dispatch(clearFormStates());
 
@@ -255,6 +271,9 @@ const AuthProvider = ({ children }) => {
                 .post(`/api/v1/${requestUserType}${API[2]}`, {})
                 .then((resp) => {
                     dispatch(clearUserDetails());
+                    dispatch(reverseLogin({
+                        status: false
+                    }))
                     navigate("/");
                 });
         } catch (error) {
@@ -278,13 +297,17 @@ const AuthProvider = ({ children }) => {
     };
 
     const addToCart = async (productId) => {
-        try {
-            await axios.post(`/api/v1${API[13]}`, { ProdcutId: productId })
-                .then((resp) => {
-                    console.log("added to cart");
-                })
-        } catch (error) {
-            console.log("error while add to cart the product :", error);
+        if (loggedIn) {
+            try {
+                await axios.post(`/api/v1${API[13]}`, { ProdcutId: productId })
+                    .then((resp) => {
+                        console.log("added to cart");
+                    })
+            } catch (error) {
+                console.log("error while add to cart the product :", error);
+            }
+        }else{
+            navigate("/user/login")
         }
     };
 
@@ -316,10 +339,12 @@ const AuthProvider = ({ children }) => {
     }
 
     const placeOrder = async () => {
-        try {
-            console.log("place orders called");
-        } catch (error) {
-            console.log("error while add to cart the product :", error);
+        if (loggedIn) {
+            try {
+            } catch (error) {
+            }
+        }else{
+            navigate("/user/login")
         }
     };
 
@@ -337,7 +362,7 @@ const AuthProvider = ({ children }) => {
         await axios
             .post(
                 `/api/v1/main/serve/products?page=${pageNumber}`,
-                { UserType, Filters:filters }
+                { UserType, Filters: filters }
             )
             .then((resp) => {
                 console.log("Product is :", resp.data.data.Products)
@@ -351,18 +376,18 @@ const AuthProvider = ({ children }) => {
     const serveFilterProducts = async (pageNumber, filters, UserType) => {
         setPageNumber(0);
 
-            await axios
-                .post(
-                    `/api/v1/main/serve/products?page=${pageNumber}`,
-                    { UserType, Filters:filters }
-                )
-                .then((resp) => {
-                    console.log("Product is :", resp.data.data.Products)
-                    setProducts(resp.data.data.Products);
-                })
-                .catch((error) => {
-                    console.log("error while hitting serve products ", error);
-                });
+        await axios
+            .post(
+                `/api/v1/main/serve/products?page=${pageNumber}`,
+                { UserType, Filters: filters }
+            )
+            .then((resp) => {
+                console.log("Product is :", resp.data.data.Products)
+                setProducts(resp.data.data.Products);
+            })
+            .catch((error) => {
+                console.log("error while hitting serve products ", error);
+            });
     }
 
     const selectProduct = async (productId, UserType) => {
@@ -388,7 +413,7 @@ const AuthProvider = ({ children }) => {
         filterAttributes?.map((filter) => {
             if (filter.name === attributeName) {
                 setFilterAts(filter.attributes);
-                return;
+                // return;
             }
         })
     }
@@ -487,18 +512,17 @@ const AuthProvider = ({ children }) => {
                 })) :
                 setFilterObject((prev) => ({
                     ...prev,
-                    ["indoor_outdoor"]: value
+                    ["IndoorOutdoor"]: value
                 }))
             return;
         }
 
     }
 
-    useEffect(() => {
-        console.log("filter is: ", filterObject)
-    }, [filterObject])
-
-
+    // FOR MAKE SURE IF USER IS ALREADY AUTHERIZED
+    useEffect(()=>{
+        checkLoggedIn();
+    }, [])
 
     const data = {
         loggedIn,

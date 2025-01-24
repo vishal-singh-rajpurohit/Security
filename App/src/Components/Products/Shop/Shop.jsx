@@ -140,8 +140,8 @@ const Shop = () => {
                                 </div>
                             </div>
                             <div className="shop-card-buttons">
-                                <button className="btn-order save-button btn-order2" onClick={()=>addToCart(product._id)}><BiStar /> save</button>
-                                <button className="btn-order btn-order2">Order Now</button>
+                                <button className="btn-order save-button btn-order2" disabled={loggedIn ? false : true} onClick={()=>addToCart(product._id)}><BiStar /> save</button>
+                                <button className="btn-order btn-order2" disabled={loggedIn ? false : true}>Order Now</button>
                             </div>
                         </div>
                     </div>

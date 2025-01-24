@@ -73,8 +73,8 @@ const CustomProduct = () => {
                                     <div className="dalouge-div">
                                         <p className="policy text">
                                             By continuing, you agree to Data Secourity's
-                                            <a href="" className='policy-link'> Conditions of Use</a> and
-                                            <a href="" className='policy-link'>Privacy Notice</a>
+                                            <a  className='policy-link'> Conditions of Use</a> and
+                                            <a className='policy-link'>Privacy Notice</a>
                                             .</p>
                                     </div>
                                 </div>
