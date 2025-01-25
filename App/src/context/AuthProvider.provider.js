@@ -26,6 +26,7 @@ const AuthProvider = ({ children }) => {
 
     // PRODUCTS AND FILTER
     const [products, setProducts] = useState([]);
+    const [proProducts, setProProducts] = useState([]);
     const [product, setProduct] = useState();
     const [cartProducts, setCartProducts] = useState();
     // FILTERS
@@ -83,14 +84,14 @@ const AuthProvider = ({ children }) => {
 
     const requestUserType = setUserRoutes(tempUserType);
 
-    const checkLoggedIn = async () =>{
+    const checkLoggedIn = async () => {
         try {
             await axios.post('/api/v1/main/auth/refresh-Tokens', {})
-            .then((resp)=>{
-                console.log("User is Already logged in :", resp)
-            })
+                .then((resp) => {
+                    console.log("User is Already logged in :", resp)
+                })
         } catch (error) {
-            console.log("User is not logged in :", error)
+            // console.log("User is not logged in :", error)
         }
     }
 
@@ -306,7 +307,7 @@ const AuthProvider = ({ children }) => {
             } catch (error) {
                 console.log("error while add to cart the product :", error);
             }
-        }else{
+        } else {
             navigate("/user/login")
         }
     };
@@ -338,12 +339,12 @@ const AuthProvider = ({ children }) => {
         }
     }
 
-    const placeOrder = async () => {
+    const placeOrder = async (ProductId) => {
         if (loggedIn) {
             try {
             } catch (error) {
             }
-        }else{
+        } else {
             navigate("/user/login")
         }
     };
@@ -372,6 +373,28 @@ const AuthProvider = ({ children }) => {
                 console.log("error while hitting serve products ", error);
             });
     };
+
+    const servePremium = async (UserType) => {
+        try {
+            await axios
+                .post(`/api/v1${API[17]}`,{ UserType })
+                .then((resp) => {
+                    console.log("Product Premium is :", resp.data.data.Products);
+                    setProProducts(resp.data.data.Products)
+                    console.log("Product Premium is :", proProducts)
+
+                })
+        } catch (error) {
+            console.log("premium Products route ", `/api/v1${API[17]}`)
+            console.log("error while hitting serve Premium products ", error);
+        }
+    };
+    useEffect(()=>{
+        console.log("State is Updated ", proProducts , typeof proProducts);
+        proProducts?.map((product) => {
+            console.log("hjii by produts", product)
+        })
+    }, [proProducts])
 
     const serveFilterProducts = async (pageNumber, filters, UserType) => {
         setPageNumber(0);
@@ -520,7 +543,7 @@ const AuthProvider = ({ children }) => {
     }
 
     // FOR MAKE SURE IF USER IS ALREADY AUTHERIZED
-    useEffect(()=>{
+    useEffect(() => {
         checkLoggedIn();
     }, [])
 
@@ -538,6 +561,8 @@ const AuthProvider = ({ children }) => {
         setPageNumber,
         product,
         setProduct,
+        proProducts,
+        setProProducts,
         cartProducts,
         setCartProducts,
         filters,
@@ -583,6 +608,7 @@ const AuthProvider = ({ children }) => {
         serveFilterProducts,
         setFilterValues,
         setFilterItems,
+        servePremium,
         formData,
     };
     return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;

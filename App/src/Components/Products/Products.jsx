@@ -10,8 +10,8 @@ import { MdTransitEnterexit } from 'react-icons/md';
 
 const Products = () => {
 
-    const { products, pageNumber, isFilterOn, loggedIn, userType, tempUserType, filterAts, filterKeys, filterObject, setPageNumber } = useContext(AuthContext);
-    const { addToCart, selectProduct, serveProducts, setFilterItems, setFilterValues, serveFilterProducts } = useContext(AuthContext);
+    const { products, pageNumber, isFilterOn, loggedIn, userType, tempUserType, filterAts, filterKeys, filterObject, setPageNumber, proProducts } = useContext(AuthContext);
+    const { addToCart, selectProduct, serveProducts, setFilterItems, setFilterValues, serveFilterProducts, placeOrder, servePremium } = useContext(AuthContext);
     const [selectedOption, setSelectedOption] = useState(null);
 
     const dispatch = useDispatch();
@@ -43,14 +43,18 @@ const Products = () => {
 
     // PAGE NUMBERS AND PRODCUT SERVING
     useEffect(() => {
-        console.log("page number updated");
-
+        
         serveProducts(
             pageNumber,
             {},
             userType || tempUserType
         );
     }, [pageNumber, isFilterOn,]);
+
+    useEffect(()=>{
+        servePremium(userType || tempUserType);
+    },[])
+
 
 
     return (
@@ -226,78 +230,33 @@ const Products = () => {
                     </div>
                     <div className="product-container">
                         <div className="card-style-display">
-                            <div className="card">
-                                <div className="image-of-card-box">
-                                    {/* <div className="premium-text">
-                                        <div className="premium-txt">Premium</div>
-                                    </div> */}
-                                    <span className="card-image-box">
-                                        <div className="premium-txt">Premium</div>
-                                    </span>
-                                </div>
-                                <div className="card-details">
-                                    {/* <button className="premium-button">Premium</button> */}
-                                    {/* <p className="text-o-cart">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam illo fugiat quod obcaecati ratione sint beatae tenetur? Eos, illum cupiditate!</p> */}
-                                    <div className="price-o-card">
-                                        <span className="rupee">&#8377;</span>
-                                        <span className="ammount">15000</span>
+                            {
+                                proProducts?.map((product) => {
+                                    <div className="card" key={product._id}>
+                                        <div className="image-of-card-box">
+                                            <span className="card-image-box" style={{backgroundImage : `url(${product.FrontImage})`}}>
+                                                <div className="premium-txt">Premium</div>
+                                            </span>
+                                        </div>
+                                        <div className="card-details">
+                                            <div className="price-o-card">
+                                                <span className="rupee">&#8377;</span>
+                                                <span className="ammount">
+                                                {
+                                                            !loggedIn ?
+                                                                product?.PriceForCustomers
+                                                                :
+                                                                userType === "DEALER" ? product?.PriceForDealers :
+                                                                    userType === "INSTALLER" ? product?.PriceForInstallers :
+                                                                        product?.PriceForCustomers
+                                                        }
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="card">
-                                <div className="image-of-card-box">
-                                    {/* <div className="premium-text">
-                                        <div className="premium-txt">Premium</div>
-                                    </div> */}
-                                    <span className="card-image-box">
-                                        <div className="premium-txt">Premium</div>
-                                    </span>
-                                </div>
-                                <div className="card-details">
-                                    {/* <button className="premium-button">Premium</button> */}
-                                    {/* <p className="text-o-cart">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam illo fugiat quod obcaecati ratione sint beatae tenetur? Eos, illum cupiditate!</p> */}
-                                    <div className="price-o-card">
-                                        <span className="rupee">&#8377;</span>
-                                        <span className="ammount">15000</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="card">
-                                <div className="image-of-card-box">
-                                    {/* <div className="premium-text">
-                                        <div className="premium-txt">Premium</div>
-                                    </div> */}
-                                    <span className="card-image-box">
-                                        <div className="premium-txt">Premium</div>
-                                    </span>
-                                </div>
-                                <div className="card-details">
-                                    {/* <button className="premium-button">Premium</button> */}
-                                    {/* <p className="text-o-cart">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam illo fugiat quod obcaecati ratione sint beatae tenetur? Eos, illum cupiditate!</p> */}
-                                    <div className="price-o-card">
-                                        <span className="rupee">&#8377;</span>
-                                        <span className="ammount">15000</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="card">
-                                <div className="image-of-card-box">
-                                    {/* <div className="premium-text">
-                                        <div className="premium-txt">Premium</div>
-                                    </div> */}
-                                    <span className="card-image-box">
-                                        <div className="premium-txt">Premium</div>
-                                    </span>
-                                </div>
-                                <div className="card-details">
-                                    {/* <button className="premium-button">Premium</button> */}
-                                    {/* <p className="text-o-cart">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam illo fugiat quod obcaecati ratione sint beatae tenetur? Eos, illum cupiditate!</p> */}
-                                    <div className="price-o-card">
-                                        <span className="rupee">&#8377;</span>
-                                        <span className="ammount">15000</span>
-                                    </div>
-                                </div>
-                            </div>
+                                })
+                            }
+
                         </div>
                         <div className="list-style-products-display">
                             {
@@ -335,7 +294,7 @@ const Products = () => {
                                             </div>
                                             <div className="button">
                                                 <button className="btn-order" onClick={() => selectProduct(product._id, (userType || tempUserType))} >Know More</button>
-                                                <button className="btn-order"disabled={loggedIn ? false : true} >Order Now</button>
+                                                <button className="btn-order" onClick={() => placeOrder(product._id)} >Order Now</button>
                                             </div>
                                         </div>
                                     </div>
@@ -344,7 +303,7 @@ const Products = () => {
                             }
                         </div>
                         <div className="load-more">
-                            <button className="load-more-button"onClick={()=>setPageNumber(pageNumber = pageNumber + 1)}><FaArrowDown /> Show More</button>
+                            <button className="load-more-button" onClick={() => setPageNumber(pageNumber + 1)}><FaArrowDown /> Show More</button>
                         </div>
                     </div>
                 </section>

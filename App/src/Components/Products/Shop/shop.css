@@ -259,8 +259,7 @@ button.btn-order.save-button.btn-order2 {
 
 @media (max-width: 1050px) {
     section.shop-page {
-        display: flex
-;
+        display: flex;
         align-items: center;
         justify-items: center;
         gap: 2rem;
@@ -270,9 +269,14 @@ button.btn-order.save-button.btn-order2 {
     section.product-display {
         width: 97%;
     }
+
     .main-display {
         border: 1px solid;
         border-radius: 3px 3px 0px 0px;
+    }
+
+    section.product-display {
+        border-right: none;
     }
 
     section.right-details-of-shop {

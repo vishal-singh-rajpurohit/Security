@@ -43,7 +43,9 @@ export const API = [
     "/main/cart/remove-from-cart",
     // Order Routes 
     // ENTRY AUTH 16
-    "/main/auth/login"
+    "/main/auth/login",
+    // PREMIUM PRODUCTS 17
+    "/main/serve/premium-products"
 ]
 
 export const filterAttributes = [
