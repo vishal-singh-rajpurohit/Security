@@ -143,6 +143,10 @@ const servePremium = asyncHandler(async (req, resp) => {
   const page = Number(req.query.page) || 0;
   const { UserType } = req.body;
 
+  if(!UserType){
+    throw new ApiError(400, "UserType Not Found")
+  }
+
   const skipped = paginate(page, 4);
 
   const Products = await Product.aggregate([
@@ -154,7 +158,7 @@ const servePremium = asyncHandler(async (req, resp) => {
     {
       $project: {
         _id: 1,
-        ProductName: 1,
+        FrontImage: 1,
         PriceForDealers: {
           $cond: {
             if: { $eq: [UserType, "DEALER"] },
@@ -175,7 +179,7 @@ const servePremium = asyncHandler(async (req, resp) => {
             then: "$PriceForCustomers",
             else: "$$REMOVE"
           }
-        }
+        },
       }
     }
   ]).skip(skipped).limit(4);
@@ -184,11 +188,13 @@ const servePremium = asyncHandler(async (req, resp) => {
     throw new ApiError(400, "Not Any Product Found");
   }
 
+  console.log("products ", Products);
+  
   resp.status(200).json(
     new ApiResponse(
       200,
       {
-        Premium: Products,
+        Products: Products,
         LimitPerPage: limit,
       },
       "Here All Premium Products"

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setOpenFilter } from '../../Functions/Ui/modalSlice'
 import AuthContext from '../../context/AuthContext.context';
 import { MdTransitEnterexit } from 'react-icons/md';
+import Slide from './slides/slide';
 
 const Products = () => {
 
@@ -43,7 +44,7 @@ const Products = () => {
 
     // PAGE NUMBERS AND PRODCUT SERVING
     useEffect(() => {
-        
+
         serveProducts(
             pageNumber,
             {},
@@ -51,9 +52,9 @@ const Products = () => {
         );
     }, [pageNumber, isFilterOn,]);
 
-    useEffect(()=>{
+    useEffect(() => {
         servePremium(userType || tempUserType);
-    },[])
+    }, [])
 
 
 
@@ -103,44 +104,10 @@ const Products = () => {
                 <section className="product-box">
                     <div className="filter-area">
                         <div className="--filter">
-                            <div className="custon-button">
+                            {/* <div className="custon-button">
                                 <NavLink to={"custom/customize"} ><button className="custom"><BiCustomize /> Custom Setup</button></NavLink>
-                            </div>
+                            </div> */}
                             <form action="" className="filter">
-                                <div className="box-filter">
-                                    <p className="filter-heading">Sort by Price: </p>
-                                    <ul className="filter-cb-ul">
-                                        <li className="filter-li">
-                                            <input type="checkbox"
-                                                name="filterGroup"
-                                                // checked={selected === "filterGroup"}
-                                                // onChange={handleCheckboxChange}
-                                                id="" className="filter-cb" />
-                                            <label htmlFor="sp1">Above 15000</label>
-                                        </li>
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="filterGroup2"
-                                                // onChange={handleCheckboxChange} 
-                                                // checked={selected === "filterGroup2"} 
-                                                id="" className="filter-cb" />
-                                            <label htmlFor="sp2">20000 - 25000</label>
-                                        </li>
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="filterGroup3"
-                                                // onChange={handleCheckboxChange}
-                                                //  checked={selected === "filterGroup3"} 
-                                                id="" className="filter-cb" />
-                                            <label htmlFor="sp3">25000 - 300000</label>
-                                        </li>
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="filterGroup4"
-                                                // onChange={handleCheckboxChange}
-                                                //  checked={selected === "filterGroup4"}
-                                                id="" className="filter-cb" />
-                                            <label htmlFor="sp4">Above 30000</label>
-                                        </li>
-                                    </ul>
-                                </div>
                                 <div className="box-filter">
                                     <p className="filter-heading">Special Features</p>
                                     <ul className="filter-cb-ul">
@@ -167,15 +134,28 @@ const Products = () => {
                                     </ul>
                                 </div>
                                 <div className="box-filter">
-                                    <p className="filter-heading">Connectivity Technology</p>
+                                    <p className="filter-heading">Camera Auality</p>
                                     <ul className="filter-cb-ul">
                                         <li className="filter-li">
-                                            <input type="checkbox" name="conn1" id="" className="filter-cb" />
-                                            <label htmlFor="conn1">Wired</label>
+                                            <input type="checkbox" name="sp1" id="" className="filter-cb" />
+                                            <label htmlFor="sp1">HD</label>
                                         </li>
                                         <li className="filter-li">
-                                            <input type="checkbox" name="conn2" id="" className="filter-cb" />
-                                            <label htmlFor="conn2">Wireless</label>
+                                            <input type="checkbox" name="sp2" id="" className="filter-cb" />
+                                            <label htmlFor="sp2">IP</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div className="box-filter">
+                                    <p className="filter-heading">Camera Type</p>
+                                    <ul className="filter-cb-ul">
+                                        <li className="filter-li">
+                                            <input type="checkbox" name="sp1" id="" className="filter-cb" />
+                                            <label htmlFor="sp1">DOME</label>
+                                        </li>
+                                        <li className="filter-li">
+                                            <input type="checkbox" name="sp2" id="" className="filter-cb" />
+                                            <label htmlFor="sp2">BULLET</label>
                                         </li>
                                     </ul>
                                 </div>
@@ -217,11 +197,32 @@ const Products = () => {
                                     </ul>
                                 </div>
                                 <div className="box-filter">
-                                    <p className="filter-heading">Camera Brands</p>
+                                    <p className="filter-heading">Indoor / Outdoor</p>
                                     <ul className="filter-cb-ul">
                                         <li className="filter-li">
                                             <input type="checkbox" name="brand" id="" className="filter-cb" />
-                                            <label htmlFor="brand">Top Brands</label>
+                                            <label htmlFor="brand">Indoor</label>
+                                        </li>
+                                        <li className="filter-li">
+                                            <input type="checkbox" name="brand" id="" className="filter-cb" />
+                                            <label htmlFor="brand">Outdoor</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div className="box-filter">
+                                    <p className="filter-heading">Mega Pixels</p>
+                                    <ul className="filter-cb-ul">
+                                        <li className="filter-li">
+                                            <input type="checkbox" name="brand" id="" className="filter-cb" />
+                                            <label htmlFor="brand">2</label>
+                                        </li>
+                                        <li className="filter-li">
+                                            <input type="checkbox" name="brand" id="" className="filter-cb" />
+                                            <label htmlFor="brand">4</label>
+                                        </li>
+                                        <li className="filter-li">
+                                            <input type="checkbox" name="brand" id="" className="filter-cb" />
+                                            <label htmlFor="brand">5</label>
                                         </li>
                                     </ul>
                                 </div>
@@ -229,12 +230,13 @@ const Products = () => {
                         </div>
                     </div>
                     <div className="product-container">
+                        <Slide />
                         <div className="card-style-display">
                             {
-                                proProducts?.map((product) => {
+                                proProducts.map((product) => {
                                     <div className="card" key={product._id}>
                                         <div className="image-of-card-box">
-                                            <span className="card-image-box" style={{backgroundImage : `url(${product.FrontImage})`}}>
+                                            <span className="card-image-box" style={{ backgroundImage: `url(${product.FrontImage})` }}>
                                                 <div className="premium-txt">Premium</div>
                                             </span>
                                         </div>
@@ -242,14 +244,14 @@ const Products = () => {
                                             <div className="price-o-card">
                                                 <span className="rupee">&#8377;</span>
                                                 <span className="ammount">
-                                                {
-                                                            !loggedIn ?
-                                                                product?.PriceForCustomers
-                                                                :
-                                                                userType === "DEALER" ? product?.PriceForDealers :
-                                                                    userType === "INSTALLER" ? product?.PriceForInstallers :
-                                                                        product?.PriceForCustomers
-                                                        }
+                                                    {
+                                                        !loggedIn ?
+                                                            product?.PriceForCustomers
+                                                            :
+                                                            userType === "DEALER" ? product?.PriceForDealers :
+                                                                userType === "INSTALLER" ? product?.PriceForInstallers :
+                                                                    product?.PriceForCustomers
+                                                    }
                                                 </span>
                                             </div>
                                         </div>

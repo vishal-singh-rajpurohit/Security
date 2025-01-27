@@ -366,7 +366,7 @@ const AuthProvider = ({ children }) => {
                 { UserType, Filters: filters }
             )
             .then((resp) => {
-                console.log("Product is :", resp.data.data.Products)
+                // console.log("Product is :", resp.data.data.Products)
                 setProducts((prev) => [...prev, ...resp.data.data.Products]);
             })
             .catch((error) => {
@@ -379,7 +379,7 @@ const AuthProvider = ({ children }) => {
             await axios
                 .post(`/api/v1${API[17]}`,{ UserType })
                 .then((resp) => {
-                    console.log("Product Premium is :", resp.data.data.Products);
+                    console.log("Product Premium resp is :", resp.data.data.Products);
                     setProProducts(resp.data.data.Products)
                     console.log("Product Premium is :", proProducts)
 

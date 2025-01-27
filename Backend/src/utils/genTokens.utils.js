@@ -17,6 +17,13 @@ const genTokens = async (Model, userId) => {
         user.refreshToken = refreshToken;
         user.save({ validateBeforeSave: false });
 
+        if(!accessToken){
+            throw new ApiError(500 , "Unable to genrate accessToken")
+        }
+        if(!refreshToken){
+            throw new ApiError(500 , "Unable to genrate accessToken")
+        }
+
         return { accessToken, refreshToken }
 
     } catch (error) {

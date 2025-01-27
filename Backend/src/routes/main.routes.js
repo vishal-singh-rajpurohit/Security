@@ -14,11 +14,13 @@ const changePassword = require("../controllers/users/update/changePassword.contr
 const changeUserType = require("../controllers/users/update/changeUserType.controller");
 const refreshAccessAndRefreshToken = require("../controllers/users/refreshAccessAndRefreshToken.controller");
 const { serverProducts, serveSelectedProduct, serveCartItems, servePremium } = require("../controllers/Products/products.controller");
+// const messagesFromLanding = require("../controllers/Landing/message.controller");
 
 const mainRoutes = express.Router();
 
 // CHECK AUTHENTICATION
 mainRoutes.route("/auth/refresh-Tokens").post(Auth, refreshAccessAndRefreshToken);
+// mainRoutes.route("/landing/message").post(messagesFromLanding);
 
 // otps
 mainRoutes.route("/otp/send-otp-signup").post(isNotExists, otpVerification);

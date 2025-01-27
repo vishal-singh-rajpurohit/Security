@@ -16,6 +16,7 @@ import Otp from "./Components/Otp/Otp";
 import {Route, Routes } from "react-router-dom";
 import OtpLogin from "./Components/Otp/OtpLogin";
 import AuthProvider from "./context/AuthProvider.provider";
+import Contact from "./Components/Contact/Contact";
 
 
 
@@ -31,6 +32,7 @@ const App = () => {
           <Routes >
             <Route path="/" element={<Layout />}>
               <Route path="" element={<Products />} />
+              <Route path="/contact" element={<Contact />} />
               <Route path="shop/cart" element={<Cart />} />
               <Route path="shop" element={<Shop />} />
               <Route path="shop/details" element={<ShopDetails />} />
