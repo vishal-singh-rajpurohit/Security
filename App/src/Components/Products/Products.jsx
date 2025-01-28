@@ -12,7 +12,7 @@ import Slide from './slides/slide';
 const Products = () => {
 
     const { products, pageNumber, isFilterOn, loggedIn, userType, tempUserType, filterAts, filterKeys, filterObject, setPageNumber, proProducts } = useContext(AuthContext);
-    const { addToCart, selectProduct, serveProducts, setFilterItems, setFilterValues, serveFilterProducts, placeOrder, servePremium } = useContext(AuthContext);
+    const { addToCart, placeOrder,  selectProduct, serveProducts, setFilterItems, setFilterValues, serveFilterProducts, servePremium } = useContext(AuthContext);
     const [selectedOption, setSelectedOption] = useState(null);
 
     const dispatch = useDispatch();

@@ -342,7 +342,14 @@ const AuthProvider = ({ children }) => {
     const placeOrder = async (ProductId) => {
         if (loggedIn) {
             try {
+                await axios.post(`/api/v1${API[18]}`, {
+                    ProductId : ProductId
+                }).then((resp)=>{
+                    console.log("Order Placed Successfully ", resp);
+                })
             } catch (error) {
+                console.log("Errir While Placing Orders ", error);
+                
             }
         } else {
             navigate("/user/login")

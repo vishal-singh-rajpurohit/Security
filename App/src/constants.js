@@ -45,7 +45,9 @@ export const API = [
     // ENTRY AUTH 16
     "/main/auth/login",
     // PREMIUM PRODUCTS 17
-    "/main/serve/premium-products"
+    "/main/serve/premium-products",
+    // ORDERS 18
+    "/orders/place-order"
 ]
 
 export const filterAttributes = [
