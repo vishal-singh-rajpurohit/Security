@@ -2,9 +2,9 @@ import React, { useContext } from 'react'
 import AuthContext from '../../context/AuthContext.context';
 
 const Order = () => {
-    const { products, userType , tempUserType, orders } = useContext(AuthContext);
+    const { products, userType, tempUserType, orders } = useContext(AuthContext);
     const { selectProduct } = useContext(AuthContext);
-    
+
     return (
         <main className="product-main">
             <section className="product-box">
@@ -12,7 +12,7 @@ const Order = () => {
                 <div className="product-container">
                     <div className="list-style-products-display">
                         {
-                            orders?.map((product, index) => <div className="box1" id="b1" style={{height: "23vh"}} key={product._id}>
+                            orders?.map((product, index) => <div className="box1" id="b1" style={{ height: "23vh" }} key={product._id}>
                                 <div className="image-of-product">
                                     <span className="image" >
                                         <img src={product.Product.FrontImage} alt="" className="box-1-product-image" />
@@ -37,6 +37,7 @@ const Order = () => {
                                             </span>
                                         </div>
                                         <div className="button">
+                                            <button className="btn-order" >Cancle Orders</button>
                                             <button className="btn-order" onClick={() => selectProduct(product.Product._id, (userType || tempUserType))} >Know More</button>
                                         </div>
                                     </div>

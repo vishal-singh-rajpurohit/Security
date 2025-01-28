@@ -87,7 +87,7 @@ const AuthProvider = ({ children }) => {
 
     const checkLoggedIn = async () => {
         try {
-            await axios.post('/api/v1/main/auth/refresh-Tokens', {})
+            await axios.post('${process.env.REACT_APP_API}/main/auth/refresh-Tokens', {})
                 .then((resp) => {
                     console.log("User is Already logged in :", resp)
                 })
@@ -100,7 +100,7 @@ const AuthProvider = ({ children }) => {
         console.log(authMail, authPass);
         try {
             await axios
-                .post(`/api/v1/main/otp/send-otp-signup`, {
+                .post(`${process.env.REACT_APP_API}/main/otp/send-otp-signup`, {
                     Email: authMail,
                     UserType: tempUserType,
                     Password: authPass,
@@ -117,7 +117,7 @@ const AuthProvider = ({ children }) => {
     const sendLoginOtp = async () => {
         try {
             await axios
-                .post(`/api/v1/main/otp/send-otp-login`, {
+                .post(`${process.env.REACT_APP_API}/main/otp/send-otp-login`, {
                     Email: authMail,
                     UserType: tempUserType,
                     Password: authPass,
@@ -149,7 +149,7 @@ const AuthProvider = ({ children }) => {
             formData.set("ConformPassword", authConformPass);
 
 
-            await axios.post(`/api/v1/${requestUserType}${API[0]}`,
+            await axios.post(`${process.env.REACT_APP_API}/${requestUserType}${API[0]}`,
                 formData,
                 {
                     headers: {
@@ -209,7 +209,7 @@ const AuthProvider = ({ children }) => {
     const login = async (Otp) => {
         try {
             await axios
-                .post(`/api/v1/${requestUserType}${API[1]}`, {
+                .post(`${process.env.REACT_APP_API}/${requestUserType}${API[1]}`, {
                     Otp: Otp,
                     Email: authMail,
                     Password: authPass,
@@ -270,7 +270,7 @@ const AuthProvider = ({ children }) => {
     const logout = async () => {
         try {
             await axios
-                .post(`/api/v1/${requestUserType}${API[2]}`, {})
+                .post(`${process.env.REACT_APP_API}/${requestUserType}${API[2]}`, {})
                 .then((resp) => {
                     dispatch(clearUserDetails());
                     dispatch(reverseLogin({
@@ -285,7 +285,7 @@ const AuthProvider = ({ children }) => {
 
     const deleteAccount = async () => {
         try {
-            await axios.post(`/api/v1${API[7]}`, {})
+            await axios.post(`${process.env.REACT_APP_API}${API[7]}`, {})
                 .then((resp) => {
                     dispatch(
                         clearUserDetails()
@@ -301,7 +301,7 @@ const AuthProvider = ({ children }) => {
     const addToCart = async (productId) => {
         if (loggedIn) {
             try {
-                await axios.post(`/api/v1${API[13]}`, { ProdcutId: productId })
+                await axios.post(`${process.env.REACT_APP_API}${API[13]}`, { ProdcutId: productId })
                     .then((resp) => {
                         console.log("added to cart");
                     })
@@ -316,7 +316,7 @@ const AuthProvider = ({ children }) => {
     const removeFromCart = async (cartID) => {
         console.log("cart Product Id: ", cartID)
         try {
-            await axios.delete(`/api/v1${API[15]}?id=${cartID}`)
+            await axios.delete(`${process.env.REACT_APP_API}${API[15]}?id=${cartID}`)
                 .then((resp) => {
                     setCartProducts(resp.data.data.ProductsInCart);
                     setTotalAmmount(resp.data.data.TotalAmmount);
@@ -329,7 +329,7 @@ const AuthProvider = ({ children }) => {
 
     const serveCart = async () => {
         try {
-            await axios.post(`/api/v1${API[14]}`, { UserType: (tempUserType || userType) })
+            await axios.post(`${process.env.REACT_APP_API}${API[14]}`, { UserType: (tempUserType || userType) })
                 .then((resp) => {
                     setCartProducts(resp.data.data.ProductsInCart);
                     setTotalAmmount(resp.data.data.TotalAmmount);
@@ -343,7 +343,7 @@ const AuthProvider = ({ children }) => {
     const placeOrder = async (ProductId) => {
         if (loggedIn) {
             try {
-                await axios.post(`/api/v1${API[18]}`, {
+                await axios.post(`${process.env.REACT_APP_API}${API[18]}`, {
                     ProductId : ProductId
                 }).then((resp)=>{
                     console.log("Order Placed Successfully ", resp);
@@ -357,9 +357,10 @@ const AuthProvider = ({ children }) => {
         }
     };
 
+    
     const getOrders = async () =>{
         try {
-            await axios.post(`/api/v1${API[19]}`, {})
+            await axios.post(`${process.env.REACT_APP_API}${API[19]}`, {})
             .then((resp)=>{
                 console.log("Here are All Orders ", resp.data.data.Orders);
                 setOrders(resp.data.data.Orders);
@@ -383,11 +384,11 @@ const AuthProvider = ({ children }) => {
     const serveProducts = async (pageNumber, filters, UserType) => {
         await axios
             .post(
-                `/api/v1/main/serve/products?page=${pageNumber}`,
+                `${process.env.REACT_APP_API}/main/serve/products?page=${pageNumber}`,
                 { UserType, Filters: filters }
             )
             .then((resp) => {
-                // console.log("Product is :", resp.data.data.Products)
+                console.log("Product is :", resp.data.data.Products)
                 setProducts((prev) => [...prev, ...resp.data.data.Products]);
             })
             .catch((error) => {
@@ -398,7 +399,7 @@ const AuthProvider = ({ children }) => {
     const servePremium = async (UserType) => {
         try {
             await axios
-                .post(`/api/v1${API[17]}`,{ UserType })
+                .post(`${process.env.REACT_APP_API}${API[17]}`,{ UserType })
                 .then((resp) => {
                     console.log("Product Premium resp is :", resp.data.data.Products);
                     setProProducts(resp.data.data.Products)
@@ -406,7 +407,7 @@ const AuthProvider = ({ children }) => {
 
                 })
         } catch (error) {
-            console.log("premium Products route ", `/api/v1${API[17]}`)
+            console.log("premium Products route ", `${process.env.REACT_APP_API}${API[17]}`)
             console.log("error while hitting serve Premium products ", error);
         }
     };
@@ -422,7 +423,7 @@ const AuthProvider = ({ children }) => {
 
         await axios
             .post(
-                `/api/v1/main/serve/products?page=${pageNumber}`,
+                `${process.env.REACT_APP_API}/main/serve/products?page=${pageNumber}`,
                 { UserType, Filters: filters }
             )
             .then((resp) => {
@@ -438,7 +439,7 @@ const AuthProvider = ({ children }) => {
         console.log("product id: ", productId);
         try {
             await axios
-                .post(`/api/v1/main/serve/selected-product`, {
+                .post(`${process.env.REACT_APP_API}/main/serve/selected-product`, {
                     ProductId: productId,
                     UserType: UserType,
                 })

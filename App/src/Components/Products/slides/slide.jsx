@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './slide.css'
-import c from '../../../Assets/slide/c.jpeg'
-import c2 from '../../../Assets/slide/c2.jpeg'
+import c from '../../../Assets/slide/high.png'
+import c2 from '../../../Assets/slide/high2.png'
 import c3 from '../../../Assets/slide/c3.jpeg'
 import c4 from '../../../Assets/slide/c4.jpeg'
 
@@ -29,7 +29,7 @@ const Slide = () => {
   return (
     <section className="slide-main">
         <div className="slide-box">
-            <img src={images[imgNumber]} alt="" className="slide-image" />
+            <img src={images[1]} alt="" className="slide-image" />
         </div>
     </section>
   )
