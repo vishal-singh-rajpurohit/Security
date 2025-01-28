@@ -29,6 +29,7 @@ const AuthProvider = ({ children }) => {
     const [proProducts, setProProducts] = useState([]);
     const [product, setProduct] = useState();
     const [cartProducts, setCartProducts] = useState();
+    const [orders , setOrders] = useState([]);
     // FILTERS
     const [filterObject, setFilterObject] = useState({
         Price: null,
@@ -356,6 +357,19 @@ const AuthProvider = ({ children }) => {
         }
     };
 
+    const getOrders = async () =>{
+        try {
+            await axios.post(`/api/v1${API[19]}`, {})
+            .then((resp)=>{
+                console.log("Here are All Orders ", resp.data.data.Orders);
+                setOrders(resp.data.data.Orders);
+                navigate("/user/Orders")
+            })
+        } catch (error) {
+            console.log("error while getting orders ", error); 
+        }
+    }
+
     const cancleOrder = async () => {
         try {
             console.log("cancel order called");
@@ -579,6 +593,8 @@ const AuthProvider = ({ children }) => {
         filterAts,
         setFilterAts,
         products,
+        orders, 
+        setOrders,
         setProducts,
         setFormError,
         sendRegistrationOtp,
@@ -609,6 +625,7 @@ const AuthProvider = ({ children }) => {
         removeFromCart,
         serveCart,
         placeOrder,
+        getOrders,
         cancleOrder,
         shareProduct,
         selectProduct,

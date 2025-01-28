@@ -35,17 +35,17 @@ const getAllOrders = asyncHandler(async (req, resp) => {
         throw new ApiError(401, "Auautharized Request ");
     }
 
-    const { OrderId } = req.body;
+    // const { OrderId } = req.body;
 
-    if (!OrderId) {
-        throw new ApiError(400, "Must Provide Order Id");
-    }
+    // if (!OrderId) {
+    //     throw new ApiError(400, "Must Provide Order Id");
+    // }
 
-    const isOrderExists = await Order.exists({ _id: OrderId });
+    // const isOrderExists = await Order.exists({ _id: OrderId });
 
-    if (!isOrderExists) {
-        throw new ApiError(400, "Order Does Not Exists");
-    }
+    // if (!isOrderExists) {
+    //     throw new ApiError(400, "Order Does Not Exists");
+    // }
 
     const Orders = await Order.aggregate([
         {
@@ -70,31 +70,32 @@ const getAllOrders = asyncHandler(async (req, resp) => {
         },
         {
             $project: {
-            "Product.ProductName": 1,
-            "Product.FrontImage": 1,
-            "Product.Explaination": 1,
-            "Product.Price": {
-                $switch: {
-                    branches: [
-                        { case: { $eq: [user.UserType, "DEALER"] }, then: "$Product.PriceForDealers" },
-                        { case: { $eq: [user.UserType, "INSTALLER"] }, then: "$Product.PriceForInstallers" },
-                        { case: { $eq: [user.UserType, "CUSTOMER"] }, then: "$Product.PriceForCustomers" }
-                    ],
-                    default: "$Product.PriceForCustomers" // Handle other cases or mismatched UserTypes
+                "Product.ProductName": 1,
+                "Product._id": 1,
+                "Product.FrontImage": 1,
+                "Product.Explaination": 1,
+                "Product.Price": {
+                    $switch: {
+                        branches: [
+                            { case: { $eq: [user.UserType, "DEALER"] }, then: "$Product.PriceForDealers" },
+                            { case: { $eq: [user.UserType, "INSTALLER"] }, then: "$Product.PriceForInstallers" },
+                            { case: { $eq: [user.UserType, "CUSTOMER"] }, then: "$Product.PriceForCustomers" }
+                        ],
+                        default: "$Product.PriceForCustomers" // Handle other cases or mismatched UserTypes
+                    }
                 }
-            }
             }
         }
     ])
 
-if (!Orders) {
-    throw new ApiError(400, "Orders Not Found");
-}
+    if (!Orders) {
+        throw new ApiError(400, "Orders Not Found");
+    }
 
-resp.status(200)
-    .json(new ApiResponse(200, {
-        Orders: Orders
-    }));
+    resp.status(200)
+        .json(new ApiResponse(200, {
+            Orders: Orders
+        }));
 
 });
 module.exports = { placeOrder, getAllOrders };

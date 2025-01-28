@@ -46,8 +46,9 @@ export const API = [
     "/main/auth/login",
     // PREMIUM PRODUCTS 17
     "/main/serve/premium-products",
-    // ORDERS 18
-    "/orders/place-order"
+    // ORDERS 18 19
+    "/orders/place-order",
+    "/orders/get-my-orders"
 ]
 
 export const filterAttributes = [

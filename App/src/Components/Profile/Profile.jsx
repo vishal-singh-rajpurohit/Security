@@ -14,7 +14,7 @@ const Profile = () => {
     const setOpenMessages = () => dispatch(openMessages());
     const setOpenReport = () => dispatch(openReportBox());
 
-    const { logout, userAvater, deleteAccount } = useContext(AuthContext)
+    const { logout, userAvater, deleteAccount, getOrders } = useContext(AuthContext)
 
     const {
         userFirstName,
@@ -85,7 +85,7 @@ const Profile = () => {
                             <div className="section-buttons">
                                 <ul className="profile-buttons-ul">
                                     <li className="profile-button-li">
-                                        <button className="button-li">Orders</button>
+                                        <button className="button-li" onClick={()=>getOrders()}>Orders</button>
                                     </li>
                                     <li className="profile-button-li">
                                         <button className="button-li">Earnings</button>
