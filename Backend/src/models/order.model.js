@@ -10,6 +10,10 @@ const newSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User" || "Dealer" || "Installer",
     },
+    UserType: {
+      type: String,
+      required: true
+    },
     AdvancedPaymentAmmout: {
       type: Number,
     },
@@ -30,6 +34,7 @@ const newSchema = new mongoose.Schema(
     },
     Status: {
       type: String,
+      required: true,
       enum: ["PENDING", "CONFORMED", "SHIPPING", "DELIVERED", "COMPLETED", "CANCELLED"],
       default: "PENDING",
     },

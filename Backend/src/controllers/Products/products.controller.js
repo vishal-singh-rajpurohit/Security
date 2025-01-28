@@ -290,7 +290,7 @@ const serveCartItems = asyncHandler(async (req, resp) => {
     {
       $addFields: {
         Product: {
-          $first: "$product"
+          $arrayElemAt: ["$product", 0]
         }
       }
     },
