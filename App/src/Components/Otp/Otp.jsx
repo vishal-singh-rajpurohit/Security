@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../LoginSignup/signup.css'
 import './otp.css'
 import AuthContext from '../../context/AuthContext.context'
@@ -9,7 +9,7 @@ import { setOtp } from '../../Functions/Auth/formSlice'
 const Otp = () => {
   const dispatch = useDispatch()
   const { formError, setFormError, register } = useContext(AuthContext);
-  const [OtpTemp, setOtpTemp] = useState();
+  const [OtpTemp, setOtpTemp] = useState(0);
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async () => {
@@ -26,10 +26,15 @@ const Otp = () => {
         otp: OtpTemp
       }));
 
-      await register(OtpTemp);
+      await register(Number(OtpTemp));
 
     }
   }
+
+  useEffect(()=>{
+    console.log("temp otp is :", OtpTemp, typeof OtpTemp);
+    
+  }, [OtpTemp])
 
   return (
     <main className="signpu-page">

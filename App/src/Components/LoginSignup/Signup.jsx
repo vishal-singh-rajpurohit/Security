@@ -52,8 +52,8 @@ const Signup = () => {
                 MobileNumber,
                 Password,
                 ConformPassword
-            }))
-            console.log("image is :", image);
+            }));
+            
             await sendRegistrationOtp();
         }
     }

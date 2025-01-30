@@ -16,13 +16,15 @@ const otpVerification = asyncHandler(async (req, resp) => {
     throw new ApiError(400, "Failed to Genrate Otp");
   }
 
-  await sendOtp(Email, otp);
+  const sendResult = await sendOtp(Email, otp);
 
-  console.log("otp sent");
+  
+  if(!sendResult){
+    throw new ApiError(500, "Otp Result Error ");
+  }
 
   resp
     .status(200)
-    .cookie("OTP", otp, Options)
     .json(new ApiResponse(200, {
       OTP: otp, SentData: {
         FirstName,

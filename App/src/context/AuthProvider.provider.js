@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
     const [proProducts, setProProducts] = useState([]);
     const [product, setProduct] = useState();
     const [cartProducts, setCartProducts] = useState();
-    const [orders , setOrders] = useState([]);
+    const [orders, setOrders] = useState([]);
     // FILTERS
     const [filterObject, setFilterObject] = useState({
         Price: null,
@@ -133,29 +133,27 @@ const AuthProvider = ({ children }) => {
 
     const register = async (Otp) => {
 
-        try {
-            const formData = new FormData();
-            formData.set("Otp", Otp);
-            if (authImage) {
 
-            }
-            formData.set("image", authImage)
-            formData.set("FirstName", authFirstName);
-            formData.set("LastName", authLastName);
-            formData.set("Email", authMail);
-            formData.set("MobileNumber", authMobileNumber);
-            formData.set("UserType", tempUserType);
-            formData.set("Password", authPass);
-            formData.set("ConformPassword", authConformPass);
-
-
+        try { 
             await axios.post(`${process.env.REACT_APP_API}/${requestUserType}${API[0]}`,
-                formData,
+                {
+                    Otp: Otp,
+                    image: authImage || null,
+                    FirstName: authFirstName,
+                    LastName: authLastName,
+                    Email: authMail,
+                    MobileNumber: authMobileNumber,
+                    UserType: tempUserType,
+                    Password: authPass,
+                    ConformPassword: authConformPass,
+                },
                 {
                     headers: {
-                        "Content-Type": "multipart/form-data", // Axios handles boundaries automatically
+                        "Content-Type": "application/json" // Axios handles boundaries automatically
                     },
-                }
+                    withCredentials: true
+                },
+                 
             )
                 .then((resp) => {
                     const {
@@ -301,7 +299,14 @@ const AuthProvider = ({ children }) => {
     const addToCart = async (productId) => {
         if (loggedIn) {
             try {
-                await axios.post(`${process.env.REACT_APP_API}${API[13]}`, { ProdcutId: productId })
+                await axios.post(`${process.env.REACT_APP_API}${API[13]}`,
+                    { ProdcutId: productId },
+                    {
+                        withCredentials: true, 
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    })
                     .then((resp) => {
                         console.log("added to cart");
                     })
@@ -344,30 +349,30 @@ const AuthProvider = ({ children }) => {
         if (loggedIn) {
             try {
                 await axios.post(`${process.env.REACT_APP_API}${API[18]}`, {
-                    ProductId : ProductId
-                }).then((resp)=>{
+                    ProductId: ProductId
+                }).then((resp) => {
                     console.log("Order Placed Successfully ", resp);
                 })
             } catch (error) {
                 console.log("Errir While Placing Orders ", error);
-                
+
             }
         } else {
             navigate("/user/login")
         }
     };
 
-    
-    const getOrders = async () =>{
+
+    const getOrders = async () => {
         try {
             await axios.post(`${process.env.REACT_APP_API}${API[19]}`, {})
-            .then((resp)=>{
-                console.log("Here are All Orders ", resp.data.data.Orders);
-                setOrders(resp.data.data.Orders);
-                navigate("/user/Orders")
-            })
+                .then((resp) => {
+                    console.log("Here are All Orders ", resp.data.data.Orders);
+                    setOrders(resp.data.data.Orders);
+                    navigate("/user/Orders")
+                })
         } catch (error) {
-            console.log("error while getting orders ", error); 
+            console.log("error while getting orders ", error);
         }
     }
 
@@ -388,8 +393,15 @@ const AuthProvider = ({ children }) => {
                 { UserType, Filters: filters }
             )
             .then((resp) => {
-                console.log("Product is :", resp.data.data.Products)
-                setProducts((prev) => [...prev, ...resp.data.data.Products]);
+                console.log("Product is :", resp.data.data.Products);
+                console.log("resp.data.data.Products[resp.data.data.Products.length - 1]._id :", resp.data.data.Products[resp.data.data.Products.length - 1]);
+                
+                if (products.length !== 0 && products[products.length - 1]._id === resp.data.data.Products[resp.data.data.Products.length - 1]._id) {
+                    console.log("Product Over")
+                } else {
+                    setProducts((prev) => [...prev, ...resp.data.data.Products]);
+                    console.log("Product Updated")
+                }
             })
             .catch((error) => {
                 console.log("error while hitting serve products ", error);
@@ -399,7 +411,7 @@ const AuthProvider = ({ children }) => {
     const servePremium = async (UserType) => {
         try {
             await axios
-                .post(`${process.env.REACT_APP_API}${API[17]}`,{ UserType })
+                .post(`${process.env.REACT_APP_API}${API[17]}`, { UserType })
                 .then((resp) => {
                     console.log("Product Premium resp is :", resp.data.data.Products);
                     setProProducts(resp.data.data.Products)
@@ -411,8 +423,8 @@ const AuthProvider = ({ children }) => {
             console.log("error while hitting serve Premium products ", error);
         }
     };
-    useEffect(()=>{
-        console.log("State is Updated ", proProducts , typeof proProducts);
+    useEffect(() => {
+        console.log("State is Updated ", proProducts, typeof proProducts);
         proProducts?.map((product) => {
             console.log("hjii by produts", product)
         })
@@ -594,7 +606,7 @@ const AuthProvider = ({ children }) => {
         filterAts,
         setFilterAts,
         products,
-        orders, 
+        orders,
         setOrders,
         setProducts,
         setFormError,

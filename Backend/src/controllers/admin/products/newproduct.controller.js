@@ -5,11 +5,15 @@ const asyncHandler = require("../../../utils/asyncHandler.utils");
 const ApiResponse = require("../../../utils/ApiResponse.utils");
 
 const newproduct = asyncHandler(async (req, resp) => {
-  const { ProductName, KeyWords, PriceForDealers, PriceForInstallers, PriceForCustomers, AdvancedPaymentAmmount, Description, Explaination, Premium, CameraType, PlaceOfInstallation, CameraQuality, IndoorOutdoor, MegaPixels, NumberOfCameras   } = req.body;
+  const { ProductName, KeyWords, PriceForDealers, PriceForInstallers, PriceForCustomers, AdvancedPaymentAmmount, Description, Premium, CameraType, CameraQuality, IndoorOutdoor, MegaPixels, NumberOfCameras, AboutItem   } = req.body;
 
-  if ([ProductName, KeyWords, PriceForDealers, PriceForInstallers, PriceForCustomers, Description, Explaination].some((field) => field?.trim() === "")) {
+  if ([ProductName, KeyWords, PriceForDealers, PriceForInstallers, PriceForCustomers, Description].some((field) => field?.trim() === "")) {
     throw new ApiError(400, "All fields must required");
   }
+
+  const aboutItemArr = AboutItem.split("/")
+
+  console.log("about this item ", aboutItemArr);
 
   let ShowCaseImages = []
 
@@ -42,7 +46,7 @@ const newproduct = asyncHandler(async (req, resp) => {
 
   const pushResult = new Product({
     ProductName,
-    PriceForDealers: Number(PriceForCustomers),
+    PriceForDealers: Number(PriceForDealers),
     PriceForInstallers: Number(PriceForInstallers),
     PriceForCustomers: Number(PriceForCustomers),
     AdvancedPaymentAmmount: Number(AdvancedPaymentAmmount),
@@ -50,14 +54,14 @@ const newproduct = asyncHandler(async (req, resp) => {
     Description,
     FrontImage,
     ShowCaseImages,
-    Explaination,
+    AboutItem: aboutItemArr,
     Premium,
     CameraType,
+    CameraQuality,
     IndoorOutdoor,
     MegaPixels,
     CameraQuality,
     NumberOfCameras,
-    PlaceOfInstallation
   })
   await pushResult.save();
 

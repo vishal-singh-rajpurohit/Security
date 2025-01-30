@@ -46,10 +46,6 @@ const newSchema = new mongoose.Schema(
     },
     IndoorOutdoor: {
       type: String,
-      required: true
-    },
-    PlaceOfInstallation: {
-      type: String,
       required: true,
       enum: ["INDOOR", "OUTDOOR", "COMBINED"]
     },
@@ -58,7 +54,7 @@ const newSchema = new mongoose.Schema(
         required: true
     },
     AboutItem: {
-      type: Array,
+      type: [String],
       required: true
     },
     Description: {
@@ -73,10 +69,6 @@ const newSchema = new mongoose.Schema(
       type: [String],
       valida : [arrayLimit , 'ShowCaseImages exceeds the limit of 6'],
       required: true
-    },
-    Explaination: {
-        type: String,
-        required: false
     }
   },
   {

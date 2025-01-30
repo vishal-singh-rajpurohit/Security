@@ -1,24 +1,32 @@
 const asyncHandler = require("../utils/asyncHandler.utils");
 const ApiError = require("../utils/ApiError.utils");
+const Otp = require("../models/otp.model")
 
 
-const checkOtp =asyncHandler((req, resp, next) => {
+const checkOtp =asyncHandler(async (req, resp, next) => {
+
+    const otp  = req.body?.Otp
+
+    console.log("otp is 4: ", otp , req.body);
     
-    const otp = Number(req.cookies.OTP);
 
-    if (!otp) {
-        throw new ApiError(400, "Somthing Wents Wrong in Otp ")
-    }
-
-    const Otp  = Number(req.body?.Otp);
-    console.log("Body is :",req.body);
-    if(!Otp){
+    if(!otp || isNaN(otp)){
         throw new ApiError(400, "Must Provide Otp");
     }
 
-    if (otp !== Otp) {
-        throw new ApiError(400 , "invalid Otp")
+    console.log("otp :", otp, typeof otp);
+
+
+    const otpValidation = await Otp.exists({Otp: otp});
+
+    console.log("otp :", otpValidation);
+    
+
+    if(!otpValidation){
+        throw new ApiError(401, "invalid otp");
     }
+
+    await Otp.deleteOne({Otp: otp});
     
     next();
 });

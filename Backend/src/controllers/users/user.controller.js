@@ -76,7 +76,6 @@ const registerUser = asyncHandler(async (req, resp) => {
     }
 
     resp.status(200)
-        .clearCookie("OTP")
         .cookie("accessToken", accessToken, Options)
         .cookie("refreshToken", refreshToken, Options)
         .json(new ApiResponse(200, {
