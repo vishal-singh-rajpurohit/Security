@@ -50,8 +50,10 @@ export const API = [
     // ORDERS 19 20
     "/orders/place-order",
     "/orders/get-my-orders",
-    // MAIN PRODUCTS
-    "/main/serve/products"
+    // MAIN PRODUCTS 21
+    "/main/serve/products",
+    // CANCLE ORDER 22
+    "/orders/cancle-orders"
 ]
 
 export const filterAttributes = [

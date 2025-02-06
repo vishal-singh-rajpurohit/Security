@@ -26,6 +26,7 @@ const AuthProvider = ({ children }) => {
     const [profileOptions, setProfileOptions] = useState(true);
     const [openSignup, setOpenSignup] = useState(false)
     const [openLogin, setOpenLogin] = useState(false)
+    const [openConform, setOpenConform] = useState(false);
 
     // PRODUCTS AND FILTER
     const [products, setProducts] = useState([]);
@@ -76,6 +77,7 @@ const AuthProvider = ({ children }) => {
     const userActiveOrders = useSelector((state) => state.user.activeOrders);
 
     const requestUserType = setUserRoutes(tempUserType);
+
 
     const checkLoggedIn = async () => {
         try {
@@ -329,15 +331,22 @@ const AuthProvider = ({ children }) => {
         }
     }
 
-    const placeOrder = async (ProductId) => {
+    const placeOrder = async (ProductId, Address, City, State, ReffralCode, PostCode, MobileNumber ) => {
         if (loggedIn) {
             try {
                 await axios.post(`${process.env.REACT_APP_API}${API[19]}`, {
-                    ProductId: ProductId
+                    ProductId: ProductId,
+                    Address,
+                    City,
+                    State,
+                    ReffralCode,
+                    PostCode,
+                    MobileNumber
                 }, {
                     withCredentials: true
                 }).then((resp) => {
                     console.log("Order Placed Successfully ", resp);
+                    setOpenConform(false)
                 })
             } catch (error) {
                 console.log("Errir While Placing Orders ", error);
@@ -368,12 +377,25 @@ const AuthProvider = ({ children }) => {
 
     }
 
-    const cancleOrder = async () => {
-        try {
-            console.log("cancel order called");
-        } catch (error) {
-            console.log("error in order cancellation ", error);
+    const cancleOrder = async (OrderId) => {
+        console.log("cancle called");
+        
+        if(loggedIn){
+            try {
+                await axios.post(`${process.env.REACT_APP_API}${API[22]}`, {
+                    OrderId
+                }, {
+                    withCredentials: true
+                }).then((resp)=>{
+                    console.log("order cancelled successfully ", resp)
+                })
+            } catch (error) {
+                console.log("error in order cancellation ", error);
+            }
+        }else{
+            setOpenSignup(true);
         }
+       
     };
 
     const shareProduct = async () => { };
@@ -580,6 +602,8 @@ const AuthProvider = ({ children }) => {
         setOpenSignup,
         openLogin,
         setOpenLogin,
+        openConform, 
+        setOpenConform,
         pageNumber,
         setPageNumber,
         product,

@@ -3,17 +3,25 @@ const ApiError = require("../../utils/ApiError.utils");
 const ApiResponse = require("../../utils/ApiResponse.utils");
 const Order = require("../../models/order.model");
 const Product = require("../../models/product.model");
+const { default: mongoose } = require("mongoose");
 
 const placeOrder = asyncHandler(async (req, resp) => {
 
     const user = req.user;
     if (!user) {
-        throw new ApiError(401, "Auautharized Request, Log in First ");
+        throw new ApiError(401, "unAuautharized Request, Log in First ");
     }
 
-    const { ProductId } = req.body;
+    const { ProductId, Address, City, State, PostCode, MobileNumber, ReffralCode } = req.body;
 
-    const productDetails = await Product.find({ _id: ProductId });
+    console.log("ProductId , Address, City, State, PostCode, MobileNumber, ReffralCode :", ProductId, Address, City, State, PostCode, MobileNumber, ReffralCode);
+
+
+    if (!ProductId || !Address || !City || !State || !PostCode || !MobileNumber) {
+        throw new ApiError(400, "All Data Required");
+    }
+
+    const productDetails = await Product.findOne({ _id: ProductId });
 
     if (!productDetails) {
         throw new ApiError(400, "Product Details Not Found");
@@ -22,12 +30,54 @@ const placeOrder = asyncHandler(async (req, resp) => {
     const newOrder = new Order({
         ProductId,
         UserId: user._id,
-        UserType: user.UserType
+        Address,
+        City,
+        State,
+        PostCode,
+        MobileNumber,
+        ReffralCode: ReffralCode || ''
     });
 
     await newOrder.save();
     resp.status(200).json(new ApiResponse(200, {}, "Order Placed here"));
 });
+
+const cancleOrder = asyncHandler(async (req, resp) => {
+    try {
+        const user = req.user;
+
+        if (!user) {
+            throw new ApiError(401, "Unautharized Request ");
+        }
+
+        const { OrderId } = req.body;
+
+        const checkOrder = await Order.findById(OrderId);
+
+        if (!checkOrder) {
+            throw new ApiError(400, "Order Not Found");
+        }
+
+        const cancledOrder = await Order.findByIdAndUpdate(
+            {
+                _id: OrderId
+            },
+            {
+                Status : "CANCELLED"
+            }
+        )
+
+        if(!cancledOrder){
+            throw new ApiError(400, "Unable to cancle Orders")
+        }
+
+        resp.status(200)
+        .json(new ApiResponse(200, {}, "Order Cancelled Successfully"))
+
+    } catch (error) {
+        console.log("error while cancelling order ", error)
+    }
+})
 
 const getAllOrders = asyncHandler(async (req, resp) => {
     const user = req.user;
@@ -35,17 +85,6 @@ const getAllOrders = asyncHandler(async (req, resp) => {
         throw new ApiError(401, "Auautharized Request ");
     }
 
-    // const { OrderId } = req.body;
-
-    // if (!OrderId) {
-    //     throw new ApiError(400, "Must Provide Order Id");
-    // }
-
-    // const isOrderExists = await Order.exists({ _id: OrderId });
-
-    // if (!isOrderExists) {
-    //     throw new ApiError(400, "Order Does Not Exists");
-    // }
 
     const Orders = await Order.aggregate([
         {
@@ -83,7 +122,8 @@ const getAllOrders = asyncHandler(async (req, resp) => {
                         ],
                         default: "$Product.PriceForCustomers" // Handle other cases or mismatched UserTypes
                     }
-                }
+                },
+                Status: 1
             }
         }
     ])
@@ -98,4 +138,6 @@ const getAllOrders = asyncHandler(async (req, resp) => {
         }));
 
 });
-module.exports = { placeOrder, getAllOrders };
+
+
+module.exports = { placeOrder, getAllOrders, cancleOrder };

@@ -10,7 +10,8 @@ section.signup-main {
     padding-top: 0rem;
     padding-bottom: 2rem;
     position: fixed;
-    z-index: 99;
+    min-height: 100vh;
+    z-index: 199;
     top: 0;
 }
 .signup-main-2 {
@@ -21,6 +22,17 @@ section.signup-main {
     background: #272232;
     align-items: center;
     border-radius: 10px;
+}
+.signup-main-2 {
+    width: 80%;
+    height: 80%;
+    display: grid
+;
+    grid-template-columns: 1fr 1fr;
+    background: #272232;
+    align-items: center;
+    border-radius: 10px;
+    min-height: 76vh;
 }
 
 .left-singup {

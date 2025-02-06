@@ -7,6 +7,7 @@ import SubmitModal from "./Components/Modal/SubmitModal";
 import { Outlet } from 'react-router-dom'
 import SignupModal from './Components/Modal/SignupModal';
 import LoginModal from './Components/Modal/LoginModal';
+import ConformOrder from './Components/Profile/Orders/ConformOrder';
 
 const Layout = () => {
   return (
@@ -16,6 +17,7 @@ const Layout = () => {
         <SubmitModal />
         <SignupModal />
         <LoginModal />
+        <ConformOrder />
         <Outlet />
         <Bottomnav />
         <Footer />

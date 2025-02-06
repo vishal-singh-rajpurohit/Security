@@ -14,9 +14,10 @@ const Shop = () => {
     const setOpenReport = () => dispatch(openReportBox());
 
     const { addToCart, placeOrder} = useContext(AuthContext);
-    const { product, loggedIn, userType, showCaseImage, setShowCaseImage } = useContext(AuthContext);
+    const { product, loggedIn, userType, showCaseImage, setShowCaseImage, setOpenConform } = useContext(AuthContext);
 
     const [index, setIndex] = useState(0)
+
     const setSlideShow = () => {
         if (product.ShowCaseImages.length - 1 === index) {
             console.log("zero here");
@@ -124,7 +125,7 @@ const Shop = () => {
                     </div>
                 </div>
                 <div class="shop-left-bottom">
-                    <button class="button-shop-dark" onClick={()=>placeOrder(product._id)}>Buy Now</button>
+                    <button class="button-shop-dark" onClick={()=>setOpenConform(true)}>Buy Now</button>
                     <button class="button-shop-lite" onClick={() => addToCart(product._id)}>Add to Cart</button>
                 </div>
             </div>

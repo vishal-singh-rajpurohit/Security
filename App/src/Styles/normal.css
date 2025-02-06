@@ -5,7 +5,9 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 1rem;
 }
-
+.CANCELLED {
+    color: #f73e01;
+}
 @media (max-width:1000px) {
     .prodcut-grid- {
         grid-template-columns: 1fr 1fr 1fr 1fr;
