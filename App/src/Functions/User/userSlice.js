@@ -11,6 +11,7 @@ const initialState = {
     userType: '',
     address: '',
     city: '',
+    state: '',
     postCode: '',
     verificationStatus: '',
     upiMobileNumber: 91,
@@ -29,6 +30,7 @@ function SetUserDetails(state, action) {
     state.mobileNumber = action.payload.MobileNumber
     state.avatar = action.payload.Avatar
     state.verificationStatus = action.payload.VerificationStatus
+    state.state = action.payload.State
     if (action.payload?.Verified === "APPROVED") {
         state.mobileNumber2 = action.payload.MobileNumber2
         state.userType = action.payload.UserType

@@ -1,7 +1,5 @@
 import React from 'react'
 import './ShopDetails'
-import '../../LoginSignup/signup.css'
-
 const ShopDetails = () => {
     return (
         <main className="shop-details-page">

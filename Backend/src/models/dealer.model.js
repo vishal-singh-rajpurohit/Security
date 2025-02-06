@@ -5,37 +5,10 @@ const jwt = require("jsonwebtoken");
 
 const newSchema = new mongoose.Schema(
   {
-    FirstName: {
-      type: String,
-      required: true,
-    },
-    LastName: {
-      type: String,
-      required: true,
-    },
-    Password: {
-      type: String,
+    userId: {
+      type : mongoose.Schema.ObjectId,
+      ref: 'user',
       required: true
-    },
-    refreshToken: {
-      type: String
-    },
-    MobileNumber: {
-      type: Number,
-      index: true,
-      required: true,
-      unique: true
-    },
-    MobilerNumber2: {
-      type: Number,
-      unique: true,
-      index: true
-    },
-    Email: {
-      type: String,
-      unique: true,
-      index: true,
-      required: true,
     },
     Avatar: {
       type: String,
@@ -59,15 +32,9 @@ const newSchema = new mongoose.Schema(
       type: String,
       defult: "NOT SET"
     },
-    Address1: {
-      type: String
-    },
-    City: {
+    PanPhoto: {
       type: String,
-      index: true,
-    },
-    PostCode: {
-      type: Number,
+      defult: "NOT SET"
     },
     Verified: {
       type: String,
@@ -111,10 +78,10 @@ newSchema.pre("save", async function (next) {
 });
 
 newSchema.methods.isPasswordCorrect = async function (Password) {
-  return await bcrypt.compare(Password , this.Password);
+  return await bcrypt.compare(Password, this.Password);
 }
 
-newSchema.methods.gentateAccessToken = function(){
+newSchema.methods.gentateAccessToken = function () {
   return jwt.sign(
     {
       _id: this._id,
@@ -126,7 +93,7 @@ newSchema.methods.gentateAccessToken = function(){
     }
   )
 }
-newSchema.methods.gentateRefreshToken = function(){
+newSchema.methods.gentateRefreshToken = function () {
   return jwt.sign(
     {
       _id: this._id,

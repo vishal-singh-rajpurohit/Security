@@ -1,9 +1,11 @@
 import React, { useContext, useEffect } from "react";
-import "./Cart.css";
 import { BiRupee } from "react-icons/bi";
 import { MdDeleteForever } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import AuthContext from "../../../context/AuthContext.context";
+import tempSlide from '../../../Assets/logo/logo.png'
+import tempimg from '../../../Assets/camera/singledome.png'
+import '../../../Styles/cart.css'
 
 const Cart = () => {
 
@@ -17,91 +19,156 @@ const Cart = () => {
 
 
     return (
-        <main className="cart-page">
-            <div className="page-heding">
-                <h1 className="card-text">Cart</h1>
-            </div>
-            <section className="cart-section">
-                <div className="right-cart-page">
-                    <div className="list-style-products-display">
-                        {
-                            cartProducts?.map((product)=><div className="box1 box-card1" id="b1">
-                            <div className="image-of-product">
-                                <span className="image">
-                                    <img src={product.Product.FrontImage} alt="" className="box-1-product-image" />
-                                </span>
-                            </div>
-                            <div className="description">
-                                <div className="product-description">
-                                    <div className="for-overflow">
-                                        <h2 className="product-name">
-                                           {
-                                            product.Product.ProductName
-                                           }
-                                        </h2>
-                                    </div>
-                                    <div className="total-orders">
-                                        <span className="last-orders">
-                                            total 1500 orders last month
-                                        </span>
-                                    </div>
-                                    <div className="price">
-                                        <span className="price">
-                                            <span className="rupee">
-                                                {" "}
-                                                <span className="symbol-rupee">&#x20b9;</span>
-                                                <span className="pri">{product.Product.Price}</span>
-                                            </span>
-                                        </span>
-                                    </div>
-                                    <div className="save-button">
-                                        <button className="btn-order save-button remove-button" onClick={()=>removeFromCart(product._id)}>
-                                            <MdDeleteForever /> ramove from cart
-                                        </button>
-                                    </div>
-                                    <div className="button">
-                                        <button className="btn-order" onClick={() => selectProduct(product._id, (userType ||tempUserType))}>Know More</button>
-                                        <button className="btn-order">Book Installation</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>)
-                        }
-                       
+        <>
+            <section class="slide-box">
+                <div class="--slide">
+                    <div class="left--slide">
+                        <div class="left--slide-up">
+                            <h2 class="slide-det-text">Loremasfsd ipsumadfdsa dolorasfdsa</h2>
+                        </div>
+                        <div class="left--slide-mid">
+                            <p class="slide-det-para">
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus
+                                iste nisi officia delectus!
+                            </p>
+                        </div>
+                        <div class="left--slide-down">
+                            <button class="btn-lite">Buy Now</button>
+                            <button class="btn-dark">Explore More</button>
+                        </div>
+                    </div>
+                    <div class="right--slide">
+                        <img
+                            src={tempSlide}
+                            alt="Dome cctv camera"
+                            class="slide--image"
+                        />
                     </div>
                 </div>
-                <div className="left-cart-page">
-                    <div className="cart-details-top">
-                        <div className="coupon-text">
-                            <p className="c-t">Enter Coupon Code</p>
+            </section>
+            <section class="cart-main-">
+                <div class="cart-grid-">
+                    <div class="premium-card2">
+                        <div class="premium-card-disp">
+                            <img src={tempimg} alt="" class="--premium-image" />
                         </div>
-                        <div className="coupon-box">
-                            <input type="text" name="" id="coupon" placeholder="Enter Coupon Code" />
-                            <button className="coupon-button">Apply</button>
+                        <div class="premium-card-details">
+                            <div class="--premium-det-title">
+                                <p class="--premium-p">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore
+                                    sequi consectetur asperiores eveniet a corrupti.
+                                </p>
+                            </div>
+                            <div class="--premium-det-rating">* 4.5 (15 reviews)</div>
+                            <div class="--premium-cart-price">
+                                <div class="--premium-price">$ 250</div>
+                            </div>
                         </div>
                     </div>
-                    <div className="cart-details-main">
-                        <div className="cart-main-top">
-                            <p className="total-ammount-saving">
-                                <BiRupee />{totalAmmount} Total Ammount
-                            </p>
-                            <p className="total-ammount-saving">
-                                {/* <BiRupee />{4455} Total Savings */}
-                            </p>
+                    <div class="premium-card2">
+                        <div class="premium-card-disp">
+                            <img src={tempimg} alt="" class="--premium-image" />
                         </div>
-                        <div className="cart-main-shop-now">
-                            <button className="shop-now-btn">Order Now</button>
+                        <div class="premium-card-details">
+                            <div class="--premium-det-title">
+                                <p class="--premium-p">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore
+                                    sequi consectetur asperiores eveniet a corrupti.
+                                </p>
+                            </div>
+                            <div class="--premium-det-rating">* 4.5 (15 reviews)</div>
+                            <div class="--premium-cart-price">
+                                <div class="--premium-price">$ 250</div>
+                                <div class="--premium-cart">cart</div>
+                            </div>
                         </div>
-                        <div className="continue-shoping">
-                            <NavLink to={'/'} style={{width: "90%"}}>
-                                <button className="continue-shoping-btn">Continue Shoping</button>
-                            </NavLink>
+                    </div>
+                    <div class="premium-card2">
+                        <div class="premium-card-disp">
+                            <img src={tempimg} alt="" class="--premium-image" />
+                        </div>
+                        <div class="premium-card-details">
+                            <div class="--premium-det-title">
+                                <p class="--premium-p">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore
+                                    sequi consectetur asperiores eveniet a corrupti.
+                                </p>
+                            </div>
+                            <div class="--premium-det-rating">* 4.5 (15 reviews)</div>
+                            <div class="--premium-cart-price">
+                                <div class="--premium-price">$ 250</div>
+                                <div class="--premium-cart">cart</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="premium-card2">
+                        <div class="premium-card-disp">
+                            <img src={tempimg} alt="" class="--premium-image" />
+                        </div>
+                        <div class="premium-card-details">
+                            <div class="--premium-det-title">
+                                <p class="--premium-p">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore
+                                    sequi consectetur asperiores eveniet a corrupti.
+                                </p>
+                            </div>
+                            <div class="--premium-det-rating">* 4.5 (15 reviews)</div>
+                            <div class="--premium-cart-price">
+                                <div class="--premium-price">$ 250</div>
+                                <div class="--premium-cart">cart</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="premium-card2">
+                        <div class="premium-card-disp">
+                            <img src={tempimg} alt="" class="--premium-image" />
+                        </div>
+                        <div class="premium-card-details">
+                            <div class="--premium-det-title">
+                                <p class="--premium-p">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore
+                                    sequi consectetur asperiores eveniet a corrupti.
+                                </p>
+                            </div>
+                            <div class="--premium-det-rating">* 4.5 (15 reviews)</div>
+                            <div class="--premium-cart-price">
+                                <div class="--premium-price">$ 250</div>
+                                <div class="--premium-cart">cart</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-whole">
+                    <div class="cart-whole-cart">
+                        <div class="main-cart-price">
+                            <div class="main-cart-price-grid">
+                                <span class="price-key">items: </span>
+                                <span class="price-value">
+                                    2
+                                </span>
+                            </div>
+                            <div class="main-cart-price-grid">
+                                <span class="price-key">total price: </span>
+                                <span class="price-value">
+                                    $50.9
+                                </span>
+                            </div>
+                            <div class="main-cart-price-grid">
+                                <span class="price-key">you are saving: </span>
+                                <span class="price-value">
+                                    $5
+                                </span>
+                            </div>
+                        </div>
+                        <div class="main-cart-purchase">
+                            <button class="btn-full button-shop-dark">Buy Now</button>
+                            <button class="btn-full button-shop-lite ">Clear Cart</button>
                         </div>
                     </div>
                 </div>
             </section>
-        </main>
-    );
-};
+        </>
+    )
+}
 
 export default Cart;

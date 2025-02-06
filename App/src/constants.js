@@ -18,37 +18,40 @@ export const setUserRoutes = (UserType) => {
 
 
 export const API = [
-    // User Routes /Api/v1/ 0 - 4
-    "/register",
-    "/login",
-    "/logout",
-    "/addinfo",
-    "/addid",
+    // User Routes /Api/v1/ 0 - 5
+    "/user/register",
+    "/user/login",
+    "/user/logout",
+    "/user/addinfo",
+    "/user/orderInfo",
+    "/user/becomeUser",
     // Common Routes /Api/v1/main
-    // Modification 5 , 6
+    // Modification 6 , 7
     "/modify/change-password",
     "/modify/change-user-type",
-    // Delete 7
+    // Delete 8
     "/main/danger/delete-account",
-    // Otp 8, 9
+    // Otp 9 , 10
     "/main/otp/send-otp-signup",
     "/main/otp/send-otp-login",
-    // Reports 10 , 11 , 12
+    // Reports  11 , 12 , 13
     "/main/report/new-report",
     "/main/report/set-satisfied",
     "/main/report/get-reviews",
-    // Cart 13 , 14 , 15 
+    // Cart 14 , 15 , 16
     "/main/cart/add-to-cart",
     "/main/cart/serve-cart",
     "/main/cart/remove-from-cart",
     // Order Routes 
-    // ENTRY AUTH 16
+    // ENTRY AUTH 17
     "/main/auth/login",
-    // PREMIUM PRODUCTS 17
+    // PREMIUM PRODUCTS 18
     "/main/serve/premium-products",
-    // ORDERS 18 19
+    // ORDERS 19 20
     "/orders/place-order",
-    "/orders/get-my-orders"
+    "/orders/get-my-orders",
+    // MAIN PRODUCTS
+    "/main/serve/products"
 ]
 
 export const filterAttributes = [

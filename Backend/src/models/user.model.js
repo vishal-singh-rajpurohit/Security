@@ -23,11 +23,6 @@ const newSchema = new mongoose.Schema(
     MobileNumber: {
       type: Number,
       unique: true,
-      required: true,
-    },
-    MobileNumber2: {
-      type: Number,
-      unique: true,
     },
     Email: {
       type: String,
@@ -45,13 +40,16 @@ const newSchema = new mongoose.Schema(
     City: {
       type: String,
     },
+    State:{
+      type: String
+    },
     PostCode: {
       type: Number,
     },
     TotalOrders: {
       type: Number,
       default: 0,
-    },
+    }
   },
   {
     timeseries: true,

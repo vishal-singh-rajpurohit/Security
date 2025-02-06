@@ -20,7 +20,6 @@ const mainRoutes = express.Router();
 
 // CHECK AUTHENTICATION
 mainRoutes.route("/auth/refresh-Tokens").post(Auth, refreshAccessAndRefreshToken);
-// mainRoutes.route("/landing/message").post(messagesFromLanding);
 
 // otps
 mainRoutes.route("/otp/send-otp-signup").post(isNotExists, otpVerification);

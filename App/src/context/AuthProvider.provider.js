@@ -23,6 +23,9 @@ const AuthProvider = ({ children }) => {
     const [pageNumber, setPageNumber] = useState(0);
     const [showCaseImage, setShowCaseImage] = useState('');
     const [totalAmmount, setTotalAmmount] = useState(0);
+    const [profileOptions, setProfileOptions] = useState(true);
+    const [openSignup, setOpenSignup] = useState(false)
+    const [openLogin, setOpenLogin] = useState(false)
 
     // PRODUCTS AND FILTER
     const [products, setProducts] = useState([]);
@@ -47,20 +50,8 @@ const AuthProvider = ({ children }) => {
     const [filterKeys, setFilterKeys] = useState("NumberOfCameras");
     const [filterAts, setFilterAts] = useState([]);
 
-
     // LOGGED IN STATE
     let loggedIn = useSelector((state) => state.user.isLoggedIn);
-
-    // TEMP FORM DATA
-    const authImage = useSelector((state) => state.authform.image);
-    const authFirstName = useSelector((state) => state.authform.firstName);
-    const authLastName = useSelector((state) => state.authform.lastName);
-    const authMail = useSelector((state) => state.authform.email);
-    const authMobileNumber = useSelector((state) => state.authform.mobileNumber);
-    const authPass = useSelector((state) => state.authform.password);
-    const authConformPass = useSelector(
-        (state) => state.authform.conformPassword
-    );
 
     // TEMP USER DATA AFTER LOGIN
     const userFirstName = useSelector((state) => state.user.firstName);
@@ -76,6 +67,7 @@ const AuthProvider = ({ children }) => {
     const userVerificationStatus = useSelector(
         (state) => state.user.verificationStatus
     );
+    const userState = useSelector((state) => state.user.state)
     const userUpiNumber = useSelector((state) => state.user.upiMobileNumber);
     const userTotalOrders = useSelector((state) => state.user.totalOrders);
     const userPendingOrders = useSelector((state) => state.user.pendingOrders);
@@ -87,7 +79,7 @@ const AuthProvider = ({ children }) => {
 
     const checkLoggedIn = async () => {
         try {
-            await axios.post('${process.env.REACT_APP_API}/main/auth/refresh-Tokens', {})
+            await axios.post(`${process.env.REACT_APP_API}/main/auth/refresh-Tokens`, {})
                 .then((resp) => {
                     console.log("User is Already logged in :", resp)
                 })
@@ -96,56 +88,48 @@ const AuthProvider = ({ children }) => {
         }
     }
 
-    const sendRegistrationOtp = async () => {
-        console.log(authMail, authPass);
+    const sendRegistrationOtp = async (Email, Password) => {
+
         try {
             await axios
-                .post(`${process.env.REACT_APP_API}/main/otp/send-otp-signup`, {
-                    Email: authMail,
-                    UserType: tempUserType,
-                    Password: authPass,
+                .post(`${process.env.REACT_APP_API}${API[9]}`, {
+                    Email: Email,
+                    Password: Password,
                 })
                 .then((resp) => {
-                    console.log("otp sent Successfully ", resp);
-                    navigate("/verify/otp");
+
                 });
         } catch (error) {
             console.log("got error while hitting register otp ", error);
         }
     };
 
-    const sendLoginOtp = async () => {
+    const sendLoginOtp = async (Email, Password) => {
         try {
             await axios
-                .post(`${process.env.REACT_APP_API}/main/otp/send-otp-login`, {
-                    Email: authMail,
-                    UserType: tempUserType,
-                    Password: authPass,
+                .post(`${process.env.REACT_APP_API}${API[10]}`, {
+                    Email: Email,
+                    Password: Password,
                 })
                 .then((resp) => {
                     console.log("otp sent Successfully for Login", resp);
-                    navigate("/verify/login-otp");
                 });
         } catch (error) {
             console.log("got error while hitting Login otp ", error);
         }
     };
 
-    const register = async (Otp) => {
-
-
-        try { 
-            await axios.post(`${process.env.REACT_APP_API}/${requestUserType}${API[0]}`,
+    const register = async (Otp, FirstName, LastName, Email, Password, ConformPassword) => {
+        try {
+            await axios.post(`${process.env.REACT_APP_API}${API[0]}`,
                 {
                     Otp: Otp,
-                    image: authImage || null,
-                    FirstName: authFirstName,
-                    LastName: authLastName,
-                    Email: authMail,
-                    MobileNumber: authMobileNumber,
+                    FirstName: FirstName,
+                    LastName: LastName,
+                    Email: Email,
                     UserType: tempUserType,
-                    Password: authPass,
-                    ConformPassword: authConformPass,
+                    Password: Password,
+                    ConformPassword: ConformPassword,
                 },
                 {
                     headers: {
@@ -153,7 +137,6 @@ const AuthProvider = ({ children }) => {
                     },
                     withCredentials: true
                 },
-                 
             )
                 .then((resp) => {
                     const {
@@ -170,8 +153,6 @@ const AuthProvider = ({ children }) => {
                         PendingOrders,
                         CraditPayments,
                     } = resp.data.data.User;
-
-                    console.log("user NAme ", FirstName, LastName);
 
                     dispatch(
                         clearFormStates()
@@ -194,24 +175,22 @@ const AuthProvider = ({ children }) => {
                     dispatch(reverseLogin({
                         status: true
                     }))
-                    navigate("/");
+                    setOpenSignup(false);
+                    setOpenLogin(false);
                 });
         } catch (error) {
-            console.log(
-                "error while submitting otp in registration function ",
-                error
-            );
+            console.log("error while submitting otp in registration function ", error);
         }
     };
 
-    const login = async (Otp) => {
+    const login = async (Otp, Email, Password) => {
         try {
             await axios
-                .post(`${process.env.REACT_APP_API}/${requestUserType}${API[1]}`, {
+                .post(`${process.env.REACT_APP_API}${API[1]}`, {
                     Otp: Otp,
-                    Email: authMail,
-                    Password: authPass,
-                })
+                    Email: Email,
+                    Password: Password,
+                }, { withCredentials: true })
                 .then((resp) => {
                     const {
                         FirstName,
@@ -223,6 +202,7 @@ const AuthProvider = ({ children }) => {
                         TotalOrders,
                         Avatar,
                         Address,
+                        State,
                         City,
                         PostCode,
                         VerificationStatus,
@@ -241,6 +221,7 @@ const AuthProvider = ({ children }) => {
                             Avatar: Avatar || "",
                             MobileNumber2: MobileNumber2 || 91,
                             UserType: UserType,
+                            userState: State || '',
                             Address: Address || "",
                             City: City || "",
                             PostCode: PostCode || 0,
@@ -258,38 +239,40 @@ const AuthProvider = ({ children }) => {
 
                     dispatch(clearFormStates());
 
-                    navigate("/");
+                    setOpenLogin(false);
+                    setOpenSignup(false);
+
                 });
         } catch (error) {
-            console.log("error while submitting login otp");
+            console.log("error while submitting login otp", error);
         }
     };
 
     const logout = async () => {
         try {
             await axios
-                .post(`${process.env.REACT_APP_API}/${requestUserType}${API[2]}`, {})
+                .post(`${process.env.REACT_APP_API}${API[2]}`, {}, { withCredentials: true })
                 .then((resp) => {
                     dispatch(clearUserDetails());
                     dispatch(reverseLogin({
                         status: false
                     }))
+                    setOpenLogin(false);
+                    setOpenSignup(false);
                     navigate("/");
                 });
         } catch (error) {
-            console.log("Error in Logout");
+            console.log("Error in Logout", error);
         }
     };
 
     const deleteAccount = async () => {
         try {
-            await axios.post(`${process.env.REACT_APP_API}${API[7]}`, {})
+            await axios.post(`${process.env.REACT_APP_API}${API[8]}`, {})
                 .then((resp) => {
                     dispatch(
                         clearUserDetails()
                     );
-                    console.log("Account Deleted Successfully ", resp);
-
                 })
         } catch (error) {
             console.log("Somthing Went Wrong While Deleting :", error);
@@ -299,10 +282,10 @@ const AuthProvider = ({ children }) => {
     const addToCart = async (productId) => {
         if (loggedIn) {
             try {
-                await axios.post(`${process.env.REACT_APP_API}${API[13]}`,
+                await axios.post(`${process.env.REACT_APP_API}${API[14]}`,
                     { ProdcutId: productId },
                     {
-                        withCredentials: true, 
+                        withCredentials: true,
                         headers: {
                             "Content-Type": "application/json",
                         },
@@ -314,14 +297,13 @@ const AuthProvider = ({ children }) => {
                 console.log("error while add to cart the product :", error);
             }
         } else {
-            navigate("/user/login")
+            setOpenSignup(true)
         }
     };
 
     const removeFromCart = async (cartID) => {
-        console.log("cart Product Id: ", cartID)
         try {
-            await axios.delete(`${process.env.REACT_APP_API}${API[15]}?id=${cartID}`)
+            await axios.delete(`${process.env.REACT_APP_API}${API[16]}?id=${cartID}`)
                 .then((resp) => {
                     setCartProducts(resp.data.data.ProductsInCart);
                     setTotalAmmount(resp.data.data.TotalAmmount);
@@ -334,7 +316,9 @@ const AuthProvider = ({ children }) => {
 
     const serveCart = async () => {
         try {
-            await axios.post(`${process.env.REACT_APP_API}${API[14]}`, { UserType: (tempUserType || userType) })
+            await axios.post(`${process.env.REACT_APP_API}${API[15]}`, { UserType: (tempUserType || userType) }, {
+                withCredentials: true
+            })
                 .then((resp) => {
                     setCartProducts(resp.data.data.ProductsInCart);
                     setTotalAmmount(resp.data.data.TotalAmmount);
@@ -348,8 +332,10 @@ const AuthProvider = ({ children }) => {
     const placeOrder = async (ProductId) => {
         if (loggedIn) {
             try {
-                await axios.post(`${process.env.REACT_APP_API}${API[18]}`, {
+                await axios.post(`${process.env.REACT_APP_API}${API[19]}`, {
                     ProductId: ProductId
+                }, {
+                    withCredentials: true
                 }).then((resp) => {
                     console.log("Order Placed Successfully ", resp);
                 })
@@ -358,22 +344,28 @@ const AuthProvider = ({ children }) => {
 
             }
         } else {
-            navigate("/user/login")
+            setOpenSignup(true);
         }
     };
 
-
     const getOrders = async () => {
-        try {
-            await axios.post(`${process.env.REACT_APP_API}${API[19]}`, {})
-                .then((resp) => {
-                    console.log("Here are All Orders ", resp.data.data.Orders);
-                    setOrders(resp.data.data.Orders);
-                    navigate("/user/Orders")
+        if (!loggedIn) {
+            setOpenSignup(true)
+        } else {
+            try {
+                await axios.post(`${process.env.REACT_APP_API}${API[20]}`, {}, {
+                    withCredentials: true
                 })
-        } catch (error) {
-            console.log("error while getting orders ", error);
+                    .then((resp) => {
+                        console.log("Here are All Orders ", resp.data.data.Orders);
+                        setOrders(resp.data.data.Orders);
+                        navigate("/user/Orders")
+                    })
+            } catch (error) {
+                console.log("error while getting orders ", error);
+            }
         }
+
     }
 
     const cancleOrder = async () => {
@@ -395,7 +387,7 @@ const AuthProvider = ({ children }) => {
             .then((resp) => {
                 console.log("Product is :", resp.data.data.Products);
                 console.log("resp.data.data.Products[resp.data.data.Products.length - 1]._id :", resp.data.data.Products[resp.data.data.Products.length - 1]);
-                
+
                 if (products.length !== 0 && products[products.length - 1]._id === resp.data.data.Products[resp.data.data.Products.length - 1]._id) {
                     console.log("Product Over")
                 } else {
@@ -411,24 +403,17 @@ const AuthProvider = ({ children }) => {
     const servePremium = async (UserType) => {
         try {
             await axios
-                .post(`${process.env.REACT_APP_API}${API[17]}`, { UserType })
+                .post(`${process.env.REACT_APP_API}${API[18]}`, { UserType })
                 .then((resp) => {
                     console.log("Product Premium resp is :", resp.data.data.Products);
                     setProProducts(resp.data.data.Products)
                     console.log("Product Premium is :", proProducts)
-
                 })
         } catch (error) {
             console.log("premium Products route ", `${process.env.REACT_APP_API}${API[17]}`)
             console.log("error while hitting serve Premium products ", error);
         }
     };
-    useEffect(() => {
-        console.log("State is Updated ", proProducts, typeof proProducts);
-        proProducts?.map((product) => {
-            console.log("hjii by produts", product)
-        })
-    }, [proProducts])
 
     const serveFilterProducts = async (pageNumber, filters, UserType) => {
         setPageNumber(0);
@@ -448,7 +433,6 @@ const AuthProvider = ({ children }) => {
     }
 
     const selectProduct = async (productId, UserType) => {
-        console.log("product id: ", productId);
         try {
             await axios
                 .post(`${process.env.REACT_APP_API}/main/serve/selected-product`, {
@@ -458,6 +442,7 @@ const AuthProvider = ({ children }) => {
                 .then((resp) => {
                     setProduct(resp.data.data.Product[0]);
                     setShowCaseImage(resp.data.data.Product[0].FrontImage);
+
                     navigate("/shop");
                 });
         } catch (error) {
@@ -591,6 +576,10 @@ const AuthProvider = ({ children }) => {
         setIsFilterOn,
         filterObject,
         totalAmmount,
+        openSignup,
+        setOpenSignup,
+        openLogin,
+        setOpenLogin,
         pageNumber,
         setPageNumber,
         product,
@@ -602,6 +591,8 @@ const AuthProvider = ({ children }) => {
         filters,
         setFilters,
         filterKeys,
+        profileOptions,
+        setProfileOptions,
         setFilterKeys,
         filterAts,
         setFilterAts,
@@ -624,6 +615,7 @@ const AuthProvider = ({ children }) => {
         userType,
         userAddress,
         userCity,
+        userState,
         userPostCode,
         userVerificationStatus,
         userUpiNumber,

@@ -1,0 +1,251 @@
+section.shop-main {
+    min-height: 80vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    justify-content: center;
+    justify-items: center;
+    margin-top: 2rem;
+}
+
+.left-shop {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    justify-content: space-around;
+}
+
+.shop-left-full-view {
+    width: 100%;
+    background: #dfdcdc24;
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+img.shop-image-full {
+    width: 100%;
+}
+
+.shop-left-view- {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.shop-showcase {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 3rem;
+    align-items: center;
+}
+
+span.show-more-text {
+    font-size: larger;
+}
+
+span.next-prev {
+    width: 4rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+span.next-prev {
+    width: 4rem;
+    display: flex;
+    justify-content: space-around;
+    gap: 4px;
+}
+
+span.n-prev {
+    height: 2rem;
+    width: 2rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background: #00000045;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: x-large;
+    font-weight: 600;
+}
+
+span.n-prev:hover {
+    background: #0be20b;
+}
+
+.shop-slide-overflow {
+    height: 6rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+img.slide-selection {
+    width: 20%;
+    height: 100%;
+    /* background: red; */
+    background-image: url("../Assets/camera/singledome.png");
+    border-radius: 8px;
+    cursor: pointer;
+    background-size: contain;
+    background-repeat: no-repeat;
+    box-shadow: 0px 1px 1px 2px #a9a9a96e;
+}
+
+/* right */
+.right-shop {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.shop-left-top {
+    width: 100%;
+    display: flex
+;
+    flex-direction: column;
+    gap: 1rem;
+}
+.shop-left-top-top {
+    display: flex
+;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+p.shop-title {
+    font-size: x-large;
+}
+span.shop-cctv {
+    font-size: large;
+}
+span.review-number {
+    font-size: large;
+}
+.price- {
+    display: flex
+;
+    gap: 0.1rem;
+}
+span.price-symbol {
+    font-size: x-large;
+}
+span.price-money {
+    font-size: xx-large;
+    font-weight: 600;
+}
+p.descrition-size {
+    font-size: medium;
+}
+.shop-left-three {
+    width: 100%;
+}
+.quantity-text {
+    font-size: larger;
+}
+.quantity-size {
+    display: flex
+;
+    gap: 0.5rem;
+}
+.quantity-size {
+    display: flex
+;
+    gap: 0.5rem;
+}
+span.q-size {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    border: 1px solid darkgrey;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: lighter;
+}
+.shop-left-bottom {
+    display: flex
+;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+button.button-shop-dark {
+    width: 40%;
+    height: 2.5rem;
+    background: #000000;
+    border: 1px solid;
+    border-radius: 5px;
+    font-size: medium;
+    color: white;
+}
+button.button-shop-lite {
+    width: 40%;
+    height: 2.5rem;
+    background: white;
+    border: 1px solid;
+    border-radius: 5px;
+    font-size: medium;
+}
+button.button-shop-lite:hover {
+    background: rgb(0, 0, 0);
+    color: white;
+}
+button.button-shop-dark:hover{
+    background: white;
+    color: black;
+}
+li.shop-specification-li {
+    list-style-type: none;
+    display: flex
+;
+    gap: 1rem;
+    font-size: large;
+    display: grid
+;
+    grid-template-columns: 2fr 8fr;
+}
+shop.specification-key {
+    font-weight: 700;
+}
+
+@media (max-width:1150px) {
+    img.slide-selection {
+        /* width: 8rem; */
+    }
+    section.shop-main {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        /* justify-content: space-around; */
+    }
+}
+
+@media (max-width:500px) {
+    section.shop-main {
+        justify-content: space-around;
+    }
+    .shop-left-four {
+        display: flex
+    ;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.8rem;
+    }
+    .quantity-text {
+        font-size: x-large;
+    }
+    span.q-size {
+        width: 2.5rem;
+        height: 2rem;
+    }
+}

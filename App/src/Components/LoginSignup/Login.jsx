@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
-import "./signup.css";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import AuthContext from "../../context/AuthContext.context";
 import { setFormLoginStates } from "../../Functions/Auth/formSlice";
+
+import '../../Styles/signup.css'
 
 const Login = () => {
 
@@ -93,7 +94,7 @@ const Login = () => {
                             <div className="message">
                                 <span className="msg">
                                     do not have account?{" "}
-                                    <NavLink to={"/user/register"}><span className="login-text">Signup In</span></NavLink>
+                                    <NavLink to={"/user/register"}><span className="login-text">Log In</span></NavLink>
                                 </span>
                             </div>
                         </div>

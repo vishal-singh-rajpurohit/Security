@@ -13,17 +13,13 @@ app.use(cookieParser());
 
 
 // importing routes
-const dealerRoutes = require("./routes/dealer.routes");
 const adminRouter = require("./routes/admin.routes");
-const installerRoute = require("./routes/installer.routes");
 const userRoute = require("./routes/user.routes");
 const orderRoutes = require("./routes/order.routes");
 const mainRoutes = require("./routes/main.routes")
 
 app.use("/api/v1/main", mainRoutes);
 
-app.use("/api/v1/dealer", dealerRoutes);
-app.use("/api/v1/installer", installerRoute);
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/admin", adminRouter);
 

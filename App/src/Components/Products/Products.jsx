@@ -1,18 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react'
-import '../../css/Projucts.css'
-import { BiCustomize, BiStar } from 'react-icons/bi';
-import { FaArrowDown, FaFilter } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOpenFilter } from '../../Functions/Ui/modalSlice'
 import AuthContext from '../../context/AuthContext.context';
-import { MdTransitEnterexit } from 'react-icons/md';
-import Slide from './slides/slide';
+import { MdAddShoppingCart, MdCurrencyRupee } from 'react-icons/md'
+import logo from '../../Assets/logo/logo.png'
+import tempCam from '../../Assets/camera/singledome.png'
+
+// TESTING THE UI
 
 const Products = () => {
 
     const { products, pageNumber, isFilterOn, loggedIn, userType, tempUserType, filterAts, filterKeys, filterObject, setPageNumber, proProducts } = useContext(AuthContext);
-    const { addToCart, placeOrder,  selectProduct, serveProducts, setFilterItems, setFilterValues, serveFilterProducts, servePremium } = useContext(AuthContext);
+    const { addToCart, placeOrder, selectProduct, serveProducts, setFilterItems, setFilterValues, serveFilterProducts, servePremium } = useContext(AuthContext);
     const [selectedOption, setSelectedOption] = useState(null);
 
     const dispatch = useDispatch();
@@ -44,7 +44,6 @@ const Products = () => {
 
     // PAGE NUMBERS AND PRODCUT SERVING
     useEffect(() => {
-
         serveProducts(
             pageNumber,
             {},
@@ -60,257 +59,166 @@ const Products = () => {
 
     return (
         <>
-            <main style={{ backgroundColor: 'white' }}>
-                {/* responsive filter */}
-                <section className="product-filter-responsive">
-                    <div className="product-filter-">
-                        <button className="filter-button" onClick={SetOpenFilter} >filters <FaFilter /></button>
-                    </div>
-                </section>
-                <section className="product-filter-modal" style={{ display: openFilter ? 'flex' : 'none', zIndex: '999' }}>
-                    <div className="close-key-filter-bottom">
-                        {/* <button className="apply" id="apply">Apply</button> */}
-                        <button-bottom-filter-close onClick={SetOpenFilter} ><MdTransitEnterexit size={40} cursor={'pointer'} /></button-bottom-filter-close>
-                    </div>
-                    <div className="product-filter-bottom-slid">
-                        <div className="lefl-b-filter">
-                            <ul className="filter-slide-bottom">
-                                <li className="bottom-filter-item" onClick={() => setFilterItems("NumberOfCameras")}>Number of Cameras</li>
-                                <li className="bottom-filter-item" onClick={() => setFilterItems("CameraType")}>Camera Type</li>
-                                <li className="bottom-filter-item" onClick={() => setFilterItems("CameraQuality")}>Camera Quality</li>
-                                <li className="bottom-filter-item" onClick={() => setFilterItems("MegaPixels")}>Mega Pixel</li>
-                                <li className="bottom-filter-item" onClick={() => setFilterItems("IndoorOutdoor")}>Indoor / Outdoor</li>
-                            </ul>
+            <section class="slide-box">
+                <div class="--slide">
+                    <div class="left--slide">
+                        <div class="left--slide-up">
+                            <h2 class="slide-det-text">Loremasfsd ipsumadfdsa dolorasfdsa</h2>
                         </div>
-                        <div className="rigth-b-filter">
-                            <div className="values-of-filter-bottom">
-                                <ul className="filter-tem">
-                                    <ul className="filter-cb-ul">
-                                        <li className="filter-li"> <p className="bold-text">filter items by:</p></li>
-                                        {
-                                            filterAts?.map((atts) => <li className="filter-li btm-li-items">
-                                                <input type="checkbox" name="sp1" id={atts} onClick={() => setFilterValues(filterKeys, atts)} checked={selectedOption === atts} onChange={() => handleCheckBox(atts)} className="filter-cb-btm-filter" />
-                                                <label htmlFor="sp1" onClick={() => setFilterValues(filterKeys, atts)} >{atts}</label>
-                                            </li>)
-                                        }
+                        <div class="left--slide-mid">
+                            <p class="slide-det-para">
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus
+                                iste nisi officia delectus!
+                            </p>
+                        </div>
+                        <div class="left--slide-down">
+                            <button class="btn-lite">Buy Now</button>
+                            <button class="btn-dark">Explore More</button>
+                        </div>
+                    </div>
+                    <div class="right--slide">
+                        <img
+                            src={logo}
+                            alt="Dome cctv camera"
+                            class="slide--image"
+                        />
+                    </div>
+                </div>
+            </section>
+            <section class="product-main-">
+                <div class="product-premium-text">
+                    <h3 class="premium">Premium Products</h3>
+                    <span class="showMore">Show More</span>
+                </div>
+                <div class="prodcut-overflow-y">
+                    <div class="product-card-overflow">
+                        {
+                            proProducts && proProducts.map((prodcut) => (
+                                <div class="premium-card" key={prodcut._id}>
+                                    <div class="premium-card-disp" onClick={() => selectProduct(prodcut._id)}>
+                                        <img
+                                            src={tempCam}
+                                            alt=""
+                                            class="--premium-image"
+                                        />
+                                    </div>
+                                    <div class="premium-card-details">
+                                        <div class="--premium-det-title">
+                                            <p class="--premium-p" style={{ cursor: 'pointer' }} onClick={() => selectProduct(prodcut._id)}>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                                Dolore sequi consectetur asperiores eveniet a corrupti.
+                                            </p>
+                                        </div>
+                                        <div class="--premium-det-rating" onClick={() => selectProduct(prodcut._id)}>* 4.5 (15 reviews)</div>
+                                        <div class="--premium-cart-price">
+                                            <div class="--premium-price">$ 250</div>
+                                            <div class="--premium-cart" onClick={() => addToCart(prodcut._id)}><MdAddShoppingCart /></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        }
 
-                                    </ul>
-                                </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="Offers-main">
+                <div class="offer-sub">
+                    <div class="offer-left">
+                        <div class="--offer-image-box">
+                            <img
+                                src={tempCam}
+                                alt="single dome offer"
+                                class="-offer-img-box"
+                            />
+                        </div>
+                        <div class="--offer-text">
+                            <div class="-offer-text-heading">
+                                <p class="--offer-heading">Lorem ipsum dolopr sityyue ametgg.</p>
+                            </div>
+                            <div class="-offer-text-small">
+                                <p class="-offer-para">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Molestias voluptatem magnam vero accusamus! Lorem ipsum dolor
+                                    sit amet, consectetur adipisicing elit. Soluta aperiam tempore
+                                    a?
+                                </p>
+                            </div>
+                            <div class="left--slide-down">
+                                <button class="btn-dark hover-pink">Take a Look</button>
                             </div>
                         </div>
                     </div>
-                </section>
-                {/* main prodcut */}
-                <section className="product-box">
-                    <div className="filter-area">
-                        <div className="--filter">
-                            {/* <div className="custon-button">
-                                <NavLink to={"custom/customize"} ><button className="custom"><BiCustomize /> Custom Setup</button></NavLink>
-                            </div> */}
-                            <form action="" className="filter">
-                                <div className="box-filter">
-                                    <p className="filter-heading">Special Features</p>
-                                    <ul className="filter-cb-ul">
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="sp1" id="" className="filter-cb" />
-                                            <label htmlFor="sp1">Night Vision</label>
-                                        </li>
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="sp2" id="" className="filter-cb" />
-                                            <label htmlFor="sp2">2 Way Audio</label>
-                                        </li>
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="sp3" id="" className="filter-cb" />
-                                            <label htmlFor="sp3">Built In Light</label>
-                                        </li>
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="sp4" id="" className="filter-cb" />
-                                            <label htmlFor="sp4">HD Resolution</label>
-                                        </li>
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="sp5" id="" className="filter-cb" />
-                                            <label htmlFor="sp5">Image Sensor</label>
-                                        </li>
-                                    </ul>
+                    <div class="offer-right">
+                        <div class="offer-right-top bg-purple">
+                            <div class="-offer-left">
+                                <div class="--offer-text-heading">
+                                    <p class="--offer-heading-left">Lorem ipsum dolor sit amet.</p>
                                 </div>
-                                <div className="box-filter">
-                                    <p className="filter-heading">Camera Auality</p>
-                                    <ul className="filter-cb-ul">
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="sp1" id="" className="filter-cb" />
-                                            <label htmlFor="sp1">HD</label>
-                                        </li>
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="sp2" id="" className="filter-cb" />
-                                            <label htmlFor="sp2">IP</label>
-                                        </li>
-                                    </ul>
+                                <div class="--offer-text-p">
+                                    <p class="--offer-det">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
+                                        inventore quaerat vitae!
+                                    </p>
                                 </div>
-                                <div className="box-filter">
-                                    <p className="filter-heading">Camera Type</p>
-                                    <ul className="filter-cb-ul">
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="sp1" id="" className="filter-cb" />
-                                            <label htmlFor="sp1">DOME</label>
-                                        </li>
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="sp2" id="" className="filter-cb" />
-                                            <label htmlFor="sp2">BULLET</label>
-                                        </li>
-                                    </ul>
+                            </div>
+                            <div class="-offer-fight">
+                                <img
+                                    src={tempCam}
+                                    alt="offer image"
+                                    class="offer--img"
+                                />
+                            </div>
+                        </div>
+                        <div class="offer-right-top bg-d-skublue">
+                            <div class="-offer-left">
+                                <div class="--offer-text-heading">
+                                    <p class="--offer-heading-left">Lorem ipsum dolor sit amet.</p>
                                 </div>
-                                <div className="box-filter">
-                                    <p className="filter-heading">Number of Cameras</p>
-                                    <ul className="filter-cb-ul">
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="brand" id="" className="filter-cb" />
-                                            <label htmlFor="brand">3 Camera</label>
-                                        </li>
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="brand" id="" className="filter-cb" />
-                                            <label htmlFor="brand">4 Camera</label>
-                                        </li>
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="brand" id="" className="filter-cb" />
-                                            <label htmlFor="brand">5 Camera</label>
-                                        </li>
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="brand" id="" className="filter-cb" />
-                                            <label htmlFor="brand">6 Camera</label>
-                                        </li>
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="brand" id="" className="filter-cb" />
-                                            <label htmlFor="brand">7 Camera</label>
-                                        </li>
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="brand" id="" className="filter-cb" />
-                                            <label htmlFor="brand">8 Camera</label>
-                                        </li>
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="brand" id="" className="filter-cb" />
-                                            <label htmlFor="brand">9 Camera</label>
-                                        </li>
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="brand" id="" className="filter-cb" />
-                                            <label htmlFor="brand">10 Camera</label>
-                                        </li>
-                                    </ul>
+                                <div class="--offer-text-p">
+                                    <p class="--offer-det">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
+                                        inventore quaerat vitae!
+                                    </p>
                                 </div>
-                                <div className="box-filter">
-                                    <p className="filter-heading">Indoor / Outdoor</p>
-                                    <ul className="filter-cb-ul">
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="brand" id="" className="filter-cb" />
-                                            <label htmlFor="brand">Indoor</label>
-                                        </li>
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="brand" id="" className="filter-cb" />
-                                            <label htmlFor="brand">Outdoor</label>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="box-filter">
-                                    <p className="filter-heading">Mega Pixels</p>
-                                    <ul className="filter-cb-ul">
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="brand" id="" className="filter-cb" />
-                                            <label htmlFor="brand">2</label>
-                                        </li>
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="brand" id="" className="filter-cb" />
-                                            <label htmlFor="brand">4</label>
-                                        </li>
-                                        <li className="filter-li">
-                                            <input type="checkbox" name="brand" id="" className="filter-cb" />
-                                            <label htmlFor="brand">5</label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </form>
+                            </div>
+                            <div class="-offer-fight">
+                                <img src={tempCam} alt="offer image" class="offer--img" />
+                            </div>
                         </div>
                     </div>
-                    <div className="product-container">
-                        <Slide />
-                        <div className="card-style-display">
-                            {
-                                proProducts.map((product) => {
-                                    <div className="card" key={product._id}>
-                                        <div className="image-of-card-box">
-                                            <span className="card-image-box" style={{ backgroundImage: `url(${product.FrontImage})` }}>
-                                                <div className="premium-txt">Premium</div>
-                                            </span>
-                                        </div>
-                                        <div className="card-details">
-                                            <div className="price-o-card">
-                                                <span className="rupee">&#8377;</span>
-                                                <span className="ammount">
-                                                    {
-                                                        !loggedIn ?
-                                                            product?.PriceForCustomers
-                                                            :
-                                                            userType === "DEALER" ? product?.PriceForDealers :
-                                                                userType === "INSTALLER" ? product?.PriceForInstallers :
-                                                                    product?.PriceForCustomers
-                                                    }
-                                                </span>
-                                            </div>
-                                        </div>
+                </div>
+            </section>
+            <section class="product-main-">
+                <div class="product-premium-text">
+                    <h3 class="premium">Shop</h3>
+                    <span class="showMore">Show More</span>
+                </div>
+                <div class="prodcut-grid-">
+                    {
+                        products && products.map((product) => (
+                            <div class="premium-card2">
+                                <div class="premium-card-disp" onClick={() => selectProduct(product._id)}>
+                                    <img src={tempCam} alt="" class="--premium-image" />
+                                </div>
+                                <div class="premium-card-details">
+                                    <div class="--premium-det-title" style={{ cursor: 'pointer' }} onClick={() => selectProduct(product._id)}>
+                                        <p class="--premium-p">
+                                            {product.ProductName}
+                                        </p>
                                     </div>
-                                })
-                            }
-
-                        </div>
-                        <div className="list-style-products-display">
-                            {
-                                products?.map((product, index) => <div className="box1" id="b1" key={product._id}>
-                                    <div className="image-of-product">
-                                        <span className="image" >
-                                            <img src={product.FrontImage} alt="" className="box-1-product-image" />
-                                        </span>
-                                    </div>
-                                    <div className="description">
-                                        <div className="product-description">
-                                            <div className="for-overflow">
-                                                <h2 className="product-name">{product.ProductName}</h2>
-                                            </div>
-                                            <div className="total-orders">
-                                                <span className="last-orders">total 1500 orders last month</span>
-                                            </div>
-                                            <div className="price">
-                                                <span className="price">
-                                                    <span className="rupee"> <span className="symbol-rupee">&#x20b9;</span><span
-                                                        className="pri">
-                                                        {
-                                                            !loggedIn ?
-                                                                product?.PriceForCustomers
-                                                                :
-                                                                userType === "DEALER" ? product?.PriceForDealers :
-                                                                    userType === "INSTALLER" ? product?.PriceForInstallers :
-                                                                        product?.PriceForCustomers
-                                                        }
-                                                    </span></span>
-                                                </span>
-                                            </div>
-                                            <div className="save-button">
-                                                <button className="btn-order save-button" disabled={loggedIn ? false : true} onClick={() => addToCart(product._id)}><BiStar /> save</button>
-                                            </div>
-                                            <div className="button">
-                                                <button className="btn-order" onClick={() => selectProduct(product._id, (userType || tempUserType))} >Know More</button>
-                                                <button className="btn-order" onClick={() => placeOrder(product._id)} >Order Now</button>
-                                            </div>
-                                        </div>
+                                    <div class="--premium-det-rating" onClick={() => selectProduct(product._id)}>* 4.5 (15 reviews)</div>
+                                    <div class="--premium-cart-price">
+                                        <div class="--premium-price"><MdCurrencyRupee size={10}/> {product.PriceForCustomers}</div>
+                                        <div class="--premium-cart" onClick={() => addToCart(product._id)}><MdAddShoppingCart /></div>
                                     </div>
                                 </div>
-                                )
-                            }
-                        </div>
-                        <div className="load-more">
-                            <button className="load-more-button" onClick={() => setPageNumber(pageNumber + 1)}><FaArrowDown /> Show More</button>
-                        </div>
-                    </div>
-                </section>
+                            </div>
+                        ))
+                    }
 
-            </main>
+                </div>
+            </section>
         </>
     )
 }

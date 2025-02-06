@@ -1,5 +1,4 @@
 import React from 'react'
-import "./Report.css"
 import { MdOutlineReport } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeReportBox } from '../../Functions/Ui/modalSlice'

@@ -13,9 +13,9 @@ const jwt = require("jsonwebtoken");
 
 const registerInstaller = asyncHandler(async (req, resp) => {
     console.log("hii by signup");
-    let { FirstName, LastName, Password, MobileNumber, Email } = req.body;
+    let { FirstName, LastName, Password,  Email } = req.body;
 
-    if(!FirstName || !Password || !MobileNumber || !Email){
+    if(!FirstName || !Password ||  !Email){
         throw new ApiError(400 , "All Data Required");
     }
 
@@ -40,7 +40,6 @@ const registerInstaller = asyncHandler(async (req, resp) => {
         FirstName,
         LastName,
         Password,
-        MobileNumber,
         Email,
         Avatar,
     });

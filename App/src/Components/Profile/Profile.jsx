@@ -1,34 +1,38 @@
-import React, { useContext } from 'react'
-import './profile.css'
+import React, { useContext, useEffect, useState } from 'react'
 import MessageInbox from '../Modal/MessageInbox'
 import { AiTwotoneMail } from 'react-icons/ai'
 import { useDispatch } from 'react-redux'
 import { openMessages, openReportBox } from '../../Functions/Ui/modalSlice'
 import AuthContext from '../../context/AuthContext.context'
+import { FaHamburger } from 'react-icons/fa'
 
 
 
 const Profile = () => {
+    const {profileOptions, setProfileOptions} = useContext(AuthContext);
+
+    const [profileState, setProfileState] = useState('init');
+    const [resHi , setResHi] = useState(false)
 
     const dispatch = useDispatch();
     const setOpenMessages = () => dispatch(openMessages());
     const setOpenReport = () => dispatch(openReportBox());
 
-    const { logout, userAvater, deleteAccount, getOrders } = useContext(AuthContext)
+    const { logout, userAvater, deleteAccount, getOrders } = useContext(AuthContext);
 
     const {
         userFirstName,
         userLastName,
-        // userEmail,
-        // userMobileNumber,
-        // userMobileNumber2,
-        // userAvater,
-        // userType,
-        // userAddress,
-        // userCity,
-        // userPostCode,
-        // userVerificationStatus,
-        // userUpiNumber,
+        userEmail,
+        userMobileNumber,
+        userMobileNumber2,
+        userType,
+        userAddress,
+        userCity,
+        userPostCode,
+        userState,
+        userVerificationStatus,
+        userUpiNumber,
         userTotalOrders,
         userActiveOrders,
         userPendingOrders,
@@ -36,209 +40,504 @@ const Profile = () => {
         userCraditPayments
     } = useContext(AuthContext);
 
-    
+    function changeProfileState(state){
+        setProfileState(state);
+        setProfileOptions(false);
+    }
+
+
+    useEffect(()=>{
+
+    },[])
+
+    useEffect(()=>{
+        if(window.innerWidth < 950){
+            setResHi(true)
+        }else{
+            setResHi(false)
+        }
+    },[window.innerWidth])
 
     return (
         <>
-            <MessageInbox />
-            <main className="profile-page">
-                <div className="-profile-page">
-                    <div className="top1-part">
-                        <div className="left-part-top1">
-                            <div className="image-box">
-                                <span className="-image-profile" style={{ backgroundImage: `url(${userAvater})` }}></span>
-                            </div>
+            <section class="profile-main">
+                <div class="profile-left" style={{display: profileOptions? 'flex' : 'none'}}>
+                    <ul class="profile-left-ul">
+                        <div class="profile-left-li" onClick={()=>changeProfileState('init')}>
+                            <span class="profile-button-heading">Account Settings</span>
+                            <span class="profile-button--text"
+                            >details and about your profile</span>
                         </div>
-                        <div className="right-part-top1">
-                            <div className="details-box-top1">
-                                <div className="details-box-up">
-                                    <div className="box-name">
-                                        <p className="user-name">{`${userFirstName} ${userLastName}`}</p>
+                        <div class="profile-left-li" onClick={()=>changeProfileState('noti')}>
+                            <span class="profile-button-heading"  onClick={()=>setProfileState('noti')}>Notifications</span>
+                            <span class="profile-button--text"
+                            >reports , alerts notifications</span
+                            >
+                        </div>
+                        <div class="profile-left-li" onClick={()=>changeProfileState('pay')} >
+                            <span class="profile-button-heading"  onClick={()=>setProfileState('pay')}>Payments</span>
+                            <span class="profile-button--text">payments and rewards</span>
+                        </div>
+                        <div class="profile-left-li" onClick={()=>changeProfileState('pass')}>
+                            <span class="profile-button-heading"  onClick={()=>setProfileState('pass')}>Password & Security</span>
+                            <span class="profile-button--text"
+                            >details about personal information</span>
+                        </div>
+                        <div class="profile-left-li">
+                            <span class="profile-button-heading" onClick={()=>logout()}>Log Out</span>
+                        </div>
+                        <div class="profile-left-li res-ninefive">
+                            <span class="profile-button-heading" onClick={()=>setProfileOptions(false)}>Close</span>
+                        </div>
+                    </ul>
+                </div>
+                <div class="profile-right" style={{display: profileState === "init" ? 'inline': 'none'}}>
+                    <div class="profile-right-top">
+                        <div class="profile-left-dp">
+                            <span class="profile-dp-span"></span>
+                        </div>
+                        <div class="profile-mid">
+                            <p class="verified-text text-success">Profile Verified</p>
+                            <p class="verified-rank">
+                                <span class="rank-span">Rank:</span>
+                                <span class="rank-number">#44</span>
+                            </p>
+                        </div>
+                        <div class="profile-right-upload">
+                            <button class="upload-right-up">Upload</button>
+                            <button class="upload-right-up op" onClick={()=>setProfileOptions(true)}><FaHamburger /></button>
+                        </div>
+                    </div>
+                    <div class="---right-info-text">
+                        <li class="--info-text">
+                            Your details will be conformed after review.
+                        </li>
+                    </div>
+                    <div class="---right-main-area">
+                        <div class="---right-heading-main">
+                            <h1 class="---right-head--profile">Change User Information.</h1>
+                        </div>
+                        <div class="---right-details-form">
+                            <div class="---double-inputs">
+                                <div class="---dub-left-inputs">
+                                    <label for="name" class="profile-leb">Full Name</label>
+                                    <input type="text" name="name" value={userFirstName+ " "+ userLastName} placeholder="Vishal Singh" id="name" class="---profile-input"/>
+                                </div>
+                                <div class="---dub-left-inputs">
+                                    <label for="mail" class="profile-leb">Email Address</label>
+                                    <input type="email" name="mail" value={userEmail} placeholder="vsgamer9595@gmail.com" id="mail" class="---profile-input"
+                                    />
+                                </div>
+                            </div>
+                            <div class="---single-input">
+                                <div class="---sing-inputs">
+                                    <label for="address" class="profile-leb">Address</label>
+                                    <input type="text" name="address" value={userAddress} placeholder="kudi bhagtasni sector 4, jodhpur , Rajasthan" id="address" class="---profile-single--"/>
+                                </div>
+                            </div>
+                            <div class="---double-inputs">
+                                <div class="---dub-left-inputs">
+                                    <label for="mobile" class="profile-leb">Mobile Number</label>
+                                    <input type="number" name="mobile" value={userMobileNumber} placeholder="900000898" id="mobile" class="---profile-input"
+                                    />
+                                </div>
+                                <div class="---dub-left-inputs">
+                                    <label for="City" class="profile-leb">City</label>
+                                    <input type="text" name="City" value={userCity} placeholder="jodhpur" id="City" class="---profile-input"/>
+                                </div>
+                            </div>
+                            <div class="---double-inputs">
+                                <div class="---dub-left-inputs">
+                                    <label for="state" class="profile-leb">State</label>
+                                    <input type="text" name="state" value={userState} placeholder="Rajasthan" id="state" class="---profile-input"/>
+                                </div>
+                                <div class="---dub-left-inputs">
+                                    <label for="pincode" class="profile-leb">Pin Code</label>
+                                    <input type="number" name="pincode" value={userPostCode} placeholder="320055" id="pincode" class="---profile-input"/>
+                                </div>
+                            </div>
+                            <button className="cover-whole">Cancle</button>
+                            <button class="cover-whole">Update Information</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-right" style={{display: profileState === "noti" ? 'inline': 'none'}}>
+                    <div class="profile-right-top">
+                        <div class="profile-left-dp">
+                            <span class="profile-dp-span"></span>
+                        </div>
+                        <div class="profile-mid">
+                            <p class="verified-text text-success">Profile Verified</p>
+                            <p class="verified-rank">
+                                <span class="rank-span">Rank:</span>
+                                <span class="rank-number">#44</span>
+                            </p>
+                        </div>
+                        <div class="profile-right-upload">
+                            <button class="upload-right-up">Upload</button>
+                            <button class="upload-right-up op" onClick={()=>setProfileOptions(true)}><FaHamburger /></button>
+                        </div>
+                    </div>
+                    <div class="---right-info-text">
+                        <li class="--info-text">
+                            here is your all notifications and reports.
+                        </li>
+                    </div>
+                    <div class="---right-main-area">
+                        <div class="---right-heading-main">
+                            <h1 class="---right-head--profile">Your Notifications</h1>
+                        </div>
+                        <div class="---right-notifications">
+                            <div class="---message-single">
+                                <div class="--left-message-">
+                                    <div class="noti-type">
+                                        <span class="--u-type"></span>
+                                        <span class="--noti-name">Report</span>
                                     </div>
-                                    <div className="box-mail">
-                                        <AiTwotoneMail style={{ cursor: 'pointer' }} onClick={setOpenMessages} size={25} color='red' />
+                                    <div class="--message-text">
+                                        <span class="message-text">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                            Iure beatae dolores ex nisi facere soluta ipsum laboriosam
+                                            error vero iusto.
+                                        </span>
                                     </div>
                                 </div>
-                                <div className="details-box-bottom">
-                                    <div className="orders-meter-box">
-                                        <div className="meter-title">
-                                            <span className="title-meter">Total Order</span>
-                                        </div>
-                                        <div className="meter-reading">
-                                            <span className="reading-meter">{userTotalOrders}</span>
-                                        </div>
+                                <div class="--right-message-">
+                                    <div class="--right-message-date">
+                                        <span class="date-time">12 - 2 - 2024</span>
                                     </div>
-                                    <div className="orders-meter-box">
-                                        <div className="meter-title">
-                                            <span className="title-meter">Active Order</span>
-                                        </div>
-                                        <div className="meter-reading">
-                                            <span className="reading-meter">{userActiveOrders}</span>
-                                        </div>
+                                    <div class="--right-message-time">
+                                        <span class="date-time">3 : 40 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="---message-single">
+                                <div class="--left-message-">
+                                    <div class="noti-type">
+                                        <span class="--u-type"></span>
+                                        <span class="--noti-name">Report</span>
+                                    </div>
+                                    <div class="--message-text">
+                                        <span class="message-text">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                            Iure beatae dolores ex nisi facere soluta ipsum laboriosam
+                                            error vero iusto.
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="--right-message-">
+                                    <div class="--right-message-date">
+                                        <span class="date-time">12 - 2 - 2024</span>
+                                    </div>
+                                    <div class="--right-message-time">
+                                        <span class="date-time">3 : 40 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="---message-single">
+                                <div class="--left-message-">
+                                    <div class="noti-type">
+                                        <span class="--u-type"></span>
+                                        <span class="--noti-name">Report</span>
+                                    </div>
+                                    <div class="--message-text">
+                                        <span class="message-text">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                            Iure beatae dolores ex nisi facere soluta ipsum laboriosam
+                                            error vero iusto.
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="--right-message-">
+                                    <div class="--right-message-date">
+                                        <span class="date-time">12 - 2 - 2024</span>
+                                    </div>
+                                    <div class="--right-message-time">
+                                        <span class="date-time">3 : 40 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="---message-single">
+                                <div class="--left-message-">
+                                    <div class="noti-type">
+                                        <span class="--u-type"></span>
+                                        <span class="--noti-name">Report</span>
+                                    </div>
+                                    <div class="--message-text">
+                                        <span class="message-text">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                            Iure beatae dolores ex nisi facere soluta ipsum laboriosam
+                                            error vero iusto.
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="--right-message-">
+                                    <div class="--right-message-date">
+                                        <span class="date-time">12 - 2 - 2024</span>
+                                    </div>
+                                    <div class="--right-message-time">
+                                        <span class="date-time">3 : 40 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="---message-single">
+                                <div class="--left-message-">
+                                    <div class="noti-type">
+                                        <span class="--u-type"></span>
+                                        <span class="--noti-name">Report</span>
+                                    </div>
+                                    <div class="--message-text">
+                                        <span class="message-text">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                            Iure beatae dolores ex nisi facere soluta ipsum laboriosam
+                                            error vero iusto.
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="--right-message-">
+                                    <div class="--right-message-date">
+                                        <span class="date-time">12 - 2 - 2024</span>
+                                    </div>
+                                    <div class="--right-message-time">
+                                        <span class="date-time">3 : 40 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="---message-single">
+                                <div class="--left-message-">
+                                    <div class="noti-type">
+                                        <span class="--u-type"></span>
+                                        <span class="--noti-name">Report</span>
+                                    </div>
+                                    <div class="--message-text">
+                                        <span class="message-text">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                            Iure beatae dolores ex nisi facere soluta ipsum laboriosam
+                                            error vero iusto.
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="--right-message-">
+                                    <div class="--right-message-date">
+                                        <span class="date-time">12 - 2 - 2024</span>
+                                    </div>
+                                    <div class="--right-message-time">
+                                        <span class="date-time">3 : 40 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="---message-single">
+                                <div class="--left-message-">
+                                    <div class="noti-type">
+                                        <span class="--u-type"></span>
+                                        <span class="--noti-name">Report</span>
+                                    </div>
+                                    <div class="--message-text">
+                                        <span class="message-text">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                            Iure beatae dolores ex nisi facere soluta ipsum laboriosam
+                                            error vero iusto.
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="--right-message-">
+                                    <div class="--right-message-date">
+                                        <span class="date-time">12 - 2 - 2024</span>
+                                    </div>
+                                    <div class="--right-message-time">
+                                        <span class="date-time">3 : 40 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="---message-single">
+                                <div class="--left-message-">
+                                    <div class="noti-type">
+                                        <span class="--u-type"></span>
+                                        <span class="--noti-name">Report</span>
+                                    </div>
+                                    <div class="--message-text">
+                                        <span class="message-text">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                            Iure beatae dolores ex nisi facere soluta ipsum laboriosam
+                                            error vero iusto.
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="--right-message-">
+                                    <div class="--right-message-date">
+                                        <span class="date-time">12 - 2 - 2024</span>
+                                    </div>
+                                    <div class="--right-message-time">
+                                        <span class="date-time">3 : 40 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="---message-single">
+                                <div class="--left-message-">
+                                    <div class="noti-type">
+                                        <span class="--u-type"></span>
+                                        <span class="--noti-name">Report</span>
+                                    </div>
+                                    <div class="--message-text">
+                                        <span class="message-text">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                            Iure beatae dolores ex nisi facere soluta ipsum laboriosam
+                                            error vero iusto.
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="--right-message-">
+                                    <div class="--right-message-date">
+                                        <span class="date-time">12 - 2 - 2024</span>
+                                    </div>
+                                    <div class="--right-message-time">
+                                        <span class="date-time">3 : 40 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="---message-single">
+                                <div class="--left-message-">
+                                    <div class="noti-type">
+                                        <span class="--u-type"></span>
+                                        <span class="--noti-name">Report</span>
+                                    </div>
+                                    <div class="--message-text">
+                                        <span class="message-text">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                            Iure beatae dolores ex nisi facere soluta ipsum laboriosam
+                                            error vero iusto.
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="--right-message-">
+                                    <div class="--right-message-date">
+                                        <span class="date-time">12 - 2 - 2024</span>
+                                    </div>
+                                    <div class="--right-message-time">
+                                        <span class="date-time">3 : 40 PM</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <section className="profile-blg">
-                        <section className="left-profile">
-                            <div className="section-buttons">
-                                <ul className="profile-buttons-ul">
-                                    <li className="profile-button-li">
-                                        <button className="button-li" onClick={()=>getOrders()}>Orders</button>
-                                    </li>
-                                    <li className="profile-button-li">
-                                        <button className="button-li">Earnings</button>
-                                    </li>
-                                    <li className="profile-button-li">
-                                        <button className="button-li">History</button>
-                                    </li>
-                                    <li className="profile-button-li">
-                                        <button className="button-li" onClick={setOpenReport}>Report</button>
-                                    </li>
-                                    <li className="profile-button-li">
-                                        <button className="button-li">Share</button>
-                                    </li>
-                                    <li className="profile-button-li">
-                                        <button className="button-li" onClick={() => deleteAccount()}>Delete</button>
-                                    </li>
-                                    <li className="profile-button-li">
-                                        <button className="button-li" onClick={logout}>Log Out</button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </section>
-                        <section className="Right-profile">
-                            <section className="right-profile-box">
-                                <div className="heading-of-page">
-                                    <p className="earnings">Earnings</p>
-                                </div>
-                                <div className="earnings-monitor-box">
-                                    <div className="earning-meter">
-                                        <div className="earning-meter-left">
-                                            <div className="earning-meter-heading">
-                                                <p className="earinging-meter-text-heading">Total Earnings</p>
-                                            </div>
-                                            <div className="earning-meter-reading">
-                                                <span className="earingin-meter-reading">{userTotalEarnings}</span>
-                                            </div>
-                                        </div>
-                                        <div className="earning-meter-left">
-                                            <div className="earning-meter-heading">
-                                                <p className="earinging-meter-text-heading">Wallet</p>
-                                            </div>
-                                            <div className="earning-meter-reading">
-                                                <span className="earingin-meter-reading">{userCraditPayments}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <section className="earnings-monitor-box my-orders" id="myorders">
-                                    <div className="earning-meter-left orders-left-earning">
-                                        <div className="earning-meter-heading">
-                                            <p className="earinging-meter-text-heading">My Orders</p>
-                                        </div>
-                                        <div className="pending-orders-text-box">
-                                            <p className="pending-text">Total {userPendingOrders} Orders Pending</p>
-                                        </div>
-                                        <div className="orders-list-my-orders">
-                                            <ul className="order-list-ul">
-                                                <li className="order-list-li">
-                                                    <div className="single-order-box">
-                                                        <div className="text-order-single-">
-                                                            <div className="text-2">
-                                                                <div className="text-2">
-                                                                    <span className="price-text">Id: </span>
-                                                                    <span className="price-value">8776e9q7e6w8</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="text-order-single-">
-                                                            <span className="single-price">
-                                                                <span className="price-text">Price: </span>
-                                                                <span className="price-value">30000</span>
-                                                            </span>
-                                                            <span className="single-price">
-                                                                <span className="price-text">Pending: </span>
-                                                                <span className="price-value">15000</span>
-                                                            </span>
-                                                        </div>
-                                                        <div className="text-order-single-">
-                                                            <div className="status">
-                                                                <span className="status-text">Status: </span>
-                                                                <span className="status-text-value">CONFORMED</span>
-                                                            </div>
-                                                        </div>
-                                                        <div className="text-order-single- s2">
-                                                            <div className="status">
-                                                                <button className="cancle-order">Cancel</button>
-                                                            </div>
-                                                            <div className="status">
-                                                                <button className="cancle-order">Report</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </section>
-                                <section className="earnings-monitor-box my-orders" id="myorders">
-                                    <div className="earning-meter-left orders-left-earning">
-                                        <div className="earning-meter-heading">
-                                            <p className="earinging-meter-text-heading">User History</p>
-                                        </div>
-                                        <div className="history-buttons">
-                                            <div className="hist-btns-box">
-                                                <div className="hist">
-                                                    <button className="hist-button">Orders</button>
-                                                </div>
-                                                <div className="hist">
-                                                    <button className="hist-button">Payments</button>
-                                                </div>
-                                                <div className="hist">
-                                                    <button className="hist-button">Reports</button>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div className="orders-list-my-orders">
-                                            <ul className="order-list-ul">
-                                                <li className="order-list-li">
-                                                    <div className="single-order-box">
-                                                        <div className="text-order-single-">
-                                                            <div className="text-2">
-                                                                <span className="price-text">Id: </span>
-                                                                <span className="price-value">8776e9q7e6w8</span>
-                                                            </div>
-                                                        </div>
-                                                        <div className="text-order-single-">
-                                                            <span className="single-price">
-                                                                <span className="price-text">Ammount: </span>
-                                                                <span className="price-value">30000</span>
-                                                            </span>
-                                                            <span className="single-price">
-                                                                <span className="price-text">Pending: </span>
-                                                                <span className="price-value">15000</span>
-                                                            </span>
-                                                        </div>
-                                                        <div className="text-order-single-">
-                                                            <div className="status">
-                                                                <span className="status-text">Status: </span>
-                                                                <span className="status-text-value">CONFORMED</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </section>
-                            </section>
-                        </section>
-                    </section>
                 </div>
-            </main>
+                <div class="profile-right" style={{display: profileState === "pay" ? 'inline': 'none'}}>
+                    <div class="profile-right-top">
+                        <div class="profile-left-dp">
+                            <span class="profile-dp-span"></span>
+                        </div>
+                        <div class="profile-mid">
+                            <p class="verified-text text-success">Profile Verified</p>
+                            <p class="verified-rank">
+                                <span class="rank-span">Rank:</span>
+                                <span class="rank-number">#44</span>
+                            </p>
+                        </div>
+                        <div class="profile-right-upload">
+                            <button class="upload-right-up">Upload</button>
+                            <button class="upload-right-up op" onClick={()=>setProfileOptions(true)}><FaHamburger /></button>
+                        </div>
+                    </div>
+                    <div class="---right-info-text">
+                        <li class="--info-text">here is all payment details</li>
+                    </div>
+                    <div class="---right-main-area">
+                        <div class="---right-heading-main">
+                            <h1 class="---right-head--profile">Payment details and history</h1>
+                        </div>
+                        <div class="payment-buttons">
+                            <button class="--payments-buttons">All Payments</button>
+                            <button class="--payments-buttons">Pending</button>
+                            <button class="--payments-buttons">history</button>
+                        </div>
+                        <button class="cover-whole">Total: $5000</button>
+                        <div class="---right-notifications">
+                            <div class="---message-single">
+                                <div class="--left-message-">
+                                    <div class="noti-type">
+                                        <span class="--u-type"></span>
+                                        <span class="--noti-name">idido4545jhjhd</span>
+                                    </div>
+                                    <div class="--payment-points">
+                                        <span class="pay--payment">Payment:$50</span>
+                                        <span class="pay--payment">Point:30</span>
+                                    </div>
+                                </div>
+                                <div class="--right-message-">
+                                    <div class="--right-message-date">
+                                        <span class="date-time">12 - 2 - 2024</span>
+                                    </div>
+                                    <div class="--right-message-time">
+                                        <span class="Status">Pending</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-right" style={{display: profileState === "pass" ? 'inline': 'none'}}>
+                    <div class="profile-right-top">
+                        <div class="profile-left-dp">
+                            <span class="profile-dp-span"></span>
+                        </div>
+                        <div class="profile-mid">
+                            <p class="verified-text text-success">Profile Verified</p>
+                            <p class="verified-rank">
+                                <span class="rank-span">Rank:</span>
+                                <span class="rank-number">#44</span>
+                            </p>
+                        </div>
+                        <div class="profile-right-upload">
+                            <button class="upload-right-up">Upload</button>
+                            <button class="upload-right-up op" onClick={()=>setProfileOptions(true)}><FaHamburger /></button>
+                        </div>
+                    </div>
+                    <div class="---right-info-text">
+                        <li class="--info-text">you must need Otp to check</li>
+                    </div>
+                    <div class="---right-main-area">
+                        <div class="---right-heading-main">
+                            <h1 class="---right-head--profile">Passsword & Security</h1>
+                        </div>
+                        <div class="---right-details-form">
+                            <div class="---single-input">
+                                <div class="---sing-inputs">
+                                    <label for="address" class="profile-leb">Passsword</label>
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        placeholder="***************"
+                                        id="password"
+                                        class="---profile-single--"
+                                    />
+                                </div>
+                            </div>
+                            <div class="---dbl-img-inputs">
+                                <div class="--dbl-img-single">
+                                    <label for="address" class="profile-leb">Aadhar / Id</label>
+                                    <div class="aadhar-img">
+                                        <img
+                                            src="./Assets/adharexample.jpg"
+                                            alt=""
+                                            class="aadhar-pan"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="--dbl-img-single">
+                                    <label for="address" class="profile-leb">PAN Card</label>
+                                    <div class="aadhar-img">
+                                        <img
+                                            src="./Assets/adharexample.jpg"
+                                            alt=""
+                                            class="aadhar-pan"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </>
     )
 }

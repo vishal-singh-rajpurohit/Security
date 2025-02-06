@@ -40,6 +40,14 @@ const newSchema = new mongoose.Schema(
       type: Number,
       required: true
     },
+    Channel:{
+      type: Number,
+      required: true
+    },
+    Hdd: {
+      type: Number,
+      required: true
+    },
     MegaPixels:{
       type: Number,
       required: true
@@ -47,11 +55,16 @@ const newSchema = new mongoose.Schema(
     IndoorOutdoor: {
       type: String,
       required: true,
-      enum: ["INDOOR", "OUTDOOR", "COMBINED"]
+      enum: ["INDOOR", "OUTDOOR", "COMPLETE"]
     },
     KeyWords: {
         type: String,
         required: true
+    },
+    Tag: {
+      type: String,
+      required: true,
+      enum : ["BUDGET", "BASIC"]
     },
     AboutItem: {
       type: [String],

@@ -1,7 +1,5 @@
 import React from 'react'
 import { CgClose } from 'react-icons/cg'
-import "./Message.css"
-import "./Report.css"
 import { useDispatch, useSelector } from 'react-redux'
 import {openMessages} from '../../Functions/Ui/modalSlice'
 

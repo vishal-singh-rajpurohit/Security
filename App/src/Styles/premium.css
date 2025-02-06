@@ -1,0 +1,125 @@
+section.product-main- {
+    width: 100%;
+    height: auto;
+    display: flex
+;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+.product-premium-text {
+    width: 90%;
+    height: 3rem;
+    display: flex
+;
+    justify-content: space-between;
+    align-items: center;
+}
+h3.premium {
+    font-size: x-large;
+    text-shadow: -2px 1px 3px #acacaead;
+}
+.showMore{
+    display: inline-block;
+  position: relative;
+  text-decoration: none;
+  padding-bottom: 5px;
+  cursor: pointer;
+  font-size: large;
+}
+.showMore::before{
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: #09ccb2;
+    transition: width 0.4s ease-in-out, left 0.4s ease-in-out;
+}
+.showMore:hover::before {
+    width: 100%;
+    left: 0;
+    color: #0a7c46;
+  }
+  .prodcut-overflow-y {
+    overflow-x: auto;
+    width: 90%;
+    display: flex
+;
+    justify-content: center;
+}
+.product-card-overflow {
+    width: 100%;
+    display: grid
+;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+}
+.premium-card {
+    border: 1px solid darkgrey;
+    border-radius: 11px;
+    display: flex
+;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.2rem;
+    cursor: pointer;
+}
+.premium-card-disp {
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+    background-color: #a9a9a917;
+    width: 90%;
+    border-radius: 11px;
+}
+img.--premium-image {
+    /* height: 10rem; */
+    width: 90%;
+}
+.premium-card-details {
+    width: 90%;
+    display: flex
+;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+.--premium-det-title {
+    font-size: medium;
+}
+p.--premium-p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+}
+.--premium-det-rating {
+    font-size: 15px;
+}
+.--premium-cart-price {
+    width: 100%;
+    display: flex
+;
+    justify-content: space-between;
+}
+.premium-card2 {
+    border: 1px solid darkgrey;
+    border-radius: 11px;
+    display: flex
+;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.2rem;
+    cursor: pointer;
+}

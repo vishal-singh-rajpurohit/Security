@@ -1,6 +1,5 @@
 import React from 'react'
 import { FaRegThumbsUp } from 'react-icons/fa'
-import "./Report.css"
 import { useDispatch, useSelector } from 'react-redux';
 import {closeSuccess} from '../../Functions/Ui/modalSlice'
 

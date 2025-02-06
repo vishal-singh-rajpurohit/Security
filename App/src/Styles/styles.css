@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a{
+    color: #000;
+}
+
+nav.nav {
+    display: flex;
+    justify-content: space-around;
+    height: 5rem;
+    align-items: center;
+    position: sticky;
+    z-index: 99;
+}
+
+ul.left-ul {
+    display: flex;
+    list-style: none;
+    gap: 1.3rem;
+}
+
+li.left-li:hover {
+    cursor: pointer;
+}
+
+.underline-center {
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    color: #000;
+}
+
+.underline-center::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background-color: #1f0061;
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+
+.underline-center:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+ul.right-ul {
+    display: flex;
+    height: 3rem;
+    width: 10rem;
+    background-color: #8e8e8e45;
+    justify-content: space-evenly;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 10px;
+    list-style-type: none;
+}
+
+.right-li{
+    cursor: pointer;
+}
+
+.mid {
+    height: 8rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 8rem;
+    border-radius: 999px;
+    background-color: white;
+    overflow: hidden;
+}
+
+span.logo-span {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+img.logo- {
+    height: 8rem;
+    cursor: pointer;
+}
+
+footer {
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p.copyright-text {
+    font-size: larger;
+}
+
+section.nav-bottom {
+    display: none;
+    position: fixed;
+    height: 5rem;
+    width: 100%;
+    background: #ffffff73;
+    bottom: 0;
+    z-index: 99;
+}
+
+ul.nav-bottom-ul {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+li.nav-bottom-li {
+    list-style-type: none;
+}
+
+@media (max-width: 770px) {
+    section.nav-bottom {
+        display: flex
+    ;
+    }
+}

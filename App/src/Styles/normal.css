@@ -1,0 +1,23 @@
+.prodcut-grid- {
+    width: 90%;
+    display: grid
+;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width:1000px) {
+    .prodcut-grid- {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+@media (max-width:650px) {
+    .prodcut-grid- {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (max-width: 450px) {
+    .prodcut-grid- {
+        grid-template-columns: 1fr;
+    }
+}

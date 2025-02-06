@@ -10,17 +10,13 @@ const { Options } = require('../../methods')
 
 
 const registerUser = asyncHandler(async (req, resp) => {
-    console.log("hii by signup");
-    let { FirstName, LastName, Password, ConformPassword, MobileNumber, Email, UserType } = req.body;
+    let { FirstName, LastName, Password, ConformPassword, Email } = req.body;
 
-    console.log("FirstName: ", FirstName)
-    console.log("LastName: ", LastName)
-    console.log("Password: ", Password)
-    console.log("ConformPassword: ", ConformPassword)
-    console.log("MobileNumber: ", MobileNumber)
-    console.log("Email: ", Email)
+    console.log("fname: ", FirstName);
+    console.log("mail: ", Email);
+    console.log("pass: ", FirstName);
 
-    if (!FirstName || !MobileNumber || !Email || !Password) {
+    if (!FirstName || !Email || !Password) {
         throw new ApiError(400, "All Data Required");
     }
 
@@ -28,7 +24,7 @@ const registerUser = asyncHandler(async (req, resp) => {
         throw new ApiError(400, "Both Passwrds are not matching");
     }
 
-    let isAlredy = await Dealer.exists({ Email }) || await User.exists({ Email }) || await Installer.exists({ Email });
+    let isAlredy = await User.exists({ Email });
 
     if (isAlredy) {
         throw new ApiError(401, "User Already Exists");
@@ -37,10 +33,11 @@ const registerUser = asyncHandler(async (req, resp) => {
     const newUser = new User({
         FirstName,
         LastName,
-        MobileNumber,
         Email,
-        Password
+        Password,
+        UserType: "Customer"
     });
+
     let savedUser = await newUser.save();
 
     let user = await User.findById(savedUser._id);
@@ -48,7 +45,6 @@ const registerUser = asyncHandler(async (req, resp) => {
     if (!user) {
         throw new ApiError(500, "Somting Wents Wrong");
     }
-
 
     const { accessToken, refreshToken } = await genTokens(User, user?._id);
 
@@ -129,10 +125,6 @@ const loginUser = asyncHandler(async (req, resp) => {
         },
     ).select("-Password -refreshToken");
 
-    const Options = {
-        httpOnly: true,
-        secure: true
-    }
 
     resp.status(200)
         .clearCookie("OTP")
@@ -173,5 +165,13 @@ const logoutUser = asyncHandler(async (req, resp) => {
 
 });
 
+const becomeDealer = asyncHandler(async (req, resp)=>{
+    try {
+        
+    } catch (error) {
+        console.log("error in become dealer: ", error)
+    }
+})
 
-module.exports = { registerUser, loginUser, logoutUser };
+
+module.exports = { registerUser, loginUser, logoutUser , becomeDealer};

@@ -1,0 +1,198 @@
+section.signup-main {
+    width: 100%;
+    height: auto;
+    display: flex
+;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #0f504b38;
+    padding-top: 0rem;
+    padding-bottom: 2rem;
+    position: fixed;
+    z-index: 99;
+    top: 0;
+}
+.signup-main-2 {
+    width: 80%;
+    height: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #272232;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.left-singup {
+    width: 100%;
+    height: 100%;
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+}
+.left-whole {
+    background-image: url('../Assets/x.jpg');
+    width: 90%;
+    height: 90%;
+    border-radius: 7px;
+    opacity: 0.8;
+}
+
+.left-right {
+    display: flex
+;
+    flex-direction: column;
+    /* height: 80%; */
+    gap: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+.singup-top-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+p.create-signup-text {
+    font-size: xx-large;
+    color: white;
+}
+span.login-txt {
+    cursor: pointer;
+}
+p.second-signup-text {
+    color: #ffffff94;
+    font-size: large;
+}
+
+.signup-input-double {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+input.signup-dbl-input {
+    width: 48%;
+    height: 2.5rem;
+    font-size: small;
+    background: #3c364c;
+    color: white;
+    border-radius: 6px;
+    border: navajowhite;
+    padding-left: 0.5rem;
+}
+
+.signup-input-single {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+}
+
+input.signup-single-input {
+    width: 100%;
+    height: 2.5rem;
+    font-size: small;
+    background: #3c364c;
+    color: white;
+    border-radius: 6px;
+    border: navajowhite;
+    padding-left: 0.5rem;
+}
+
+.agree-you {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: large;
+}
+label.agree-error {
+    color: #bd6d00;
+}
+
+span.t-and-c {
+    color: #8748a7;
+    text-decoration: underline;
+}
+
+.agree-you {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: large;
+    gap: 0.5rem;
+}
+
+button.input-full-signup {
+    border: navajowhite;
+    width: 100%;
+    height: 2.5rem;
+    background: #8c3dd0;
+    border-radius: 6px;
+    color: white;
+    font-size: large;
+    cursor: pointer;
+}
+
+.agree-cb {
+    display: none;
+    /* Hide default checkbox */
+}
+
+/* Create a custom checkbox */
+.agree-cb+label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
+}
+
+/* Custom box */
+.agree-cb+label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 18px;
+    height: 18px;
+    background: purple;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+/* Add checkmark when checked */
+.agree-cb:checked+label::after {
+    content: "✔";
+    position: absolute;
+    left: 4px;
+    top: 3px;
+    font-size: 14px;
+    color: white;
+}
+
+/* Style the Terms & Conditions text */
+.t-and-c {
+    color: purple;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+@media (max-width: 1050px) {
+    .left-singup {
+        display: none;
+    }
+    .signup-main-2 {
+        display: flex
+    ;
+        justify-content: center;
+        align-items: center;
+    }
+    .left-right {
+        width: 90%;
+    }
+}

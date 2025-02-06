@@ -27,6 +27,7 @@ const checkOtp =asyncHandler(async (req, resp, next) => {
     }
 
     await Otp.deleteOne({Otp: otp});
+    console.log("otp checked");
     
     next();
 });

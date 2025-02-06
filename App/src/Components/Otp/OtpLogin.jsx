@@ -1,6 +1,4 @@
 import React, { useContext, useState } from 'react'
-import '../LoginSignup/signup.css'
-import './otp.css'
 import AuthContext from '../../context/AuthContext.context'
 import { useDispatch } from 'react-redux'
 import { setOtp } from '../../Functions/Auth/formSlice'

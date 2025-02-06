@@ -1,11 +1,13 @@
 import React, { useContext } from 'react'
-import './Bottom.css'
-import { FaUser } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
-import { FaCartShopping } from 'react-icons/fa6';
+import { FaUserCircle } from "react-icons/fa";
+import { IoCartSharp } from "react-icons/io5";
+import { AiOutlineMenuUnfold } from "react-icons/ai";
+import '../../Styles/res.css'
 import { useSelector } from 'react-redux';
 import AuthContext from '../../context/AuthContext.context';
 const Bottomnav = () => {
+  const {profileOptions, setProfileOptions} = useContext(AuthContext)
 
   const openNavBar = useSelector((state) => state.modals.openBottomNav);
   // const loggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -13,23 +15,13 @@ const Bottomnav = () => {
 
   return (
     <>
-      <nav className='bottom-navigation' style={{ display: openNavBar ? 'flex' : 'none' }}>
-        <div className="bottom-nav-container">
-          <ul className="btm-nav-ul">
-            <li className="btm-nav-li"><NavLink to={'/'}><button className="btm-nav-btn">Home</button></NavLink></li>
-            <li className="btm-nav-li"><NavLink to={'/about'}><button className="btm-nav-btn">About</button></NavLink></li>
-            <li className="btm-nav-li"><NavLink to={'/contacts'}><button className="btm-nav-btn">Contact</button></NavLink></li>
-            {
-              loggedIn ? <>
-                <li className="btm-nav-li"><NavLink to={'/user/profile'}><button className="btm-nav-btn"><FaUser size={20} /></button></NavLink></li>
-                <li className="btm-nav-li"><NavLink to={'/shop/cart'}><button className="btm-nav-btn"><FaCartShopping size={20} /></button></NavLink></li>
-              </>
-                :
-                <li className="btm-nav-li"><NavLink to={'/user/register'}><button className="btm-nav-btn">Signup</button></NavLink></li>
-            }
-          </ul>
-        </div>
-      </nav>
+      <section class="nav-bottom">
+            <ul class="nav-bottom-ul">
+                <li class="nav-bottom-li"><IoCartSharp size={50} /></li>
+                <li class="nav-bottom-li" onClick={()=>setProfileOptions(!profileOptions)}><AiOutlineMenuUnfold size={70} /></li>
+                <NavLink to={'/user/profile'} ><li class="nav-bottom-li"><FaUserCircle  size={50} /></li></NavLink>
+            </ul>
+        </section>
     </>
   )
 }
