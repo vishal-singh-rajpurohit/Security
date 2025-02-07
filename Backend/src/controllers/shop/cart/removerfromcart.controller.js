@@ -12,18 +12,18 @@ const removefromcart = asyncHandler(async (req, resp) => {
     throw new ApiError(400, "Unautharized Request");
   }
 
-  const cartId = req.query.id;
+  const {CartId} = req.body;
 
-  if (!cartId) {
+  if (!CartId) {
     throw new ApiError(400, "Cart Id Not Found");
   }
 
-  const isExists = await Cart.exists({_id : "678d3bf0d5bb1910a6522aff"})
+  const isExists = await Cart.exists({_id : CartId})
 
 
   console.log("here is existe ", isExists)
 
-  const removedItem = await Cart.findByIdAndDelete(cartId);
+  const removedItem = await Cart.findByIdAndDelete(CartId);
 
   console.log("removedItem ",removedItem);
 

@@ -40,7 +40,7 @@ mainRoutes.route("/report/get-reviews").get(Auth, getReviews);
 // CART
 mainRoutes.route("/cart/add-to-cart").post(Auth, addtocart);
 mainRoutes.route("/cart/serve-cart").post(Auth, serveCartItems);
-mainRoutes.route("/cart/remove-from-cart").delete(Auth, removefromcart);
+mainRoutes.route("/cart/remove-from-cart").post(Auth, removefromcart);
 
 // User Modification
 mainRoutes.route("/modify/change-password").put(Auth, changePassword);

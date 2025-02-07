@@ -27,7 +27,9 @@ const AuthProvider = ({ children }) => {
     const [openSignup, setOpenSignup] = useState(false)
     const [openLogin, setOpenLogin] = useState(false)
     const [openConform, setOpenConform] = useState(false);
-
+    const [openVerify, setOpenVerify] = useState(false);
+    const [openVerified, setOpenVerfied] = useState(false);
+    const [profileState, setProfileState] = useState('init');
     // PRODUCTS AND FILTER
     const [products, setProducts] = useState([]);
     const [proProducts, setProProducts] = useState([]);
@@ -268,6 +270,46 @@ const AuthProvider = ({ children }) => {
         }
     };
 
+    const sendVerificationMail = async () => {
+        if (!loggedIn) {
+            setOpenLogin(true)
+        } else {
+            try {
+                await axios.post(`${process.env.REACT_APP_API}${API[23]}`, {}, {
+                    withCredentials: true
+                }).then((resp) => {
+                    setOpenVerify(true);
+                })
+            } catch (error) {
+                console.log("error while sending verification mail ", error);
+            }
+        }
+
+    }
+
+    const verifyUser = async (Otp) => {
+        if (!Otp) {
+
+        } else {
+            try {
+                await axios.post(`${process.env.REACT_APP_API}${API[24]}`, {
+                    Otp
+                }, {
+                    withCredentials: true
+                }).then((resp) => {
+                    console.log("verified User ", resp);
+                    setOpenVerfied(true);
+                    setOpenVerify(false);
+                    setProfileState("pay")
+                })
+
+            } catch (error) {
+                console.log("error while verify User", error)
+            }
+        }
+
+    }
+
     const deleteAccount = async () => {
         try {
             await axios.post(`${process.env.REACT_APP_API}${API[8]}`, {})
@@ -305,10 +347,16 @@ const AuthProvider = ({ children }) => {
 
     const removeFromCart = async (cartID) => {
         try {
-            await axios.delete(`${process.env.REACT_APP_API}${API[16]}?id=${cartID}`)
+            await axios.post(`${process.env.REACT_APP_API}${API[16]}`, {
+                CartId: cartID
+            }, {
+                withCredentials: true
+            })
                 .then((resp) => {
                     setCartProducts(resp.data.data.ProductsInCart);
                     setTotalAmmount(resp.data.data.TotalAmmount);
+                    console.log("removed form cart ", resp);
+
                 })
         } catch (error) {
             console.log("Error While Removing Form Cart ", error);
@@ -324,14 +372,14 @@ const AuthProvider = ({ children }) => {
                 .then((resp) => {
                     setCartProducts(resp.data.data.ProductsInCart);
                     setTotalAmmount(resp.data.data.TotalAmmount);
-                    console.log("resp.data.data.ProductsInCart ", resp.data.data.ProductsInCart);
+                    console.log("Cart resp.data.data.ProductsInCart ", resp.data.data.ProductsInCart);
                 })
         } catch (error) {
             console.log("Error While Serving From Carts", error);
         }
     }
 
-    const placeOrder = async (ProductId, Address, City, State, ReffralCode, PostCode, MobileNumber ) => {
+    const placeOrder = async (ProductId, Address, City, State, ReffralCode, PostCode, MobileNumber) => {
         if (loggedIn) {
             try {
                 await axios.post(`${process.env.REACT_APP_API}${API[19]}`, {
@@ -355,7 +403,7 @@ const AuthProvider = ({ children }) => {
         } else {
             setOpenSignup(true);
         }
-    };
+    }
 
     const getOrders = async () => {
         if (!loggedIn) {
@@ -379,24 +427,24 @@ const AuthProvider = ({ children }) => {
 
     const cancleOrder = async (OrderId) => {
         console.log("cancle called");
-        
-        if(loggedIn){
+
+        if (loggedIn) {
             try {
                 await axios.post(`${process.env.REACT_APP_API}${API[22]}`, {
                     OrderId
                 }, {
                     withCredentials: true
-                }).then((resp)=>{
+                }).then((resp) => {
                     console.log("order cancelled successfully ", resp)
                 })
             } catch (error) {
                 console.log("error in order cancellation ", error);
             }
-        }else{
+        } else {
             setOpenSignup(true);
         }
-       
-    };
+
+    }
 
     const shareProduct = async () => { };
 
@@ -420,7 +468,7 @@ const AuthProvider = ({ children }) => {
             .catch((error) => {
                 console.log("error while hitting serve products ", error);
             });
-    };
+    }
 
     const servePremium = async (UserType) => {
         try {
@@ -435,7 +483,7 @@ const AuthProvider = ({ children }) => {
             console.log("premium Products route ", `${process.env.REACT_APP_API}${API[17]}`)
             console.log("error while hitting serve Premium products ", error);
         }
-    };
+    }
 
     const serveFilterProducts = async (pageNumber, filters, UserType) => {
         setPageNumber(0);
@@ -470,7 +518,7 @@ const AuthProvider = ({ children }) => {
         } catch (error) {
             console.log("Error While Selecting :", error);
         }
-    };
+    }
 
     const setFilterItems = (attributeName) => {
         setFilterKeys(attributeName)
@@ -602,11 +650,18 @@ const AuthProvider = ({ children }) => {
         setOpenSignup,
         openLogin,
         setOpenLogin,
-        openConform, 
+        openConform,
         setOpenConform,
+        openVerify,
+        setOpenVerify,
+        profileState, 
+        setProfileState,
+        openVerified,
+        setOpenVerfied,
         pageNumber,
         setPageNumber,
         product,
+        verifyUser,
         setProduct,
         proProducts,
         setProProducts,
@@ -630,6 +685,7 @@ const AuthProvider = ({ children }) => {
         register,
         login,
         logout,
+        sendVerificationMail,
         userFirstName,
         userLastName,
         userEmail,

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { BiRupee } from "react-icons/bi";
-import { MdDeleteForever } from "react-icons/md";
+import { BsCartDashFill } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import AuthContext from "../../../context/AuthContext.context";
 import tempSlide from '../../../Assets/logo/logo.png'
@@ -48,95 +48,28 @@ const Cart = () => {
             </section>
             <section class="cart-main-">
                 <div class="cart-grid-">
-                    <div class="premium-card2">
-                        <div class="premium-card-disp">
-                            <img src={tempimg} alt="" class="--premium-image" />
-                        </div>
-                        <div class="premium-card-details">
-                            <div class="--premium-det-title">
-                                <p class="--premium-p">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore
-                                    sequi consectetur asperiores eveniet a corrupti.
-                                </p>
+                    {
+                        cartProducts && cartProducts.map((product) => (
+                            <div class="premium-card2">
+                                <div class="premium-card-disp">
+                                    <img src={product.Product.FrontImage} alt="" class="--premium-image" />
+                                </div>
+                                <div class="premium-card-details">
+                                    <div class="--premium-det-title">
+                                        <p class="--premium-p">
+                                        {product.Product.ProductName}
+                                        </p>
+                                    </div>
+                                    <div class="--premium-det-rating">* 4.5 (15 reviews)</div>
+                                    <div class="--premium-cart-price">
+                                        <div class="--premium-price"><BiRupee size={20} /> {product.Product.Price}</div>
+                                        <div class="--premium-cart"><BsCartDashFill onClick={()=>removeFromCart(product._id)} /></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="--premium-det-rating">* 4.5 (15 reviews)</div>
-                            <div class="--premium-cart-price">
-                                <div class="--premium-price">$ 250</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="premium-card2">
-                        <div class="premium-card-disp">
-                            <img src={tempimg} alt="" class="--premium-image" />
-                        </div>
-                        <div class="premium-card-details">
-                            <div class="--premium-det-title">
-                                <p class="--premium-p">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore
-                                    sequi consectetur asperiores eveniet a corrupti.
-                                </p>
-                            </div>
-                            <div class="--premium-det-rating">* 4.5 (15 reviews)</div>
-                            <div class="--premium-cart-price">
-                                <div class="--premium-price">$ 250</div>
-                                <div class="--premium-cart">cart</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="premium-card2">
-                        <div class="premium-card-disp">
-                            <img src={tempimg} alt="" class="--premium-image" />
-                        </div>
-                        <div class="premium-card-details">
-                            <div class="--premium-det-title">
-                                <p class="--premium-p">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore
-                                    sequi consectetur asperiores eveniet a corrupti.
-                                </p>
-                            </div>
-                            <div class="--premium-det-rating">* 4.5 (15 reviews)</div>
-                            <div class="--premium-cart-price">
-                                <div class="--premium-price">$ 250</div>
-                                <div class="--premium-cart">cart</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="premium-card2">
-                        <div class="premium-card-disp">
-                            <img src={tempimg} alt="" class="--premium-image" />
-                        </div>
-                        <div class="premium-card-details">
-                            <div class="--premium-det-title">
-                                <p class="--premium-p">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore
-                                    sequi consectetur asperiores eveniet a corrupti.
-                                </p>
-                            </div>
-                            <div class="--premium-det-rating">* 4.5 (15 reviews)</div>
-                            <div class="--premium-cart-price">
-                                <div class="--premium-price">$ 250</div>
-                                <div class="--premium-cart">cart</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="premium-card2">
-                        <div class="premium-card-disp">
-                            <img src={tempimg} alt="" class="--premium-image" />
-                        </div>
-                        <div class="premium-card-details">
-                            <div class="--premium-det-title">
-                                <p class="--premium-p">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore
-                                    sequi consectetur asperiores eveniet a corrupti.
-                                </p>
-                            </div>
-                            <div class="--premium-det-rating">* 4.5 (15 reviews)</div>
-                            <div class="--premium-cart-price">
-                                <div class="--premium-price">$ 250</div>
-                                <div class="--premium-cart">cart</div>
-                            </div>
-                        </div>
-                    </div>
+                        ))
+                    }
+
                 </div>
                 <div class="cart-whole">
                     <div class="cart-whole-cart">
@@ -144,13 +77,15 @@ const Cart = () => {
                             <div class="main-cart-price-grid">
                                 <span class="price-key">items: </span>
                                 <span class="price-value">
-                                    2
+                                   {
+                                    cartProducts.length 
+                                   }
                                 </span>
                             </div>
                             <div class="main-cart-price-grid">
                                 <span class="price-key">total price: </span>
                                 <span class="price-value">
-                                    $50.9
+                                    <BiRupee size={20} />{totalAmmount}
                                 </span>
                             </div>
                             <div class="main-cart-price-grid">

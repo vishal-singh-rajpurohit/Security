@@ -60,6 +60,11 @@ section.signup-main {
     padding-top: 1rem;
     padding-bottom: 2rem;
 }
+.left-right.lr2 {
+    background-color: #29223a;
+    padding: 2rem;
+    border-radius: 8px;
+}
 
 .singup-top-text {
     display: flex;

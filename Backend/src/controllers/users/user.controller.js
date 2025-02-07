@@ -2,11 +2,11 @@ const asyncHandler = require('../../utils/asyncHandler.utils');
 const genTokens = require("../../utils/genTokens.utils");
 const ApiError = require("../../utils/ApiError.utils");
 const ApiResponse = require("../../utils/ApiResponse.utils");
-const Dealer = require('../../models/dealer.model');
 const User = require('../../models/user.model');
-const Installer = require('../../models/installer.model');
+const Otp = require('../../models/otp.model')
 const jwt = require("jsonwebtoken");
-const { Options } = require('../../methods')
+const {sendOtpVerifiaction} = require("../admin/sendMails/sendMail")
+const { Options, genreateOtp } = require('../../methods')
 
 
 const registerUser = asyncHandler(async (req, resp) => {
@@ -173,5 +173,52 @@ const becomeDealer = asyncHandler(async (req, resp)=>{
     }
 })
 
+const sendVerificationOtp = asyncHandler(async (req, resp)=>{
+    try {
+        const user = req.user;
+        if(!user){
+            throw new ApiError(400, "Unautharized Request ")
+        }
 
-module.exports = { registerUser, loginUser, logoutUser , becomeDealer};
+        console.log("email :", user.Email)
+
+        const otp = genreateOtp()
+
+        const sendResult = await sendOtpVerifiaction(user.Email, otp)
+
+        if(!sendResult){
+            throw new ApiError(400, "unable to send email");
+        }
+
+        resp.status(200)
+        .json(new ApiResponse(200, {}, "Email Send Successfully"))
+
+    } catch (error) {
+        throw new ApiError(400, "error while sending email ");
+    }
+})
+
+const verifyUser = asyncHandler(async(req, resp)=>{
+    try {
+        const otp = req.body.Otp;
+
+        if(!Otp){
+            throw new ApiError(400, "Must Provide Otp")
+        }
+
+        const isValidOtp = await Otp.deleteOne({Otp: otp})
+
+        if(!isValidOtp){
+            throw new ApiError(400 , "invalid otp")
+        }
+
+
+        resp.status(200)
+        .json(new ApiResponse(200, {}, "User Validate"));
+
+    } catch (error) {
+        console.log("error in verify User ", error)
+    }
+})
+
+module.exports = { registerUser, loginUser, logoutUser , becomeDealer, sendVerificationOtp, verifyUser};

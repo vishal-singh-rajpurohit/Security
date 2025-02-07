@@ -53,7 +53,11 @@ export const API = [
     // MAIN PRODUCTS 21
     "/main/serve/products",
     // CANCLE ORDER 22
-    "/orders/cancle-orders"
+    "/orders/cancle-orders",
+    // VERIFICATION MAIL 23 24
+    "/user/verification-mail",
+    "/user/validate-user"
+
 ]
 
 export const filterAttributes = [

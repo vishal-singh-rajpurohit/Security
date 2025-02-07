@@ -9,10 +9,10 @@ import { FaHamburger } from 'react-icons/fa'
 
 
 const Profile = () => {
-    const {profileOptions, setProfileOptions} = useContext(AuthContext);
+    const { profileOptions, setProfileOptions, sendVerificationMail, profileState, setProfileState } = useContext(AuthContext);
 
-    const [profileState, setProfileState] = useState('init');
-    const [resHi , setResHi] = useState(false)
+    // const [] = useState('init');
+    const [resHi, setResHi] = useState(false)
 
     const dispatch = useDispatch();
     const setOpenMessages = () => dispatch(openMessages());
@@ -40,58 +40,88 @@ const Profile = () => {
         userCraditPayments
     } = useContext(AuthContext);
 
-    function changeProfileState(state){
+    function changeProfileState(state) {
         setProfileState(state);
         setProfileOptions(false);
     }
 
 
-    useEffect(()=>{
+    useEffect(() => {
+        if (window.innerWidth < 950) {
+            console.log("rest hi is tue");
 
-    },[])
-
-    useEffect(()=>{
-        if(window.innerWidth < 950){
             setResHi(true)
-        }else{
+        } else {
             setResHi(false)
         }
-    },[window.innerWidth])
+    }, [window.innerWidth])
 
     return (
         <>
             <section class="profile-main">
-                <div class="profile-left" style={{display: profileOptions? 'flex' : 'none'}}>
+                <div class="profile-left" style={{ display: resHi && profileOptions ? 'flex' : 'none' }}>
                     <ul class="profile-left-ul">
-                        <div class="profile-left-li" onClick={()=>changeProfileState('init')}>
+                        <div class="profile-left-li" onClick={() => changeProfileState('init')}>
                             <span class="profile-button-heading">Account Settings</span>
                             <span class="profile-button--text"
                             >details and about your profile</span>
                         </div>
-                        <div class="profile-left-li" onClick={()=>changeProfileState('noti')}>
-                            <span class="profile-button-heading"  onClick={()=>setProfileState('noti')}>Notifications</span>
+                        <div class="profile-left-li" onClick={() => changeProfileState('noti')}>
+                            <span class="profile-button-heading" onClick={() => setProfileState('noti')}>Notifications</span>
+                            <span class="profile-button--text">reports , alerts notifications</span>
+                        </div>
+                        <div class="profile-left-li" onClick={async () => {
+                            await sendVerificationMail();
+                        }} >
+                            <span class="profile-button-heading" >Payments</span>
+                            <span class="profile-button--text">payments and rewards</span>
+                        </div>
+                        {/* <div class="profile-left-li" onClick={()=>changeProfileState('pass')}>
+                            <span class="profile-button-heading"  onClick={()=>setProfileState('pass')}>Password & Security</span>
+                            <span class="profile-button--text"
+                            >details about personal information</span>
+                        </div> */}
+                        <div class="profile-left-li">
+                            <span class="profile-button-heading" onClick={() => logout()}>Log Out</span>
+                        </div>
+                        <div class="profile-left-li res-ninefive">
+                            <span class="profile-button-heading" onClick={() => setProfileOptions(false)}>Close</span>
+                        </div>
+                    </ul>
+                </div>
+                <div class="profile-left">
+                    <ul class="profile-left-ul">
+                        <div class="profile-left-li" onClick={() => changeProfileState('init')}>
+                            <span class="profile-button-heading">Account Settings</span>
+                            <span class="profile-button--text"
+                            >details and about your profile</span>
+                        </div>
+                        <div class="profile-left-li" onClick={() => changeProfileState('noti')}>
+                            <span class="profile-button-heading" onClick={() => setProfileState('noti')}>Notifications</span>
                             <span class="profile-button--text"
                             >reports , alerts notifications</span
                             >
                         </div>
-                        <div class="profile-left-li" onClick={()=>changeProfileState('pay')} >
-                            <span class="profile-button-heading"  onClick={()=>setProfileState('pay')}>Payments</span>
+                        <div class="profile-left-li" onClick={async () => {
+                            await sendVerificationMail()
+                        }} >
+                            <span class="profile-button-heading" >Payments</span>
                             <span class="profile-button--text">payments and rewards</span>
                         </div>
-                        <div class="profile-left-li" onClick={()=>changeProfileState('pass')}>
+                        {/* <div class="profile-left-li" onClick={()=>changeProfileState('pass')}>
                             <span class="profile-button-heading"  onClick={()=>setProfileState('pass')}>Password & Security</span>
                             <span class="profile-button--text"
                             >details about personal information</span>
-                        </div>
+                        </div> */}
                         <div class="profile-left-li">
-                            <span class="profile-button-heading" onClick={()=>logout()}>Log Out</span>
+                            <span class="profile-button-heading" onClick={() => logout()}>Log Out</span>
                         </div>
                         <div class="profile-left-li res-ninefive">
-                            <span class="profile-button-heading" onClick={()=>setProfileOptions(false)}>Close</span>
+                            <span class="profile-button-heading" onClick={() => setProfileOptions(false)}>Close</span>
                         </div>
                     </ul>
                 </div>
-                <div class="profile-right" style={{display: profileState === "init" ? 'inline': 'none'}}>
+                <div class="profile-right" style={{ display: profileState === "init" ? 'inline' : 'none' }}>
                     <div class="profile-right-top">
                         <div class="profile-left-dp">
                             <span class="profile-dp-span"></span>
@@ -105,7 +135,7 @@ const Profile = () => {
                         </div>
                         <div class="profile-right-upload">
                             <button class="upload-right-up">Upload</button>
-                            <button class="upload-right-up op" onClick={()=>setProfileOptions(true)}><FaHamburger /></button>
+                            <button class="upload-right-up op" onClick={() => setProfileOptions(true)}><FaHamburger /></button>
                         </div>
                     </div>
                     <div class="---right-info-text">
@@ -121,7 +151,7 @@ const Profile = () => {
                             <div class="---double-inputs">
                                 <div class="---dub-left-inputs">
                                     <label for="name" class="profile-leb">Full Name</label>
-                                    <input type="text" name="name" value={userFirstName+ " "+ userLastName} placeholder="Vishal Singh" id="name" class="---profile-input"/>
+                                    <input type="text" name="name" value={userFirstName + " " + userLastName} placeholder="Vishal Singh" id="name" class="---profile-input" />
                                 </div>
                                 <div class="---dub-left-inputs">
                                     <label for="mail" class="profile-leb">Email Address</label>
@@ -132,7 +162,7 @@ const Profile = () => {
                             <div class="---single-input">
                                 <div class="---sing-inputs">
                                     <label for="address" class="profile-leb">Address</label>
-                                    <input type="text" name="address" value={userAddress} placeholder="kudi bhagtasni sector 4, jodhpur , Rajasthan" id="address" class="---profile-single--"/>
+                                    <input type="text" name="address" value={userAddress} placeholder="kudi bhagtasni sector 4, jodhpur , Rajasthan" id="address" class="---profile-single--" />
                                 </div>
                             </div>
                             <div class="---double-inputs">
@@ -143,17 +173,17 @@ const Profile = () => {
                                 </div>
                                 <div class="---dub-left-inputs">
                                     <label for="City" class="profile-leb">City</label>
-                                    <input type="text" name="City" value={userCity} placeholder="jodhpur" id="City" class="---profile-input"/>
+                                    <input type="text" name="City" value={userCity} placeholder="jodhpur" id="City" class="---profile-input" />
                                 </div>
                             </div>
                             <div class="---double-inputs">
                                 <div class="---dub-left-inputs">
                                     <label for="state" class="profile-leb">State</label>
-                                    <input type="text" name="state" value={userState} placeholder="Rajasthan" id="state" class="---profile-input"/>
+                                    <input type="text" name="state" value={userState} placeholder="Rajasthan" id="state" class="---profile-input" />
                                 </div>
                                 <div class="---dub-left-inputs">
                                     <label for="pincode" class="profile-leb">Pin Code</label>
-                                    <input type="number" name="pincode" value={userPostCode} placeholder="320055" id="pincode" class="---profile-input"/>
+                                    <input type="number" name="pincode" value={userPostCode} placeholder="320055" id="pincode" class="---profile-input" />
                                 </div>
                             </div>
                             <button className="cover-whole">Cancle</button>
@@ -161,7 +191,7 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-                <div class="profile-right" style={{display: profileState === "noti" ? 'inline': 'none'}}>
+                <div class="profile-right" style={{ display: profileState === "noti" ? 'inline' : 'none' }}>
                     <div class="profile-right-top">
                         <div class="profile-left-dp">
                             <span class="profile-dp-span"></span>
@@ -175,7 +205,7 @@ const Profile = () => {
                         </div>
                         <div class="profile-right-upload">
                             <button class="upload-right-up">Upload</button>
-                            <button class="upload-right-up op" onClick={()=>setProfileOptions(true)}><FaHamburger /></button>
+                            <button class="upload-right-up op" onClick={() => setProfileOptions(true)}><FaHamburger /></button>
                         </div>
                     </div>
                     <div class="---right-info-text">
@@ -421,7 +451,7 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-                <div class="profile-right" style={{display: profileState === "pay" ? 'inline': 'none'}}>
+                <div class="profile-right" style={{ display: profileState === "pay" ? 'inline' : 'none' }}>
                     <div class="profile-right-top">
                         <div class="profile-left-dp">
                             <span class="profile-dp-span"></span>
@@ -435,7 +465,7 @@ const Profile = () => {
                         </div>
                         <div class="profile-right-upload">
                             <button class="upload-right-up">Upload</button>
-                            <button class="upload-right-up op" onClick={()=>setProfileOptions(true)}><FaHamburger /></button>
+                            <button class="upload-right-up op" onClick={() => setProfileOptions(true)}><FaHamburger /></button>
                         </div>
                     </div>
                     <div class="---right-info-text">
@@ -445,37 +475,47 @@ const Profile = () => {
                         <div class="---right-heading-main">
                             <h1 class="---right-head--profile">Payment details and history</h1>
                         </div>
-                        <div class="payment-buttons">
-                            <button class="--payments-buttons">All Payments</button>
-                            <button class="--payments-buttons">Pending</button>
-                            <button class="--payments-buttons">history</button>
-                        </div>
-                        <button class="cover-whole">Total: $5000</button>
-                        <div class="---right-notifications">
-                            <div class="---message-single">
-                                <div class="--left-message-">
-                                    <div class="noti-type">
-                                        <span class="--u-type"></span>
-                                        <span class="--noti-name">idido4545jhjhd</span>
+                        {
+                            !userType || userType === "CUSTOMER" ?
+                                <div class="---right-heading-main" style={{ justifyContent: 'center', alignItems: 'center' }}>
+                                    <li class="--info-text" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>No Payment Histyory found</li>
+                                </div> :
+                                <>
+                                    <div class="payment-buttons">
+                                        <button class="--payments-buttons">All Payments</button>
+                                        <button class="--payments-buttons">Pending</button>
+                                        <button class="--payments-buttons">history</button>
                                     </div>
-                                    <div class="--payment-points">
-                                        <span class="pay--payment">Payment:$50</span>
-                                        <span class="pay--payment">Point:30</span>
+                                    <button class="cover-whole">Total: $5000</button>
+                                    <div class="---right-notifications">
+                                        <div class="---message-single">
+                                            <div class="--left-message-">
+                                                <div class="noti-type">
+                                                    <span class="--u-type"></span>
+                                                    <span class="--noti-name">idido4545jhjhd</span>
+                                                </div>
+                                                <div class="--payment-points">
+                                                    <span class="pay--payment">Payment:$50</span>
+                                                    <span class="pay--payment">Point:30</span>
+                                                </div>
+                                            </div>
+                                            <div class="--right-message-">
+                                                <div class="--right-message-date">
+                                                    <span class="date-time">12 - 2 - 2024</span>
+                                                </div>
+                                                <div class="--right-message-time">
+                                                    <span class="Status">Pending</span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="--right-message-">
-                                    <div class="--right-message-date">
-                                        <span class="date-time">12 - 2 - 2024</span>
-                                    </div>
-                                    <div class="--right-message-time">
-                                        <span class="Status">Pending</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                </>
+                        }
+
+
                     </div>
                 </div>
-                <div class="profile-right" style={{display: profileState === "pass" ? 'inline': 'none'}}>
+                <div class="profile-right" style={{ display: profileState === "pass" ? 'inline' : 'none' }}>
                     <div class="profile-right-top">
                         <div class="profile-left-dp">
                             <span class="profile-dp-span"></span>
@@ -489,7 +529,7 @@ const Profile = () => {
                         </div>
                         <div class="profile-right-upload">
                             <button class="upload-right-up">Upload</button>
-                            <button class="upload-right-up op" onClick={()=>setProfileOptions(true)}><FaHamburger /></button>
+                            <button class="upload-right-up op" onClick={() => setProfileOptions(true)}><FaHamburger /></button>
                         </div>
                     </div>
                     <div class="---right-info-text">
