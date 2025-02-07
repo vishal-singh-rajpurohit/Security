@@ -122,7 +122,6 @@ const AuthProvider = ({ children }) => {
                     Password: Password,
                 })
                 .then((resp) => {
-                    console.log("otp sent Successfully for Login", resp);
                     setLoading(false)
                 });
         } catch (error) {
@@ -317,7 +316,6 @@ const AuthProvider = ({ children }) => {
                 }, {
                     withCredentials: true
                 }).then((resp) => {
-                    console.log("verified User ", resp);
                     setOpenVerfied(true);
                     setOpenVerify(false);
                     setProfileState("pay")
@@ -360,7 +358,6 @@ const AuthProvider = ({ children }) => {
                         },
                     })
                     .then((resp) => {
-                        console.log("added to cart");
                         setLoading(false)
                     })
             } catch (error) {
@@ -384,7 +381,6 @@ const AuthProvider = ({ children }) => {
                 .then((resp) => {
                     setCartProducts(resp.data.data.ProductsInCart);
                     setTotalAmmount(resp.data.data.TotalAmmount);
-                    console.log("removed form cart ", resp);
                     setLoading(false)
 
                 })
@@ -404,7 +400,6 @@ const AuthProvider = ({ children }) => {
                 .then((resp) => {
                     setCartProducts(resp.data.data.ProductsInCart);
                     setTotalAmmount(resp.data.data.TotalAmmount);
-                    console.log("Cart resp.data.data.ProductsInCart ", resp.data.data.ProductsInCart);
                     setLoading(false)
                 })
         } catch (error) {
@@ -428,7 +423,6 @@ const AuthProvider = ({ children }) => {
                 }, {
                     withCredentials: true
                 }).then((resp) => {
-                    console.log("Order Placed Successfully ", resp);
                     setOpenConform(false)
                     setLoading(false)
                 })
@@ -454,7 +448,6 @@ const AuthProvider = ({ children }) => {
                     withCredentials: true
                 })
                     .then((resp) => {
-                        console.log("Here are All Orders ", resp.data.data.Orders);
                         setOrders(resp.data.data.Orders);
                         navigate("/user/Orders")
                         setLoading(false)
@@ -476,7 +469,6 @@ const AuthProvider = ({ children }) => {
                 }, {
                     withCredentials: true
                 }).then((resp) => {
-                    console.log("order cancelled successfully ", resp)
                     setLoading(false)
                 })
             } catch (error) {
@@ -500,14 +492,10 @@ const AuthProvider = ({ children }) => {
                 { UserType, Filters: filters }
             )
             .then((resp) => {
-                console.log("Product is :", resp.data.data.Products);
-                console.log("resp.data.data.Products[resp.data.data.Products.length - 1]._id :", resp.data.data.Products[resp.data.data.Products.length - 1]);
 
                 if (products.length !== 0 && products[products.length - 1]._id === resp.data.data.Products[resp.data.data.Products.length - 1]._id) {
-                    console.log("Product Over")
                 } else {
                     setProducts((prev) => [...prev, ...resp.data.data.Products]);
-                    console.log("Product Updated")
                 }
 
                 setLoading(false)
@@ -518,16 +506,14 @@ const AuthProvider = ({ children }) => {
             });
     }
 
-    const servePremium = async (UserType , Limit = 4) => {
+    const servePremium = async (UserType, Limit = 4) => {
         console.log("premium products executed")
         setLoading(true)
         try {
             await axios
                 .post(`${process.env.REACT_APP_API}${API[18]}`, { UserType, Limit })
                 .then((resp) => {
-                    console.log("Product Premium resp is :", resp.data.data.Products);
                     setProProducts(resp.data.data.Products)
-                    console.log("Product Premium is :", proProducts)
                     setLoading(false)
                 })
         } catch (error) {
@@ -546,7 +532,6 @@ const AuthProvider = ({ children }) => {
                 { UserType, Filters: filters }
             )
             .then((resp) => {
-                console.log("Product is :", resp.data.data.Products)
                 setProducts(resp.data.data.Products);
                 setLoading(false)
             })
@@ -568,7 +553,6 @@ const AuthProvider = ({ children }) => {
                     setProduct(resp.data.data.Product[0]);
                     setShowCaseImage(resp.data.data.Product[0].FrontImage);
                     setLoading(false)
-
                     navigate("/shop");
                 });
         } catch (error) {
