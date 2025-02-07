@@ -9,17 +9,19 @@ import SignupModal from './Components/Modal/SignupModal';
 import LoginModal from './Components/Modal/LoginModal';
 import ConformOrder from './Components/Profile/Orders/ConformOrder';
 import SecurityOtp from './Components/Modal/SecurityOtp';
+import Loader from './Components/Modal/Loader';
 
 const Layout = () => {
   return (
     <>
-        <Header />
-        <ReportModal />
-        <SubmitModal />
+        <Loader />
         <SignupModal />
         <LoginModal />
         <ConformOrder />
         <SecurityOtp />
+        <Header />
+        <ReportModal />
+        <SubmitModal />
         <Outlet />
         <Bottomnav />
         <Footer />

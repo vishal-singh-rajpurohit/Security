@@ -78,7 +78,7 @@ const Cart = () => {
                                 <span class="price-key">items: </span>
                                 <span class="price-value">
                                    {
-                                    cartProducts.length 
+                                    cartProducts ? cartProducts.length : 0 
                                    }
                                 </span>
                             </div>

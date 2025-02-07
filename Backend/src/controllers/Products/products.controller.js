@@ -141,13 +141,13 @@ const serverProducts = asyncHandler(async (req, resp) => {
 
 const servePremium = asyncHandler(async (req, resp) => {
   const page = Number(req.query.page) || 0;
-  const { UserType } = req.body;
+  const { UserType, Limit } = req.body;
 
   if(!UserType){
     throw new ApiError(400, "UserType Not Found")
   }
 
-  const skipped = paginate(page, 4);
+  const skipped = paginate(page, Limit || 4);
 
   const Products = await Product.aggregate([
     {
@@ -182,7 +182,7 @@ const servePremium = asyncHandler(async (req, resp) => {
         },
       }
     }
-  ]).skip(skipped).limit(4);
+  ]).skip(skipped).limit(Limit || 4);
 
   if (!Products) {
     throw new ApiError(400, "Not Any Product Found");

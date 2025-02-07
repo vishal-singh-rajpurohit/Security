@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOpenFilter } from '../../Functions/Ui/modalSlice'
-import AuthContext from '../../context/AuthContext.context';
 import { MdAddShoppingCart, MdCurrencyRupee } from 'react-icons/md'
 import logo from '../../Assets/logo/logo.png'
 import tempCam from '../../Assets/camera/singledome.png'
+import AuthContext from '../../context/AuthContext.context';
 
 // TESTING THE UI
 
@@ -88,7 +88,7 @@ const Products = () => {
             <section class="product-main-">
                 <div class="product-premium-text">
                     <h3 class="premium">Premium Products</h3>
-                    <span class="showMore">Show More</span>
+                    <NavLink to={'/premium'} ><span class="showMore">Show More</span></NavLink>
                 </div>
                 <div class="prodcut-overflow-y">
                     <div class="product-card-overflow">
@@ -97,7 +97,7 @@ const Products = () => {
                                 <div class="premium-card" key={prodcut._id}>
                                     <div class="premium-card-disp" onClick={() => selectProduct(prodcut._id)}>
                                         <img
-                                            src={tempCam}
+                                            src={prodcut.FrontImage}
                                             alt=""
                                             class="--premium-image"
                                         />
@@ -192,14 +192,14 @@ const Products = () => {
             <section class="product-main-">
                 <div class="product-premium-text">
                     <h3 class="premium">Shop</h3>
-                    <span class="showMore">Show More</span>
+                    {/* <span class="showMore">Show More</span> */}
                 </div>
                 <div class="prodcut-grid-">
                     {
                         products && products.map((product) => (
                             <div class="premium-card2">
                                 <div class="premium-card-disp" onClick={() => selectProduct(product._id)}>
-                                    <img src={tempCam} alt="" class="--premium-image" />
+                                    <img src={product.FrontImage} alt="" class="--premium-image" />
                                 </div>
                                 <div class="premium-card-details">
                                     <div class="--premium-det-title" style={{ cursor: 'pointer' }} onClick={() => selectProduct(product._id)}>

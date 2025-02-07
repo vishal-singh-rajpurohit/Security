@@ -27,6 +27,7 @@ import './Styles/slides.css'
 import './Styles/styles.css'
 import './Styles/cart.css'
 import './Styles/shop.css'
+import Premium from "./Components/Products/Premium";
 
 
 
@@ -40,6 +41,7 @@ const App = () => {
           <Routes >
             <Route path="/" element={<Layout />}>
               <Route path="" element={<Products />} />
+              <Route path="premium" element={<Premium />} />
               <Route path="shop/cart" element={<Cart />} />
               <Route path="shop" element={<Shop />} />
               <Route path="shop/details" element={<ShopDetails />} />

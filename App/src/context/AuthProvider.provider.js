@@ -30,6 +30,7 @@ const AuthProvider = ({ children }) => {
     const [openVerify, setOpenVerify] = useState(false);
     const [openVerified, setOpenVerfied] = useState(false);
     const [profileState, setProfileState] = useState('init');
+    const [loading, setLoading] = useState(false)
     // PRODUCTS AND FILTER
     const [products, setProducts] = useState([]);
     const [proProducts, setProProducts] = useState([]);
@@ -82,18 +83,21 @@ const AuthProvider = ({ children }) => {
 
 
     const checkLoggedIn = async () => {
+        setLoading(true);
         try {
             await axios.post(`${process.env.REACT_APP_API}/main/auth/refresh-Tokens`, {})
                 .then((resp) => {
                     console.log("User is Already logged in :", resp)
+                    setLoading(false)
                 })
         } catch (error) {
-            // console.log("User is not logged in :", error)
+            console.log("User is not logged in :", error)
+            setLoading(false)
         }
     }
 
     const sendRegistrationOtp = async (Email, Password) => {
-
+        setLoading(true)
         try {
             await axios
                 .post(`${process.env.REACT_APP_API}${API[9]}`, {
@@ -101,14 +105,16 @@ const AuthProvider = ({ children }) => {
                     Password: Password,
                 })
                 .then((resp) => {
-
+                    setLoading(false)
                 });
         } catch (error) {
             console.log("got error while hitting register otp ", error);
+            setLoading(false)
         }
     };
 
     const sendLoginOtp = async (Email, Password) => {
+        setLoading(true)
         try {
             await axios
                 .post(`${process.env.REACT_APP_API}${API[10]}`, {
@@ -117,13 +123,16 @@ const AuthProvider = ({ children }) => {
                 })
                 .then((resp) => {
                     console.log("otp sent Successfully for Login", resp);
+                    setLoading(false)
                 });
         } catch (error) {
             console.log("got error while hitting Login otp ", error);
+            setLoading(false)
         }
     };
 
     const register = async (Otp, FirstName, LastName, Email, Password, ConformPassword) => {
+        setLoading(true)
         try {
             await axios.post(`${process.env.REACT_APP_API}${API[0]}`,
                 {
@@ -181,13 +190,16 @@ const AuthProvider = ({ children }) => {
                     }))
                     setOpenSignup(false);
                     setOpenLogin(false);
+                    setLoading(false)
                 });
         } catch (error) {
             console.log("error while submitting otp in registration function ", error);
+            setLoading(false)
         }
     };
 
     const login = async (Otp, Email, Password) => {
+        setLoading(true)
         try {
             await axios
                 .post(`${process.env.REACT_APP_API}${API[1]}`, {
@@ -245,14 +257,16 @@ const AuthProvider = ({ children }) => {
 
                     setOpenLogin(false);
                     setOpenSignup(false);
-
+                    setLoading(false)
                 });
         } catch (error) {
             console.log("error while submitting login otp", error);
+            setLoading(false)
         }
     };
 
     const logout = async () => {
+        setLoading(true)
         try {
             await axios
                 .post(`${process.env.REACT_APP_API}${API[2]}`, {}, { withCredentials: true })
@@ -264,9 +278,11 @@ const AuthProvider = ({ children }) => {
                     setOpenLogin(false);
                     setOpenSignup(false);
                     navigate("/");
+                    setLoading(false)
                 });
         } catch (error) {
             console.log("Error in Logout", error);
+            setLoading(false)
         }
     };
 
@@ -274,14 +290,17 @@ const AuthProvider = ({ children }) => {
         if (!loggedIn) {
             setOpenLogin(true)
         } else {
+            setLoading(true)
             try {
                 await axios.post(`${process.env.REACT_APP_API}${API[23]}`, {}, {
                     withCredentials: true
                 }).then((resp) => {
                     setOpenVerify(true);
+                    setLoading(false)
                 })
             } catch (error) {
                 console.log("error while sending verification mail ", error);
+                setLoading(false)
             }
         }
 
@@ -291,6 +310,7 @@ const AuthProvider = ({ children }) => {
         if (!Otp) {
 
         } else {
+            setLoading(true)
             try {
                 await axios.post(`${process.env.REACT_APP_API}${API[24]}`, {
                     Otp
@@ -301,29 +321,34 @@ const AuthProvider = ({ children }) => {
                     setOpenVerfied(true);
                     setOpenVerify(false);
                     setProfileState("pay")
+                    setLoading(false)
                 })
-
             } catch (error) {
                 console.log("error while verify User", error)
+                setLoading(false)
             }
         }
 
     }
 
     const deleteAccount = async () => {
+        setLoading(true)
         try {
             await axios.post(`${process.env.REACT_APP_API}${API[8]}`, {})
                 .then((resp) => {
                     dispatch(
                         clearUserDetails()
                     );
+                    setLoading(false)
                 })
         } catch (error) {
             console.log("Somthing Went Wrong While Deleting :", error);
+            setLoading(false)
         }
     };
 
     const addToCart = async (productId) => {
+        setLoading(true)
         if (loggedIn) {
             try {
                 await axios.post(`${process.env.REACT_APP_API}${API[14]}`,
@@ -336,16 +361,20 @@ const AuthProvider = ({ children }) => {
                     })
                     .then((resp) => {
                         console.log("added to cart");
+                        setLoading(false)
                     })
             } catch (error) {
                 console.log("error while add to cart the product :", error);
+                setLoading(false)
             }
         } else {
             setOpenSignup(true)
+            setLoading(false)
         }
     };
 
     const removeFromCart = async (cartID) => {
+        setLoading(true)
         try {
             await axios.post(`${process.env.REACT_APP_API}${API[16]}`, {
                 CartId: cartID
@@ -356,15 +385,18 @@ const AuthProvider = ({ children }) => {
                     setCartProducts(resp.data.data.ProductsInCart);
                     setTotalAmmount(resp.data.data.TotalAmmount);
                     console.log("removed form cart ", resp);
+                    setLoading(false)
 
                 })
         } catch (error) {
             console.log("Error While Removing Form Cart ", error);
+            setLoading(false)
 
         }
     }
 
     const serveCart = async () => {
+        setLoading(true)
         try {
             await axios.post(`${process.env.REACT_APP_API}${API[15]}`, { UserType: (tempUserType || userType) }, {
                 withCredentials: true
@@ -373,13 +405,16 @@ const AuthProvider = ({ children }) => {
                     setCartProducts(resp.data.data.ProductsInCart);
                     setTotalAmmount(resp.data.data.TotalAmmount);
                     console.log("Cart resp.data.data.ProductsInCart ", resp.data.data.ProductsInCart);
+                    setLoading(false)
                 })
         } catch (error) {
             console.log("Error While Serving From Carts", error);
+            setLoading(false)
         }
     }
 
     const placeOrder = async (ProductId, Address, City, State, ReffralCode, PostCode, MobileNumber) => {
+        setLoading(true)
         if (loggedIn) {
             try {
                 await axios.post(`${process.env.REACT_APP_API}${API[19]}`, {
@@ -395,20 +430,25 @@ const AuthProvider = ({ children }) => {
                 }).then((resp) => {
                     console.log("Order Placed Successfully ", resp);
                     setOpenConform(false)
+                    setLoading(false)
                 })
             } catch (error) {
                 console.log("Errir While Placing Orders ", error);
+                setLoading(false)
 
             }
         } else {
             setOpenSignup(true);
+            setLoading(false)
         }
     }
 
     const getOrders = async () => {
         if (!loggedIn) {
             setOpenSignup(true)
+            setLoading(false)
         } else {
+            setLoading(true)
             try {
                 await axios.post(`${process.env.REACT_APP_API}${API[20]}`, {}, {
                     withCredentials: true
@@ -417,17 +457,18 @@ const AuthProvider = ({ children }) => {
                         console.log("Here are All Orders ", resp.data.data.Orders);
                         setOrders(resp.data.data.Orders);
                         navigate("/user/Orders")
+                        setLoading(false)
                     })
             } catch (error) {
                 console.log("error while getting orders ", error);
+                setLoading(false)
             }
         }
 
     }
 
     const cancleOrder = async (OrderId) => {
-        console.log("cancle called");
-
+        setLoading(true);
         if (loggedIn) {
             try {
                 await axios.post(`${process.env.REACT_APP_API}${API[22]}`, {
@@ -436,12 +477,15 @@ const AuthProvider = ({ children }) => {
                     withCredentials: true
                 }).then((resp) => {
                     console.log("order cancelled successfully ", resp)
+                    setLoading(false)
                 })
             } catch (error) {
                 console.log("error in order cancellation ", error);
+                setLoading(false)
             }
         } else {
             setOpenSignup(true);
+            setLoading(false)
         }
 
     }
@@ -449,6 +493,7 @@ const AuthProvider = ({ children }) => {
     const shareProduct = async () => { };
 
     const serveProducts = async (pageNumber, filters, UserType) => {
+        setLoading(true)
         await axios
             .post(
                 `${process.env.REACT_APP_API}/main/serve/products?page=${pageNumber}`,
@@ -464,30 +509,37 @@ const AuthProvider = ({ children }) => {
                     setProducts((prev) => [...prev, ...resp.data.data.Products]);
                     console.log("Product Updated")
                 }
+
+                setLoading(false)
             })
             .catch((error) => {
                 console.log("error while hitting serve products ", error);
+                setLoading(false)
             });
     }
 
-    const servePremium = async (UserType) => {
+    const servePremium = async (UserType , Limit = 4) => {
+        console.log("premium products executed")
+        setLoading(true)
         try {
             await axios
-                .post(`${process.env.REACT_APP_API}${API[18]}`, { UserType })
+                .post(`${process.env.REACT_APP_API}${API[18]}`, { UserType, Limit })
                 .then((resp) => {
                     console.log("Product Premium resp is :", resp.data.data.Products);
                     setProProducts(resp.data.data.Products)
                     console.log("Product Premium is :", proProducts)
+                    setLoading(false)
                 })
         } catch (error) {
             console.log("premium Products route ", `${process.env.REACT_APP_API}${API[17]}`)
             console.log("error while hitting serve Premium products ", error);
+            setLoading(false)
         }
     }
 
     const serveFilterProducts = async (pageNumber, filters, UserType) => {
         setPageNumber(0);
-
+        setLoading(true)
         await axios
             .post(
                 `${process.env.REACT_APP_API}/main/serve/products?page=${pageNumber}`,
@@ -496,13 +548,16 @@ const AuthProvider = ({ children }) => {
             .then((resp) => {
                 console.log("Product is :", resp.data.data.Products)
                 setProducts(resp.data.data.Products);
+                setLoading(false)
             })
             .catch((error) => {
                 console.log("error while hitting serve products ", error);
+                setLoading(false)
             });
     }
 
     const selectProduct = async (productId, UserType) => {
+        setLoading(true)
         try {
             await axios
                 .post(`${process.env.REACT_APP_API}/main/serve/selected-product`, {
@@ -512,11 +567,13 @@ const AuthProvider = ({ children }) => {
                 .then((resp) => {
                     setProduct(resp.data.data.Product[0]);
                     setShowCaseImage(resp.data.data.Product[0].FrontImage);
+                    setLoading(false)
 
                     navigate("/shop");
                 });
         } catch (error) {
             console.log("Error While Selecting :", error);
+            setLoading(false)
         }
     }
 
@@ -648,13 +705,15 @@ const AuthProvider = ({ children }) => {
         totalAmmount,
         openSignup,
         setOpenSignup,
+        loading,
+        setLoading,
         openLogin,
         setOpenLogin,
         openConform,
         setOpenConform,
         openVerify,
         setOpenVerify,
-        profileState, 
+        profileState,
         setProfileState,
         openVerified,
         setOpenVerfied,
