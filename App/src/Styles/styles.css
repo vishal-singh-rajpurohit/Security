@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scrollbar-width: thin;
 }
 
 a{
@@ -43,6 +44,11 @@ li.left-li:hover {
     height: 2px;
     background-color: #1f0061;
     transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+
+.right-li {
+    cursor: pointer;
+    width: 3rem;
 }
 
 .underline-center:hover::after {

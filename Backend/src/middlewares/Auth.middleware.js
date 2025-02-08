@@ -8,8 +8,6 @@ const Installer = require("../models/installer.model");
 const Auth = asyncHandler(async (req, resp, next) => {
     
     const Token = req.cookies?.accessToken;
-
-    console.log("access token ",  req.cookies.accessToken);
     
     if(!Token){
         throw new ApiError(401, "Unauthorized request");

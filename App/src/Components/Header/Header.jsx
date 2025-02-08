@@ -24,7 +24,7 @@ const Header = () => {
                     <ul class="left-ul">
                         <NavLink to={'/'} ><li class="left-li underline-center">Home</li></NavLink>
                         <NavLink to={'/about'} ><li class="left-li underline-center">About</li></NavLink>
-                        <NavLink to={'/contact'} ><li class="left-li underline-center">Contact</li></NavLink>
+                        <a href="google.com" target='_blank'><li class="left-li underline-center">Contact</li></a>
                     </ul>
                 </div>
                 <div class="mid">

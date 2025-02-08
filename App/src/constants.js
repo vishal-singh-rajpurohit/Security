@@ -129,11 +129,4 @@ export const filterAttributes = [
            "OUTDOOR",
         ]
     },
-    // {
-    //     name : "Premium",
-    //     attributes: [
-    //         ""
-    //         "all"
-    //     ]
-    // },
 ]

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Layout from './Layout'
 import Products from './Components/Products/Products'
 import Shop from "./Components/Products/Shop/Shop";
@@ -28,12 +28,14 @@ import './Styles/styles.css'
 import './Styles/cart.css'
 import './Styles/shop.css'
 import Premium from "./Components/Products/Premium";
+import AuthContext from "./context/AuthContext.context";
+import About from "./Components/About/About";
 
 
 
 
 const App = () => {
-  
+
   return (
     <>
       {/* <Router> */}
@@ -41,6 +43,7 @@ const App = () => {
           <Routes >
             <Route path="/" element={<Layout />}>
               <Route path="" element={<Products />} />
+              <Route path="about" element={<About />} />
               <Route path="premium" element={<Premium />} />
               <Route path="shop/cart" element={<Cart />} />
               <Route path="shop" element={<Shop />} />

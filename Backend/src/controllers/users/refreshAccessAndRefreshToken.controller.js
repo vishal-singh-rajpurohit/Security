@@ -2,10 +2,9 @@ const asyncHandler = require('../../utils/asyncHandler.utils');
 const genTokens = require("../../utils/genTokens.utils");
 const ApiError = require("../../utils/ApiError.utils");
 const ApiResponse = require("../../utils/ApiResponse.utils");
-const Dealer = require('../../models/dealer.model');
 const User = require('../../models/user.model');
-const Installer = require('../../models/installer.model');
 const jwt = require("jsonwebtoken");
+const {Options} = require('../../methods')
 
 const refreshAccessAndRefreshToken = asyncHandler(async (req, resp) => {
     const oldRefreshToken = req.cookies.refreshToken || req.header["Authorization"]?.replace("Bearer ", "");
@@ -20,29 +19,13 @@ const refreshAccessAndRefreshToken = asyncHandler(async (req, resp) => {
         throw new ApiError(401, "Unauthorized request");
     }
 
-    let Modal;
+    let Modal = User;
 
-    switch (user.UserType) {
-        case "DEALER":
-            Modal = Dealer;
-            break;
 
-        case "INSTALLER":
-            Modal = Installer;
-            break;
-
-        case "CUSTOMER":
-            Modal = User;
-            break;
-
-        default:
-            throw new ApiError(401, "Somthing Wents Wrong With User Type");
-    }
 
     const foundUser = await Modal.findById(decodedToken?._id);
 
     if (oldRefreshToken !== foundUser.refreshToken) {
-        console.log(foundUser.refreshToken == refreshToken)
         throw new ApiError(401, "refreshToken is expired");
     }
 
@@ -65,11 +48,6 @@ const refreshAccessAndRefreshToken = asyncHandler(async (req, resp) => {
 
     if (!newUser) {
         throw new ApiError(500, "Somthing Wents Wrong While Saving the refreshToken");
-    }
-
-    const Options = {
-        httpOnly: true,
-        secure: true
     }
 
     resp.status(200)

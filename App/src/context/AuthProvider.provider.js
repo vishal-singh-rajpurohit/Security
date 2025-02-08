@@ -30,7 +30,8 @@ const AuthProvider = ({ children }) => {
     const [openVerify, setOpenVerify] = useState(false);
     const [openVerified, setOpenVerfied] = useState(false);
     const [profileState, setProfileState] = useState('init');
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const [filterOpen, setFilterOpen] = useState(false);
     // PRODUCTS AND FILTER
     const [products, setProducts] = useState([]);
     const [proProducts, setProProducts] = useState([]);
@@ -85,10 +86,46 @@ const AuthProvider = ({ children }) => {
     const checkLoggedIn = async () => {
         setLoading(true);
         try {
-            await axios.post(`${process.env.REACT_APP_API}/main/auth/refresh-Tokens`, {})
+            await axios.post(`${process.env.REACT_APP_API}/main/auth/refresh-Tokens`, {}, {
+                withCredentials: true
+            })
                 .then((resp) => {
+                    const {
+                        FirstName,
+                        LastName,
+                        Email,
+                        MobileNumber,
+                        UserType,
+                        TotalOrders,
+                        Avatar,
+                        VerificationStatus,
+                        UpiMobileNumber,
+                        TotalEarnings,
+                        PendingOrders,
+                        CraditPayments,
+                    } = resp.data.data.User;
+                    dispatch(setUserDetails({
+                        isLoggedIn: true,
+                        FirstName,
+                        LastName,
+                        Email,
+                        MobileNumber,
+                        UserType,
+                        TotalOrders,
+                        Avatar,
+                        VerificationStatus,
+                        UpiMobileNumber,
+                        TotalEarnings,
+                        PendingOrders,
+                        CraditPayments
+                    }));
+                    dispatch(reverseLogin({
+                        status: true
+                    }))
                     console.log("User is Already logged in :", resp)
-                    setLoading(false)
+                    setOpenSignup(false);
+                    setOpenLogin(false);
+                    setLoading(false);
                 })
         } catch (error) {
             console.log("User is not logged in :", error)
@@ -120,6 +157,8 @@ const AuthProvider = ({ children }) => {
                 .post(`${process.env.REACT_APP_API}${API[10]}`, {
                     Email: Email,
                     Password: Password,
+                }, {
+                    withCredentials: true
                 })
                 .then((resp) => {
                     setLoading(false)
@@ -189,7 +228,7 @@ const AuthProvider = ({ children }) => {
                     }))
                     setOpenSignup(false);
                     setOpenLogin(false);
-                    setLoading(false)
+                    setLoading(false);
                 });
         } catch (error) {
             console.log("error while submitting otp in registration function ", error);
@@ -675,6 +714,7 @@ const AuthProvider = ({ children }) => {
     // FOR MAKE SURE IF USER IS ALREADY AUTHERIZED
     useEffect(() => {
         checkLoggedIn();
+        console.log("loaded")
     }, [])
 
     const data = {
@@ -712,6 +752,8 @@ const AuthProvider = ({ children }) => {
         setCartProducts,
         filters,
         setFilters,
+        filterOpen, 
+        setFilterOpen,
         filterKeys,
         profileOptions,
         setProfileOptions,

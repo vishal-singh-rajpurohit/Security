@@ -5,7 +5,10 @@ const { genreateOtp, Options } = require("../../methods");
 const { sendOtp } = require("../admin/sendMails/sendMail");
 
 const otpVerification = asyncHandler(async (req, resp) => {
+  console.log("first clear");
+  
   const { Email } = req.body;
+
   if (!Email) {
     throw new ApiError(400, "Must Provide Email and UserType");
   }
@@ -17,7 +20,7 @@ const otpVerification = asyncHandler(async (req, resp) => {
   }
 
   const sendResult = await sendOtp(Email, otp);
-
+  console.log("second clear");
 
   if (!sendResult) {
     throw new ApiError(500, "Otp Result Error ");

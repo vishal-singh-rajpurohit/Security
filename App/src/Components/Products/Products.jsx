@@ -3,17 +3,20 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOpenFilter } from '../../Functions/Ui/modalSlice'
 import { MdAddShoppingCart, MdCurrencyRupee } from 'react-icons/md'
+import {CiFilter} from 'react-icons/ci'
 import logo from '../../Assets/logo/logo.png'
-import tempCam from '../../Assets/camera/singledome.png'
 import AuthContext from '../../context/AuthContext.context';
+import NavModal from '../Modal/NavModal';
+import Filter from '../Modal/Filter';
 
 // TESTING THE UI
 
 const Products = () => {
 
     const { products, pageNumber, isFilterOn, loggedIn, userType, tempUserType, filterAts, filterKeys, filterObject, setPageNumber, proProducts } = useContext(AuthContext);
-    const { addToCart, placeOrder, selectProduct, serveProducts, setFilterItems, setFilterValues, serveFilterProducts, servePremium } = useContext(AuthContext);
+    const { addToCart, placeOrder, selectProduct, setFilterOpen, serveProducts, setFilterItems, setFilterValues, serveFilterProducts, servePremium } = useContext(AuthContext);
     const [selectedOption, setSelectedOption] = useState(null);
+
 
     const dispatch = useDispatch();
     const openFilter = useSelector((state) => state.modals.openBottomFilter);
@@ -59,21 +62,21 @@ const Products = () => {
 
     return (
         <>
+            <NavModal />
             <section class="slide-box">
                 <div class="--slide">
                     <div class="left--slide">
                         <div class="left--slide-up">
-                            <h2 class="slide-det-text">Loremasfsd ipsumadfdsa dolorasfdsa</h2>
+                            <h2 class="slide-det-text">Protect What Matters with Our Expert CCTV Services</h2>
                         </div>
                         <div class="left--slide-mid">
                             <p class="slide-det-para">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus
-                                iste nisi officia delectus!
+                            We offer top-quality CCTV installation, maintenance, and monitoring solutions to keep your home and business safe. Trust our experts for reliable security 24/7.
                             </p>
                         </div>
                         <div class="left--slide-down">
-                            <button class="btn-lite">Buy Now</button>
-                            <button class="btn-dark">Explore More</button>
+                            <a href='#products' ><button class="btn-lite">Buy Now</button></a>
+                            <NavLink to={'premium'} ><button class="btn-dark">Explore More</button></NavLink>
                         </div>
                     </div>
                     <div class="right--slide">
@@ -122,7 +125,7 @@ const Products = () => {
                     </div>
                 </div>
             </section>
-            <section class="Offers-main">
+            {/* <section class="Offers-main">
                 <div class="offer-sub">
                     <div class="offer-left">
                         <div class="--offer-image-box">
@@ -188,12 +191,13 @@ const Products = () => {
                         </div>
                     </div>
                 </div>
-            </section>
-            <section class="product-main-">
+            </section> */}
+            <section class="product-main-" id='products'>
                 <div class="product-premium-text">
                     <h3 class="premium">Shop</h3>
-                    {/* <span class="showMore">Show More</span> */}
+                    <span class="showMore"  onClick={()=>setFilterOpen(true)}><li class="right-li" style={{listStyleType: 'none'}}><CiFilter size={30} /></li></span>
                 </div>
+                <Filter  />
                 <div class="prodcut-grid-">
                     {
                         products && products.map((product) => (
