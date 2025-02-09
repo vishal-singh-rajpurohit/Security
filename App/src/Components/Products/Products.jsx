@@ -195,7 +195,7 @@ const Products = () => {
             <section class="product-main-" id='products'>
                 <div class="product-premium-text">
                     <h3 class="premium">Shop</h3>
-                    <span class="showMore"  onClick={()=>setFilterOpen(true)}><li class="right-li" style={{listStyleType: 'none'}}><CiFilter size={30} /></li></span>
+                    {/* <span class="showMore"  onClick={()=>setFilterOpen(true)}><li class="right-li" style={{listStyleType: 'none'}}><CiFilter size={30} /></li></span> */}
                 </div>
                 <Filter  />
                 <div class="prodcut-grid-">
