@@ -531,7 +531,7 @@ const AuthProvider = ({ children }) => {
                 { UserType, Filters: filters }
             )
             .then((resp) => {
-
+                console.log("product served :", resp)
                 if (products.length !== 0 && products[products.length - 1]._id === resp.data.data.Products[resp.data.data.Products.length - 1]._id) {
                 } else {
                     setProducts((prev) => [...prev, ...resp.data.data.Products]);
