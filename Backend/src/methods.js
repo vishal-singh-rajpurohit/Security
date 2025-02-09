@@ -6,7 +6,7 @@ const ApiError = require("./utils/ApiError.utils");
 const limit = 15;
 const Options = {
   httpOnly: true,
-  secure: false, // turn true in production
+  secure: true, // turn true in production
   sameSite: 'Lax',
   path: '/'
 };
