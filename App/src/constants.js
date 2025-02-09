@@ -1,5 +1,3 @@
-
-
 export const setUserRoutes = (UserType) => {
     switch (UserType) {
         case "CUSTOMER":
@@ -15,8 +13,6 @@ export const setUserRoutes = (UserType) => {
             break;
     }
 }
-
-
 export const API = [
     // User Routes /Api/v1/ 0 - 5
     "/user/register",

@@ -564,7 +564,7 @@ const AuthProvider = ({ children }) => {
 
     const serveFilterProducts = async (pageNumber, filters, UserType) => {
         setPageNumber(0);
-        setLoading(true)
+        setLoading(true) 
         await axios
             .post(
                 `${process.env.REACT_APP_API}/main/serve/products?page=${pageNumber}`,
