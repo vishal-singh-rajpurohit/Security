@@ -5,7 +5,7 @@ const asyncHandler = require("../../../utils/asyncHandler.utils");
 const ApiResponse = require("../../../utils/ApiResponse.utils");
 
 const newproduct = asyncHandler(async (req, resp) => {
-  const { ProductName, KeyWords, Tag, PriceForDealers, PriceForInstallers, PriceForCustomers, AdvancedPaymentAmmount, Description, Premium, CameraType, CameraQuality, IndoorOutdoor, MegaPixels, NumberOfCameras, AboutItem, Channel, Hdd   } = req.body;
+  const { ProductName, KeyWords, Tag, PriceForDealers, PriceForInstallers, PriceForCustomers, AdvancedPaymentAmmount, Description, Premium, CameraType, CameraQuality, IndoorOutdoor, MegaPixels, NumberOfCameras, AboutItem, Channel, Hdd } = req.body;
 
   if ([ProductName, KeyWords, PriceForDealers, PriceForInstallers, PriceForCustomers, Description].some((field) => field?.trim() === "")) {
     throw new ApiError(400, "All fields must required");
@@ -68,11 +68,11 @@ const newproduct = asyncHandler(async (req, resp) => {
   })
   await pushResult.save();
 
-  if(!pushResult){
+  if (!pushResult) {
     throw new ApiError(400, "Error While Product in DB");
   }
 
-  resp.status(200).json(new ApiResponse(200, {pushResult} ,"product Added Successfully"));
+  resp.status(200).json(new ApiResponse(200, { pushResult }, "product Added Successfully"));
 });
 
 module.exports = newproduct;

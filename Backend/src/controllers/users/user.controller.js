@@ -71,6 +71,8 @@ const registerUser = asyncHandler(async (req, resp) => {
         throw new ApiError("Somthing went Wrong while Saving refreshToke to User");
     }
 
+    console.log("user registered")
+
     resp.status(200)
         .cookie("accessToken", accessToken, Options)
         .cookie("refreshToken", refreshToken, Options)
