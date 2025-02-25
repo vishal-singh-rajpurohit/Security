@@ -8,11 +8,11 @@ const newSchema = new mongoose.Schema(
     },
     PriceForDealers: {
       type: Number,
-      required: true
+      // required: true
     },
     PriceForInstallers: {
       type: Number,
-      required: true
+      // required: true
     },
     PriceForCustomers: {
       type: Number,
@@ -45,7 +45,7 @@ const newSchema = new mongoose.Schema(
       required: true
     },
     Hdd: {
-      type: Number,
+      type: String,
       required: true
     },
     MegaPixels:{

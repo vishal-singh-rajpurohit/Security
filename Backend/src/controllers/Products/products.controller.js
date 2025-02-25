@@ -26,8 +26,6 @@ const serverProducts = asyncHandler(async (req, resp) => {
 
   console.log("matchQuery :", matchQuery);
 
-
-
   const skipped = paginate(page, 15);
   if (Object.keys(matchQuery).length === 0) {
     console.log("Filter prodcuts called");
@@ -73,6 +71,8 @@ const serverProducts = asyncHandler(async (req, resp) => {
     if (!Products) {
       throw new ApiError(400, "Not Any Product Found With Filter");
     }
+
+    console.log("products served ")
 
     resp.status(200).json(
       new ApiResponse(

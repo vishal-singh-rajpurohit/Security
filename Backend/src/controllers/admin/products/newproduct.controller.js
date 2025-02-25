@@ -5,7 +5,9 @@ const asyncHandler = require("../../../utils/asyncHandler.utils");
 const ApiResponse = require("../../../utils/ApiResponse.utils");
 
 const newproduct = asyncHandler(async (req, resp) => {
-  const { ProductName, KeyWords, Tag, PriceForDealers, PriceForInstallers, PriceForCustomers, AdvancedPaymentAmmount, Description, Premium, CameraType, CameraQuality, IndoorOutdoor, MegaPixels, NumberOfCameras, AboutItem, Channel, Hdd } = req.body;
+  let { ProductName, KeyWords, Tag, PriceForDealers, PriceForInstallers, PriceForCustomers, AdvancedPaymentAmmount, Description, Premium, CameraType, CameraQuality, IndoorOutdoor, MegaPixels, NumberOfCameras, AboutItem, Channel, Hdd } = req.body;
+
+  console.log("body :", req.body);
 
   if ([ProductName, KeyWords, PriceForDealers, PriceForInstallers, PriceForCustomers, Description].some((field) => field?.trim() === "")) {
     throw new ApiError(400, "All fields must required");
@@ -18,6 +20,8 @@ const newproduct = asyncHandler(async (req, resp) => {
   if (!req.files) {
     throw new ApiError(400, "files not found")
   }
+
+  
 
 
   // upload multiple files at a time
@@ -45,8 +49,8 @@ const newproduct = asyncHandler(async (req, resp) => {
 
   const pushResult = new Product({
     ProductName,
-    PriceForDealers: Number(PriceForDealers),
-    PriceForInstallers: Number(PriceForInstallers),
+    PriceForDealers: PriceForDealers ? Number(PriceForDealers) : Number(PriceForCustomers),
+    PriceForInstallers: PriceForInstallers ? Number(PriceForInstallers) : Number(PriceForCustomers),
     PriceForCustomers: Number(PriceForCustomers),
     AdvancedPaymentAmmount: Number(AdvancedPaymentAmmount),
     KeyWords,
