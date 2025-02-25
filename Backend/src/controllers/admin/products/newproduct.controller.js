@@ -13,13 +13,12 @@ const newproduct = asyncHandler(async (req, resp) => {
 
   const aboutItemArr = AboutItem.split("/")
 
-  console.log("about this item ", aboutItemArr);
-
   let ShowCaseImages = []
 
   if (!req.files) {
     throw new ApiError(400, "files not found")
   }
+
 
   // upload multiple files at a time
   const LocalFrontImage = req.files?.image[0]?.path;

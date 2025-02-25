@@ -7,6 +7,7 @@ const { getReports } = require('../controllers/admin/reports/getReports.controll
 const reviewReport = require('../controllers/admin/reports/reviewReport.controller.js');
 const getUsersVerification = require('../controllers/admin/users/getUsersVerification.controller.js');
 const setVerification = require('../controllers/admin/users/setVerification.controller.js');
+const {changeName, changePrice, changeImages} = require("../controllers/admin/edit/edit.controller.js")
 
 
 const adminRouter = express.Router();
@@ -24,15 +25,11 @@ adminRouter.route("/addproduct").post(upload.fields([
     }
 ]), newproduct);
 adminRouter.route("/delete-product").delete(deleteProduct);
-adminRouter.route("/edit-price").put(editProductPrice);
+// adminRouter.route("/edit-price").put(editProductPrice);
 adminRouter.route("/edit-display").put(upload.fields([{
     name: "display",
     maxCount: 5
 }]),editProductDisplay);
-
-
-// orders
-
 
 // reprts and response
 adminRouter.route("/unread-reports").get(getReports);
@@ -42,7 +39,16 @@ adminRouter.route("/review-report").post(reviewReport);
 adminRouter.route("/approve").put(setVerification);
 adminRouter.route("/get-unverified-users").get(getUsersVerification);
 
+// Edit Products
 
+adminRouter.route("/edit-name").put(changeName)
+adminRouter.route("/edit-price").put(changePrice)
+adminRouter.route("/edit-images").put( upload.fields([
+    {
+        name: "display",
+        maxCount: 5
+    }
+]) ,changeImages)
 
 
 module.exports = adminRouter;

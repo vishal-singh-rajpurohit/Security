@@ -1,0 +1,62 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+section.prodcut {
+  width: 100vw;
+  display: flex
+;
+  justify-content: center;
+  align-items: center;
+}
+.product-grid {
+  width: 100%;
+  display: grid
+;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+  margin: 0 1rem;
+  margin-top: 1rem;
+}
+.product-card {
+  height: 50vh;
+  display: flex
+;
+  flex-direction: column;
+  gap: 0.1rem;
+  background: whitesmoke;
+  border-radius: 10px;
+  cursor: pointer;
+  overflow: hidden;
+}
+.image-grid-display {
+  height: 71%;
+  background-image: url('./Assets/xtra.png');
+}
+.image-grid-display {
+  height: 71%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.bottom-name {
+  display: flex
+;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+@media (max-width:1000px) {
+  .product-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+}
+@media (max-width:750px) {
+  .product-grid {
+    grid-template-columns: 1fr 1fr;
+}
+}
+@media (max-width:475px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+}
+}

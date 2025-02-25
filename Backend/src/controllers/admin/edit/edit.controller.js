@@ -2,6 +2,7 @@ const Product = require('../../../models/product.model')
 const asyncHandler = require('../../../utils/asyncHandler.utils')
 const ApiResponse = require('../../../utils/ApiResponse.utils');
 const ApiError = require('../../../utils/ApiError.utils')
+const uploadOnCloud = require("../../../utils/cloudinary.utils")
 
 
 const changeName = asyncHandler(async (req, resp) => {
@@ -42,6 +43,7 @@ const changePrice = asyncHandler(async (req, resp) => {
     const { ProductId, PriceForCustomers } = req.body;
 
     if (!ProductId) {
+        console.log("Prodcut id :", ProductId)
         throw new ApiError(400, "Product Id Must Be Provided")
     }
 
@@ -75,8 +77,6 @@ const changeImages = asyncHandler(async (req, resp) => {
 
     const image = req.files
 
-
-
     if (!ProductId) {
         throw new ApiError(400, "Product Id Must Be Provided")
     }
@@ -88,12 +88,6 @@ const changeImages = asyncHandler(async (req, resp) => {
     let ShowCaseImages = []
 
     // upload multiple files at a time
-    const LocalFrontImage = req.files?.image[0]?.path;
-    if (!LocalFrontImage) {
-        throw new ApiError(400, "Cover Images not found");
-    }
-    const FrontImage = await uploadOnCloud(LocalFrontImage);
-
     for (file of req.files.display) {
         if (!file) {
             throw new ApiError(400, "error in upload the image is not found");
@@ -119,7 +113,7 @@ const changeImages = asyncHandler(async (req, resp) => {
 
     const newProduct = await Product.findByIdAndUpdate(ProductId, {
         $set: {
-            FrontImage: FrontImage
+            ShowCaseImages: ShowCaseImages
         }
     })
 
