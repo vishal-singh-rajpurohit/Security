@@ -60,6 +60,16 @@ section.cart-main- {
     justify-content: space-between;
 }
 
+.cart-whole {
+    width: 90%;
+    border: 1px solid;
+    border-radius: 7px;
+    display: flex
+;
+    justify-content: center;
+    height: auto;
+}
+
 @media (max-width: 1050px) {
     .main-cart-purchase {
         flex-direction: column;

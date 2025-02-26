@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from 'react'
 import AuthContext from '../../context/AuthContext.context';
 import { MdAddShoppingCart, MdCancel, MdCurrencyRupee } from 'react-icons/md';
+import '../../Styles/p.css'
+
 
 const Premium = () => {
 
@@ -30,8 +32,7 @@ const Premium = () => {
                             <div class="premium-card-details">
                                 <div class="--premium-det-title">
                                     <p class="--premium-p" style={{ cursor: 'pointer' }} onClick={() => selectProduct(prodcut._id)}>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                        Dolore sequi consectetur asperiores eveniet a corrupti.
+                                        {prodcut.ProductName}
                                     </p>
                                 </div>
                                 <div class="--premium-det-rating" onClick={() => selectProduct(prodcut._id)}>* 4.5 (15 reviews)</div>

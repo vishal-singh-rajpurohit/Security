@@ -88,3 +88,14 @@ img.slide--image {
         z-index: 1;
     }
 }
+
+@media (max-width: 500px) {
+    section.slide-box {
+        width: 100%;
+        height: 56vh;
+        display: flex
+    ;
+        justify-content: center;
+        align-items: center;
+    }
+}

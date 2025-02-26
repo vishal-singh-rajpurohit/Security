@@ -20,32 +20,31 @@ const Cart = () => {
 
     return (
         <>
-            <section class="slide-box">
-                <div class="--slide">
-                    <div class="left--slide">
-                        <div class="left--slide-up">
-                            <h2 class="slide-det-text">Loremasfsd ipsumadfdsa dolorasfdsa</h2>
-                        </div>
-                        <div class="left--slide-mid">
-                            <p class="slide-det-para">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus
-                                iste nisi officia delectus!
-                            </p>
-                        </div>
-                        <div class="left--slide-down">
-                            <button class="btn-lite">Buy Now</button>
-                            <button class="btn-dark">Explore More</button>
-                        </div>
-                    </div>
-                    <div class="right--slide">
-                        <img
-                            src={tempSlide}
-                            alt="Dome cctv camera"
-                            class="slide--image"
-                        />
-                    </div>
-                </div>
-            </section>
+             <section class="slide-box">
+                            <div class="--slide">
+                                <div class="left--slide">
+                                    <div class="left--slide-up">
+                                        <h2 class="slide-det-text">Protect What Matters with Our Expert CCTV Services</h2>
+                                    </div>
+                                    <div class="left--slide-mid">
+                                        <p class="slide-det-para">
+                                        We offer top-quality CCTV installation, maintenance, and monitoring solutions to keep your home and business safe. Trust our experts for reliable security 24/7.
+                                        </p>
+                                    </div>
+                                    <div class="left--slide-down">
+                                        <a href='#products' ><button class="btn-lite">Buy Now</button></a>
+                                        <NavLink to={'premium'} ><button class="btn-dark">Explore More</button></NavLink>
+                                    </div>
+                                </div>
+                                <div class="right--slide">
+                                    <img
+                                        src={tempimg}
+                                        alt="Dome cctv camera"
+                                        class="slide--image"
+                                    />
+                                </div>
+                            </div>
+                        </section>
             <section class="cart-main-">
                 <div class="cart-grid-">
                     {
@@ -88,16 +87,16 @@ const Cart = () => {
                                     <BiRupee size={20} />{totalAmmount}
                                 </span>
                             </div>
-                            <div class="main-cart-price-grid">
+                            {/* <div class="main-cart-price-grid">
                                 <span class="price-key">you are saving: </span>
                                 <span class="price-value">
                                     $5
                                 </span>
-                            </div>
+                            </div> */}
                         </div>
                         <div class="main-cart-purchase">
-                            <button class="btn-full button-shop-dark">Buy Now</button>
-                            <button class="btn-full button-shop-lite ">Clear Cart</button>
+                            {/* <button class="btn-full button-shop-dark">Buy Now</button>
+                            <button class="btn-full button-shop-lite ">Clear Cart</button> */}
                         </div>
                     </div>
                 </div>

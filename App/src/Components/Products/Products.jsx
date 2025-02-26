@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOpenFilter } from '../../Functions/Ui/modalSlice'
 import { MdAddShoppingCart, MdCurrencyRupee, MdExpandMore } from 'react-icons/md'
-import {CiFilter} from 'react-icons/ci'
+import { CiFilter } from 'react-icons/ci'
 import logo from '../../Assets/logo/logo.png'
 import AuthContext from '../../context/AuthContext.context';
 import NavModal from '../Modal/NavModal';
@@ -71,7 +71,7 @@ const Products = () => {
                         </div>
                         <div class="left--slide-mid">
                             <p class="slide-det-para">
-                            We offer top-quality CCTV installation, maintenance, and monitoring solutions to keep your home and business safe. Trust our experts for reliable security 24/7.
+                                We offer top-quality CCTV installation, maintenance, and monitoring solutions to keep your home and business safe. Trust our experts for reliable security 24/7.
                             </p>
                         </div>
                         <div class="left--slide-down">
@@ -91,7 +91,7 @@ const Products = () => {
             <section class="product-main-">
                 <div class="product-premium-text">
                     <h3 class="premium">Premium Products</h3>
-                    <NavLink to={'/premium'} ><span class="showMore">Show More</span></NavLink>
+                    <NavLink to={'premium'} ><span class="showMore">Show More</span></NavLink>
                 </div>
                 <div class="prodcut-overflow-y">
                     <div class="product-card-overflow">
@@ -198,7 +198,7 @@ const Products = () => {
                     <h3 class="premium">Shop</h3>
                     {/* <span class="showMore"  onClick={()=>setFilterOpen(true)}><li class="right-li" style={{listStyleType: 'none'}}><CiFilter size={30} /></li></span> */}
                 </div>
-                <Filter  />
+                <Filter />
                 <div class="prodcut-grid-">
                     {
                         products && products.map((product) => (
@@ -214,7 +214,7 @@ const Products = () => {
                                     </div>
                                     <div class="--premium-det-rating" onClick={() => selectProduct(product._id)}>* 4.5 (15 reviews)</div>
                                     <div class="--premium-cart-price">
-                                        <div class="--premium-price"><MdCurrencyRupee size={10}/> {product.PriceForCustomers}</div>
+                                        <div class="--premium-price"><MdCurrencyRupee size={10} /> {product.PriceForCustomers}</div>
                                         <div class="--premium-cart" onClick={() => addToCart(product._id)}><MdAddShoppingCart /></div>
                                     </div>
                                 </div>
@@ -223,7 +223,7 @@ const Products = () => {
                     }
 
                 </div>
-                <div className="product-more" onClick={()=>setPageNumber(pageNumber+1)}>
+                <div className="product-more" onClick={() => setPageNumber(pageNumber + 1)}>
                     <MdExpandMore size={30} />
                 </div>
             </section>

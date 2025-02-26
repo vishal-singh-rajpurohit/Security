@@ -12,7 +12,7 @@ a {
 nav.nav {
     display: flex;
     justify-content: space-around;
-    height: 5rem;
+    height: 4.5rem;
     align-items: center;
     position: sticky;
     z-index: 99;
@@ -118,7 +118,7 @@ p.copyright-text {
 section.nav-bottom {
     display: none;
     position: fixed;
-    height: 5rem;
+    height: 4rem;
     width: 100%;
     background: #ffffff73;
     bottom: 0;
