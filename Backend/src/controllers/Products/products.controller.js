@@ -219,27 +219,21 @@ const serveSelectedProduct = asyncHandler(async (req, resp) => {
       $project: {
         _id: 1,
         ProductName: 1,
-        PriceForDealers: {
-          $cond: {
-            if: { $eq: [UserType, "DEALER"] },
-            then: "$PriceForDealers",
-            else: "$$REMOVE"
-          }
-        },
-        PriceForInstallers: {
-          $cond: {
-            if: { $eq: [UserType, "INSTALLER"] },
-            then: "$PriceForInstallers",
-            else: "$$REMOVE"
-          }
-        },
-        PriceForCustomers: {
-          $cond: {
-            if: { $eq: [UserType, "CUSTOMER"] },
-            then: "$PriceForCustomers",
-            else: "$$REMOVE"
-          }
-        },
+        // PriceForDealers: {
+        //   $cond: {
+        //     if: { $eq: [UserType, "DEALER"] },
+        //     then: "$PriceForDealers",
+        //     else: "$$REMOVE"
+        //   }
+        // },
+        // PriceForInstallers: {
+        //   $cond: {
+        //     if: { $eq: [UserType, "INSTALLER"] },
+        //     then: "$PriceForInstallers",
+        //     else: "$$REMOVE"
+        //   }
+        // },
+        PriceForCustomers: 1,
         Premium: 1,
         AdvancedPaymentAmmount: 1,
         Description: 1,
