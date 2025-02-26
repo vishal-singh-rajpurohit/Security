@@ -5,7 +5,7 @@ import a from '../../Assets/x.jpg'
 const About = () => {
 
     const gotToHome = () =>{
-        window.open('https://google.com', "_blank")
+        window.open('https://www.instagram.com/sewad.infotech', "_blank")
     }
     
     return (
