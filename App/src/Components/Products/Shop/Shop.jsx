@@ -92,7 +92,7 @@ const Shop = () => {
                         </p>
                     </div>
                 </div>
-                <div class="shop-left-five">
+                {/* <div class="shop-left-five">
                     <ul class="shop-specification-ul">
                         <li class="shop-specification-li">
                             <shop class="specification-key">Channel : </shop>
@@ -111,8 +111,8 @@ const Shop = () => {
                             <shop class="specification-value">5</shop>
                         </li>
                     </ul>
-                </div>
-                <div class="shop-left-four">
+                </div> */}
+                {/* <div class="shop-left-four">
                     <div class="quantity-text">
                         <span class="quantity--text">Select Quantity</span>
                     </div>
@@ -126,7 +126,7 @@ const Shop = () => {
                         <span class="q-size">7</span>
                         <span class="q-size">8</span>
                     </div>
-                </div>
+                </div> */}
                 <div class="shop-left-bottom">
                     <button class="button-shop-dark" onClick={()=>setOpenConform(true)}>Buy Now</button>
                     <button class="button-shop-lite" onClick={() => addToCart(product._id)}>Add to Cart</button>
