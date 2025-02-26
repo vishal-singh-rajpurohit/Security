@@ -159,6 +159,7 @@ const servePremium = asyncHandler(async (req, resp) => {
       $project: {
         _id: 1,
         FrontImage: 1,
+        ProductName: 1,
         PriceForDealers: {
           $cond: {
             if: { $eq: [UserType, "DEALER"] },

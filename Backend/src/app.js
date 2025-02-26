@@ -6,7 +6,7 @@ const cookieParser = require("cookie-parser")
 const app = express();
 app.use(express.json({ limit: "16kb" }));
 
-const allowedOrigins = ['https://www.sewadinfotech.shop', 'https://data-edit.onrender.com'];
+const allowedOrigins = ['https://www.sewadinfotech.shop', 'https://data-edit.onrender.com', 'http://localhost:3000'];
 
 app.use(cors({
   origin: function (origin, callback) {
