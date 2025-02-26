@@ -82,7 +82,7 @@ const Shop = () => {
                 <div class="shop-left-two">
                     <div class="price-">
                         <span class="price-symbol"><MdCurrencyRupee size={25} /></span>
-                        <span class="price-money">{product.Price}</span>
+                        <span class="price-money">{product.PriceForCustomers}</span>
                     </div>
                 </div>
                 <div class="shop-left-three">
