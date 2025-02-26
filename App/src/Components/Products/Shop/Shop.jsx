@@ -40,6 +40,9 @@ const Shop = () => {
             behavior: "smooth",
         });
     }, []);
+    useEffect(()=>{
+        console.log("product is :", product)
+    },[])
 
     return (
         <section class="shop-main">
