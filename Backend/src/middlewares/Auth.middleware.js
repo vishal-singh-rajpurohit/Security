@@ -9,6 +9,9 @@ const Auth = asyncHandler(async (req, resp, next) => {
     
     const Token = req.cookies?.accessToken;
     
+
+    console.log("token: ", req.cookies.accessToken)
+
     if(!Token){
         throw new ApiError(401, "Unauthorized request");
     }

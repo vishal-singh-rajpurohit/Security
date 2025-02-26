@@ -244,7 +244,12 @@ const AuthProvider = ({ children }) => {
                     Otp: Otp,
                     Email: Email,
                     Password: Password,
-                }, { withCredentials: true })
+                }, {
+                    headers: {
+                        "Content-Type": "application/json" // Axios handles boundaries automatically
+                    },
+                    withCredentials: true
+                },)
                 .then((resp) => {
                     const {
                         FirstName,
