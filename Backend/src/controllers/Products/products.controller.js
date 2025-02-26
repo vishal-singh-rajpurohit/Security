@@ -189,7 +189,6 @@ const servePremium = asyncHandler(async (req, resp) => {
     throw new ApiError(400, "Not Any Product Found");
   }
 
-  console.log("products ", Products);
   
   resp.status(200).json(
     new ApiResponse(

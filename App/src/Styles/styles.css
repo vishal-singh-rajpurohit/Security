@@ -137,6 +137,20 @@ li.nav-bottom-li {
     list-style-type: none;
 }
 
+.product-more {
+    width: 100%;
+    height: 2rem;
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.3rem;
+    background: #ffee000f;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    cursor: pointer;
+}
+
 @media (max-width: 770px) {
     section.nav-bottom {
         display: flex;

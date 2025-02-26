@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOpenFilter } from '../../Functions/Ui/modalSlice'
-import { MdAddShoppingCart, MdCurrencyRupee } from 'react-icons/md'
+import { MdAddShoppingCart, MdCurrencyRupee, MdExpandMore } from 'react-icons/md'
 import {CiFilter} from 'react-icons/ci'
 import logo from '../../Assets/logo/logo.png'
 import AuthContext from '../../context/AuthContext.context';
@@ -222,6 +222,9 @@ const Products = () => {
                         ))
                     }
 
+                </div>
+                <div className="product-more" onClick={()=>setPageNumber(pageNumber+1)}>
+                    <MdExpandMore size={30} />
                 </div>
             </section>
         </>
