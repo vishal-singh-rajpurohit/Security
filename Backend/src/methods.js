@@ -7,7 +7,7 @@ const limit = 15;
 const Options = {
   httpOnly: true,
   secure: true, // turn true in production
-  sameSite: 'Lax',
+  sameSite: 'none',
   path: '/'
 };
 
