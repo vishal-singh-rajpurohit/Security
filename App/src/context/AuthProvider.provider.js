@@ -463,6 +463,7 @@ const AuthProvider = ({ children }) => {
                     withCredentials: true
                 }).then((resp) => {
                     setOpenConform(false)
+                    console.log("order placed")
                     setLoading(false)
                 })
             } catch (error) {

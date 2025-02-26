@@ -5,7 +5,7 @@
     scrollbar-width: thin;
 }
 
-a{
+a {
     color: #000;
 }
 
@@ -68,8 +68,15 @@ ul.right-ul {
     list-style-type: none;
 }
 
-.right-li{
+.right-li {
     cursor: pointer;
+}
+
+.right-li {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .mid {
@@ -132,7 +139,6 @@ li.nav-bottom-li {
 
 @media (max-width: 770px) {
     section.nav-bottom {
-        display: flex
-    ;
+        display: flex;
     }
 }
