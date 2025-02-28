@@ -14,7 +14,7 @@ const Header = () => {
     const dispatch = useDispatch();
     const { loggedIn } = useContext(AuthContext)
     const setOpenNavBar = () => dispatch(setBottomNav());
-    const { openSignup, setOpenSignup, getOrders, openLogin, setOpenLogin } = useContext(AuthContext);
+    const { openSignup, setOpenSignup, getOrders, openLogin, setOpenLogin , theme } = useContext(AuthContext);
 
 
     return (
@@ -28,7 +28,7 @@ const Header = () => {
                         {/* <a href="google.com" target='_blank'><li class="left-li underline-center">Contact</li></a> */}
                     </ul>
                 </div>
-                <div class="mid">
+                <div class={`mid ${theme? '' : 'bg-dark'}`}>
                     <span class="logo-span">
                         <NavLink to={'/'} ><img src={logo} alt="logo of sewad info tech" class="logo-" /></NavLink>
                     </span>

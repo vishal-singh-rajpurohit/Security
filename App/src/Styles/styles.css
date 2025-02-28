@@ -12,10 +12,11 @@ a {
 nav.nav {
     display: flex;
     justify-content: space-around;
-    height: 4.5rem;
+    height: 4rem;
     align-items: center;
     position: sticky;
     z-index: 99;
+    /* box-shadow: 1px 1px #e0e0e0; */
 }
 
 ul.left-ul {
@@ -100,7 +101,7 @@ span.logo-span {
 }
 
 img.logo- {
-    height: 8rem;
+    height: 7rem;
     cursor: pointer;
 }
 

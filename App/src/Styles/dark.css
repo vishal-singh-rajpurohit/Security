@@ -1,0 +1,30 @@
+body {
+    background: black;
+}
+.bg-dark {
+    background: black;
+}
+li.left-li.underline-center {
+    color: white;
+}
+li.right-li {
+    color: white;
+}
+.--slide {
+    background: #00ffc2;
+}
+img.slide--image {
+    filter: none;
+}
+.product-premium-text {
+    color: white;
+}
+span.showMore {
+    color: white;
+}
+.premium-card {
+    background: white;
+}
+.premium-card2 {
+    background: white;
+}

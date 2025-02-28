@@ -32,6 +32,10 @@ const AuthProvider = ({ children }) => {
     const [profileState, setProfileState] = useState('init');
     const [loading, setLoading] = useState(false);
     const [filterOpen, setFilterOpen] = useState(false);
+
+    // Theme
+    const [theme , setTheme] = useState(false); // false = lite , true = dark
+
     // PRODUCTS AND FILTER
     const [products, setProducts] = useState([]);
     const [proProducts, setProProducts] = useState([]);
@@ -738,6 +742,7 @@ const AuthProvider = ({ children }) => {
         loading,
         setLoading,
         openLogin,
+        theme , setTheme,
         setOpenLogin,
         openConform,
         setOpenConform,

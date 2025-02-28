@@ -14,7 +14,7 @@ import Filter from '../Modal/Filter';
 const Products = () => {
 
     const { products, pageNumber, isFilterOn, loggedIn, userType, tempUserType, filterAts, filterKeys, filterObject, setPageNumber, proProducts } = useContext(AuthContext);
-    const { addToCart, placeOrder, selectProduct, setFilterOpen, serveProducts, setFilterItems, setFilterValues, serveFilterProducts, servePremium } = useContext(AuthContext);
+    const { addToCart, placeOrder, selectProduct, setFilterOpen, serveProducts, setFilterItems, setFilterValues, serveFilterProducts, servePremium , theme } = useContext(AuthContext);
     const [selectedOption, setSelectedOption] = useState(null);
 
 

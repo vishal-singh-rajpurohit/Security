@@ -69,6 +69,7 @@ h3.premium {
     padding-top: 0.5rem;
     padding-bottom: 0.2rem;
     cursor: pointer;
+    box-shadow: 0px 0px 2px 0px #00000054;
 }
 .premium-card-disp {
     display: flex
@@ -122,5 +123,5 @@ p.--premium-p {
     padding-top: 0.5rem;
     padding-bottom: 0.2rem;
     cursor: pointer;
+    box-shadow: 0px 0px 2px 0px #00000054;
 }
-
