@@ -24,6 +24,11 @@ const newSchema = new mongoose.Schema(
       type: Number,
       unique: true,
     },
+    ReffralCode: {
+      type: String,
+      required: true,
+      unique: true
+    },
     Email: {
       type: String,
       unique: true,

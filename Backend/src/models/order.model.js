@@ -54,6 +54,10 @@ const newSchema = new mongoose.Schema(
       enum: ["PENDING", "CONFORMED", "SHIPPING", "DELIVERED", "COMPLETED", "CANCELLED"],
       default: "PENDING",
     },
+    ReffralCode: {
+      type: String,
+      // required: true
+    }
   },
   {
     timeseries: true,

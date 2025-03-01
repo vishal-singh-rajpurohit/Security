@@ -34,11 +34,9 @@ const Shop = () => {
         setLoading(false); // Mark as loaded after fetching
     }, []);
 
-    useEffect(() => {
-        if (product) {
-            console.log("Updated product is:", product);
-        }
-    }, [product]);
+    useEffect(()=>{
+        console.log("Shop part is here ", product);
+    },[])
 
     const setSlideShow = () => {
         if (product && product.ShowCaseImages.length - 1 === index) {
