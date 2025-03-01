@@ -36,6 +36,7 @@ const Shop = () => {
 
     useEffect(()=>{
         console.log("Shop part is here ", product);
+        localStorage.setItem("test", "data");
     },[])
 
     const setSlideShow = () => {
