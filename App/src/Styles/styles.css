@@ -151,6 +151,16 @@ li.nav-bottom-li {
     border-bottom: 1px solid;
     cursor: pointer;
 }
+section.nav-bottom {
+    display: none;
+    position: fixed;
+    height: 4rem;
+    width: 100%;
+    background: #ffffff;
+    bottom: 0;
+    z-index: 99;
+    box-shadow: 0px 0px 1px black;
+}
 
 @media (max-width: 770px) {
     section.nav-bottom {
