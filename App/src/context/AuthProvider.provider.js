@@ -86,6 +86,9 @@ const AuthProvider = ({ children }) => {
 
     const requestUserType = setUserRoutes(tempUserType);
 
+    // UI
+    const [failedModal, setFailedModal] = useState(false);
+
 
     const checkLoggedIn = async () => {
         setLoading(true);
@@ -151,6 +154,7 @@ const AuthProvider = ({ children }) => {
         } catch (error) {
             console.log("got error while hitting register otp ", error);
             setLoading(false)
+            setFailedModal(true)
         }
     };
 
@@ -166,10 +170,12 @@ const AuthProvider = ({ children }) => {
                 })
                 .then((resp) => {
                     setLoading(false)
+                    setFailedModal(true)
                 });
         } catch (error) {
             console.log("got error while hitting Login otp ", error);
             setLoading(false)
+            setFailedModal(true)
         }
     };
 
@@ -209,6 +215,10 @@ const AuthProvider = ({ children }) => {
                         CraditPayments,
                     } = resp.data.data.User;
 
+                    const AccountDetails = resp.data.data.User;
+                    window.localStorage.setItem("UserAccount", JSON.stringify(AccountDetails));
+                    window.localStorage.setItem("LoggedIn", true);
+
                     dispatch(
                         clearFormStates()
                     );
@@ -237,6 +247,7 @@ const AuthProvider = ({ children }) => {
         } catch (error) {
             console.log("error while submitting otp in registration function ", error);
             setLoading(false)
+            setFailedModal(true)
         }
     };
 
@@ -274,7 +285,7 @@ const AuthProvider = ({ children }) => {
                         PendingOrders,
                         CraditPayments,
                     } = resp.data.data.User;
-
+                    const AccountDetails = resp.data.data.User;
                     dispatch(
                         setUserDetails({
                             FirstName: FirstName,
@@ -300,6 +311,10 @@ const AuthProvider = ({ children }) => {
                         status: true
                     }))
 
+                    
+                    window.localStorage.setItem("UserAccount", JSON.stringify(AccountDetails));
+                    window.localStorage.setItem("LoggedIn", true);
+
                     dispatch(clearFormStates());
 
                     setOpenLogin(false);
@@ -309,6 +324,7 @@ const AuthProvider = ({ children }) => {
         } catch (error) {
             console.log("error while submitting login otp", error);
             setLoading(false)
+            setFailedModal(true)
         }
     };
 
@@ -326,6 +342,8 @@ const AuthProvider = ({ children }) => {
                     setOpenSignup(false);
                     navigate("/");
                     setLoading(false)
+                    window.localStorage.removeItem("UserAccount")
+                    window.localStorage.removeItem("LoggedIn")
                 });
         } catch (error) {
             console.log("Error in Logout", error);
@@ -599,9 +617,11 @@ const AuthProvider = ({ children }) => {
                     UserType: UserType,
                 })
                 .then((resp) => {
+                    const selectedProduct = resp.data.data.Product[0];
                     setProduct(resp.data.data.Product[0]);
                     setShowCaseImage(resp.data.data.Product[0].FrontImage);
                     setLoading(false)
+                    window.localStorage.setItem("CurrentItem", JSON.stringify(selectedProduct));
                     navigate("/shop");
                 });
         } catch (error) {
@@ -742,6 +762,7 @@ const AuthProvider = ({ children }) => {
         loading,
         setLoading,
         openLogin,
+        failedModal, setFailedModal,
         theme , setTheme,
         setOpenLogin,
         openConform,

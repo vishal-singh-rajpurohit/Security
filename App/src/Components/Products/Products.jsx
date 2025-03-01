@@ -3,10 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOpenFilter } from '../../Functions/Ui/modalSlice'
 import { MdAddShoppingCart, MdCurrencyRupee, MdExpandMore } from 'react-icons/md'
-import { CiFilter } from 'react-icons/ci'
 import logo from '../../Assets/logo/logo.png'
 import AuthContext from '../../context/AuthContext.context';
-import NavModal from '../Modal/NavModal';
 import Filter from '../Modal/Filter';
 
 // TESTING THE UI
@@ -62,7 +60,7 @@ const Products = () => {
 
     return (
         <>
-            <NavModal />
+           
             <section class="slide-box">
                 <div class="--slide">
                     <div class="left--slide">

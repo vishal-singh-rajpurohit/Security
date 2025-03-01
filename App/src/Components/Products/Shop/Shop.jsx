@@ -13,127 +13,104 @@ const Shop = () => {
     const dispatch = useDispatch();
     const setOpenReport = () => dispatch(openReportBox());
 
-    const { addToCart, placeOrder} = useContext(AuthContext);
-    const { product, loggedIn, userType, showCaseImage, setShowCaseImage, setOpenConform } = useContext(AuthContext);
+    const { addToCart, placeOrder } = useContext(AuthContext);
+    const { product, setProduct, loggedIn, userType, showCaseImage, setShowCaseImage, setOpenConform } = useContext(AuthContext);
 
-    const [index, setIndex] = useState(0)
+    const [index, setIndex] = useState(0);
+    const [loading, setLoading] = useState(true); // New state to track loading
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        if (!product) {
+            const localProduct = JSON.parse(window.localStorage.getItem("CurrentItem"));
+            if (localProduct) {
+                setProduct(localProduct);
+                console.log("Product found in localStorage");
+            } else {
+                console.log("Product not found in localStorage");
+            }
+        }
+        setLoading(false); // Mark as loaded after fetching
+    }, []);
+
+    useEffect(() => {
+        if (product) {
+            console.log("Updated product is:", product);
+        }
+    }, [product]);
 
     const setSlideShow = () => {
-        if (product.ShowCaseImages.length - 1 === index) {
-            console.log("zero here");
-            setIndex(0)
+        if (product && product.ShowCaseImages.length - 1 === index) {
+            setIndex(0);
         } else {
             setIndex(index + 1);
         }
-    }
+    };
+
     const setSlideShowMinus = () => {
-        if (index === 0) {
-            console.log("zero :", product.ShowCaseImages.length - 1)
-            setIndex(product.ShowCaseImages.length - 1)
+        if (product && index === 0) {
+            setIndex(product.ShowCaseImages.length - 1);
         } else {
             setIndex(index - 1);
         }
+    };
+
+    // Prevent rendering if product is undefined
+    if (!product || loading) {
+        return <p>Loading product details...</p>; // Or use a spinner
     }
-    useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    }, []);
-    useEffect(()=>{
-        console.log("product is :", product)
-    },[])
 
     return (
-        <section class="shop-main">
-            <div class="left-shop">
-                <div class="shop-left-full-view">
-                    <img src={product.ShowCaseImages[index]} alt="" class="shop-image-full" />
+        <section className="shop-main">
+            <div className="left-shop">
+                <div className="shop-left-full-view">
+                    <img src={product.ShowCaseImages[index]} alt="" className="shop-image-full" />
                 </div>
-                <div class="shop-left-view-">
-                    <div class="shop-showcase">
-                        <span class="show-more-text">Look at product</span>
-                        <span class="next-prev">
-                            <span class="n-prev" onClick={() => setSlideShowMinus()}>{"<"}</span>
-                            <span class="n-prev" onClick={() => setSlideShow()}>{">"}</span>
+                <div className="shop-left-view-">
+                    <div className="shop-showcase">
+                        <span className="show-more-text">Look at product</span>
+                        <span className="next-prev">
+                            <span className="n-prev" onClick={setSlideShowMinus}>{"<"}</span>
+                            <span className="n-prev" onClick={setSlideShow}>{">"}</span>
                         </span>
                     </div>
-                    <div class="shop-slide-overflow">
-                        <img class="slide-selection" onClick={() => setIndex(0)} src={product.ShowCaseImages[0]} />
-                        <img class="slide-selection" onClick={() => setIndex(1)} src={product.ShowCaseImages[1]} />
-                        <img class="slide-selection" onClick={() => setIndex(2)} src={product.ShowCaseImages[2]} />
-                        <img class="slide-selection" onClick={() => setIndex(3)} src={product.ShowCaseImages[3]} />
+                    <div className="shop-slide-overflow">
+                        {product.ShowCaseImages.map((img, idx) => (
+                            <img key={idx} className="slide-selection" onClick={() => setIndex(idx)} src={img} alt={`Slide ${idx}`} />
+                        ))}
                     </div>
                 </div>
             </div>
-            <div class="right-shop">
-                <div class="shop-left-top">
-                    <div class="shop-left-top-top">
-                        <p class="shop-title">
-                            {product.ProductName}
-                        </p>
-                        <span class="shop-cctv">CCTV</span>
+            <div className="right-shop">
+                <div className="shop-left-top">
+                    <div className="shop-left-top-top">
+                        <p className="shop-title">{product.ProductName}</p>
+                        <span className="shop-cctv">CCTV</span>
                     </div>
-                    <div class="shop-left-top-mid">
-                        <span class="review">*****</span>
-                        <span class="review-number">Total 500 Orders</span>
+                    <div className="shop-left-top-mid">
+                        <span className="review">*****</span>
+                        <span className="review-number">Total 500 Orders</span>
                     </div>
                 </div>
-                <div class="shop-left-two">
-                    <div class="price-">
-                        <span class="price-symbol"><MdCurrencyRupee size={25} /></span>
-                        <span class="price-money">{product.PriceForCustomers}</span>
+                <div className="shop-left-two">
+                    <div className="price-">
+                        <span className="price-symbol"><MdCurrencyRupee size={25} /></span>
+                        <span className="price-money">{product.PriceForCustomers}</span>
                     </div>
                 </div>
-                <div class="shop-left-three">
-                    <div class="description-three">
-                        <p class="descrition-size">
-                            {product.Description}
-                        </p>
+                <div className="shop-left-three">
+                    <div className="description-three">
+                        <p className="descrition-size">{product.Explaination}</p>
                     </div>
                 </div>
-                {/* <div class="shop-left-five">
-                    <ul class="shop-specification-ul">
-                        <li class="shop-specification-li">
-                            <shop class="specification-key">Channel : </shop>
-                            <shop class="specification-value">5</shop>
-                        </li>
-                        <li class="shop-specification-li">
-                            <shop class="specification-key">Channel : </shop>
-                            <shop class="specification-value">5</shop>
-                        </li>
-                        <li class="shop-specification-li">
-                            <shop class="specification-key">Channel : </shop>
-                            <shop class="specification-value">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, magnam.</shop>
-                        </li>
-                        <li class="shop-specification-li">
-                            <shop class="specification-key">Channel : </shop>
-                            <shop class="specification-value">5</shop>
-                        </li>
-                    </ul>
-                </div> */}
-                {/* <div class="shop-left-four">
-                    <div class="quantity-text">
-                        <span class="quantity--text">Select Quantity</span>
-                    </div>
-                    <div class="quantity-size">
-                        <span class="q-size">1</span>
-                        <span class="q-size">2</span>
-                        <span class="q-size">3</span>
-                        <span class="q-size">4</span>
-                        <span class="q-size">5</span>
-                        <span class="q-size">6</span>
-                        <span class="q-size">7</span>
-                        <span class="q-size">8</span>
-                    </div>
-                </div> */}
-                <div class="shop-left-bottom">
-                    <button class="button-shop-dark" onClick={()=>setOpenConform(true)}>Buy Now</button>
-                    <button class="button-shop-lite" onClick={() => addToCart(product._id)}>Add to Cart</button>
+                <div className="shop-left-bottom">
+                    <button className="button-shop-dark" onClick={() => setOpenConform(true)}>Buy Now</button>
+                    <button className="button-shop-lite" onClick={() => addToCart(product._id)}>Add to Cart</button>
                 </div>
             </div>
         </section>
-    )
-}
+    );
+};
 
 export default Shop;

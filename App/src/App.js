@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import Layout from './Layout'
 import Products from './Components/Products/Products'
 import Shop from "./Components/Products/Shop/Shop";
@@ -28,7 +28,6 @@ import './Styles/styles.css'
 import './Styles/cart.css'
 import './Styles/shop.css'
 import Premium from "./Components/Products/Premium";
-import AuthContext from "./context/AuthContext.context";
 import About from "./Components/About/About";
 
 
@@ -38,7 +37,6 @@ const App = () => {
 
   return (
     <>
-      {/* <Router> */}
         <AuthProvider >
           <Routes >
             <Route path="/" element={<Layout />}>
@@ -57,9 +55,6 @@ const App = () => {
             </Route>
           </Routes>
         </AuthProvider>
-      {/* </Router> */}
-
-      {/* <RouterProvider router={router} /> */}
     </>
   );
 };

@@ -10,21 +10,26 @@ import LoginModal from './Components/Modal/LoginModal';
 import ConformOrder from './Components/Profile/Orders/ConformOrder';
 import SecurityOtp from './Components/Modal/SecurityOtp';
 import Loader from './Components/Modal/Loader';
+import NavModal from './Components/Modal/NavModal';
+import Failed from './Components/Modal/Failed';
 
 const Layout = () => {
   return (
     <>
-        <Loader />
-        <SignupModal />
-        <LoginModal />
-        <ConformOrder />
-        <SecurityOtp />
-        <Header />
-        <ReportModal />
-        <SubmitModal />
-        <Outlet />
-        <Bottomnav />
-        <Footer />
+      {/* modals */}
+      <Failed />
+      <Loader />
+      <SignupModal />
+      <LoginModal />
+      <NavModal />
+      <ConformOrder />
+      <SecurityOtp />
+      <Header />
+      <ReportModal />
+      <SubmitModal />
+      <Outlet />
+      <Bottomnav />
+      <Footer />
     </>
   )
 }
