@@ -60,56 +60,64 @@ const Shop = () => {
         return <p>Loading product details...</p>; // Or use a spinner
     }
 
-    return (
-        <section className="shop-main">
-            <div className="left-shop">
-                <div className="shop-left-full-view">
-                    <img src={product.ShowCaseImages[index]} alt="" className="shop-image-full" />
-                </div>
-                <div className="shop-left-view-">
-                    <div className="shop-showcase">
-                        <span className="show-more-text">Look at product</span>
-                        <span className="next-prev">
-                            <span className="n-prev" onClick={setSlideShowMinus}>{"<"}</span>
-                            <span className="n-prev" onClick={setSlideShow}>{">"}</span>
-                        </span>
+    if(!product){
+        return(
+            <p className="loadi">Loading...</p>
+        )
+    }else{
+        return (
+            <section className="shop-main">
+                <div className="left-shop">
+                    <div className="shop-left-full-view">
+                        <img src={product.ShowCaseImages[index]} alt="" className="shop-image-full" />
                     </div>
-                    <div className="shop-slide-overflow">
-                        {product.ShowCaseImages.map((img, idx) => (
-                            <img key={idx} className="slide-selection" onClick={() => setIndex(idx)} src={img} alt={`Slide ${idx}`} />
-                        ))}
-                    </div>
-                </div>
-            </div>
-            <div className="right-shop">
-                <div className="shop-left-top">
-                    <div className="shop-left-top-top">
-                        <p className="shop-title">{product.ProductName}</p>
-                        <span className="shop-cctv">CCTV</span>
-                    </div>
-                    <div className="shop-left-top-mid">
-                        <span className="review">*****</span>
-                        <span className="review-number">Total 500 Orders</span>
+                    <div className="shop-left-view-">
+                        <div className="shop-showcase">
+                            <span className="show-more-text">Look at product</span>
+                            <span className="next-prev">
+                                <span className="n-prev" onClick={setSlideShowMinus}>{"<"}</span>
+                                <span className="n-prev" onClick={setSlideShow}>{">"}</span>
+                            </span>
+                        </div>
+                        <div className="shop-slide-overflow">
+                            {product.ShowCaseImages.map((img, idx) => (
+                                <img key={idx} className="slide-selection" onClick={() => setIndex(idx)} src={img} alt={`Slide ${idx}`} />
+                            ))}
+                        </div>
                     </div>
                 </div>
-                <div className="shop-left-two">
-                    <div className="price-">
-                        <span className="price-symbol"><MdCurrencyRupee size={25} /></span>
-                        <span className="price-money">{product.PriceForCustomers}</span>
+                <div className="right-shop">
+                    <div className="shop-left-top">
+                        <div className="shop-left-top-top">
+                            <p className="shop-title">{product.ProductName}</p>
+                            <span className="shop-cctv">CCTV</span>
+                        </div>
+                        <div className="shop-left-top-mid">
+                            <span className="review">*****</span>
+                            <span className="review-number">Total 500 Orders</span>
+                        </div>
+                    </div>
+                    <div className="shop-left-two">
+                        <div className="price-">
+                            <span className="price-symbol"><MdCurrencyRupee size={25} /></span>
+                            <span className="price-money">{product.PriceForCustomers}</span>
+                        </div>
+                    </div>
+                    <div className="shop-left-three">
+                        <div className="description-three">
+                            <p className="descrition-size">{product.Explaination}</p>
+                        </div>
+                    </div>
+                    <div className="shop-left-bottom">
+                        <button className="button-shop-dark" onClick={() => setOpenConform(true)}>Buy Now</button>
+                        <button className="button-shop-lite" onClick={() => addToCart(product._id)}>Add to Cart</button>
                     </div>
                 </div>
-                <div className="shop-left-three">
-                    <div className="description-three">
-                        <p className="descrition-size">{product.Explaination}</p>
-                    </div>
-                </div>
-                <div className="shop-left-bottom">
-                    <button className="button-shop-dark" onClick={() => setOpenConform(true)}>Buy Now</button>
-                    <button className="button-shop-lite" onClick={() => addToCart(product._id)}>Add to Cart</button>
-                </div>
-            </div>
-        </section>
-    );
+            </section>
+        );
+    }
+
+
 };
 
 export default Shop;
