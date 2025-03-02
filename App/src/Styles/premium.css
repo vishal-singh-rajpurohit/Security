@@ -1,4 +1,4 @@
-section.product-main- {
+section.product-main-.premium-page {
     width: 100%;
     height: auto;
     display: flex;
@@ -7,6 +7,17 @@ section.product-main- {
     margin-bottom: 2rem;
     margin-top: 2rem;
     min-height: 68vh;
+
+}
+section.product-main- {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    /* min-height: 68vh; */
 
 }
 
@@ -225,7 +236,7 @@ p.--premium-p {
         align-items: center;
     }
 
-    .product-premium-text {
+    .product-premium-text.premium-page {
         width: 100%;
         background: #bbe4ff;
     }
@@ -236,5 +247,8 @@ p.--premium-p {
     }
     .premium-card {
         width: auto;
+    }
+    .premium-card.in-premium {
+        width: 14rem;
     }
 }

@@ -14,8 +14,8 @@ const Premium = () => {
 
 
     return (
-        <section class="product-main-">
-            <div class="product-premium-text">
+        <section class="product-main- premium-page">
+            <div class="product-premium-text premium-page">
                 <h3 class="premium">Premium</h3>
             </div>
             <div class="prodcut-grid-">

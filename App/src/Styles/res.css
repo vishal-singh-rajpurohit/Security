@@ -219,9 +219,17 @@
         box-shadow: 2px 1px 2px #00000026;
         border-radius: 0;
     }
-    .product-premium-text {
+    .product-premium-text.premium-page {
         width: 100%;
         background: #bbe4ff;
+    }
+    .product-premium-text.normal-form {
+        width: 100%;
+        padding-left: 1rem;
+    }
+    .premium-card2.normal-page {
+        border: none;
+        border-radius: 0;
     }
     
 }

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import '../../Styles/res.css'
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOpenFilter } from '../../Functions/Ui/modalSlice'
@@ -90,25 +91,25 @@ const Products = () => {
                     </div>
                 </div>
             </section>
-            <section class="product-main-">
-                <div class="product-premium-text">
-                    <h3 class="premium">Premium Products</h3>
+            <section class="product-main- in-premium">
+                <div class="product-premium-text in-premium">
+                    <h3 class="premium in-premium">Premium Products</h3>
                     <NavLink to={'premium'} ><span class="showMore">Show More</span></NavLink>
                 </div>
-                <div class="prodcut-overflow-y">
-                    <div class="product-card-overflow">
+                <div class="prodcut-overflow-y in-premium">
+                    <div class="product-card-overflow in-premium">
                         {
                             proProducts && proProducts.map((prodcut) => (
-                                <div class="premium-card" key={prodcut._id}>
-                                    <div class="premium-card-disp" onClick={() => selectProduct(prodcut._id)}>
+                                <div class="premium-card in-premium" key={prodcut._id}>
+                                    <div class="premium-card-disp in-premium" onClick={() => selectProduct(prodcut._id)}>
                                         <img
                                             src={prodcut.FrontImage}
                                             alt=""
-                                            class="--premium-image"
+                                            class="--premium-image in-premium"
                                         />
                                     </div>
-                                    <div class="premium-card-details">
-                                        <div class="--premium-det-title">
+                                    <div class="premium-card-details in-premium">
+                                        <div class="--premium-det-title ">
                                             <p class="--premium-p" style={{ cursor: 'pointer' }} onClick={() => selectProduct(prodcut._id)}>
                                                 {
                                                     prodcut.ProductName
@@ -118,7 +119,7 @@ const Products = () => {
                                         <div class="--premium-det-rating" onClick={() => selectProduct(prodcut._id)}>* 4.5 (15 reviews)</div>
                                         <div class="--premium-cart-price">
                                             <div class="--premium-price">$ 250</div>
-                                            <div class="--premium-cart" onClick={() => addToCart(prodcut._id)}><MdAddShoppingCart /></div>
+                                            <div class="--premium-cart" onClick={() => addToCart(prodcut._id)}><MdAddShoppingCart size={30} /></div>
                                         </div>
                                     </div>
                                 </div>
@@ -196,7 +197,7 @@ const Products = () => {
                 </div>
             </section> */}
             <section class="product-main-" id='products'>
-                <div class="product-premium-text">
+                <div class="product-premium-text normal-form">
                     <h3 class="premium">Shop</h3>
                     {/* <span class="showMore"  onClick={()=>setFilterOpen(true)}><li class="right-li" style={{listStyleType: 'none'}}><CiFilter size={30} /></li></span> */}
                 </div>
@@ -204,7 +205,7 @@ const Products = () => {
                 <div class="prodcut-grid-">
                     {
                         products && products.map((product) => (
-                            <div class="premium-card2">
+                            <div class="premium-card2 normal-page">
                                 <div class="premium-card-disp" onClick={() => selectProduct(product._id)}>
                                     <img src={product.FrontImage} alt="" class="--premium-image" />
                                 </div>
@@ -217,7 +218,7 @@ const Products = () => {
                                     <div class="--premium-det-rating" onClick={() => selectProduct(product._id)}>* 4.5 (15 reviews)</div>
                                     <div class="--premium-cart-price">
                                         <div class="--premium-price"><MdCurrencyRupee size={10} /> {product.PriceForCustomers}</div>
-                                        <div class="--premium-cart" onClick={() => addToCart(product._id)}><MdAddShoppingCart /></div>
+                                        <div class="--premium-cart" onClick={() => addToCart(product._id)}><MdAddShoppingCart size={30} /></div>
                                     </div>
                                 </div>
                             </div>
