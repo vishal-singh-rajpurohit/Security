@@ -32,6 +32,7 @@ const Header = () => {
                     <span class="logo-span">
                         <NavLink to={'/'} ><img src={logo} alt="logo of sewad info tech" class="logo-" /></NavLink>
                     </span>
+                    <NavLink to={'/'} ><p className="logo-text">Sewad Infotech</p></NavLink>
                 </div>
                 <div class="right">
                     <ul class="right-ul">

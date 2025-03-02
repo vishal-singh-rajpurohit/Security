@@ -12,7 +12,7 @@ import Filter from '../Modal/Filter';
 const Products = () => {
 
     const { products, pageNumber, isFilterOn, loggedIn, userType, tempUserType, filterAts, filterKeys, filterObject, setPageNumber, proProducts } = useContext(AuthContext);
-    const { addToCart, placeOrder, selectProduct, setFilterOpen, serveProducts, setFilterItems, setFilterValues, serveFilterProducts, servePremium , theme } = useContext(AuthContext);
+    const { addToCart, placeOrder, selectProduct, setFilterOpen, setOpenSignup, serveProducts, setFilterItems, setFilterValues, serveFilterProducts, servePremium, theme } = useContext(AuthContext);
     const [selectedOption, setSelectedOption] = useState(null);
 
 
@@ -60,7 +60,7 @@ const Products = () => {
 
     return (
         <>
-           
+
             <section class="slide-box">
                 <div class="--slide">
                     <div class="left--slide">
@@ -73,7 +73,11 @@ const Products = () => {
                             </p>
                         </div>
                         <div class="left--slide-down">
-                            <a href='#products' ><button class="btn-lite">Buy Now</button></a>
+                            {
+                                loggedIn ? <NavLink to={'cart'} ><button class="btn-dark">Buy Now</button></NavLink> :
+                                    <button class="btn-lite" onClick={()=>setOpenSignup(true)}>Buy Now</button>
+                            }
+
                             <NavLink to={'premium'} ><button class="btn-dark">Explore More</button></NavLink>
                         </div>
                     </div>

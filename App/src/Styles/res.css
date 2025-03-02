@@ -158,7 +158,9 @@
         width: 100%;
     }
     .prodcut-grid- {
-        grid-template-columns: 1fr;
+        gap: 0;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
     }
     img.slide--image {
         height: 25vh;
@@ -190,4 +192,36 @@
     span.showMore {
         font-size: smaller;
     }
+    section.product-main- {
+        width: 100vw;
+    }
+    .premium-card {
+        box-shadow: 2px 1px 2px #00000026;
+        border-radius: 0;
+    }
+    .--premium-det-title {
+        font-size: x-large;
+        color: #484545;
+    }
+    .--premium-det-rating {
+        font-size: 18px;
+    }
+    .--premium-price {
+        font-size: x-large;
+    }
+    .--premium-cart {
+        display: flex
+    ;
+        justify-content: center;
+        align-items: center;
+    }    
+    .premium-card {
+        box-shadow: 2px 1px 2px #00000026;
+        border-radius: 0;
+    }
+    .product-premium-text {
+        width: 100%;
+        background: #bbe4ff;
+    }
+    
 }

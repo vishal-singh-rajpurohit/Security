@@ -1,34 +1,38 @@
 section.product-main- {
     width: 100%;
     height: auto;
-    display: flex
-;
+    display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 2rem;
     margin-top: 2rem;
+    min-height: 68vh;
+
 }
+
 .product-premium-text {
     width: 90%;
     height: 3rem;
-    display: flex
-;
+    display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 h3.premium {
     font-size: x-large;
     text-shadow: -2px 1px 3px #acacaead;
 }
-.showMore{
+
+.showMore {
     display: inline-block;
-  position: relative;
-  text-decoration: none;
-  padding-bottom: 5px;
-  cursor: pointer;
-  font-size: large;
+    position: relative;
+    text-decoration: none;
+    padding-bottom: 5px;
+    cursor: pointer;
+    font-size: large;
 }
-.showMore::before{
+
+.showMore::before {
     content: "";
     position: absolute;
     left: 50%;
@@ -38,30 +42,31 @@ h3.premium {
     background-color: #09ccb2;
     transition: width 0.4s ease-in-out, left 0.4s ease-in-out;
 }
+
 .showMore:hover::before {
     width: 100%;
     left: 0;
     color: #0a7c46;
-  }
-  .prodcut-overflow-y {
+}
+
+.prodcut-overflow-y {
     overflow-x: auto;
     width: 90%;
-    display: flex
-;
+    display: flex;
     justify-content: center;
 }
+
 .product-card-overflow {
     width: 100%;
-    display: grid
-;
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 1rem;
 }
+
 .premium-card {
     border: 1px solid darkgrey;
     border-radius: 11px;
-    display: flex
-;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -71,29 +76,32 @@ h3.premium {
     cursor: pointer;
     box-shadow: 0px 0px 2px 0px #00000054;
 }
+
 .premium-card-disp {
-    display: flex
-;
+    display: flex;
     justify-content: center;
     align-items: center;
     background-color: #a9a9a917;
     width: 90%;
     border-radius: 11px;
 }
+
 img.--premium-image {
     /* height: 10rem; */
     width: 90%;
 }
+
 .premium-card-details {
     width: 90%;
-    display: flex
-;
+    display: flex;
     flex-direction: column;
     gap: 0.4rem;
 }
+
 .--premium-det-title {
     font-size: medium;
 }
+
 p.--premium-p {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -102,20 +110,21 @@ p.--premium-p {
     text-overflow: ellipsis;
     max-width: 300px;
 }
+
 .--premium-det-rating {
     font-size: 15px;
 }
+
 .--premium-cart-price {
     width: 100%;
-    display: flex
-;
+    display: flex;
     justify-content: space-between;
 }
+
 .premium-card2 {
     border: 1px solid darkgrey;
     border-radius: 11px;
-    display: flex
-;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -124,4 +133,108 @@ p.--premium-p {
     padding-bottom: 0.2rem;
     cursor: pointer;
     box-shadow: 0px 0px 2px 0px #00000054;
+}
+
+@media (max-width: 450px) {
+    .offer-right-top {
+        height: 43vh;
+    }
+
+    .-offer-left {
+        width: 100%;
+        position: relative;
+        z-index: 1;
+        background: #ffffff3d;
+    }
+
+    .-offer-fight {
+        position: absolute;
+        width: 100%;
+    }
+
+    .prodcut-grid- {
+        gap: 0;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+    }
+
+    img.slide--image {
+        height: 25vh;
+    }
+
+    section.slide-box {
+        height: 100%;
+    }
+
+    .--slide {
+        height: 60vh;
+
+    }
+
+    .left--slide-up {
+        text-align: center;
+        width: 85%;
+    }
+
+    .left--slide-mid {
+        width: 85%;
+        text-align: center;
+    }
+
+    .offer-right-top {
+        height: 25vh;
+    }
+
+    img.slide--image {
+        height: 60vh;
+    }
+
+    h3.premium {
+        font-size: medium;
+    }
+
+    span.showMore {
+        font-size: smaller;
+    }
+
+    section.product-main- {
+        width: 100vw;
+    }
+
+    .premium-card {
+        box-shadow: 2px 1px 2px #00000026;
+        border-radius: 0;
+    }
+
+    .--premium-det-title {
+        font-size: x-large;
+        color: #484545;
+    }
+
+    .--premium-det-rating {
+        font-size: 18px;
+    }
+
+    .--premium-price {
+        font-size: x-large;
+    }
+
+    .--premium-cart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .product-premium-text {
+        width: 100%;
+        background: #bbe4ff;
+    }
+
+    h3.premium {
+        font-size: x-large;
+        margin-left: 0.5rem;
+    }
+    .premium-card {
+        width: auto;
+    }
 }

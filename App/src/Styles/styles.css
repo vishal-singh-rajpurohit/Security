@@ -73,6 +73,10 @@ ul.right-ul {
     cursor: pointer;
 }
 
+p.logo-text{
+    display: none;
+}
+
 .right-li {
     cursor: pointer;
     display: flex;
@@ -165,5 +169,49 @@ section.nav-bottom {
 @media (max-width: 770px) {
     section.nav-bottom {
         display: flex;
+    }
+    nav.nav {
+        display: flex
+    ;
+        justify-content: start;
+        align-items: center;
+        /* overflow: hidden; */
+    }
+    nav.nav {
+        display: flex
+    ;
+        justify-content: start;
+        align-items: center;
+        width: 100vw;
+        height: 7rem;
+        overflow: hidden;
+        border-bottom: 1px solid #3c3c3ca3;
+    }
+    .mid {
+        width: 100%;
+        display: flex
+    ;
+        justify-content: center;
+        align-items: center;
+    }
+    span.logo-span {
+        height: auto;
+        width: auto;
+        margin: 0;
+    }
+    p.logo-text {
+        font-size: xx-large;
+        font-weight: 600;
+        font-family: sans-serif;
+        color: #2d3e4e;
+        text-shadow: -1px 2px 4px #0000005c;
+        display: inline;
+    }
+    .mid {
+        width: 100%;
+        display: flex
+;
+        justify-content: flex-start;
+        align-items: center;
     }
 }
