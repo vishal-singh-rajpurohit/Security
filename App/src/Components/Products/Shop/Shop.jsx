@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { openReportBox } from '../../../Functions/Ui/modalSlice'
 import AuthContext from '../../../context/AuthContext.context'
 import '../../../Styles/shop.css'
+import { GrLineChart } from "react-icons/gr";
 
 import tempimg from '../../../Assets/camera/singledome.png'
 import { MdCurrencyRupee } from 'react-icons/md'
@@ -81,7 +82,11 @@ const Shop = () => {
                     </div>
                 </div>
             </div>
+            <div className="mid-barrier">
+                        <span className="bar-span"> <GrLineChart color='#229b22' /> 170 people ordered last 2 months</span>
+                </div>
             <div className="right-shop">
+               
                 <div className="shop-left-top">
                     <div className="shop-left-top-top">
                         <p className="shop-title">{product.ProductName}</p>
