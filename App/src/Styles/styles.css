@@ -222,4 +222,7 @@ section.nav-bottom {
         justify-content: center;
         align-items: end;
     }
+    .right--slide {
+        width: auto;
+    }
 }
