@@ -83,7 +83,10 @@ const SignupModal = () => {
           </div>
           <div class="agree-you">
             <input type="checkbox" onChange={(e) => { setAgreeCnd(e.target.checked) }} id="agree" class="agree-cb" />
-            <label for="agree">I agree to the  <NavLink to={'terms'} ><span class="t-and-c" onClick={()=>setOpenSignup(false)}>terms & conditions</span></NavLink> </label>
+            <label for="agree">I agree to the  <NavLink to={'terms'} ><span class="t-and-c"  onClick={()=>{
+                            setOpenLogin(false)
+                            setOpenSignup(false)
+                            }}>terms & conditions</span></NavLink> </label>
           </div>
           <div class="agree-you" style={{ display: isSubmitError ? 'flex' : 'none' }}>
             <label className="agree-error"> {errorMessage} </label>

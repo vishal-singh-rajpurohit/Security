@@ -19,7 +19,7 @@ nav.nav {
     /* box-shadow: 1px 1px #e0e0e0; */
 }
 nav.nav {
-    background: #004D40;
+    background: #356397;
     color: #FFFFFF;
     margin-bottom: 1rem;
 }
@@ -99,7 +99,7 @@ p.logo-text{
 ;
     width: 8rem;
     border-radius: 999px;
-    background-color: #004d40;
+    background-color: #356397;
     overflow: hidden;
 }
 
@@ -168,7 +168,7 @@ section.nav-bottom {
     position: fixed;
     height: 4rem;
     width: 100%;
-    background: #003a30;
+    background: #356397;
     bottom: 0;
     z-index: 99;
     box-shadow: 0px 0px 1px black;
@@ -181,8 +181,8 @@ section.nav-bottom {
     nav.nav {
         display: flex
     ;
-        justify-content: start;
-        align-items: center;
+        justify-content: center;
+        align-items: end;
         /* overflow: hidden; */
     }
     nav.nav {
@@ -219,7 +219,7 @@ section.nav-bottom {
         width: 100%;
         display: flex
 ;
-        justify-content: flex-start;
-        align-items: center;
+        justify-content: center;
+        align-items: end;
     }
 }
