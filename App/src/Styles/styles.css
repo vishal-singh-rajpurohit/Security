@@ -168,7 +168,7 @@ section.nav-bottom {
     position: fixed;
     height: 4rem;
     width: 100%;
-    background: #ffffff;
+    background: #003a30;
     bottom: 0;
     z-index: 99;
     box-shadow: 0px 0px 1px black;
@@ -211,7 +211,7 @@ section.nav-bottom {
         font-size: xx-large;
         font-weight: 600;
         font-family: sans-serif;
-        color: #2d3e4e;
+        color: white;
         text-shadow: -1px 2px 4px #0000005c;
         display: inline;
     }
