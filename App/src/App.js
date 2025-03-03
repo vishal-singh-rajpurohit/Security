@@ -29,6 +29,7 @@ import './Styles/cart.css'
 import './Styles/shop.css'
 import Premium from "./Components/Products/Premium";
 import About from "./Components/About/About";
+import Terms from "./Components/Terms/Terms";
 
 
 
@@ -43,6 +44,7 @@ const App = () => {
               <Route path="" element={<Products />} />
               <Route path="about" element={<About />} />
               <Route path="premium" element={<Premium />} />
+              <Route path="terms" element={<Terms />} />
               <Route path="shop/cart" element={<Cart />} />
               <Route path="shop" element={<Shop />} />
               <Route path="shop/details" element={<ShopDetails />} />

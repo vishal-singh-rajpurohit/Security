@@ -18,6 +18,11 @@ nav.nav {
     z-index: 99;
     /* box-shadow: 1px 1px #e0e0e0; */
 }
+nav.nav {
+    background: #004D40;
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+}
 
 ul.left-ul {
     display: flex;
@@ -33,7 +38,7 @@ li.left-li:hover {
     display: inline-block;
     position: relative;
     text-decoration: none;
-    color: #000;
+    color: #FFFFFF;
 }
 
 .underline-center::after {
@@ -43,7 +48,7 @@ li.left-li:hover {
     bottom: -3px;
     width: 0;
     height: 2px;
-    background-color: #1f0061;
+    background-color: #FFFFFF;
     transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
 }
 
@@ -79,19 +84,22 @@ p.logo-text{
 
 .right-li {
     cursor: pointer;
-    display: flex;
+    display: flex
+;
     justify-content: center;
     align-items: center;
+    color: #FFFFFF;
 }
 
 .mid {
     height: 8rem;
     justify-content: center;
     align-items: center;
-    display: flex;
+    display: flex
+;
     width: 8rem;
     border-radius: 999px;
-    background-color: white;
+    background-color: #004d40;
     overflow: hidden;
 }
 
@@ -107,8 +115,8 @@ span.logo-span {
 img.logo- {
     height: 7rem;
     cursor: pointer;
+    filter: drop-shadow(4px 3px 11px black);
 }
-
 footer {
     height: 5rem;
     display: flex;

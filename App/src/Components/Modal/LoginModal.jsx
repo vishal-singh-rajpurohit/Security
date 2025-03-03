@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import '../../Styles/signup.css'
 import AuthContext from '../../context/AuthContext.context'
 import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 // import {setFormLoginStates} from '../../Functions/Auth/formSlice'
 
 const LoginModal = () => {
@@ -80,7 +81,7 @@ const LoginModal = () => {
                         <input type="checkbox" id="agree-1" class="agree-cb" onChange={()=>{
                             setAgreeCnd(!agreeCnd)
                         }} />
-                        <label for="agree-1">I agree to the <span class="t-and-c">terms & conditions</span></label>
+                        <label for="agree-1">I agree to the <NavLink to={'terms'} ><span onClick={()=>setOpenLogin(false)} class="t-and-c">terms & conditions</span></NavLink></label>
                     </div>
                     <div class="agree-you" style={{display: isSubmitError?'flex' : 'none'}}>
                         <label className="agree-error"> {errorMessage}</label>

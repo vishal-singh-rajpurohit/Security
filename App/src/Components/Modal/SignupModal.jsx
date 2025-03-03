@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import '../../Styles/signup.css'
 import AuthContext from '../../context/AuthContext.context'
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 const SignupModal = () => {
   const { openSignup, setOpenSignup, openLogin, setOpenLogin, register } = useContext(AuthContext);
@@ -82,7 +83,7 @@ const SignupModal = () => {
           </div>
           <div class="agree-you">
             <input type="checkbox" onChange={(e) => { setAgreeCnd(e.target.checked) }} id="agree" class="agree-cb" />
-            <label for="agree">I agree to the <span class="t-and-c">terms & conditions</span></label>
+            <label for="agree">I agree to the  <NavLink to={'terms'} ><span class="t-and-c" onClick={()=>setOpenSignup(false)}>terms & conditions</span></NavLink> </label>
           </div>
           <div class="agree-you" style={{ display: isSubmitError ? 'flex' : 'none' }}>
             <label className="agree-error"> {errorMessage} </label>

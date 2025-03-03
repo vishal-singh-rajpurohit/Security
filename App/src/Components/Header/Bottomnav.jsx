@@ -15,11 +15,11 @@ const Bottomnav = () => {
     <>
       <section class="nav-bottom">
         <ul class="nav-bottom-ul">
-          <NavLink to={'shop/cart'} style={{ cursor: 'pointer' }} ><li class="nav-bottom-li"><IoCartSharp size={40} /></li></NavLink>
-          <li class="nav-bottom-li" style={{ cursor: 'pointer' }} onClick={() => setProfileOptions(!profileOptions)}><AiOutlineMenuUnfold size={40} /></li>
+          <NavLink to={'shop/cart'} style={{ cursor: 'pointer' }} ><li class="nav-bottom-li"><IoCartSharp color='white' size={40} /></li></NavLink>
+          <li class="nav-bottom-li" style={{ cursor: 'pointer' }} onClick={() => setProfileOptions(!profileOptions)}><AiOutlineMenuUnfold color='white' size={40} /></li>
           {
-            loggedIn ? <NavLink to={'/user/profile'} ><li class="nav-bottom-li"><FaUserCircle size={40} /></li></NavLink> :
-              <li class="nav-bottom-li" onClick={() => setOpenLogin(true)}> <FaUserCircle size={40} /> </li>
+            loggedIn ? <NavLink to={'/user/profile'} ><li class="nav-bottom-li"><FaUserCircle color='white' size={40} /></li></NavLink> :
+              <li class="nav-bottom-li" onClick={() => setOpenLogin(true)}> <FaUserCircle color='white' size={40} /> </li>
           }
 
         </ul>

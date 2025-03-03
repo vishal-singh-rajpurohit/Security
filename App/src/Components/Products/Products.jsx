@@ -118,7 +118,7 @@ const Products = () => {
                                         </div>
                                         <div class="--premium-det-rating" onClick={() => selectProduct(prodcut._id)}>* 4.5 (15 reviews)</div>
                                         <div class="--premium-cart-price">
-                                            <div class="--premium-price">$ 250</div>
+                                            <div class="--premium-price"><MdCurrencyRupee /> 250</div>
                                             <div class="--premium-cart" onClick={() => addToCart(prodcut._id)}><MdAddShoppingCart size={30} /></div>
                                         </div>
                                     </div>
@@ -217,7 +217,7 @@ const Products = () => {
                                     </div>
                                     <div class="--premium-det-rating" onClick={() => selectProduct(product._id)}>* 4.5 (15 reviews)</div>
                                     <div class="--premium-cart-price">
-                                        <div class="--premium-price"><MdCurrencyRupee size={10} /> {product.PriceForCustomers}</div>
+                                        <div class="--premium-price"><MdCurrencyRupee  /> {product.PriceForCustomers}</div>
                                         <div class="--premium-cart" onClick={() => addToCart(product._id)}><MdAddShoppingCart size={30} /></div>
                                     </div>
                                 </div>

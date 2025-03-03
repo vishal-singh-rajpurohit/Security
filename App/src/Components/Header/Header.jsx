@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { setBottomNav } from '../../Functions/Ui/modalSlice';
 import AuthContext from '../../context/AuthContext.context';
 
-import logo from '../../Assets/logo/logo.png'
+import logo from '../../Assets/logo/logo2.png'
 import { MdOutlineAddShoppingCart } from 'react-icons/md';
 
 const Header = () => {
@@ -24,7 +24,8 @@ const Header = () => {
                     <ul class="left-ul">
                         <NavLink to={'/'} ><li class="left-li underline-center">Home</li></NavLink>
                         <NavLink to={'/about'} ><li class="left-li underline-center">About</li></NavLink>
-                        <a href="https://www.instagram.com/sewad.infotech" target='_blank'><li class="left-li underline-center">Contact</li></a>
+                        <NavLink to={'/terms'} ><li class="left-li underline-center">Privatcy Policy</li></NavLink>
+                        {/* <a href="https://www.instagram.com/sewad.infotech" target='_blank'><li class="left-li underline-center">Contact</li></a> */}
                         {/* <a href="google.com" target='_blank'><li class="left-li underline-center">Contact</li></a> */}
                     </ul>
                 </div>
