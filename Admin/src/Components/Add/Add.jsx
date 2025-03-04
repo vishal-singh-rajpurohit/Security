@@ -1,7 +1,10 @@
 import { useState } from "react";
+import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import '../../Styles/add.css'
 const Add = () => {
+
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
     image: null,
@@ -64,6 +67,8 @@ const Add = () => {
 
     await axios.post(`${process.env.REACT_APP_BACKEND}/addproduct`, formDataToSend).then((resp) => {
       console.log("Product added ", resp)
+      navigate('/')
+      
     }).catch((e) => {
       console.log("error in adding ", e)
     })
