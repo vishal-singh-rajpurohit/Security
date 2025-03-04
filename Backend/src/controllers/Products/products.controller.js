@@ -32,6 +32,16 @@ const serverProducts = asyncHandler(async (req, resp) => {
 
     const Products = await Product.aggregate([
       {
+        $match: {
+          Status: 'published'
+        }
+      },
+      {
+        $match: {
+          Status: 'published'
+        }
+      },
+      {
         $match: req.body.Filters
       },
       {

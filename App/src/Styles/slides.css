@@ -23,7 +23,7 @@ section.slide-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 3rem;
+    /* gap: 3rem; */
 }
 .left--slide-up {
     width: 60%;

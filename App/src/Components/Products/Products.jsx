@@ -227,7 +227,7 @@ const Products = () => {
 
                 </div>
                 <div className="product-more" onClick={() => setPageNumber(pageNumber + 1)}>
-                    <MdExpandMore size={30} />
+                    <MdExpandMore size={45} />
                 </div>
             </section>
         </>

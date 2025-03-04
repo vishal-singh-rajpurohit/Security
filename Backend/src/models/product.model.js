@@ -82,6 +82,12 @@ const newSchema = new mongoose.Schema(
       type: [String],
       valida : [arrayLimit , 'ShowCaseImages exceeds the limit of 6'],
       required: true
+    }, 
+    Status:{
+      type: String,
+      enum: ['new', 'suspended', 'published', 'hot', 'limited' ],
+      default: 'new',
+      required: true
     }
   },
   {

@@ -1,0 +1,44 @@
+section.Edit-modal {
+    position: fixed;
+    left: auto;
+    top: auto;
+    width: 100%;
+    height: 100vh;
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+    background-color: #31313147;
+}
+.edit-box {
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.2rem;
+    width: 20rem;
+    height: 40vh;
+    background: #ff861f;
+    border-radius: 8px;
+}
+input.edit-input {
+    width: 75%;
+    background-color: #6868681c;
+    border: none;
+    border-bottom: 1px solid;
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: large;
+    color: black;
+}
+button.edit-submit {
+    width: 80%;
+    background: #27556d;
+}
+button.edit-submit:hover {
+    background: #373737;
+}

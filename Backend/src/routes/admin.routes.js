@@ -7,7 +7,7 @@ const { getReports } = require('../controllers/admin/reports/getReports.controll
 const reviewReport = require('../controllers/admin/reports/reviewReport.controller.js');
 const getUsersVerification = require('../controllers/admin/users/getUsersVerification.controller.js');
 const setVerification = require('../controllers/admin/users/setVerification.controller.js');
-const {changeName, changePrice, changeImages} = require("../controllers/admin/edit/edit.controller.js")
+const {changeName, changePrice, changeImages, serveNewProducts, selectProduct, suspendProduct, publishProduct, changeAdvancedAmmount} = require("../controllers/admin/edit/edit.controller.js")
 
 
 const adminRouter = express.Router();
@@ -43,12 +43,17 @@ adminRouter.route("/get-unverified-users").get(getUsersVerification);
 
 adminRouter.route("/edit-name").put(changeName)
 adminRouter.route("/edit-price").put(changePrice)
+adminRouter.route("/edit-advanced-ammount").put(changeAdvancedAmmount)
 adminRouter.route("/edit-images").put( upload.fields([
     {
         name: "display",
         maxCount: 5
     }
 ]) ,changeImages)
+adminRouter.route("/serve-to-admin").post(serveNewProducts);
+adminRouter.route("/selected-item").post(selectProduct);
+adminRouter.route("/suspend-item").post(suspendProduct);
+adminRouter.route("/publish-item").post(publishProduct);
 
 
 module.exports = adminRouter;

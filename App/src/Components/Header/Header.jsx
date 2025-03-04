@@ -30,11 +30,11 @@ const Header = () => {
                     </ul>
                 </div>
                 <div class={`mid ${theme ? '' : 'bg-dark'}`}>
-                    <NavLink to={'/'} ><p className="logo-text">Sewad</p></NavLink>
+                    {/* <NavLink to={'/'} ><p className="logo-text"></p></NavLink> */}
                     <span class="logo-span">
                         <NavLink to={'/'} ><img src={logo} alt="logo of sewad info tech" class="logo-" /></NavLink>
                     </span>
-                    <NavLink to={'/'} ><p className="logo-text">Infotech</p></NavLink>
+                    <NavLink to={'/'} ><p className="logo-text"> Sewad Infotech</p></NavLink>
                 </div>
                 <div class="right">
                     <ul class="right-ul">

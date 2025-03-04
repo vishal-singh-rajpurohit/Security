@@ -27,6 +27,7 @@ section.product-main- {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 1rem;
 }
 
 h3.premium {
@@ -238,7 +239,7 @@ p.--premium-p {
 
     .product-premium-text.premium-page {
         width: 100%;
-        background: #bbe4ff;
+        /* background: #bbe4ff; */
     }
 
     h3.premium {
