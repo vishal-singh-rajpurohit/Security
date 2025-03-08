@@ -5,7 +5,9 @@ import AdminContext from '../../context/AdminContext.context'
 const Loading = () => {
     const {loading} = useContext(AdminContext)
   return (
-    <div className='loading' style={{display: loading? 'flex' : 'none'}}>Loading....</div>
+    <div style={{display: loading? 'flex': 'none'}} className="loading-container">
+      <div className="loading-spinner"></div>
+    </div>
   )
 }
 

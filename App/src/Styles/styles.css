@@ -23,6 +23,7 @@ nav.nav {
     background: #2e3946;
     color: #FFFFFF;
     margin-bottom: 1rem;
+    width: 100vw;
 }
 
 ul.left-ul {
@@ -118,12 +119,15 @@ img.logo- {
 }
 
 footer {
+    position: relative;
     height: 5rem;
-    display: flex;
+    display: flex
+;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    bottom: 0;
 }
-
 p.copyright-text {
     font-size: larger;
 }

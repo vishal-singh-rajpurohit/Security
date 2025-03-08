@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react'
 import '../../Styles/shop.css'
 import AdminContext from '../../context/AdminContext.context'
-import { GrEdit, GrLineChart } from "react-icons/gr";
-import { MdCurrencyRupee } from 'react-icons/md'
+import { GrEdit } from "react-icons/gr";
 
 const Item = () => {
 
@@ -28,51 +27,6 @@ const Item = () => {
 
   return (
     <>
-      {/* <section className="shop-main">
-        <div className="left-shop">
-          <div className="shop-left-full-view">
-            <img src={selected.ShowCaseImages[index]} alt="" className="shop-image-full" />
-          </div>
-          <div className="shop-left-view-">
-            <div className="shop-showcase">
-              <span className="show-more-text">Look at product</span>
-              <span className="next-prev">
-                <span className="n-prev" onClick={setSlideShowMinus}>{"<"}</span>
-                <span className="n-prev" onClick={setSlideShow}>{">"}</span>
-              </span>
-            </div>
-            <div className="shop-slide-overflow">
-              {selected.ShowCaseImages.map((img, idx) => (
-                <img key={idx} className="slide-selection" onClick={() => setIndex(idx)} src={img} alt={`Slide ${idx}`} />
-              ))}
-            </div>
-          </div>
-        </div> */}
-      {/* 
-        <div className="right-shop">
-
-          <div className="shop-left-top">
-            <div className="shop-left-top-top">
-              <p className="shop-title">{selected.ProductName}</p>
-            </div>
-          </div>
-          <div className="shop-left-two">
-            <div className="price-">
-              <span className="price-symbol"><MdCurrencyRupee size={25} /></span>
-              <span className="price-money">{selected.PriceForCustomers}</span>
-            </div>
-          </div>
-          <div className="shop-left-three">
-            <div className="description-three">
-              <p className="descrition-size">{selected.Explaination}</p>
-            </div>
-          </div>
-          <div className="shop-left-bottom">
-            <button className="button-shop-dark" >Buy Now</button>
-            <button className="button-shop-lite" >Add to Cart</button>
-          </div>
-        </div> */}
-      {/* </section> */}
       <section className="Order">
         <div className="order-order">
           <div className="left-shop">

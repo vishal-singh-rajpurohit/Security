@@ -8,6 +8,11 @@ body {
     display: flex;
     justify-content: center;
 }
+section.term-section {
+    display: flex
+;
+    justify-content: center;
+}
 .container {
     max-width: 800px;
     background: #fff;

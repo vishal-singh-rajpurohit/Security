@@ -1,4 +1,5 @@
 import './App.css';
+import './Styles/shop.css'
 import { Routes, Route } from 'react-router-dom'
 import Add from './Components/Add/Add';
 import Item from './Components/Item/Item';
