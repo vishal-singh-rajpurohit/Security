@@ -20,7 +20,6 @@ app.use(cors({
   // methods: ['GET', 'POST', 'PUT', 'DELETE'],
   // allowedHeaders: ['Content-Type', 'Authorization']
 }));
-// app.use(cors());
 // for get data encoded from urls
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public")); //configure static files on server

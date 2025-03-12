@@ -12,10 +12,6 @@ const { Options, genreateOtp } = require('../../methods')
 const registerUser = asyncHandler(async (req, resp) => {
     let { FirstName, LastName, Password, ConformPassword, Email } = req.body;
 
-    console.log("fname: ", FirstName);
-    console.log("mail: ", Email);
-    console.log("pass: ", FirstName);
-
     if (!FirstName || !Email || !Password) {
         throw new ApiError(400, "All Data Required");
     }

@@ -1,8 +1,7 @@
 section.signup-main {
     width: 100%;
     height: auto;
-    display: flex
-;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -14,6 +13,7 @@ section.signup-main {
     z-index: 199;
     top: 0;
 }
+
 .signup-main-2 {
     width: 80%;
     height: 80%;
@@ -23,11 +23,11 @@ section.signup-main {
     align-items: center;
     border-radius: 10px;
 }
+
 .signup-main-2 {
     width: 80%;
     height: 80%;
-    display: grid
-;
+    display: grid;
     grid-template-columns: 1fr 1fr;
     background: #272232;
     align-items: center;
@@ -38,11 +38,11 @@ section.signup-main {
 .left-singup {
     width: 100%;
     height: 100%;
-    display: flex
-;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .left-whole {
     background-image: url('../Assets/x.jpg');
     width: 90%;
@@ -52,14 +52,14 @@ section.signup-main {
 }
 
 .left-right {
-    display: flex
-;
+    display: flex;
     flex-direction: column;
     /* height: 80%; */
     gap: 1rem;
     padding-top: 1rem;
     padding-bottom: 2rem;
 }
+
 .left-right.lr2 {
     background-color: #29223a;
     padding: 2rem;
@@ -76,9 +76,12 @@ p.create-signup-text {
     font-size: xx-large;
     color: white;
 }
+
 span.login-txt {
     cursor: pointer;
+    color: #18e3de;
 }
+
 p.second-signup-text {
     color: #ffffff94;
     font-size: large;
@@ -126,6 +129,7 @@ input.signup-single-input {
     color: white;
     font-size: large;
 }
+
 label.agree-error {
     color: #bd6d00;
 }
@@ -203,12 +207,13 @@ button.input-full-signup {
     .left-singup {
         display: none;
     }
+
     .signup-main-2 {
-        display: flex
-    ;
+        display: flex;
         justify-content: center;
         align-items: center;
     }
+
     .left-right {
         width: 90%;
     }
