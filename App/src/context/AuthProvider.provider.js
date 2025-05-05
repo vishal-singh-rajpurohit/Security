@@ -140,45 +140,6 @@ const AuthProvider = ({ children }) => {
         }
     }
 
-    const sendRegistrationOtp = async (Email, Password) => {
-        setLoading(true)
-        try {
-            await axios
-                .post(`${process.env.REACT_APP_API}${API[9]}`, {
-                    Email: Email,
-                    Password: Password,
-                })
-                .then((resp) => {
-                    setLoading(false)
-                });
-        } catch (error) {
-            console.log("got error while hitting register otp ", error);
-            setLoading(false)
-            setFailedModal(true)
-        }
-    };
-
-    const sendLoginOtp = async (Email, Password) => {
-        setLoading(true)
-        try {
-            await axios
-                .post(`${process.env.REACT_APP_API}${API[10]}`, {
-                    Email: Email,
-                    Password: Password,
-                }, {
-                    withCredentials: true
-                })
-                .then((resp) => {
-                    setLoading(false)
-                    setFailedModal(true)
-                });
-        } catch (error) {
-            console.log("got error while hitting Login otp ", error);
-            setLoading(false)
-            setFailedModal(true)
-        }
-    };
-
     const register = async (Otp, FirstName, LastName, Email, Password, ConformPassword) => {
         setLoading(true)
         try {

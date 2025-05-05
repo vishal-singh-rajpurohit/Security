@@ -1,0 +1,20 @@
+section.resat-section {
+    width: 100%;
+    height: 100vh;
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+}
+button.verify-resat-email {
+    width: 9rem;
+    height: 2.5rem;
+    font-size: large;
+    background: #0f9c9c;
+    border: none;
+    border-radius: 7px;
+    font-size: x-large;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}

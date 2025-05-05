@@ -6,89 +6,53 @@ const newSchema = new mongoose.Schema(
         type: String,
         required: true
     },
-    PriceForDealers: {
-      type: Number,
-      // required: true
-    },
-    PriceForInstallers: {
-      type: Number,
-      // required: true
-    },
-    PriceForCustomers: {
+    DealPrice: {
       type: Number,
       required: true
     },
-    AdvancedPaymentAmmount: {
+    OriginalPrice: {
       type: Number,
-      required: true
     },
-    Premium: {
-      type: Boolean,
-      default: false,
-      required: true
-    },
-    CameraQuality: {
-      type: String,
-      required: true,
-      enum: ["HD", "IP", "BOTH"]
-    },
-    CameraType: {
+    FrontImage: {
       type: String,
       required: true
     },
-    NumberOfCameras: {
-      type: Number,
-      required: true
-    },
-    Channel:{
-      type: Number,
-      required: true
-    },
-    Hdd: {
-      type: String,
-      required: true
-    },
-    MegaPixels:{
-      type: Number,
-      required: true
-    },
-    IndoorOutdoor: {
-      type: String,
-      required: true,
-      enum: ["INDOOR", "OUTDOOR", "COMPLETE"]
-    },
-    KeyWords: {
-        type: String,
-        required: true
-    },
-    Tag: {
-      type: String,
-      required: true,
-      enum : ["BUDGET", "BASIC"]
-    },
-    AboutItem: {
+    ShowImages:{
       type: [String],
-      required: true
+      validate: [5, '{PATH} exceeds the limit of 5!']
     },
-    Description: {
-        type: String,
-        required: true
-    },
-    FrontImage:{
+    ProductDescription: {
       type: String,
       required: true
     },
-    ShowCaseImages: {
+    ProductFeatures: {
       type: [String],
-      valida : [arrayLimit , 'ShowCaseImages exceeds the limit of 6'],
-      required: true
-    }, 
-    Status:{
+      validate: [10, '{PATH} exceeds the limit of 10!']
+    },
+    ProductCategory: {
       type: String,
-      enum: ['new', 'suspended', 'published', 'hot', 'limited' ],
-      default: 'new',
       required: true
-    }
+    },
+    ProductSubCategory: {
+      type: String,
+      required: true
+    },
+    ProductBrand: {
+      type: String,
+      required: true
+    },
+    ProductRating: {
+      type: Number,
+      default: 0
+    },
+    ProductReviews: {
+      type: Number,
+      default: 0
+    },
+    SpecialFeature: {
+      type: String,
+      default: "No Special Feature"
+    },
   },
   {
     timeseries: true,

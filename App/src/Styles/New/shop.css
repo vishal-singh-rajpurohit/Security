@@ -1,0 +1,262 @@
+
+img {
+    width: 2rem;
+}
+
+section.shop-page {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f5f5;
+}
+
+section.shop-section {
+    min-height: 90%;
+    width: 95%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-items: center;
+    background: #ffffff;
+    border-radius: 10px;
+    gap: 1rem;
+    padding-top: 2rem;
+}
+
+
+/* Left Overview */
+
+.shop-section-left {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 7fr 2fr;
+    align-items: center;
+    justify-items: center;
+}
+
+.overview-top-share {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    padding-right: 1rem;
+}
+
+.shop-overview-max {
+    width: 100%;
+    height: auto;
+    max-height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img.shop-overview-max-img {
+    width: 90%;
+    cursor: zoom-in;
+}
+
+.overview-slide {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 6fr 2fr;
+    align-items: center;
+    justify-items: center;
+}
+
+.overview-slide-overflow {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    overflow: auto scroll;
+    scrollbar-width: none;
+}
+
+.overview-dl-div {
+    width: 100%;
+    display: flex;
+    gap: 1em;
+}
+
+.overview-sm-imge {
+    min-width: 40%;
+    cursor: pointer;
+}
+
+img.shop-overview-min-img {
+    width: 100%;
+}
+
+/* right */
+.shop-section-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-left: 1px solid #5d5d5d30;
+}
+
+.shop-section-right-top-1 {
+    padding-left: 1rem;
+}
+
+.offer-on-shop {
+    width: 50%;
+    height: 1.4rem;
+    background: #11c011;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    border-radius: 7px 1px 13px 0px;
+    color: white;
+}
+
+.shop-section-right-mid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    border-bottom: 1px solid #5d5d5d30;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+}
+
+p.product-title {
+    font-size: x-large;
+    font-family: sans-serif;
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.rating-div {
+    font-size: large;
+}
+
+.deal-price {
+    font-size: large;
+    color: #484848;
+}
+
+span.deal-price-ammount {
+    font-size: xx-large;
+    font-weight: 600;
+    color: black;
+}
+
+.offer-price {
+    color: gray;
+    font-size: large;
+}
+
+.mrp-price {
+    font-size: larger;
+    color: gray;
+}
+
+span.mrp-off {
+    color: #0ec90e;
+}
+
+/* details */
+.more-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-bottom: 1px solid #5d5d5d30;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+}
+
+h3.product-details-heading-shop {
+    font-size: larger;
+    font-weight: 600;
+}
+
+ul.product-detail-ul {
+    padding-left: 1rem;
+    list-style-type: circle;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: large;
+    color: #4d4545;
+}
+
+
+/* Buttons */
+.shop-section-shop-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    align-items: center;
+    height: 10rem;
+    padding-left: 1rem;
+}
+
+
+button.shop-size {
+    width: 9rem;
+    height: 3rem;
+    border-radius: 24px;
+    cursor: pointer;
+    border: none;
+    font-size: large;
+}
+
+button.card-btn.shop-size {
+    border: 1px solid;
+    color: #8aa6a6;
+    background: white;
+}
+
+button.buy-btn.shop-size {
+    background: #b5beda;
+    color: white;
+    font-weight: 700;
+}
+
+@media (max-width: 1200px) {
+    section.shop-page {
+        height: 100%;
+    }
+    section.shop-section {
+        display: flex
+    ;
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .shop-section-left {
+        display: flex
+    ;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    img.shop-overview-max-img {
+        border-radius: 11px;
+    }
+    .overview-slide {
+        width: 100%;
+        display: grid
+    ;
+        grid-template-columns: 1fr 6fr 1fr;
+        align-items: center;
+        justify-items: center;
+    }
+    .overview-sm-imge {
+        min-width: 30%;
+        cursor: pointer;
+    }
+
+    .shop-section-right {
+        border-top: 1px solid #dedcdc;
+        padding-top: 1rem;
+    }
+    .shop-section-right-mid {
+        gap: 0.5rem;
+    }
+    .shop-section-shop-buttons {
+        justify-content: center;
+    }
+}
