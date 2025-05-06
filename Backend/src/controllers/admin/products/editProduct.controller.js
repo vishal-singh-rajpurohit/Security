@@ -4,7 +4,7 @@ const ApiError = require("../../../utils/ApiError.utils");
 const uploadOnCloud = require("../../../utils/cloudinary.utils");
 
 const editProductPrice = asyncHandler(async (req, resp) => {
-  const { productId, PriceForDealers, PriceForInstallers, PriceForCustomers, AdvancedPaymentAmmount, } = req.body;
+  const { productId, DealPrice, OriginalPrice } = req.body;
 
   if (!productId) {
     throw new ApiError(400, "Product ID Must Required");
@@ -18,10 +18,8 @@ const editProductPrice = asyncHandler(async (req, resp) => {
 
   const UpdateProduct = await Product.findByIdAndUpdate(productId, {
     $set: {
-      PriceForDealers,
-      PriceForInstallers,
-      PriceForCustomers,
-      AdvancedPaymentAmmount,
+      DealPrice,
+      OriginalPrice
     },
   });
 
@@ -68,7 +66,7 @@ const editProductDisplay = asyncHandler(async (req, resp) => {
 
   const UpdateProduct = await Product.findByIdAndUpdate(productId, {
     $set: {
-      ShowCaseImages
+      ShowImages: ShowCaseImages,
     },
   });
 

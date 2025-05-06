@@ -10,7 +10,6 @@ const deleteProduct = asyncHandler(async (req, resp) => {
     throw new ApiError(400, "Give productId");
   }
 
-
   const deletedItem = await Product.findByIdAndDelete(productId);
 
   if (!deletedItem) {
