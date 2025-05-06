@@ -1,31 +1,50 @@
 const Product = require("../../../models/product.model");
-const uploadOnCloud = require("../../../utils/cloudinary.utils")
+const uploadOnCloud = require("../../../utils/cloudinary.utils");
 const ApiError = require("../../../utils/ApiError.utils");
 const asyncHandler = require("../../../utils/asyncHandler.utils");
 const ApiResponse = require("../../../utils/ApiResponse.utils");
 
 const newproduct = asyncHandler(async (req, resp) => {
-  let { ProductName, KeyWords, Tag, PriceForDealers, PriceForInstallers, PriceForCustomers, AdvancedPaymentAmmount, Description, Premium, CameraType, CameraQuality, IndoorOutdoor, MegaPixels, NumberOfCameras, AboutItem, Channel, Hdd } = req.body;
+  let {
+    ProductName,
+    DealPrice,
+    OriginalPrice,
+    ProductDescription,
+    ProductFeatures,
+    ProductCategory,
+    ProductBrand,
+    SpecialFeature,
+    cameraMegaPixel,
+    batteryCapacity,
+    cameraType,
+    cameraQuality,
+    channel,
+    hdd,
+  } = req.body;
 
-  console.log("body :", req.body);
-
-  if ([ProductName, KeyWords, PriceForDealers, PriceForInstallers, PriceForCustomers, Description].some((field) => field?.trim() === "")) {
+  if (
+    [
+      ProductName,
+      DealPrice,
+      OriginalPrice,
+      ProductDescription,
+      ProductFeatures,
+      ProductCategory,
+      ProductBrand,
+    ].some((field) => field?.trim() === "")
+  ) {
     throw new ApiError(400, "All fields must required");
   }
 
-  const aboutItemArr = AboutItem.split("/")
-
-  let ShowCaseImages = []
+  let ShowCaseImages = [];
 
   if (!req.files) {
-    throw new ApiError(400, "files not found")
+    throw new ApiError(400, "files not found");
   }
-
-  
-
 
   // upload multiple files at a time
   const LocalFrontImage = req.files?.image[0]?.path;
+
   if (!LocalFrontImage) {
     throw new ApiError(400, "Cover Images not found");
   }
@@ -49,33 +68,29 @@ const newproduct = asyncHandler(async (req, resp) => {
 
   const pushResult = new Product({
     ProductName,
-    PriceForDealers: PriceForDealers ? Number(PriceForDealers) : Number(PriceForCustomers),
-    PriceForInstallers: PriceForInstallers ? Number(PriceForInstallers) : Number(PriceForCustomers),
-    PriceForCustomers: Number(PriceForCustomers),
-    AdvancedPaymentAmmount: Number(AdvancedPaymentAmmount),
-    KeyWords,
-    Description,
-    FrontImage,
-    ShowCaseImages,
-    AboutItem: aboutItemArr,
-    Premium,
-    Tag,
-    CameraType,
-    CameraQuality,
-    Channel,
-    Hdd,
-    IndoorOutdoor,
-    MegaPixels,
-    CameraQuality,
-    NumberOfCameras,
-  })
+    DealPrice: Number(DealPrice),
+    OriginalPrice: Number(OriginalPrice),
+    FrontImage: FrontImage,
+    ShowImages: ShowCaseImages,
+    ProductDescription,
+    ProductFeatures,
+    ProductCategory,
+    SpecialFeature,
+    cameraMegaPixel,
+    batteryCapacity,
+    cameraType,
+    cameraQuality,
+    channel,
+    hdd,
+  });
+
   await pushResult.save();
 
   if (!pushResult) {
     throw new ApiError(400, "Error While Product in DB");
   }
 
-  resp.status(200).json(new ApiResponse(200, { pushResult }, "product Added Successfully"));
+  resp.status(200).json(new ApiResponse(200, {}, "product Added Successfully"));
 });
 
 module.exports = newproduct;

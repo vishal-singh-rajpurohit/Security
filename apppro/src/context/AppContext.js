@@ -57,7 +57,7 @@ export const AppProvider = ({ children }) => {
       dispatch(fetchProductsError());
     }
   }
-
+  
   const data = {
     dispatch,
     openMenu,

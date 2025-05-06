@@ -53,6 +53,30 @@ const newSchema = new mongoose.Schema(
       type: String,
       default: "No Special Feature"
     },
+    cameraMegaPixel: {
+      type: String,
+      default: "No Camera"
+    },
+    batteryCapacity: {
+      type: String,
+      default: "No Battery"
+    },
+    cameraType: {
+      type: String,
+      default: "No Camera"
+    },
+    cameraQuality: {
+      type: String,
+      default: "No Camera"
+    },
+    channel: {
+      type: String,
+      default: "No Channel"
+    },
+    hdd: {
+      type: String,
+      default: "No HDD"
+    },
   },
   {
     timeseries: true,
