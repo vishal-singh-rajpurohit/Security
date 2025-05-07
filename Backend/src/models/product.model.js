@@ -3,80 +3,94 @@ const mongoose = require("mongoose");
 const newSchema = new mongoose.Schema(
   {
     ProductName: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     DealPrice: {
       type: Number,
-      required: true
+      required: true,
     },
     OriginalPrice: {
       type: Number,
     },
     FrontImage: {
       type: String,
-      required: true
+      required: true,
     },
-    ShowImages:{
+    ShowImages: {
       type: [String],
-      validate: [5, '{PATH} exceeds the limit of 5!']
+      validate: {
+        validator: function (val) {
+          return val.length <= 5;
+        },
+        message: "{PATH} exceeds the limit of 5!",
+      },
     },
     ProductDescription: {
       type: String,
-      required: true
+      required: true,
     },
     ProductFeatures: {
       type: [String],
-      validate: [10, '{PATH} exceeds the limit of 10!']
+      validate: {
+        validator: function (val) {
+          return val.length <= 10;
+        },
+        message: "{PATH} exceeds the limit of 10!",
+      },
     },
     ProductCategory: {
       type: String,
-      required: true
+      required: true,
     },
     ProductSubCategory: {
       type: String,
-      required: true
+      required: true,
     },
     ProductBrand: {
       type: String,
-      required: true
+      default: "Not manfioned",
     },
     ProductRating: {
       type: Number,
-      default: 0
+      default: 0,
     },
     ProductReviews: {
       type: Number,
-      default: 0
+      default: 0,
     },
     SpecialFeature: {
       type: String,
-      default: "No Special Feature"
+      default: "No Special Feature",
     },
     cameraMegaPixel: {
       type: String,
-      default: "No Camera"
+      default: "No Camera",
     },
     batteryCapacity: {
       type: String,
-      default: "No Battery"
+      default: "No Battery",
     },
     cameraType: {
       type: String,
-      default: "No Camera"
+      default: "No Camera",
     },
     cameraQuality: {
       type: String,
-      default: "No Camera"
+      default: "No Camera",
     },
     channel: {
       type: String,
-      default: "No Channel"
+      default: "No Channel",
     },
     hdd: {
       type: String,
-      default: "No HDD"
+      default: "No HDD",
     },
+    offer: {
+      type: Boolean,
+      default: false,
+    }
   },
   {
     timeseries: true,
@@ -87,7 +101,6 @@ const newSchema = new mongoose.Schema(
 function arrayLimit(val) {
   return val.length <= 5;
 }
-
 
 const Product = mongoose.model("Product", newSchema);
 

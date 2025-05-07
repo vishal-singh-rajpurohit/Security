@@ -6,57 +6,9 @@ const newSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Product",
     },
-    UserId: {
+    OrderId:{
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User" || "Dealer" || "Installer",
-    },
-    Address:{
-      type: String,
-      required: true
-    },
-    City: {
-      type: String,
-      required: true
-    },
-    State:{
-      type: String,
-      required: true
-    },
-    PostCode:{
-      type: Number,
-      required: true
-    },
-    MobileNumber: {
-      type: Number,
-      required: true
-    },
-    AdvancedPaymentAmmout: {
-      type: Number,
-    },
-    AdvancedPaymentId: {
-      type: String,
-    },
-    FinalPaymentId: {
-      type: String,
-      default: "PENDING",
-    },
-    PendingAmmount: {
-      type: Number,
-      // required: true,
-    },
-    DelivaryDate: {
-      type: Date,
-      // required: true,
-    },
-    Status: {
-      type: String,
-      required: true,
-      enum: ["PENDING", "CONFORMED", "SHIPPING", "DELIVERED", "COMPLETED", "CANCELLED"],
-      default: "PENDING",
-    },
-    ReffralCode: {
-      type: String,
-      // required: true
+      ref: "Order",
     }
   },
   {

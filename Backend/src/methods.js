@@ -1,9 +1,9 @@
-const Installer = require("./models/installer.model");
+
 const User = require("./models/user.model");
-const Dealer = require("./models/dealer.model");
 const ApiError = require("./utils/ApiError.utils");
 
 const limit = 15;
+
 const Options = {
   httpOnly: true,
   secure: true, // turn true in production
@@ -32,27 +32,28 @@ const genreateOtp = () => {
   const otp = Math.round(Math.random() * 1000000);
   return otp;
 };
-const checkUserType = (userType) => {
-  let Model;
 
-  switch (userType) {
-    case "CUSTOMER":
-      Model = User;
-      break;
+// const checkUserType = (userType) => {
+//   let Model;
 
-    case "DEALER":
-      Model = Dealer;
-      break;
+//   switch (userType) {
+//     case "CUSTOMER":
+//       Model = User;
+//       break;
 
-    case "INSTALLER":
-      Model = Installer;
-      break;
+//     case "DEALER":
+//       Model = Dealer;
+//       break;
 
-    default:
-      throw new ApiError(400, "Wrong Type Of User");
-  }
+//     case "INSTALLER":
+//       Model = Installer;
+//       break;
 
-  return Model;
-};
+//     default:
+//       throw new ApiError(400, "Wrong Type Of User");
+//   }
 
-module.exports = { genreateId, checkUserType, Options, limit, genreateOtp, paginate };
+//   return Model;
+// };
+
+module.exports = { genreateId, Options, limit, genreateOtp, paginate };

@@ -3,6 +3,7 @@ import { ImageSlider } from '../Individual/Slides'
 import ProductScroll from '../Individual/Views/ProductScroll'
 import ProductGrid from '../Individual/Views/ProductGrid'
 import OfferGrid from '../Individual/Views/OfferGrid'
+import SolutionsHalf from '../Individual/SolutionsHalf'
 
 function Home() {
 
@@ -10,6 +11,7 @@ function Home() {
     <section className="home-page">
         <ImageSlider />
         <ProductScroll />
+        <SolutionsHalf />
         <OfferGrid />
         <ProductGrid />
     </section>

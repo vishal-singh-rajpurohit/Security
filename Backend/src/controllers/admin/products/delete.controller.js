@@ -4,7 +4,7 @@ const ApiError = require("../../../utils/ApiError.utils");
 const ApiResponse = require("../../../utils/ApiResponse.utils");
 
 const deleteProduct = asyncHandler(async (req, resp) => {
-  const {productId} = req.body;
+  const { productId } = req.body;
 
   if (!productId) {
     throw new ApiError(400, "Give productId");

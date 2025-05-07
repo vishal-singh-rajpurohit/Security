@@ -7,7 +7,7 @@ const ProductGrid = () => {
     <section class="prodcuts-grid-section">
       <div class="product-slide-section-top">
         <div class="text-s">
-          <h2 class="heading-scroll">Tranding Categories!</h2>
+          <h2 class="heading-scroll">Explore Products!</h2>
           {/* <p class="discount-text">Get 10% Bank Discounts</p>  */}
         </div>
       </div>

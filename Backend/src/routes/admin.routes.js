@@ -24,6 +24,7 @@ adminRouter.route("/addproduct").post(upload.fields([
         maxCount: 5
     }
 ]), newproduct);
+
 adminRouter.route("/delete-product").delete(deleteProduct);
 // adminRouter.route("/edit-price").put(editProductPrice);
 adminRouter.route("/edit-display").put(upload.fields([{
@@ -36,8 +37,8 @@ adminRouter.route("/unread-reports").get(getReports);
 adminRouter.route("/review-report").post(reviewReport);
 
 // User Approval
-adminRouter.route("/approve").put(setVerification);
-adminRouter.route("/get-unverified-users").get(getUsersVerification);
+// adminRouter.route("/approve").put(setVerification);
+// adminRouter.route("/get-unverified-users").get(getUsersVerification);
 
 // Edit Products
 

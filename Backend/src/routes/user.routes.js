@@ -1,6 +1,5 @@
 const express = require("express");
 const Auth = require("../middlewares/Auth.middleware");
-const {checkOtp} = require("../middlewares/checkOtp.middleware")
 const {registerUser , loginUser , logoutUser, becomeDealer, sendVerificationOtp, verifyUser, verifyEmail} = require("../controllers/users/user.controller");
 const userAddInfo = require("../controllers/users/verificationDetails/userAddInfo.controller");
 

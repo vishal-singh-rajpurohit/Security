@@ -1,33 +1,41 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {AiFillHeart, AiOutlineHeart} from 'react-icons/ai'
+import { LiaSave } from "react-icons/lia";
+import { MdCurrencyRupee } from 'react-icons/md';
 
-const ProductCard = () => {
+const ProductCard = ({topLabel, banner, title, deal, MRP}) => {
+
+  const [discount, setDiscount] = React.useState(0);
+
+  useEffect(() => {
+    const discountValue = Math.round(((MRP - deal) / MRP) * 100);
+    setDiscount(discountValue);
+  });
+
   return (
     <div class="product-card-single">
       <div class="product-card-single-top">
-        <div class="offer-type">Best for small Stores</div>
-        <div class="liked-top"><AiOutlineHeart /></div>
+        <div class="offer-type">{topLabel}</div>
+        <div class="liked-top"><LiaSave /></div>
       </div>
       <div class="product-card-single-mid">
-        <img src="./Assets/cam.png" alt="" class="product-card-single-mid-image" />
+        <img src={banner} alt="" class="product-card-single-mid-image" />
       </div>
       <div class="product-card-single-bottom">
         <div class="prodcut-card-title">
           <p class="prodcut-title-p">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque eveniet voluptatibus
-            blanditiis magni explicabo reiciendis fugit quod tempora similique aliquam eius ad
-            numquam maiores, natus, nulla totam ipsa modi. Excepturi.
+            {title}
           </p>
         </div>
         <div class="product-card-price">
           <span class="product-card-price-single">
-            $25,00,0
+            <MdCurrencyRupee size={20} /> {deal}
           </span>
-          <span class="product-card-price-offer">28% off</span>
+          <span class="product-card-price-offer">{discount}% off</span>
         </div>
         <div class="product-card-price-mrp">
           <span class="product-card-mrp-span">
-            MRP 29,000
+            MRP <MdCurrencyRupee /> {MRP}
           </span>
         </div>
       </div>

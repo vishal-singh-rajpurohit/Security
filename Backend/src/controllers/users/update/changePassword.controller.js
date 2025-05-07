@@ -1,8 +1,6 @@
 const asyncHandler = require("../../../utils/asyncHandler.utils");
 const ApiError = require("../../../utils/ApiError.utils");
 const ApiResponse = require("../../../utils/ApiResponse.utils");
-const Dealer = require("../../../models/dealer.model");
-const Installer = require("../../../models/installer.model");
 const User = require("../../../models/user.model");
 
 const changePassword = asyncHandler(async (req, resp) => {
@@ -13,23 +11,6 @@ const changePassword = asyncHandler(async (req, resp) => {
   }
   
   const { OldPassword, NewPassword, ConformPassword } = req.body;
-  let Model;
-
-  switch (user.UserType) {
-    case "CUSTOMER":
-      Model = User;
-      break;
-
-    case "DEALER":
-      Model = Dealer;
-      break;
-
-    case "INSTALLER":
-      Model = Installer;
-      break;
-    default:
-      break;
-  }
 
   if (!OldPassword || !NewPassword || !ConformPassword) {
     throw new ApiError(400, "All Fields Must Proived");
@@ -39,7 +20,7 @@ const changePassword = asyncHandler(async (req, resp) => {
     throw new ApiError(400, "New And Old Password is Not Matching");
   }
 
-  const checkUser = await Model.findById(user._id);
+  const checkUser = await User.findById(user._id);
 
   if (!checkUser) {
     throw new ApiError(400, "User Not Found");

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 //Products = {
 //     _id: "",
@@ -43,6 +44,7 @@ const initialState = {
   offerProducts: [],
   trandingProducts: [],
   selectedProduct: {},
+  cart: {},
   loading: false,
   error: null,
 };
@@ -65,6 +67,16 @@ function fetchProductsSuccess2(state, action) {
 function fetchSelectedProductStart2(state, action) {
   state.selectedProduct = action.payload.selectedProduct;
 }
+function appendCart(state, action) {
+  const { productId, quantity } = action.payload;
+}
+function removeCart(state, action) {
+  const { cardId } = action.payload;
+}
+
+function clearCart(state) {}
+
+function fetchCart(state) {}
 
 const productsSlice = createSlice({
   name: "products",

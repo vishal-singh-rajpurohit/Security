@@ -16,6 +16,10 @@ span.view-all-txt {
     font-weight: 700;
     color: #070783;
     cursor: pointer;
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
 }
 
 

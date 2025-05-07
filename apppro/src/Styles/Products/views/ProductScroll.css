@@ -95,11 +95,12 @@ span.view-all-txt {
 .product-card-single-mid {
     height: 45%;
     width: 100%;
-    display: flex;
+    display: flex
+;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
-
 .product-card-single-bottom {
     width: 100%;
     height: 30%;
@@ -114,7 +115,12 @@ span.view-all-txt {
     width: 100%;
     padding: 0 1rem;
 }
-
+.product-card-price {
+    display: flex
+;
+    align-items: flex-end;
+    gap: 0.4rem;
+}
 img.product-card-single-mid-image {
     max-width: 15em;
     width: 85%;

@@ -11,48 +11,44 @@ const { addSatisfaction, getReviews } = require("../controllers/report/reviews.c
 const addtocart = require("../controllers/shop/cart/addtocart.controller");
 const removefromcart = require("../controllers/shop/cart/removerfromcart.controller");
 const changePassword = require("../controllers/users/update/changePassword.controller");
-const changeUserType = require("../controllers/users/update/changeUserType.controller");
 const refreshAccessAndRefreshToken = require("../controllers/users/refreshAccessAndRefreshToken.controller");
 const { serverProducts, serveSelectedProduct, serveCartItems, servePremium } = require("../controllers/Products/products.controller");
+const { initialProductServer, customProductServer, selectProductServer } = require("../controllers/NEW/products/serve.controller");
 // const messagesFromLanding = require("../controllers/Landing/message.controller");
 
 const mainRoutes = express.Router();
 
 // CHECK AUTHENTICATION
-mainRoutes.route("/auth/refresh-Tokens").post(Auth, refreshAccessAndRefreshToken);
+// mainRoutes.route("/auth/refresh-Tokens").post(Auth, refreshAccessAndRefreshToken);
 
 // otps
-mainRoutes.route("/otp/send-otp-signup").post(isNotExists, otpVerification);
-mainRoutes.route("/otp/send-otp-login").post(isExists, otpVerification);
-mainRoutes.route("/danger/delete-account").post(Auth, otpVerification);
-mainRoutes.route("/otp/send-delete-otp").post(checkOtp, Auth, deleteAccount);
+// mainRoutes.route("/otp/send-otp-signup").post(isNotExists, otpVerification);
+// mainRoutes.route("/otp/send-otp-login").post(isExists, otpVerification);
+// mainRoutes.route("/danger/delete-account").post(Auth, otpVerification);
+// mainRoutes.route("/otp/send-delete-otp").post(checkOtp, Auth, deleteAccount);
 
 // SERVE PRODUCTS
-mainRoutes.route("/serve/products").post(serverProducts);
-mainRoutes.route("/serve/premium-products").post(servePremium);
-mainRoutes.route("/serve/selected-product").post(serveSelectedProduct);
+// mainRoutes.route("/serve/products").post(serverProducts);
+// mainRoutes.route("/serve/premium-products").post(servePremium);
+// mainRoutes.route("/serve/selected-product").post(serveSelectedProduct);
 
 // Reports
-mainRoutes.route("/report/new-report").post(Auth, addreport);
-mainRoutes.route("/report/set-satisfied").put(Auth, addSatisfaction);
-mainRoutes.route("/report/get-reviews").get(Auth, getReviews);
+// mainRoutes.route("/report/new-report").post(Auth, addreport);
+// mainRoutes.route("/report/set-satisfied").put(Auth, addSatisfaction);
+// mainRoutes.route("/report/get-reviews").get(Auth, getReviews);
 
 // CART
-mainRoutes.route("/cart/add-to-cart").post(Auth, addtocart);
-mainRoutes.route("/cart/serve-cart").post(Auth, serveCartItems);
-mainRoutes.route("/cart/remove-from-cart").post(Auth, removefromcart);
+// mainRoutes.route("/cart/add-to-cart").post(Auth, addtocart);
+// mainRoutes.route("/cart/serve-cart").post(Auth, serveCartItems);
+// mainRoutes.route("/cart/remove-from-cart").post(Auth, removefromcart);
 
 // User Modification
-mainRoutes.route("/modify/change-password").put(Auth, changePassword);
-mainRoutes.route("/modify/change-user-type").post(Auth, upload.fields([
-    {
-        name: 'image',
-        maxCount: 1
-    },
-    {
-        name: 'id',
-        maxCount: 1
-    },
-]), changeUserType);
+// mainRoutes.route("/modify/change-password").put(Auth, changePassword);
+
+// New Routes
+mainRoutes.route("/product/first-server").get(initialProductServer);
+mainRoutes.route("/product/will-server").get(customProductServer);
+mainRoutes.route("/product/select-server").get(selectProductServer);
+
 
 module.exports = mainRoutes;

@@ -1,10 +1,9 @@
-const Dealer = require("../models/dealer.model");
+const User = require("../models/user.model")
 const ApiError = require("./ApiError.utils")
 
-const genTokens = async (Model, userId) => {
+const genTokens = async (userId) => {
     try {
-        console.log("genTokens start");
-        const user = await Model.findById(userId);
+        const user = await User.findById(userId);
 
         if (!user) {
             console.log("user not found");

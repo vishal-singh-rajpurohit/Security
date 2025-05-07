@@ -1,5 +1,5 @@
-import React, { createContext, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { createContext, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import {
   fetchProductsError,
@@ -18,6 +18,12 @@ export const AppProvider = ({ children }) => {
   // Navigation menu state
   const [openMenu, setOpenMenu] = useState(false);
 
+
+  useEffect(() => {
+    checkAlreadyLoggedIn();
+    fetchProductFirst();
+  }, []);
+
   // Methods
   async function checkAlreadyLoggedIn() {
     try {
@@ -30,9 +36,7 @@ export const AppProvider = ({ children }) => {
   async function fetchProductFirst() {
     dispatch(fetchProductsStart());
     try {
-      const response = await axios.post(
-        `http://localhost:5000/api/v1/admin/initail-server`
-      );
+      const response = await axios.get(`http://localhost:5000/api/v1/main/product/first-server`);
 
       console.log("Products Served: ", response);
       dispatch(fetchProductsSuccess());
@@ -42,26 +46,47 @@ export const AppProvider = ({ children }) => {
     }
   }
 
+  async function fetchProductWill() {
+    const pageNo = useSelector((state) => state.variable.page);
+    try {
+      const response = await axios.get(`http://localhost:5000/api/v1/main/product/will-server/?page=${pageNo}`);
+
+      console.log("Products Served: ", response);
+      dispatch(fetchProductsSuccess());
+    }
+    catch (error) {
+      console.log("Error while serving products ", error);
+      dispatch(fetchProductsError());
+    }
+  }
+
   async function selectProduct(product_id) {
     dispatch(fetchProductsStart());
     try {
-      const response = await axios.post(
-        `http://localhost:5000/api/v1/admin/select-product`,
-        { product_id }
-      );
-
-      console.log("Product Selected: ", response);
+      const response = await axios.get(`http://localhost:5000/api/v1/admin/select-product/?id=${product_id}`);
       dispatch(fetchSelectedProductStart());  
+
+
+      window.localStorage.setItem("selectedProductId", product_id);
+      console.log("Selected Product: ", response);
+
     } catch (error) {
       console.log("Error while selecting product ", error);
       dispatch(fetchProductsError());
     }
   }
-  
+
+
+  const Methods = {
+    fetchProductWill,
+    selectProduct
+  }
+
   const data = {
     dispatch,
     openMenu,
     setOpenMenu,
+    Methods
   };
 
   return <AppContext.Provider value={data}>{children}</AppContext.Provider>;
