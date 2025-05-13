@@ -1,4 +1,5 @@
-const verificationTemplate = `<body style="margin:0; padding:0; background-color:#f0f2f5; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+const verificationTemplate = (refreshToken) => {
+  return `<body style="margin:0; padding:0; background-color:#f0f2f5; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
 
   <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f0f2f5; padding:40px 0;">
     <tr>
@@ -31,7 +32,7 @@ const verificationTemplate = `<body style="margin:0; padding:0; background-color
           <!-- Button -->
           <tr>
             <td>
-              <a href="#" style="background-color:#0066ff; color:#ffffff; padding:14px 28px; text-decoration:none; border-radius:8px; font-size:16px; font-weight:bold; display:inline-block; box-shadow:0 4px 10px rgba(0,102,255,0.3);">
+              <a href="http://localhost:3000/verify-account?token=${refreshToken}" style="background-color:#0066ff; color:#ffffff; padding:14px 28px; text-decoration:none; border-radius:8px; font-size:16px; font-weight:bold; display:inline-block; box-shadow:0 4px 10px rgba(0,102,255,0.3);">
                 Verify
               </a>
             </td>
@@ -51,8 +52,10 @@ const verificationTemplate = `<body style="margin:0; padding:0; background-color
   </table>
 
 </body>`;
+};
 
-const orderVerificationTemplate = `<!DOCTYPE html>
+const orderVerificationTemplate = (orderId) => {
+  return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -129,7 +132,7 @@ const orderVerificationTemplate = `<!DOCTYPE html>
           <!-- Button -->
           <tr>
             <td align="center" style="padding: 30px;">
-              <a href="#" class="verify-btn" style="background-color: #007BFF; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none; font-size: 16px;">
+              <a href="http://localhost:3000/verify-order?orderId=${orderId}" class="verify-btn" style="background-color: #007BFF; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none; font-size: 16px;">
                 Verify Order
               </a>
             </td>
@@ -149,8 +152,10 @@ const orderVerificationTemplate = `<!DOCTYPE html>
 </body>
 </html>
 `;
+};
 
-const cancelOrderTemplate = `<!DOCTYPE html>
+const cancelOrderTemplate = (orderId) => {
+  return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -225,7 +230,7 @@ const cancelOrderTemplate = `<!DOCTYPE html>
           <!-- Button -->
           <tr>
             <td align="center" style="padding: 30px;">
-              <a href="#" class="cancel-btn" style="background-color: #e74c3c; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none; font-size: 16px;">
+              <a href="http://localhost:3000/verify-order?orderId=${orderId}" class="cancel-btn" style="background-color: #e74c3c; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none; font-size: 16px;">
                 Cancel Order
               </a>
             </td>
@@ -245,6 +250,7 @@ const cancelOrderTemplate = `<!DOCTYPE html>
 </body>
 </html>
 `;
+};
 
 module.exports = {
   verificationTemplate,

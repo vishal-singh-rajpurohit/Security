@@ -37,6 +37,8 @@ const newProduct = asyncHandler(async (req, resp) => {
     throw new ApiError(400, "All fields must required");
   }
 
+  const ProductFeaturesArray = ProductFeatures.split(",");
+
   let ShowCaseImages = [];
 
   if (!req.files) {
@@ -78,7 +80,7 @@ const newProduct = asyncHandler(async (req, resp) => {
     ProductBrand,
     ProductSubCategory,
     ProductCategory,
-    SpecialFeature,
+    SpecialFeature: ProductFeaturesArray,
     cameraMegaPixel,
     batteryCapacity,
     cameraType,
@@ -97,7 +99,7 @@ const newProduct = asyncHandler(async (req, resp) => {
 });
 
 const delProduct = asyncHandler(async (req, resp) => {
-  const productId = req.user.productId;
+  const { productId } = req.body;
 
   if (!productId) {
     throw new ApiError(400, "Product Id Must Required");

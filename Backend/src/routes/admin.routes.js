@@ -17,7 +17,7 @@ adminRouter.route("/addproduct").post(upload.fields([
     }
 ]), newProduct);
 
-adminRouter.route("/delete-product").delete(delProduct);
+adminRouter.route("/delete-product").post(delProduct);
 
 
 

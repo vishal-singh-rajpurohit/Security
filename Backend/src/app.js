@@ -32,13 +32,13 @@ const userRoute = require("./routes/user.routes");
 const orderRoutes = require("./routes/order.routes");
 const mainRoutes = require("./routes/main.routes")
 
-app.use("/api/v1/main", mainRoutes);
+app.use("/api/v2/main", mainRoutes);
 
-app.use("/api/v1/user", userRoute);
+app.use("/api/v2/user", userRoute);
 
 app.use("/api/v2/admin", adminRouter);
 
-app.use("/api/v1/orders", orderRoutes);
+app.use("/api/v2/orders", orderRoutes);
 
 
 module.exports = app;

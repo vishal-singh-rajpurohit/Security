@@ -3,7 +3,7 @@ const ApiResponse = require("../../../utils/ApiResponse.utils");
 const ApiError = require("../../../utils/ApiError.utils");
 const Product = require("../../../models/product.model");
 
-const initialProductServer = asyncHandler(async (req, resp) => {
+const initialProductServe = asyncHandler(async (req, resp) => {
   const Products = await Product.aggregate([
     {
       $limit: 20,
@@ -100,7 +100,7 @@ const selectProductServer = asyncHandler(async (req, resp) => {
 
 
 module.exports = {
-  initialProductServer,
+  initialProductServe,
   productServer,
   selectProductServer
 }

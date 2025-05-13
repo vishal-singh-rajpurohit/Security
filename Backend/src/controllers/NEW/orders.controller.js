@@ -4,6 +4,7 @@ const ApiError = require("../../utils/ApiError.utils");
 const Product = require("../../models/product.model");
 const Order = require("../../models/order.model");
 const Report = require("../../models/report.models");
+const { orderVerificationEmail } = require("../admin/sendMails/sendMail");
 
 const placeOrder = asyncHandler(async (req, resp) => {
   const user = req.user;
@@ -30,8 +31,11 @@ const placeOrder = asyncHandler(async (req, resp) => {
     quantity: quantity ? quantity : null,
   });
 
-  //Send Order Id
-  // Order Id
+  const sendResult = await orderVerificationEmail(user.email, newOrder._id);
+
+  if (!sendResult) {
+    throw new ApiError(400, "Email does not sent successfully");
+  }
 
   await newOrder.save();
 
@@ -93,6 +97,7 @@ const sendCancellationRequest = asyncHandler(async (req, resp) => {
 
   // Send Cancellation Email
 });
+
 const cancleOrder = asyncHandler(async (req, resp) => {
   const user = req.user;
 
