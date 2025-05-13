@@ -3,7 +3,7 @@ const ApiResponse = require("../../../utils/ApiResponse.utils");
 const ApiError = require("../../../utils/ApiError.utils");
 const Product = require("../../../models/product.model");
 
-export const initialProductServer = asyncHandler(async (req, resp) => {
+const initialProductServer = asyncHandler(async (req, resp) => {
   const Products = await Product.aggregate([
     {
       $limit: 20,
@@ -38,17 +38,15 @@ export const initialProductServer = asyncHandler(async (req, resp) => {
     throw new ApiError(404, "No products found");
   }
 
-  return resp
-    .status(200)
-    .json(
-      new ApiResponse(200, "Products fetched successfully", {
-        Products,
-        OffersProducts,
-      })
-    );
+  return resp.status(200).json(
+    new ApiResponse(200, "Products fetched successfully", {
+      Products,
+      OffersProducts,
+    })
+  );
 });
 
-export const customProductServer = asyncHandler(async (req, resp) => {
+const productServer = asyncHandler(async (req, resp) => {
   const { page, limit } = req.query;
   const pageNumber = parseInt(page) || 1;
   const limitNumber = parseInt(limit) || 20;
@@ -84,8 +82,9 @@ export const customProductServer = asyncHandler(async (req, resp) => {
     .json(new ApiResponse(200, "Products fetched successfully", { Products }));
 });
 
-export const selectProductServer = asyncHandler(async (req, resp) => {
+const selectProductServer = asyncHandler(async (req, resp) => {
   const { id } = req.query;
+
   const ProductData = await Product.findById(id);
 
   if (!ProductData) {
@@ -98,3 +97,10 @@ export const selectProductServer = asyncHandler(async (req, resp) => {
       new ApiResponse(200, "Products fetched successfully", { ProductData })
     );
 });
+
+
+module.exports = {
+  initialProductServer,
+  productServer,
+  selectProductServer
+}

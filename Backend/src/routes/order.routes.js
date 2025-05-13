@@ -1,13 +1,18 @@
 const express = require("express");
 const Auth = require("../middlewares/Auth.middleware");
-const customOrders = require("../controllers/order/customorder.controller");
-const {placeOrder , getAllOrders, cancleOrder} = require("../controllers/order/placeorder.controller");
+const {
+  placeOrder,
+  verifyOrder,
+  sendCancellationRequest,
+  cancleOrder,
+} = require("../controllers/NEW/orders.controller");
 
 const orderRoutes = express.Router();
 
-orderRoutes.route("custom").post(Auth, customOrders);
 orderRoutes.route("/place-order").post(Auth, placeOrder);
-orderRoutes.route("/get-my-orders").post(Auth, getAllOrders);
-orderRoutes.route("/cancle-orders").post(Auth, cancleOrder)
+orderRoutes.route("/verify-order").post(Auth, verifyOrder);
+
+orderRoutes.route("/send-cancel-mail").post(Auth, sendCancellationRequest);
+orderRoutes.route("/conform-cancel-order").post(Auth, cancleOrder);
 
 module.exports = orderRoutes;

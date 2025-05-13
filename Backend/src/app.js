@@ -17,9 +17,9 @@ app.use(cors({
     }
   },
   credentials: true,
-  // methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  // allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+
 // for get data encoded from urls
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public")); //configure static files on server
@@ -35,7 +35,8 @@ const mainRoutes = require("./routes/main.routes")
 app.use("/api/v1/main", mainRoutes);
 
 app.use("/api/v1/user", userRoute);
-app.use("/api/v1/admin", adminRouter);
+
+app.use("/api/v2/admin", adminRouter);
 
 app.use("/api/v1/orders", orderRoutes);
 

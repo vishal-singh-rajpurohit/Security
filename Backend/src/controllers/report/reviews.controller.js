@@ -1,4 +1,3 @@
-const Reportreview = require("../../models/reportreview.model");
 const ApiError = require("../../utils/ApiError.utils");
 const ApiResponse = require("../../utils/ApiResponse.utils");
 const asyncHandler = require("../../utils/asyncHandler.utils");

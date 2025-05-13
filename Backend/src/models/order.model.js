@@ -2,13 +2,24 @@ const mongoose = require("mongoose");
 
 const newSchema = new mongoose.Schema(
   {
-    ProductId: {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    productId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Product",
+      required: true,
     },
-    OrderId:{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Order",
+    quantity: {
+      type: Number,
+      default: null,
+    },
+    status: {
+      type: ["VERIFIED", "UNVERIFIED", "CANCELLED", "DELIVERED"],
+      default: "UNVERIFIED",
+      required: true
     }
   },
   {

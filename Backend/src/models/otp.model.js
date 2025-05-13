@@ -4,6 +4,10 @@ const otpSchema = new mongoose.Schema({
     Otp: {
         type: Number,
         required: true
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
     }
 });
 

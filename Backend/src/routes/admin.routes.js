@@ -1,14 +1,6 @@
 const express = require('express');
 const upload = require("../middlewares/multer.middleware.js");
-const newproduct = require('../controllers/admin/products/newproduct.controller.js');
-const deleteProduct = require('../controllers/admin/products/delete.controller.js');
-const {editProductPrice, editProductDisplay} = require('../controllers/admin/products/editProduct.controller.js');
-const { getReports } = require('../controllers/admin/reports/getReports.controller.js');
-const reviewReport = require('../controllers/admin/reports/reviewReport.controller.js');
-const getUsersVerification = require('../controllers/admin/users/getUsersVerification.controller.js');
-const setVerification = require('../controllers/admin/users/setVerification.controller.js');
-const {changeName, changePrice, changeImages, serveNewProducts, selectProduct, suspendProduct, publishProduct, changeAdvancedAmmount} = require("../controllers/admin/edit/edit.controller.js")
-
+const { newProduct, delProduct} = require("../controllers/NEW/admin/products.controller.js");
 
 const adminRouter = express.Router();
 
@@ -23,38 +15,11 @@ adminRouter.route("/addproduct").post(upload.fields([
         name: "display",
         maxCount: 5
     }
-]), newproduct);
+]), newProduct);
 
-adminRouter.route("/delete-product").delete(deleteProduct);
-// adminRouter.route("/edit-price").put(editProductPrice);
-adminRouter.route("/edit-display").put(upload.fields([{
-    name: "display",
-    maxCount: 5
-}]),editProductDisplay);
+adminRouter.route("/delete-product").delete(delProduct);
 
-// reprts and response
-adminRouter.route("/unread-reports").get(getReports);
-adminRouter.route("/review-report").post(reviewReport);
 
-// User Approval
-// adminRouter.route("/approve").put(setVerification);
-// adminRouter.route("/get-unverified-users").get(getUsersVerification);
-
-// Edit Products
-
-adminRouter.route("/edit-name").put(changeName)
-adminRouter.route("/edit-price").put(changePrice)
-adminRouter.route("/edit-advanced-ammount").put(changeAdvancedAmmount)
-adminRouter.route("/edit-images").put( upload.fields([
-    {
-        name: "display",
-        maxCount: 5
-    }
-]) ,changeImages)
-adminRouter.route("/serve-to-admin").post(serveNewProducts);
-adminRouter.route("/selected-item").post(selectProduct);
-adminRouter.route("/suspend-item").post(suspendProduct);
-adminRouter.route("/publish-item").post(publishProduct);
 
 
 module.exports = adminRouter;

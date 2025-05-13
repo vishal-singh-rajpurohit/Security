@@ -5,10 +5,7 @@ const ApiResponse = require("../../utils/ApiResponse.utils");
 const User = require("../../models/user.model");
 const Otp = require("../../models/otp.model");
 const jwt = require("jsonwebtoken");
-const {
-  sendOtpVerifiaction,
-  sendVerificationMail,
-} = require("../admin/sendMails/sendMail");
+const {  sendOtpVerifiaction,  sendVerificationMail} = require("../admin/sendMails/sendMail");
 const { Options, genreateOtp } = require("../../methods");
 
 const registerUser = asyncHandler(async (req, resp) => {

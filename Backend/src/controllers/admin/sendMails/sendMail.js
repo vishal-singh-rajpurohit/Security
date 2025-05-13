@@ -4,6 +4,12 @@ const Otp = require("../../../models/otp.model");
 const asyncHandler = require("../../../utils/asyncHandler.utils");
 const ApiError = require("../../../utils/ApiError.utils");
 
+const {
+  verificationTemplate,
+  orderVerificationTemplate,
+  cancelOrderTemplate,
+} = require("./mailTemplates");
+
 const transport = nodemailer.createTransport({
   service: "gmail",
   port: 465,
@@ -34,16 +40,14 @@ const sendOtp = async (email, otp) => {
     text: `Your Otp is : ${otp}`,
     html: emailHtml,
   };
-  try {
-    console.log("enter the try");
 
+  try {
     const sendResult = await transport.sendMail(mailOptions);
-    console.log("mail sent1:");
+
     if (!sendResult) {
       console.log("otp not saved ", savedOtp);
       throw new ApiError(400, "error in send result");
     }
-    console.log("mail sent2:");
 
     const newOtp = new Otp({
       Otp: otp,
@@ -51,11 +55,7 @@ const sendOtp = async (email, otp) => {
 
     const savedOtp = await newOtp.save();
 
-    console.log("mail saved:", savedOtp);
-
     if (!savedOtp) {
-      console.log("otp not saved ", savedOtp);
-
       throw new ApiError(400, "otp not saved ");
     }
 
@@ -76,6 +76,7 @@ const sendOtpVerifiaction = async (email, otp) => {
         </ul>
         <p>Feel free to reach out if you have any questions.</p>
       </div>`;
+
   const mailOptions = {
     from: "datasecourity@gmail.com",
     to: email,
@@ -84,15 +85,12 @@ const sendOtpVerifiaction = async (email, otp) => {
     html: emailHtml,
   };
   try {
-    console.log("enter the try");
-
     const sendResult = await transport.sendMail(mailOptions);
-    console.log("mail sent1:");
+
     if (!sendResult) {
       console.log("otp not saved ", savedOtp);
       throw new ApiError(400, "error in send result");
     }
-    console.log("mail sent2:");
 
     const newOtp = new Otp({
       Otp: otp,
@@ -153,7 +151,7 @@ const sendVerificationMail = async (email, mailCode) => {
   try {
     const result = await transport.sendMail(mailOptions);
 
-    if(!result) {
+    if (!result) {
       console.log("mail not sent ", result);
       throw new ApiError(400, "mail not sent");
     }
@@ -164,4 +162,74 @@ const sendVerificationMail = async (email, mailCode) => {
   }
 };
 
-module.exports = { sendOtp, sendMail, sendOtpVerifiaction, sendVerificationMail };
+const sendVerificationEmail = async (email, user) => {
+  const mailOptions = {
+    from: "datasecourity@gmail.com",
+    to: email,
+    subject: "Verify your Wing's Lens account. :,",
+    text: `Verify your Wing's Lens account by clicking the button below:`,
+    html: verificationTemplate,
+  };
+
+  try {
+    const sendResult = await transport.sendMail(mailOptions);
+
+    if (!sendResult) {
+      throw new ApiError(400, "Email does not sent successfully");
+    }
+
+    return sendResult;
+  } catch (error) {
+    throw new ApiError(500, "Error While Sharing Email");
+  }
+};
+
+const orderVerificationEmail = async (email, user) => {
+  const mailOptions = {
+    from: "datasecourity@gmail.com",
+    to: email,
+    subject: "Verify your Order on Wing's Lens. :,",
+    text: `Conform your Order on Wing's Lens by clicking the button below:`,
+    html: orderVerificationTemplate,
+  };
+
+  try {
+    const sendResult = await transport.sendMail(mailOptions);
+
+    if (!sendResult) {
+      throw new ApiError(400, "Email does not sent successfully");
+    }
+
+    return sendResult;
+  } catch (error) {
+    throw new ApiError(500, "Error While Sharing Email");
+  }
+};
+
+const sendCancellationEmail = async (email, user) => {
+  const mailOptions = {
+    from: "datasecourity@gmail.com",
+    to: email,
+    subject: "Cancel your Order on Wing's Lens. :,",
+    text: `Conform Order Cancellation on Wing's Lens by clicking the button below:`,
+    html: cancelOrderTemplate,
+  };
+
+  try {
+    const sendResult = await transport.sendMail(mailOptions);
+
+    if (!sendResult) {
+      throw new ApiError(400, "Email does not sent successfully");
+    }
+
+    return sendResult;
+  } catch (error) {
+    throw new ApiError(500, "Error While Sharing Email");
+  }
+};
+
+module.exports = {
+  sendVerificationEmail,
+  orderVerificationEmail,
+  sendCancellationEmail,
+};

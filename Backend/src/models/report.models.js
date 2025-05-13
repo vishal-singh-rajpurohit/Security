@@ -2,29 +2,27 @@ const mongoose = require("mongoose");
 
 const newSchema = new mongoose.Schema(
   {
-    UserId: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User" || "Dealer" || "Installer",
-      required: true
+      required: true,
     },
-    OrderId: {
+    orderId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Order",
-      required: true
-    },
-    TroubleType: {
-      type: String,
-      enum: ["PAYMENTS", "DELIVARY", "BUG", "OTHER"],
       required: true,
     },
-    Message: {
+    mobileNumber: {
+      type: Number,
+      required: true,
+    },
+    message: {
       type: String,
       required: true,
     },
-    Status: {
-      type: String,
-      enum: ["UNREAD", "READ", "READ AND REJECTED", "READ AND APPROVED"],
-      default: "UNREAD",  
+    status: {
+      type: ["CHECKED", "UNCHECKED"],
+      default: "UNCHECKED",
       required: true
     }
   },
@@ -33,7 +31,6 @@ const newSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-
 
 const Report = mongoose.model("Report", newSchema);
 module.exports = Report;
