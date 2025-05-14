@@ -7,6 +7,7 @@ import {
   fetchProductsSuccess,
   fetchSelectedProductStart,
 } from "../App/functions/product.slice";
+import { logingUser } from "../App/functions/auth.slice";
 
 // Create the context
 export const AppContext = createContext();
@@ -19,7 +20,6 @@ export const AppProvider = ({ children }) => {
   // Navigation menu state
   const [openMenu, setOpenMenu] = useState(false);
 
-
   useEffect(() => {
     checkAlreadyLoggedIn();
     fetchProductFirst();
@@ -28,19 +28,30 @@ export const AppProvider = ({ children }) => {
   // Methods
   async function checkAlreadyLoggedIn() {
     try {
-      
+      const response = await axios.post(
+        `http://localhost:5000/api/v2/user/check-already-loggedin`,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+
+      if (response) {
+        dispatch(logingUser({ user: response.data.data.User }));
+      }
     } catch (error) {
-      console.log("Error while checking login status ", error);
+      console.log("Error while checking login status ");
     }
   }
 
   async function fetchProductFirst() {
     dispatch(fetchProductsStart());
     try {
-      const response = await axios.get(`http://localhost:5000/api/v1/main/product/first-server`);
+      const response = await axios.get(
+        `http://localhost:5000/api/v2/main/serve/initail-serve`
+      );
 
-      console.log("Products Served: ", response);
-      dispatch(fetchProductsSuccess());
+      dispatch(fetchProductsSuccess(response.data.data));
     } catch (error) {
       console.log("Error while serving products ", error);
       dispatch(fetchProductsError());
@@ -48,14 +59,14 @@ export const AppProvider = ({ children }) => {
   }
 
   async function fetchProductWill() {
-    
     try {
-      const response = await axios.get(`http://localhost:5000/api/v1/main/product/will-server/?page=${pageNo}`);
+      const response = await axios.get(
+        `http://localhost:5000/api/v1/main/product/will-server/?page=${pageNo}`
+      );
 
       console.log("Products Served: ", response);
       dispatch(fetchProductsSuccess());
-    }
-    catch (error) {
+    } catch (error) {
       console.log("Error while serving products ", error);
       dispatch(fetchProductsError());
     }
@@ -64,30 +75,29 @@ export const AppProvider = ({ children }) => {
   async function selectProduct(product_id) {
     dispatch(fetchProductsStart());
     try {
-      const response = await axios.get(`http://localhost:5000/api/v1/admin/select-product/?id=${product_id}`);
-      dispatch(fetchSelectedProductStart());  
-
+      const response = await axios.get(
+        `http://localhost:5000/api/v1/admin/select-product/?id=${product_id}`
+      );
+      dispatch(fetchSelectedProductStart());
 
       window.localStorage.setItem("selectedProductId", product_id);
       console.log("Selected Product: ", response);
-
     } catch (error) {
       console.log("Error while selecting product ", error);
       dispatch(fetchProductsError());
     }
   }
 
-
   const Methods = {
     fetchProductWill,
-    selectProduct
-  }
+    selectProduct,
+  };
 
   const data = {
     dispatch,
     openMenu,
     setOpenMenu,
-    Methods
+    Methods,
   };
 
   return <AppContext.Provider value={data}>{children}</AppContext.Provider>;

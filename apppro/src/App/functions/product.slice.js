@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
 //Products = {
 //     _id: "",
@@ -40,6 +39,7 @@ import axios from "axios";
 // }
 
 const initialState = {
+  trandingProducts: [],
   products: [],
   offerProducts: [],
   trandingProducts: [],
@@ -60,7 +60,8 @@ function fetchProductsError2(state) {
 function fetchProductsSuccess2(state, action) {
   state.loading = false;
   state.error = false;
-  state.products = action.payload.products;
+  state.trandingProducts = action.payload.products;
+  state.products = action.payload.mainProducts;
   state.offerProducts = action.payload.offerProducts;
   state.trandingProducts = action.payload.trandingProducts;
 }

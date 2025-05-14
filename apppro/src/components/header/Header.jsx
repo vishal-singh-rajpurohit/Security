@@ -63,11 +63,6 @@ export function Header() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    useEffect(() => {
-        console.log("loggedIn: ", loggedIn);
-
-    }, [])
-
     return (
         <section id='header-section' className={`header-section ${openSearch ? "-brite" : ""}`}>
             <div className="header-section-logo">
@@ -148,7 +143,6 @@ export function Header() {
 }
 
 export function Menu() {
-
 
     const { openMenu, setOpenMenu } = useContext(AppContext);
 

@@ -93,6 +93,50 @@ const registerUser = asyncHandler(async (req, resp) => {
     );
 });
 
+const checkAlreadyUser = asyncHandler(async (req, resp) =>{
+  const user = req.user;
+
+  if(!user){
+    throw new ApiError(400, "User Not Found");
+  }
+
+  const { accessToken, refreshToken } = await genTokens(user?._id);
+  if (!accessToken || !refreshToken) {
+    throw new ApiError(500, "refreshToken or accessToken not generated");
+  }
+
+  const decodedToken = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+  if (!decodedToken) {
+    throw new ApiError(500, "Invalid Token");
+  }
+
+  const foundUser = await User.findOneAndUpdate(
+    { _id: decodedToken._id },
+    {
+      $set: {
+        refreshToken: refreshToken,
+      },
+    }
+  ).select("-Password -refreshToken");
+
+  resp
+    .status(200)
+    .cookie("accessToken", accessToken, Options)
+    .cookie("refreshToken", refreshToken, Options)
+    .json(
+      new ApiResponse(
+        200,
+        {
+          accessToken,
+          refreshToken,
+          User: foundUser,
+        },
+        "User Found Successful"
+      )
+    );
+
+})
+
 const loginUser = asyncHandler(async (req, resp) => {
   const { email, password } = req.body;
 
@@ -214,6 +258,7 @@ const verifyUser = asyncHandler(async (req, resp) => {
 
 
 module.exports = {
+  checkAlreadyUser,
   registerUser,
   loginUser,
   logoutUser,
