@@ -1,4 +1,3 @@
-import React from 'react'
 import { CiShare2 } from "react-icons/ci";
 import "../../Styles/shop.css"
 

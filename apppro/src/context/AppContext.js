@@ -14,6 +14,7 @@ export const AppContext = createContext();
 // Create the provider component
 export const AppProvider = ({ children }) => {
   const dispatch = useDispatch();
+  const pageNo = useSelector((state) => state.variable.page);
 
   // Navigation menu state
   const [openMenu, setOpenMenu] = useState(false);
@@ -47,7 +48,7 @@ export const AppProvider = ({ children }) => {
   }
 
   async function fetchProductWill() {
-    const pageNo = useSelector((state) => state.variable.page);
+    
     try {
       const response = await axios.get(`http://localhost:5000/api/v1/main/product/will-server/?page=${pageNo}`);
 

@@ -200,6 +200,19 @@ p.header-section-options-item-p.blk-txt {
     color: black;
 }
 
+
+/* Login sinnup text */
+.login-singhup-text-div {
+    display: flex
+;
+    gap: 1rem;
+}
+span.login-signup-text {
+    color: white;
+    font-size: larger;
+    cursor: pointer;
+}
+
 /* Keyframes */
 @keyframes underline-ease-in {
     from {

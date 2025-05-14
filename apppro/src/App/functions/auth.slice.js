@@ -8,7 +8,7 @@ const initialState = {
     phone: "",
     isVerified: false,
   },
-  isLoggedIn: true,
+  isLoggedIn: false,
 };
 
 function setUserData(state, action) {
@@ -29,6 +29,7 @@ function clearUserData(state, action) {
   state.user.isVerified = false;
   state.isLoggedIn = false;
 }
+
 function setUserVerified(state, action) {
   state.user.isVerified = true;
 

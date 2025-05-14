@@ -14,8 +14,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Auth ><Home /> </Auth>} />
-        <Route path="shop/shopping" element={<Auth ><Shop /></Auth>} />
+        <Route index element={<Home />} />
+        <Route path="shop/shopping" element={<Shop />} />
         <Route path="shop/cart" element={<Auth ><Cart /></Auth>} />
         <Route path="shop/orders" element={<Auth ><Orders /></Auth>} />
         <Route path="user/profile" element={<Auth ><Orders /></Auth>} />
