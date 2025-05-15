@@ -10,6 +10,7 @@ import Shop from "./components/Pages/Shop";
 import Cart from "./components/Pages/Cart";
 import Orders from "./components/Pages/Orders";
 import Profile from "./components/Pages/Profile";
+import OrderStatus from "./components/Pages/OrderStatus";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="shop/shopping" element={<Shop />} />
         <Route path="shop/cart" element={<Auth ><Cart /></Auth>} />
         <Route path="shop/orders" element={<Auth ><Orders /></Auth>} />
+        <Route path="shop/orders/status" element={<Auth ><OrderStatus /></Auth>} />
         <Route path="user/profile" element={<Auth ><Profile /></Auth>} />
 
         <Route path="login" element={<Login />} />
