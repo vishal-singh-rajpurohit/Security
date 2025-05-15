@@ -1,4 +1,4 @@
-import  { useState } from 'react'
+import { useState } from 'react'
 import "../../Styles/orderStatus.css"
 import { Transition1 } from '../Individual/Transitions'
 import { useSearchParams } from 'react-router-dom';
