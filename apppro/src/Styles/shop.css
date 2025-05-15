@@ -2,9 +2,18 @@
 img {
     width: 2rem;
 }
+/* section#header-section {
+    background: white;
+    color: black;
+}
+p.header-section-options-item-p {
+    color: black;
+} */
+
 
 section.shop-page {
-    height: 100vh;
+    padding-top: 9rem;
+    min-height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;

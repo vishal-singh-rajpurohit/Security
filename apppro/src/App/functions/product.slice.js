@@ -27,24 +27,15 @@ import { createSlice } from "@reduxjs/toolkit";
 //     top: "title"
 // }
 
-//Selected Products = {
-//     _id: "",
-//     title: "product title",
-//     frontImage: "",
-//     ShowCaseImages: [""],
-//     price: 0,
-//     mrp: 0,
-//     discount: 0,
-//     productTitle: [""],
-// }
+
 
 const initialState = {
   trandingProducts: [],
   products: [],
   offerProducts: [],
-  trandingProducts: [],
-  selectedProduct: {},
-  cart: {},
+  activeOffers: [],
+  selectedProduct: null,
+  cart: [],
   loading: false,
   error: null,
 };
@@ -58,16 +49,19 @@ function fetchProductsError2(state) {
   state.error = true;
 }
 function fetchProductsSuccess2(state, action) {
+  console.log("Payloads: ", action.payload);
+  
   state.loading = false;
   state.error = false;
   state.trandingProducts = action.payload.products;
   state.products = action.payload.mainProducts;
   state.offerProducts = action.payload.offerProducts;
-  state.trandingProducts = action.payload.trandingProducts;
+  state.activeOffers = action.payload.activeOffers;
 }
 function fetchSelectedProductStart2(state, action) {
   state.selectedProduct = action.payload.selectedProduct;
 }
+
 function appendCart(state, action) {
   const { productId, quantity } = action.payload;
 }

@@ -2,20 +2,72 @@ import { CiShare2 } from "react-icons/ci";
 import "../../Styles/shop.css"
 
 import x from "../../Assets/Backgrounds/log-bg-3.jpg"
+import { useContext, useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { fetchProductsError, fetchProductsStart } from "../../App/functions/product.slice";
+import axios from "axios";
+import { AppContext } from "../../context/AppContext";
+
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+
 
 const Shop = () => {
+
+    const { dispatch } = useContext(AppContext)
+
+    async function selectProduct(product_id) {
+        dispatch(fetchProductsStart());
+        try {
+            const response = await axios.get(
+                `http://localhost:5000/api/v2/admin/select-product/?id=${product_id}`
+            );
+
+            setProduct(response.data.data.ProductData)
+
+        } catch (error) {
+            console.log("Error while selecting product ", error);
+            dispatch(fetchProductsError());
+        }
+    }
+
+    const [searchParams] = useSearchParams();
+    const productId = searchParams.get('pid');
+
+    const [Product, setProduct] = useState({
+        ProductName: "",
+        ShowImages: [],
+        ProductFeatures: [],
+        ProductDescription: "",
+        DealPrice: undefined,
+        OriginalPrice: undefined,
+        ProductRating: undefined,
+        ProductReviews: undefined,
+        ProductCategory: "",
+        SpecialFeature: "",
+        cameraMegaPixel: "",
+        batteryCapacity: "",
+        cameraType: "",
+        cameraQuality: "",
+        channel: "",
+        hdd: ""
+    });
+
+    useEffect(() => {
+        selectProduct(productId);
+    }, [])
+
     return (
         <section className="shop-page">
             <section className="shop-section">
                 <div className="shop-section-left">
                     <div className="overview-top-share">
-                        <CiShare2 style={{cursor: "pointer"}} size={20} />
+                        <CiShare2 style={{ cursor: "pointer" }} size={20} />
                     </div>
                     <div className="shop-overview-max">
                         <img src={x} loading="lazy" alt="" className="shop-overview-max-img" />
                     </div>
                     <div className="overview-slide">
-                        <div className="left-overview-btn">l</div>
+                        <div className="left-overview-btn"><BsChevronLeft size={30} cursor={"Pointer"} /></div>
                         <div className="overview-slide-overflow">
                             <div className="overview-dl-div">
                                 <div className="overview-sm-imge">
@@ -29,7 +81,7 @@ const Shop = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="left-overview-btn">r</div>
+                        <div className="left-overview-btn"><BsChevronRight size={30} cursor={"Pointer"} /></div>
                     </div>
                 </div>
                 <div className="shop-section-right">
@@ -37,7 +89,7 @@ const Shop = () => {
                         <div className="offer-on-shop">Flat 12% off</div>
                     </div>
                     <div className="shop-section-right-mid">
-                        <p className="product-title">LG 109.22 cm (43 inch) 4K Ultra TV, Ashed Blue, 43UT80506LA</p>
+                        <p className="product-title">{Product.ProductName}</p>
                         <div className="rating-div">
                             * <span style={{ fontWeight: "600" }}>5</span> (1 Review)
                         </div>

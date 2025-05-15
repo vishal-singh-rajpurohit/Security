@@ -1,0 +1,121 @@
+.orders-container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    .order-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      background-color: #fafafa;
+    }
+
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .order-id {
+      font-weight: bold;
+      color: #444;
+    }
+
+    .order-date {
+      color: #777;
+    }
+
+    .order-body {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .order-info {
+      flex: 2;
+    }
+
+    .order-info p {
+      margin: 4px 0;
+      color: #555;
+    }
+
+    .order-status {
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 5px;
+      text-align: center;
+      width: fit-content;
+      margin-bottom: 10px;
+    }
+
+    .status-pending {
+      background-color: #f1c40f;
+      color: white;
+    }
+
+    .status-shipped {
+      background-color: #3498db;
+      color: white;
+    }
+
+    .status-delivered {
+      background-color: #2ecc71;
+      color: white;
+    }
+
+    .status-cancelled {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    .order-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .order-actions button {
+      padding: 8px 14px;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .cancel-btn {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    .cancel-btn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .show-btn {
+      background-color: #3498db;
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      .order-body {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .order-actions {
+        justify-content: flex-start;
+      }
+    }

@@ -25,6 +25,9 @@ section.header-section {
     align-items: center;
     font-size: larger;
 }
+img.header-section-logo-img {
+    width: 12rem;
+}
 
 /* Options */
 .header-section-options {

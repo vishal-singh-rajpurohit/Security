@@ -3,10 +3,16 @@ import { IoIosClose } from 'react-icons/io'
 import { MdMenu } from 'react-icons/md'
 import { FiSearch } from 'react-icons/fi'
 import { FaUserCircle } from 'react-icons/fa'
+import { ImCart } from "react-icons/im";
 import { Link } from 'react-router-dom'
 import "./header.css"
 import { AppContext } from '../../context/AppContext'
 import { useSelector } from 'react-redux'
+
+// LOgos
+import logoB from "../../Assets/Logo/logo-black.png"
+import logoW from "../../Assets/Logo/logo-white-2.png"
+import logoLd from "../../Assets/Logo/loader-bg.png"
 
 export function Header() {
 
@@ -67,7 +73,7 @@ export function Header() {
         <section id='header-section' className={`header-section ${openSearch ? "-brite" : ""}`}>
             <div className="header-section-logo">
                 {/* <img src={openSearch ? logoLite : scrolled ? logoLite : logoDark} alt="sewad infotech" className="header-section-logo-img" /> */}
-                <img src={""} alt="sewad infotech" className="header-section-logo-img" />
+                <img src={scrolled? logoW : logoW} alt="sewad infotech" className="header-section-logo-img" />
                 {/* <p className="logo-text">Sewad Infotech</p> */}
             </div>
             <div className="header-section-options">
@@ -126,9 +132,14 @@ export function Header() {
                                 <Link to={"/signup"}>
                                     <span className="login-signup-text" style={{ color: scrolled ? 'black' : 'white' }}>Sign up</span>
                                 </Link> </>
-                            : <Link to={"/signup"}>
+                            :<> <Link to={"user/profile"}>
                                 <span className="login-signup-text"><FaUserCircle size={30} color={scrolled ? 'black' : 'white'} /> </span>
                             </Link>
+                            <Link to={"/shop/cart"}>
+                                <span className="login-signup-text"><ImCart size={30} color={scrolled ? 'black' : 'white'} /> </span>
+                            </Link>
+
+                            </>
                     }
 
 

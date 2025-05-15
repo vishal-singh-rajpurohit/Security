@@ -137,7 +137,7 @@ const selectProductServer = asyncHandler(async (req, resp) => {
   return resp
     .status(200)
     .json(
-      new ApiResponse(200, "Products fetched successfully", { ProductData })
+      new ApiResponse(200,  { ProductData }, "Products fetched successfully")
     );
 });
 

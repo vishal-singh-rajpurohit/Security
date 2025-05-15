@@ -72,25 +72,8 @@ export const AppProvider = ({ children }) => {
     }
   }
 
-  async function selectProduct(product_id) {
-    dispatch(fetchProductsStart());
-    try {
-      const response = await axios.get(
-        `http://localhost:5000/api/v1/admin/select-product/?id=${product_id}`
-      );
-      dispatch(fetchSelectedProductStart());
-
-      window.localStorage.setItem("selectedProductId", product_id);
-      console.log("Selected Product: ", response);
-    } catch (error) {
-      console.log("Error while selecting product ", error);
-      dispatch(fetchProductsError());
-    }
-  }
-
   const Methods = {
     fetchProductWill,
-    selectProduct,
   };
 
   const data = {
