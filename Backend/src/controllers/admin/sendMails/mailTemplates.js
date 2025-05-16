@@ -127,7 +127,7 @@ const orderVerificationTemplate = (
                 <tr>
                   <td>${productTitle}</td>
                   <td>${qunatity}</td>
-                  <td>₹${price}</td>
+                  <td>₹${price * qunatity}</td>
                   <td>${Location}</td>
                 </tr>
                 <!-- Add more rows as needed -->
@@ -232,7 +232,7 @@ const cancelOrderTemplate = (
                 <tr>
                   <td>${productTitle}</td>
                   <td>${qunatity}</td>
-                  <td>₹${price}</td>
+                  <td>₹${price * qunatity}</td>
                   <td>${Location}</td>
                 </tr>
               </table>

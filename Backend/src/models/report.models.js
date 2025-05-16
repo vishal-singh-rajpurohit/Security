@@ -4,7 +4,7 @@ const newSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User" || "Dealer" || "Installer",
+      ref: "User",
       required: true,
     },
     orderId: {
@@ -24,6 +24,11 @@ const newSchema = new mongoose.Schema(
       type: ["CHECKED", "UNCHECKED"],
       default: "UNCHECKED",
       required: true
+    },
+    returnMessage: {
+      type: String,
+      required: true,
+      default: "Will be checked"
     }
   },
   {

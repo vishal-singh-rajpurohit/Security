@@ -33,7 +33,8 @@ const newSchema = new mongoose.Schema(
       required: true
     },
     status: {
-      type: ["VERIFIED", "UNVERIFIED", "CANCELLED", "DELIVERED"],
+      type: String,
+      enum: ["VERIFIED", "UNVERIFIED", "CANCELLED", "SHIPPING", "DELIVERED"],
       default: "UNVERIFIED",
       required: true
     }

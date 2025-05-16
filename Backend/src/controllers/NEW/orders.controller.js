@@ -4,7 +4,10 @@ const ApiError = require("../../utils/ApiError.utils");
 const Product = require("../../models/product.model");
 const Order = require("../../models/order.model");
 const Report = require("../../models/report.models");
-const { orderVerificationEmail } = require("../admin/sendMails/sendMail");
+const {
+  orderVerificationEmail,
+  sendCancellationEmail,
+} = require("../admin/sendMails/sendMail");
 const User = require("../../models/user.model");
 
 const placeOrder = asyncHandler(async (req, resp) => {
@@ -31,6 +34,10 @@ const placeOrder = asyncHandler(async (req, resp) => {
     productId: productId,
     userId: user._id,
     quantity: quantity ? quantity : null,
+    location: location,
+    mobileNumber: mobileNumber,
+    pincode: pincode,
+    state: state,
   });
 
   const changedUser = await User.findByIdAndUpdate(user._id, {
@@ -45,7 +52,14 @@ const placeOrder = asyncHandler(async (req, resp) => {
     throw new ApiError(500, "Internal server error");
   }
 
-  const sendResult = await orderVerificationEmail(user.email, newOrder._id);
+  const sendResult = await orderVerificationEmail(
+    user.Email,
+    newOrder._id,
+    product.ProductName,
+    quantity,
+    product.DealPrice,
+    location
+  );
 
   if (!sendResult) {
     throw new ApiError(400, "Email does not sent successfully");
@@ -79,10 +93,17 @@ const serveOrders = asyncHandler(async (req, resp) => {
     },
     {
       $lookup: {
-        from: "Product",
+        from: "products",
         foreignField: "_id",
         localField: "productId",
         as: "product",
+      },
+    },
+    {
+      $addFields: {
+        product: {
+          $first: "$product",
+        },
       },
     },
     {
@@ -90,6 +111,7 @@ const serveOrders = asyncHandler(async (req, resp) => {
         _id: 1,
         qunatity: 1,
         status: 1,
+        // product: 1
         "product._id": 1,
         "product.ProductName": 1,
         "product.DealPrice": 1,
@@ -115,13 +137,13 @@ const verifyOrder = asyncHandler(async (req, resp) => {
     throw new ApiError(501, "Unautharized Request");
   }
 
-  const { orderId } = req.user;
+  const { orderId } = req.body;
 
   if (!orderId) {
     throw new ApiError(400, "Order Id not found");
   }
 
-  const order = await Order.find({
+  const order = await Order.findOne({
     userId: user._id,
     _id: orderId,
     status: "UNVERIFIED",
@@ -153,23 +175,48 @@ const sendCancellationRequest = asyncHandler(async (req, resp) => {
     throw new ApiError(400, "Order Id is required");
   }
 
-  // Send Cancellation Email
+  const order = await Order.findById(orderId);
+
+  if (!order) {
+    throw new ApiError(400, "Order not found");
+  }
+
+  const product = await Product.findById(order.productId);
+
+  if (!product) {
+    throw new ApiError(400, "Product not found");
+  }
+
+  const sendResult = await sendCancellationEmail(
+    user.Email,
+    order._id,
+    product.ProductName,
+    order.quantity,
+    product.DealPrice,
+    order.location
+  );
+
+  if (!sendResult) {
+    throw new ApiError(400, "Email does not sent successfully");
+  }
+
+  resp.status(200).json(new ApiResponse(200, {}, "Cancellation result sent"));
 });
 
 const cancleOrder = asyncHandler(async (req, resp) => {
   const user = req.user;
 
-  if (!user || user.isVerified) {
+  if (!user || !user.isVerified) {
     throw new ApiError(501, "Unautharized Request");
   }
 
-  const { orderId } = req.user;
+  const { orderId } = req.body;
 
   if (!orderId) {
     throw new ApiError(400, "Order Id not found");
   }
 
-  const order = await Order.find({
+  const order = await Order.findOne({
     userId: user._id,
     _id: orderId,
   });
@@ -187,52 +234,20 @@ const cancleOrder = asyncHandler(async (req, resp) => {
     .json(new ApiResponse(200, {}, "Order Cancelled Successfully"));
 });
 
-// A Admin route
-const setPlaced = asyncHandler(async (req, resp) => {
-  const user = req.user;
-
-  if (!user || user.isVerified) {
-    throw new ApiError(501, "Unautharized Request");
-  }
-
-  const { orderId } = req.user;
-
-  if (!orderId) {
-    throw new ApiError(400, "Order Id not found");
-  }
-
-  const order = await Order.find({
-    userId: user._id,
-    _id: orderId,
-  });
-
-  if (!order) {
-    throw new ApiError(400, "Order not found or already delivered");
-  }
-
-  order.status = "DELIVERED";
-
-  await order.save();
-
-  resp
-    .status(200)
-    .json(new ApiResponse(200, {}, "Order Cancelled Successfully"));
-});
-
 const reportOrder = asyncHandler(async (req, resp) => {
   const user = req.user;
 
-  if (!user || user.isVerified) {
+  if (!user || !user.isVerified) {
     throw new ApiError(501, "Unautharized Request");
   }
 
-  const { orderId, mobileNumber, message } = req.user;
+  const { orderId, mobileNumber, message } = req.body;
 
   if (!orderId || !mobileNumber || !message) {
     throw new ApiError(400, "OrderId, Mobile Number, Message not found");
   }
 
-  const order = await Order.find({
+  const order = await Order.findOne({
     userId: user._id,
     _id: orderId,
   });
@@ -258,22 +273,29 @@ const reportOrder = asyncHandler(async (req, resp) => {
 });
 
 // A Admin route
-const checkReport = asyncHandler(async (req, resp) => {
-  const { reportId } = req.user;
+const setStatus = asyncHandler(async (req, resp) => {
 
-  if (!reportId) {
-    throw new ApiError(400, "report id reuired");
+  // Set Admin
+
+  const { orderId, status } = req.body;
+
+  if (!orderId || !status) {
+    throw new ApiError(400, "Order Id not found");
   }
 
-  const report = await Report.findById(reportId);
+  const order = await Order.findById(orderId);
 
-  if (!report) {
+  if (!order) {
     throw new ApiError(400, "Order not found or already delivered");
   }
 
-  report.status = "CHECKED";
+  order.status = status.toUpperCase();
 
-  resp.status(200).json(new ApiResponse(200, {}, "report Checked"));
+  await order.save();
+
+  resp
+    .status(200)
+    .json(new ApiResponse(200, {}, "Order Status Changed Successfully"));
 });
 
 module.exports = {
@@ -281,8 +303,7 @@ module.exports = {
   verifyOrder,
   sendCancellationRequest,
   cancleOrder,
-  setPlaced,
+  setStatus,
   reportOrder,
-  checkReport,
   serveOrders,
 };

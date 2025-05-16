@@ -1,6 +1,8 @@
 const express = require('express');
 const upload = require("../middlewares/multer.middleware.js");
 const { newProduct, delProduct} = require("../controllers/NEW/admin/products.controller.js");
+const { setStatus } = require('../controllers/NEW/orders.controller.js');
+const { respReport } = require('../controllers/NEW/report.controller.js');
 
 const adminRouter = express.Router();
 
@@ -18,6 +20,13 @@ adminRouter.route("/addproduct").post(upload.fields([
 ]), newProduct);
 
 adminRouter.route("/delete-product").post(delProduct);
+
+
+// Orders Admin
+adminRouter.route("/orders/set-status").post(setStatus);
+
+// Reports 
+adminRouter.route("/report/response").post(respReport);
 
 
 
