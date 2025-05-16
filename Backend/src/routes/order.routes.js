@@ -5,6 +5,7 @@ const { placeOrder, verifyOrder, sendCancellationRequest, cancleOrder,} = requir
 const orderRoutes = express.Router();
 
 orderRoutes.route("/place-order").post(Auth, placeOrder);
+
 orderRoutes.route("/verify-order").post(Auth, verifyOrder);
 
 orderRoutes.route("/send-cancel-mail").post(Auth, sendCancellationRequest);

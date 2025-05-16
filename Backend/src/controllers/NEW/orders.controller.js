@@ -5,17 +5,19 @@ const Product = require("../../models/product.model");
 const Order = require("../../models/order.model");
 const Report = require("../../models/report.models");
 const { orderVerificationEmail } = require("../admin/sendMails/sendMail");
+const User = require("../../models/user.model");
 
 const placeOrder = asyncHandler(async (req, resp) => {
   const user = req.user;
 
-  if (!user) {
+  if (!user || !user.isVerified) {
     throw new ApiError(500, "Unautharized Request");
   }
 
-  const { productId, quantity } = req.body;
+  const { productId, quantity, mobileNumber, location, pincode, state, city } =
+    req.body;
 
-  if (!productId) {
+  if (!productId || !mobileNumber || !location || !pincode || !state || !city) {
     throw new ApiError(400, "Product Id must required");
   }
 
@@ -30,6 +32,18 @@ const placeOrder = asyncHandler(async (req, resp) => {
     userId: user._id,
     quantity: quantity ? quantity : null,
   });
+
+  const changedUser = await User.findByIdAndUpdate(user._id, {
+    MobileNumber: mobileNumber,
+    Address: location,
+    State: state,
+    PostCode: pincode,
+    City: city,
+  });
+
+  if (!changedUser) {
+    throw new ApiError(500, "Internal server error");
+  }
 
   const sendResult = await orderVerificationEmail(user.email, newOrder._id);
 
@@ -53,7 +67,7 @@ const placeOrder = asyncHandler(async (req, resp) => {
 const serveOrders = asyncHandler(async (req, resp) => {
   const user = req.user;
 
-  if (!user) {
+  if (!user || !user.isVerified) {
     throw new ApiError(400, "Unautharized Request");
   }
 
@@ -97,7 +111,7 @@ const serveOrders = asyncHandler(async (req, resp) => {
 const verifyOrder = asyncHandler(async (req, resp) => {
   const user = req.user;
 
-  if (!user) {
+  if (!user || !user.isVerified) {
     throw new ApiError(501, "Unautharized Request");
   }
 
@@ -129,7 +143,7 @@ const verifyOrder = asyncHandler(async (req, resp) => {
 const sendCancellationRequest = asyncHandler(async (req, resp) => {
   const user = req.user;
 
-  if (!user) {
+  if (!user || !user.isVerified) {
     throw new ApiError(500, "Unautharized Request");
   }
 
@@ -145,7 +159,7 @@ const sendCancellationRequest = asyncHandler(async (req, resp) => {
 const cancleOrder = asyncHandler(async (req, resp) => {
   const user = req.user;
 
-  if (!user) {
+  if (!user || user.isVerified) {
     throw new ApiError(501, "Unautharized Request");
   }
 
@@ -177,7 +191,7 @@ const cancleOrder = asyncHandler(async (req, resp) => {
 const setPlaced = asyncHandler(async (req, resp) => {
   const user = req.user;
 
-  if (!user) {
+  if (!user || user.isVerified) {
     throw new ApiError(501, "Unautharized Request");
   }
 
@@ -208,7 +222,7 @@ const setPlaced = asyncHandler(async (req, resp) => {
 const reportOrder = asyncHandler(async (req, resp) => {
   const user = req.user;
 
-  if (!user) {
+  if (!user || user.isVerified) {
     throw new ApiError(501, "Unautharized Request");
   }
 
@@ -270,5 +284,5 @@ module.exports = {
   setPlaced,
   reportOrder,
   checkReport,
-  serveOrders
+  serveOrders,
 };

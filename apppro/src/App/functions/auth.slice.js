@@ -6,6 +6,10 @@ const initialState = {
     name: "",
     email: "",
     phone: "",
+    address: "",
+    city: "",
+    state: null,
+    postCode: "",
     isVerified: false,
   },
   isLoggedIn: false,
@@ -17,6 +21,10 @@ function setUserData(state, action) {
   state.user.name = action.payload.user.name;
   state.user.email = action.payload.user.email;
   state.user.phone = action.payload.user.phone;
+  state.user.address = action.payload.user.Address;
+  state.user.city = action.payload.user.City;
+  state.user.state = action.payload.user.State;
+  state.user.postCode = action.payload.user.PostCode;
   state.user.isVerified = action.payload.user.isVerified;
   state.isLoggedIn = true;
 }
@@ -26,6 +34,10 @@ function clearUserData(state, action) {
   state.user.name = "";
   state.user.email = "";
   state.user.phone = "";
+  state.user.address = "";
+  state.user.city = "";
+  state.user.state = "";
+  state.user.postCode = null;
   state.user.isVerified = false;
   state.isLoggedIn = false;
 }

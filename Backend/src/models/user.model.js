@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const mongoosePaginate = require("mongoose-aggregate-paginate-v2");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -38,7 +37,7 @@ const newSchema = new mongoose.Schema(
       type: String,
       default: "CUSTOMER",
     },
-    Address1: {
+    Address: {
       type: String,
     },
     City: {

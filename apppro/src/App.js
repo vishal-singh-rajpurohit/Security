@@ -11,16 +11,25 @@ import Cart from "./components/Pages/Cart";
 import Orders from "./components/Pages/Orders";
 import Profile from "./components/Pages/Profile";
 import OrderStatus from "./components/Pages/OrderStatus";
+import OrderDetails from "./components/Pages/OrderDetails";
+import { OrderCancel, OrderConform } from "./components/Pages/Order/OrderConform";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+
         <Route path="shop/shopping" element={<Shop />} />
         <Route path="shop/cart" element={<Auth ><Cart /></Auth>} />
+
         <Route path="shop/orders" element={<Auth ><Orders /></Auth>} />
+        <Route path="shop/orders/details" element={<Auth ><OrderDetails /></Auth>} />
         <Route path="shop/orders/status" element={<Auth ><OrderStatus /></Auth>} />
+        <Route path="shop/orders/confirm" element={<Auth ><OrderConform /></Auth>} />
+        <Route path="shop/orders/cancel" element={<Auth ><OrderCancel /></Auth>} />
+        
+
         <Route path="user/profile" element={<Auth ><Profile /></Auth>} />
 
         <Route path="login" element={<Login />} />

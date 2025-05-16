@@ -11,7 +11,7 @@ const verificationTemplate = (refreshToken) => {
           <!-- Logo -->
           <tr>
             <td style="padding-bottom:25px;">
-              <img src="https://img.icons8.com/?size=100&id=38388&format=png&color=000000" alt="Wings Lens Logo" width="100" height="100" style="border-radius:50%; display:block; margin:0 auto; background-color:#e0e7ff;">
+              <img src="https://res.cloudinary.com/ddiaarexp/image/upload/c_crop,w_640,h_181/v1747382227/logo-black_pllaur.png" alt="Wings Lens Logo" width="100" height="100" style="border-radius:50%; display:block; margin:0 auto; background-color:#e0e7ff;">
             </td>
           </tr>
 
@@ -54,7 +54,13 @@ const verificationTemplate = (refreshToken) => {
 </body>`;
 };
 
-const orderVerificationTemplate = (orderId) => {
+const orderVerificationTemplate = (
+  orderId,
+  productTitle,
+  qunatity,
+  price,
+  Location
+) => {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,7 +91,7 @@ const orderVerificationTemplate = (orderId) => {
           <!-- Logo -->
           <tr>
             <td align="center" style="padding-bottom: 20px;">
-              <img src="https://via.placeholder.com/150x50?text=Wings+Lens" alt="Wings Lens Logo" style="max-width: 100%; height: auto;" />
+              <img src="https://res.cloudinary.com/ddiaarexp/image/upload/c_crop,w_640,h_181/v1747382227/logo-black_pllaur.png" alt="Wings Lens Logo" style="max-width: 100%; height: auto;" />
             </td>
           </tr>
 
@@ -119,10 +125,10 @@ const orderVerificationTemplate = (orderId) => {
                   <th>Delivery Location</th>
                 </tr>
                 <tr>
-                  <td>Wireless CCTV Camera</td>
-                  <td>2</td>
-                  <td>$120</td>
-                  <td>New York, NY</td>
+                  <td>${productTitle}</td>
+                  <td>${qunatity}</td>
+                  <td>₹${price}</td>
+                  <td>${Location}</td>
                 </tr>
                 <!-- Add more rows as needed -->
               </table>
@@ -154,7 +160,13 @@ const orderVerificationTemplate = (orderId) => {
 `;
 };
 
-const cancelOrderTemplate = (orderId) => {
+const cancelOrderTemplate = (
+  orderId,
+  productTitle,
+  qunatity,
+  price,
+  Location
+) => {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -184,7 +196,7 @@ const cancelOrderTemplate = (orderId) => {
           <!-- Logo -->
           <tr>
             <td align="center" style="padding-bottom: 20px;">
-              <img src="https://via.placeholder.com/150x50?text=Wings+Lens" alt="Wings Lens Logo" style="max-width: 100%; height: auto;" />
+              <img src="https://res.cloudinary.com/ddiaarexp/image/upload/c_crop,w_640,h_181/v1747382227/logo-black_pllaur.png" alt="Wings Lens Logo" style="max-width: 100%; height: auto;" />
             </td>
           </tr>
 
@@ -218,10 +230,10 @@ const cancelOrderTemplate = (orderId) => {
                   <th>Delivery Location</th>
                 </tr>
                 <tr>
-                  <td>Wireless CCTV Camera</td>
-                  <td>2</td>
-                  <td>$120</td>
-                  <td>New York, NY</td>
+                  <td>${productTitle}</td>
+                  <td>${qunatity}</td>
+                  <td>₹${price}</td>
+                  <td>${Location}</td>
                 </tr>
               </table>
             </td>

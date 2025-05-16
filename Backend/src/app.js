@@ -30,15 +30,18 @@ app.use(cookieParser());
 const adminRouter = require("./routes/admin.routes");
 const userRoute = require("./routes/user.routes");
 const orderRoutes = require("./routes/order.routes");
-const mainRoutes = require("./routes/main.routes")
+const mainRoutes = require("./routes/main.routes");
+const cartRoutes = require("./routes/cart.routes");
 
 app.use("/api/v2/main", mainRoutes);
 
 app.use("/api/v2/user", userRoute);
 
+
 app.use("/api/v2/admin", adminRouter);
 
-app.use("/api/v2/orders", orderRoutes);
+app.use("/api/v2/auth/orders", orderRoutes);
 
+app.use("/api/v2/auth/cart", cartRoutes);
 
 module.exports = app;

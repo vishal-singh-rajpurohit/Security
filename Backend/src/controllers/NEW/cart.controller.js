@@ -3,8 +3,8 @@ const ApiResponse = require("../../utils/ApiResponse.utils");
 const ApiError = require("../../utils/ApiError.utils");
 const Product = require("../../models/product.model");
 const Order = require("../../models/order.model");
-const Cart = require("../../models/cart.model");
-const { orderVerificationEmail } = require("../admin/sendMails/sendMail");
+
+
 
 const addToCart = asyncHandler(async (req, resp) => {
   const user = req.user;
@@ -126,6 +126,7 @@ const clearCart = asyncHandler(async (req, resp) => {
   resp.status(200).json(new ApiResponse(200, {}, "Item Removed from Cart"));
 });
 
+// Fix agrigation
 const serveCart = asyncHandler(async (req, resp) => {
   const user = req.user;
 

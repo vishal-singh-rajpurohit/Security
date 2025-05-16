@@ -34,43 +34,33 @@ const sendVerificationEmail = async (email, refreshToken) => {
       throw new ApiError(400, "Email does not sent successfully");
     }
 
-     console.log("Email sent successfully");
+    console.log("Email sent successfully");
     return sendResult;
   } catch (error) {
     throw new ApiError(500, "Error While Sharing Email");
   }
 };
 
-const orderVerificationEmail = async (email, orderId) => {
+const orderVerificationEmail = async (
+  email,
+  orderId,
+  productTitle,
+  qunatity,
+  price,
+  Location
+) => {
   const mailOptions = {
     from: "datasecourity@gmail.com",
     to: email,
     subject: "Verify your Order on Wing's Lens. :,",
     text: `Conform your Order on Wing's Lens by clicking the button below:`,
-    html: orderVerificationTemplate(orderId),
-  };
-
-  try {
-    const sendResult = await transport.sendMail(mailOptions);
-
-    if (!sendResult) {
-      throw new ApiError(400, "Email does not sent successfully");
-    }
-
-     console.log("Email sent successfully");
-    return sendResult;
-  } catch (error) {
-    throw new ApiError(500, "Error While Sharing Email");
-  }
-};
-
-const sendCancellationEmail = async (email, orderId) => {
-  const mailOptions = {
-    from: "datasecourity@gmail.com",
-    to: email,
-    subject: "Cancel your Order on Wing's Lens. :,",
-    text: `Conform Order Cancellation on Wing's Lens by clicking the button below:`,
-    html: cancelOrderTemplate(orderId),
+    html: orderVerificationTemplate(
+      orderId,
+      productTitle,
+      qunatity,
+      price,
+      Location
+    ),
   };
 
   try {
@@ -81,7 +71,37 @@ const sendCancellationEmail = async (email, orderId) => {
     }
 
     console.log("Email sent successfully");
-    
+    return sendResult;
+  } catch (error) {
+    throw new ApiError(500, "Error While Sharing Email");
+  }
+};
+
+const sendCancellationEmail = async (
+  email,
+  orderId,
+  productTitle,
+  qunatity,
+  price,
+  Location
+) => {
+  const mailOptions = {
+    from: "datasecourity@gmail.com",
+    to: email,
+    subject: "Cancel your Order on Wing's Lens. :,",
+    text: `Conform Order Cancellation on Wing's Lens by clicking the button below:`,
+    html: cancelOrderTemplate(orderId, productTitle, qunatity, price, Location),
+  };
+
+  try {
+    const sendResult = await transport.sendMail(mailOptions);
+
+    if (!sendResult) {
+      throw new ApiError(400, "Email does not sent successfully");
+    }
+
+    console.log("Email sent successfully");
+
     return sendResult;
   } catch (error) {
     throw new ApiError(500, "Error While Sharing Email");

@@ -135,7 +135,7 @@ const checkAlreadyUser = asyncHandler(async (req, resp) =>{
       )
     );
 
-})
+});
 
 const loginUser = asyncHandler(async (req, resp) => {
   const { email, password } = req.body;

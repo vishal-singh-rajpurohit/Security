@@ -16,6 +16,22 @@ const newSchema = new mongoose.Schema(
       type: Number,
       default: null,
     },
+    mobileNumber: {
+      type: Number,
+      required: true,
+    },
+    location: {
+      type: String,
+      required: true
+    },
+    pincode: {
+      type: Number,
+      required: true,
+    },
+    state: {
+      type: String,
+      required: true
+    },
     status: {
       type: ["VERIFIED", "UNVERIFIED", "CANCELLED", "DELIVERED"],
       default: "UNVERIFIED",

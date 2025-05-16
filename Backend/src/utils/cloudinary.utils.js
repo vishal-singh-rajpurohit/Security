@@ -1,7 +1,6 @@
 require("dotenv").config();
 const cloudinary = require("cloudinary").v2;
 const ApiError = require("./ApiError.utils");
-const asyncHandler = require("./asyncHandler.utils")
 const fs = require("fs");
 
 cloudinary.config({
