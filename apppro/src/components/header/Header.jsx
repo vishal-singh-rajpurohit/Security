@@ -5,14 +5,16 @@ import { FiSearch } from 'react-icons/fi'
 import { FaUserCircle } from 'react-icons/fa'
 import { ImCart } from "react-icons/im";
 import { Link } from 'react-router-dom'
-import "./header.css"
 import { AppContext } from '../../context/AppContext'
 import { useSelector } from 'react-redux'
+import "./header.css"
 
 // LOgos
-import logoB from "../../Assets/Logo/logo-black.png"
+// import logoB from "../../Assets/Logo/logo-black.png"
 import logoW from "../../Assets/Logo/logo-white-2.png"
 import logoLd from "../../Assets/Logo/loader-bg.png"
+
+import {logos} from "../../Assets/Assets"
 
 export function Header() {
 
@@ -73,7 +75,7 @@ export function Header() {
         <section id='header-section' className={`header-section ${openSearch ? "-brite" : ""}`}>
             <div className="header-section-logo">
                 {/* <img src={openSearch ? logoLite : scrolled ? logoLite : logoDark} alt="sewad infotech" className="header-section-logo-img" /> */}
-                <img src={scrolled? logoW : logoW} alt="sewad infotech" className="header-section-logo-img" />
+                <img src={scrolled? logos[0] : logoW} alt="sewad infotech" className="header-section-logo-img" />
                 {/* <p className="logo-text">Sewad Infotech</p> */}
             </div>
             <div className="header-section-options">

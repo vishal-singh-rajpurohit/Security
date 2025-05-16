@@ -13,6 +13,7 @@ import Profile from "./components/Pages/Profile";
 import OrderStatus from "./components/Pages/OrderStatus";
 import OrderDetails from "./components/Pages/OrderDetails";
 import { OrderCancel, OrderConform } from "./components/Pages/Order/OrderConform";
+import Reports from "./components/Pages/Reports";
 
 function App() {
   return (
@@ -28,9 +29,9 @@ function App() {
         <Route path="shop/orders/status" element={<Auth ><OrderStatus /></Auth>} />
         <Route path="shop/orders/confirm" element={<Auth ><OrderConform /></Auth>} />
         <Route path="shop/orders/cancel" element={<Auth ><OrderCancel /></Auth>} />
-        
 
         <Route path="user/profile" element={<Auth ><Profile /></Auth>} />
+        <Route path="user/reports" element={<Auth ><Reports /></Auth>} />
 
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />

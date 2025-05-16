@@ -21,8 +21,8 @@ const newSchema = new mongoose.Schema(
       required: true,
     },
     status: {
-      type: ["CHECKED", "UNCHECKED"],
-      default: "UNCHECKED",
+      type: ["UNWATCHED", "VERIFIED", "REJECTED"],
+      default: "UNWATCHED",
       required: true
     },
     returnMessage: {

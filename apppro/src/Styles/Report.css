@@ -1,0 +1,72 @@
+section.reports-page {
+    min-height: 100vh;
+    padding-top: 5rem;
+}
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+.report-card {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.report-header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.report-header span {
+    font-weight: bold;
+    color: #333;
+}
+
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+}
+
+.status-unwatched {
+    background-color: #e67e22;
+}
+
+.status-verified {
+    background-color: #27ae60;
+}
+
+.status-rejected {
+    background-color: #c0392b;
+}
+
+.report-body {
+    margin-top: 10px;
+}
+
+.report-field {
+    margin-bottom: 10px;
+}
+
+.report-field label {
+    font-weight: bold;
+    color: #555;
+}
+
+.report-field p {
+    margin-top: 4px;
+    color: #333;
+}
+
+.date {
+    text-align: right;
+    font-size: 13px;
+    color: #999;
+}
