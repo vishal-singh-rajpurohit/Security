@@ -10,21 +10,23 @@ const CartItem = ({ productId, banner, title, qunatity, price }) => {
 
   const [totalValue, setTotalValue] = useState(10);
 
-  useEffect(()=>{
+  useEffect(() => {
     setTotalValue(quantity * 400)
   }, [quantity])
 
-  async function changeQunatity(){
+
+
+  async function changeQunatity() {
     try {
-      
+
     } catch (error) {
       console.log("unable to change qunatity: ", error);
     }
   }
 
-  async function remove(){
+  async function remove() {
     try {
-      
+
     } catch (error) {
       console.log("unable to remove item: ", error);
     }
@@ -40,11 +42,11 @@ const CartItem = ({ productId, banner, title, qunatity, price }) => {
       <div className="item-actions">
 
         <div className="quantity-controls">
-          <button disabled={quantity === 1? true : false}  onClick={() => setQunatity(quantity -= 1)}>-</button>
+          <button disabled={quantity === 1 ? true : false} onClick={() => setQunatity(quantity -= 1)}>-</button>
           <span className="quantity-display">{quantity}</span>
-          <button  onClick={() => setQunatity(quantity += 1)}>+</button>
+          <button onClick={() => setQunatity(quantity += 1)}>+</button>
         </div>
-        <button style={{backgroundColor: "lightgreen"}} className="remove-btn">Shop Now</button>
+        <button style={{ backgroundColor: "lightgreen" }} className="remove-btn">Shop Now</button>
         <button className="remove-btn">Remove</button>
       </div>
     </div>
@@ -54,7 +56,7 @@ const CartItem = ({ productId, banner, title, qunatity, price }) => {
 const Cart = () => {
 
   async function clearCart() {
-    
+
   }
 
   return (
@@ -62,7 +64,7 @@ const Cart = () => {
       <ImageSlider />
       <div className="cart-container">
         <div className="cart-left">
-          <h2 style={{marginBottom: "1rem"}}>Your Cart</h2>
+          <h2 style={{ marginBottom: "1rem" }}>Your Cart</h2>
           <CartItem />
           <div className="cart-item">
             <img src={X} alt="Product Image" />

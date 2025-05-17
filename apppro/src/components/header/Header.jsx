@@ -6,7 +6,7 @@ import { FaUserCircle } from 'react-icons/fa'
 import { ImCart } from "react-icons/im";
 import { Link } from 'react-router-dom'
 import { AppContext } from '../../context/AppContext'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import "./header.css"
 
 // LOgos
@@ -14,17 +14,22 @@ import "./header.css"
 import logoW from "../../Assets/Logo/logo-white-2.png"
 import logoLd from "../../Assets/Logo/loader-bg.png"
 
-import {logos} from "../../Assets/Assets"
+import { logos } from "../../Assets/Assets"
+import { notScrolled, setScrolled } from '../../App/functions/variable.slice'
 
 export function Header() {
+
+    const dispatch = useDispatch();
 
     const { setOpenMenu } = useContext(AppContext);
 
     const loggedIn = useSelector((state) => state.auth.isLoggedIn);
 
+    const scrolled = useSelector((state) => state.variable.scrolled);
+
     const [openSearch, setOpenSearch] = useState(false);
     const [windowWidth, setWindowWidth] = useState(0);
-    const [scrolled, setScrolled] = useState(false);
+    // const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -37,10 +42,10 @@ export function Header() {
 
             if (currentScroll > 80) {
                 headerSection.classList.add("scrolled");
-                setScrolled(true)
+                dispatch(setScrolled());
             } else {
                 headerSection.classList.remove("scrolled");
-                setScrolled(false)
+                dispatch(notScrolled());
             }
         };
 
@@ -75,7 +80,7 @@ export function Header() {
         <section id='header-section' className={`header-section ${openSearch ? "-brite" : ""}`}>
             <div className="header-section-logo">
                 {/* <img src={openSearch ? logoLite : scrolled ? logoLite : logoDark} alt="sewad infotech" className="header-section-logo-img" /> */}
-                <img src={scrolled? logos[0] : logoW} alt="sewad infotech" className="header-section-logo-img" />
+                <img src={scrolled ? logos[0] : logoW} alt="sewad infotech" className="header-section-logo-img" />
                 {/* <p className="logo-text">Sewad Infotech</p> */}
             </div>
             <div className="header-section-options">
@@ -134,12 +139,12 @@ export function Header() {
                                 <Link to={"/signup"}>
                                     <span className="login-signup-text" style={{ color: scrolled ? 'black' : 'white' }}>Sign up</span>
                                 </Link> </>
-                            :<> <Link to={"user/profile"}>
+                            : <> <Link to={"user/profile"}>
                                 <span className="login-signup-text"><FaUserCircle size={30} color={scrolled ? 'black' : 'white'} /> </span>
                             </Link>
-                            <Link to={"/shop/cart"}>
-                                <span className="login-signup-text"><ImCart size={30} color={scrolled ? 'black' : 'white'} /> </span>
-                            </Link>
+                                <Link to={"/shop/cart"}>
+                                    <span className="login-signup-text"><ImCart size={30} color={scrolled ? 'black' : 'white'} /> </span>
+                                </Link>
 
                             </>
                     }
@@ -148,6 +153,9 @@ export function Header() {
                 </div>
             </div>
             <div className="header-section-search-resp -resp">
+                <Link to={"/shop/cart"}>
+                    <span className="login-signup-text"><ImCart size={30} color={scrolled ? 'black' : 'white'} /> </span>
+                </Link>
                 <p className={`header-section-options-item-p ${scrolled ? "txt-black" : ""}`}><FiSearch size={20} style={{ display: openSearch ? 'none' : 'flex', cursor: 'pointer' }} onClick={() => setOpenSearch(true)} /></p>
                 <p className={`header-section-options-item-p ${scrolled ? "txt-black" : ""}`}><MdMenu size={30} onClick={() => setOpenMenu(true)} /></p>
             </div>

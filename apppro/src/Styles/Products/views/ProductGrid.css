@@ -71,6 +71,16 @@ p.prodcut-grid-title {
     height: 1.3rem;
 }
 
+.prodcut-grid-card-bottom {
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid darkgray;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
 img.product-grid-card-bottom-img {
     width: 12rem;
     filter: drop-shadow(1px 2px 3px black);

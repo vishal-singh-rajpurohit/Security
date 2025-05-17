@@ -1,8 +1,10 @@
-import React from 'react'
 import ProductsGridCard from '../ProductCards/ProductsGridCard'
-
 import "../../../Styles/Products/views/ProductGrid.css"
-import ProductCard from '../ProductCards/ProductCard'
+
+import hd from "../../../Assets/Categores/hd.webp"
+import ip from "../../../Assets/Categores/ip_cam.webp"
+import nv from "../../../Assets/Categores/nv_cam.webp"
+import wifi from "../../../Assets/Categores/wifi_cam.webp"
 
 const OfferGrid = () => {
   return (
@@ -14,10 +16,10 @@ const OfferGrid = () => {
         </div>
       </div>
       <div class="product-grid-">
-        <ProductsGridCard />
-        <ProductsGridCard />
-        <ProductsGridCard />
-        <ProductsGridCard />
+        <ProductsGridCard title={"Best HD Camera Setups"} start={12000} banner={hd} />
+        <ProductsGridCard title={"Best WIFI Camera and Setups"} start={2000} banner={wifi} />
+        <ProductsGridCard title={"Best Night Vision Camera Setups"} start={12000} banner={nv} />
+        <ProductsGridCard title={"Best IP Camera Setups"} start={15000} banner={ip} />
       </div>
     </section>
   )

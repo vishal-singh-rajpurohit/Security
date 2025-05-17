@@ -1,0 +1,22 @@
+section.show-more-section {
+    width: 100%;
+    height: 3rem;
+    background: #efefef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.show-more-btn {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    cursor: pointer;
+}
+
+section.show-more-section:hover {
+    background: #51b1ff;
+}
