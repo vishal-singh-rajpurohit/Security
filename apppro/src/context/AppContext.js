@@ -15,9 +15,26 @@ export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const dispatch = useDispatch();
   const pageNo = useSelector((state) => state.variable.page);
+
+
   const [success, setSuccess] = useState(false);
   const [fail, setFail] = useState(false);
   const [successText, setSuccessText] = useState("Order placed successfully");
+
+
+  const [orders, setOrders] = useState([
+      {
+        _id: "",
+        status: "",
+        createdAt: "",
+        product: {
+          _id: "",
+          ProductName: "",
+          DealPrice: 50000,
+          FrontImage: "",
+        },
+      },
+    ]);
 
   useEffect(() => {
     if (success) {
@@ -105,16 +122,17 @@ export const AppProvider = ({ children }) => {
   };
 
   const data = {
+    Methods,
     dispatch,
     openMenu,
     setOpenMenu,
-    Methods,
     success,
     setSuccess,
     successText,
     setSuccessText,
     fail,
     setFail,
+    orders, setOrders,
   };
 
   return <AppContext.Provider value={data}>{children}</AppContext.Provider>;

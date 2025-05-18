@@ -117,17 +117,80 @@ const OrderConform = () => {
 
 const OrderCancel = () => {
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [searchParams] = useSearchParams();
     const orderId = searchParams.get('orderid');
 
-    async function fetchOrder(params) {
+    const [order, setOrder] = useState({
+        quantity: 1,
+        status: "UNVERIFIED",
+        createdAt: "",
+        product: {
+            ProductName: "",
+            DealPrice: 0
+        }
+    });
 
+    const { setSuccess, setFail, setSuccessText, Methods } = useContext(AppContext);
+
+    async function fetchOrder() {
+        dispatch(loading());
+        try {
+            const response = await axios.post(`http://localhost:5000/api/v2/auth/orders/serve-one-order`,
+                {
+                    orderId
+
+                },
+                {
+                    withCredentials: true
+                }
+            );
+
+            console.log("Order fetched: ", response.data.data.Order[0]);
+            setOrder(response.data.data.Order[0]);
+        } catch (error) {
+            fetchOrder();
+            console.log("Error while fetching product: ", error);
+        } finally {
+            dispatch(loaded());
+        }
     }
 
-    async function cancel() {
 
+    async function confirm() {
+        dispatch(loading());
+        try {
+            await axios.post(`http://localhost:5000/api/v2/auth/orders/conform-cancel-order`,
+                {
+                    orderId
+                },
+                {
+                    withCredentials: true
+                });
+
+            setSuccessText("Order Cancelled successfully.");
+            setSuccess(true);
+
+            
+
+            navigate("/shop/orders", { replace: true });
+
+        } catch (error) {
+            setFail(true)
+            setSuccess(true);
+            setSuccessText("Somthing went wrong");
+            console.log("Error while Confirm order: ", error)
+        } finally {
+            dispatch(loaded());
+        }
     }
 
+    useEffect(() => {
+        fetchOrder();
+    }, []);
+    
     return (
         <section className="confrom-order-section">
             <div class="confirm-container">
@@ -136,11 +199,11 @@ const OrderCancel = () => {
                 <div class="order-summary">
                     <div class="summary-item">
                         <span>Product:</span>
-                        <strong>Wireless Earbuds</strong>
+                        <strong>{order.product.ProductName}</strong>
                     </div>
                     <div class="summary-item">
                         <span>Quantity:</span>
-                        <strong>2</strong>
+                        <strong>{order.quantity || 1}</strong>
                     </div>
                     <div class="summary-item">
                         <span>Shipping:</span>
@@ -148,15 +211,15 @@ const OrderCancel = () => {
                     </div>
                     <div class="summary-item">
                         <span>Estimated Delivery:</span>
-                        <strong>May 18, 2025</strong>
+                        <strong>{Methods.formatDate(order.createdAt)}</strong>
                     </div>
                     <div class="summary-item total">
                         <span>Total:</span>
-                        <strong>₹1,998</strong>
+                        <strong>₹{order.product.DealPrice * (order.quantity || 1) }</strong>
                     </div>
                 </div>
 
-                <button class="cancel-btn">Confirm Order</button>
+                <button class="cancel-btn" onClick={confirm}>Confirm Order</button>
             </div>
         </section>
     )

@@ -163,7 +163,7 @@ const orderVerificationTemplate = (
 const cancelOrderTemplate = (
   orderId,
   productTitle,
-  qunatity,
+  qunatity = 1,
   price,
   Location
 ) => {
@@ -242,7 +242,7 @@ const cancelOrderTemplate = (
           <!-- Button -->
           <tr>
             <td align="center" style="padding: 30px;">
-              <a href="http://localhost:3000/verify-order?orderid=${orderId}" class="cancel-btn" style="background-color: #e74c3c; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none; font-size: 16px;">
+              <a href="http://localhost:3000/shop/orders/cancel?orderid=${orderId}" class="cancel-btn" style="background-color: #e74c3c; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none; font-size: 16px;">
                 Cancel Order
               </a>
             </td>

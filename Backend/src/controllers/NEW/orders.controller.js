@@ -21,8 +21,8 @@ const placeOrder = asyncHandler(async (req, resp) => {
   const { productId, quantity, mobileNumber, location, pincode, state, city } =
     req.body;
 
-    console.log("body: ", req.body);
-    
+  console.log("body: ", req.body);
+
   if (!productId || !mobileNumber || !location || !pincode || !state || !city) {
     throw new ApiError(400, "All details must required");
   }
@@ -114,6 +114,7 @@ const serveOrders = asyncHandler(async (req, resp) => {
         _id: 1,
         qunatity: 1,
         status: 1,
+        createdAt: 1,
         // product: 1
         "product._id": 1,
         "product.ProductName": 1,
@@ -133,7 +134,7 @@ const serveOrders = asyncHandler(async (req, resp) => {
     .json(new ApiResponse(200, { Orders: whole_orders }, "Orders Served"));
 });
 
-const serveSingleOrder = asyncHandler(async(req, resp) =>{
+const serveSingleOrder = asyncHandler(async (req, resp) => {
   const user = req.user;
 
   if (!user || !user.isVerified) {
@@ -146,7 +147,7 @@ const serveSingleOrder = asyncHandler(async(req, resp) =>{
     {
       $match: {
         _id: new mongoose.Types.ObjectId(orderId),
-        userId: user._id
+        userId: user._id,
       },
     },
     {
@@ -186,7 +187,7 @@ const serveSingleOrder = asyncHandler(async(req, resp) =>{
   resp
     .status(200)
     .json(new ApiResponse(200, { Order: whole_orders }, "Orders Served"));
-})
+});
 
 const verifyOrder = asyncHandler(async (req, resp) => {
   const user = req.user;
@@ -245,11 +246,12 @@ const sendCancellationRequest = asyncHandler(async (req, resp) => {
     throw new ApiError(400, "Product not found");
   }
 
+
   const sendResult = await sendCancellationEmail(
     user.Email,
     order._id,
     product.ProductName,
-    order.quantity,
+    order.quantity || 1,
     product.DealPrice,
     order.location
   );
@@ -332,7 +334,6 @@ const reportOrder = asyncHandler(async (req, resp) => {
 
 // A Admin route
 const setStatus = asyncHandler(async (req, resp) => {
-
   // Set Admin
 
   const { orderId, status } = req.body;

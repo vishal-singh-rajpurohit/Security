@@ -49,7 +49,6 @@ const orderVerificationEmail = async (
   price,
   Location
 ) => {
-
   const mailOptions = {
     from: "datasecourity@gmail.com",
     to: email,
@@ -82,10 +81,11 @@ const sendCancellationEmail = async (
   email,
   orderId,
   productTitle,
-  qunatity,
+  qunatity = 1,
   price,
   Location
 ) => {
+  
   const mailOptions = {
     from: "datasecourity@gmail.com",
     to: email,
