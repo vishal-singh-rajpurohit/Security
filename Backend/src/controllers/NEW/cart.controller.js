@@ -134,31 +134,34 @@ const serveCart = asyncHandler(async (req, resp) => {
   }
 
   const whole_cart = await Cart.aggregate([
-    {
-      $match: {
-        userId: user._id,
-      },
-    },
-    {
-      $lookup: {
-        from: "Product",
-        localField: "prodcutId",
-        foreignField: "_id",
-        as: "product",
-      },
-    },
-    {
-      $project: {
-        _id: 1,
-        qunatity: 1,
-        "product._id": 1,
-        "product.ProductName": 1,
-        "product.DealPrice": 1,
-        "product.FrontImage": 1,
-        "product.DealPrice": 1,
-      },
-    },
-  ]);
+  {
+    $match: {
+      userId: user._id
+    }
+  },
+  {
+    $lookup: {
+      from: "products",
+      localField: "prodcutId",
+      foreignField: "_id",
+      as: "product"
+    }
+  },
+  {
+    $unwind: "$product"
+  },
+  {
+    $project: {
+      _id: 1,
+      qunatity: 1,
+      "product._id": 1,
+      "product.ProductName": 1,
+      "product.DealPrice": 1,
+      "product.FrontImage": 1,
+      "product.DealPrice": 1
+    }
+  }
+]);
 
   if (!whole_cart) {
     throw new ApiError(400, "no item in cart");
