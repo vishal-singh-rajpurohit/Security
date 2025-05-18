@@ -92,7 +92,7 @@ const initialProductServe = asyncHandler(async (req, resp) => {
 const productServer = asyncHandler(async (req, resp) => {
   const { page, limit } = req.query;
   const pageNumber = parseInt(page) || 1;
-  const limitNumber = parseInt(limit) || 20;
+  const limitNumber = parseInt(limit) || 10;
   const skip = (pageNumber - 1) * limitNumber;
 
   const Products = await Product.aggregate([
@@ -122,7 +122,7 @@ const productServer = asyncHandler(async (req, resp) => {
 
   return resp
     .status(200)
-    .json(new ApiResponse(200, "Products fetched successfully", { Products }));
+    .json(new ApiResponse(200, { Products },  "Products fetched successfully"));
 });
 
 const selectProductServer = asyncHandler(async (req, resp) => {

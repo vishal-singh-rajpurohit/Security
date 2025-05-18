@@ -15,28 +15,28 @@ const ProductCard = ({ productId, topLabel, banner, title, deal, MRP }) => {
 
   return (
     <NavLink to={`/shop/shopping?pid=${productId}`} >
-      <div class="product-card-single">
-        <div class="product-card-single-top">
-          <div class="offer-type">{topLabel}</div>
-          {/* <div class="liked-top"><LiaSave onClick={()=>alert("liked")} /></div> */}
+      <div className="product-card-single">
+        <div className="product-card-single-top">
+          <div className="offer-type">{topLabel}</div>
+          {/* <div className="liked-top"><LiaSave onClick={()=>alert("liked")} /></div> */}
         </div>
-        <div class="product-card-single-mid">
-          <img src={banner} alt="" class="product-card-single-mid-image" />
+        <div className="product-card-single-mid">
+          <img src={banner} alt="" className="product-card-single-mid-image" />
         </div>
-        <div class="product-card-single-bottom">
-          <div class="prodcut-card-title">
-            <p class="prodcut-title-p">
+        <div className="product-card-single-bottom">
+          <div className="prodcut-card-title">
+            <p className="prodcut-title-p">
               {title}
             </p>
           </div>
-          <div class="product-card-price">
-            <span class="product-card-price-single">
+          <div className="product-card-price">
+            <span className="product-card-price-single">
               <MdCurrencyRupee size={20} /> {deal}
             </span>
-            <span class="product-card-price-offer">{discount}% off</span>
+            <span className="product-card-price-offer">{discount}% off</span>
           </div>
-          <div class="product-card-price-mrp">
-            <span class="product-card-mrp-span">
+          <div className="product-card-price-mrp">
+            <span className="product-card-mrp-span">
               MRP <MdCurrencyRupee /> {MRP}
             </span>
           </div>

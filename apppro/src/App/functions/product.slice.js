@@ -1,34 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-//Products = {
-//     _id: "",
-//     title: "product title",
-//     frontImage: "",
-//     price: 0,
-//     mrp: 0,
-//     discount: 0,
-//     top: "title"
-// }
-
-//Offers = {
-//     _id: "",
-//     title: "Offer title",
-//     frontImage: "",
-//     Starting From: "",
-// }
-
-//Offers = {
-//     _id: "",
-//     title: "tranding title",
-//     frontImage: "",
-//     price: 0,
-//     mrp: 0,
-//     discount: 0,
-//     top: "title"
-// }
-
-
-
 const initialState = {
   trandingProducts: [],
   products: [],
@@ -57,20 +28,15 @@ function fetchProductsSuccess2(state, action) {
   state.offerProducts = action.payload.offerProducts;
   state.activeOffers = action.payload.activeOffers;
 }
+function fetchByPageSuccess2(state, action) {
+  console.log("Fetched: ", action.payload);
+  state.products = [...state.products, ...action.payload];
+  console.log("state.products: ", state.products, state.products.length);
+}
+
 function fetchSelectedProductStart2(state, action) {
   state.selectedProduct = action.payload.selectedProduct;
 }
-
-function appendCart(state, action) {
-  const { productId, quantity } = action.payload;
-}
-function removeCart(state, action) {
-  const { cardId } = action.payload;
-}
-
-function clearCart(state) {}
-
-function fetchCart(state) {}
 
 const productsSlice = createSlice({
   name: "products",
@@ -80,6 +46,7 @@ const productsSlice = createSlice({
     fetchProductsError: fetchProductsError2,
     fetchProductsSuccess: fetchProductsSuccess2,
     fetchSelectedProductStart: fetchSelectedProductStart2,
+    fetchByPageSuccess: fetchByPageSuccess2
   },
 });
 
@@ -88,6 +55,7 @@ export const {
   fetchProductsStart,
   fetchProductsSuccess,
   fetchSelectedProductStart,
+  fetchByPageSuccess
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

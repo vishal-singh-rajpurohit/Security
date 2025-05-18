@@ -1,12 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import {
-  fetchProductsError,
-  fetchProductsStart,
-  fetchProductsSuccess,
-  fetchSelectedProductStart,
-} from "../App/functions/product.slice";
+import {fetchByPageSuccess,fetchProductsError,fetchProductsStart,fetchProductsSuccess} from "../App/functions/product.slice";
 import { logingUser } from "../App/functions/auth.slice";
 import { loading, loaded } from "../App/functions/variable.slice";
 
@@ -16,25 +11,23 @@ export const AppProvider = ({ children }) => {
   const dispatch = useDispatch();
   const pageNo = useSelector((state) => state.variable.page);
 
-
   const [success, setSuccess] = useState(false);
   const [fail, setFail] = useState(false);
   const [successText, setSuccessText] = useState("Order placed successfully");
 
-
   const [orders, setOrders] = useState([
-      {
+    {
+      _id: "",
+      status: "",
+      createdAt: "",
+      product: {
         _id: "",
-        status: "",
-        createdAt: "",
-        product: {
-          _id: "",
-          ProductName: "",
-          DealPrice: 50000,
-          FrontImage: "",
-        },
+        ProductName: "",
+        DealPrice: 50000,
+        FrontImage: "",
       },
-    ]);
+    },
+  ]);
 
   useEffect(() => {
     if (success) {
@@ -96,29 +89,38 @@ export const AppProvider = ({ children }) => {
   async function fetchProductWill() {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/v1/main/product/will-server/?page=${pageNo}`
+        `http://localhost:5000/api/v2/main/serve/serve-by-page?page=${pageNo}&limit=2?`
       );
 
       console.log("Products Served: ", response);
-      dispatch(fetchProductsSuccess());
+
+      // dispatch(fetchProductsSuccess());
+      dispatch(fetchByPageSuccess(response.data.data.Products));
+
     } catch (error) {
+
       console.log("Error while serving products ", error);
       dispatch(fetchProductsError());
+
     }
   }
 
   function formatDate(dateString) {
-        if (!dateString) return "";
-        const date = new Date(dateString);
-        const mm = String(date.getMonth() + 1).padStart(2, '0');
-        const dd = String(date.getDate()).padStart(2, '0');
-        const yy = String(date.getFullYear()).slice(-2);
-        return `${mm}-${dd}-${yy}`;
-    }
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    const mm = String(date.getMonth() + 1).padStart(2, "0");
+    const dd = String(date.getDate()).padStart(2, "0");
+    const yy = String(date.getFullYear()).slice(-2);
+    return `${mm}-${dd}-${yy}`;
+  }
+
+
+  useEffect(()=>{
+    fetchProductWill()
+  }, [pageNo])
 
   const Methods = {
-    fetchProductWill,
-    formatDate
+    formatDate,
   };
 
   const data = {
@@ -132,7 +134,8 @@ export const AppProvider = ({ children }) => {
     setSuccessText,
     fail,
     setFail,
-    orders, setOrders,
+    orders,
+    setOrders,
   };
 
   return <AppContext.Provider value={data}>{children}</AppContext.Provider>;

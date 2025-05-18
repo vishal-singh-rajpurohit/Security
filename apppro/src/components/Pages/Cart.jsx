@@ -2,7 +2,7 @@ import axios from "axios"
 import "../../Styles/cart.css"
 import { ImageSlider } from "../Individual/Slides"
 import { useEffect, useState } from "react"
-import { NavLink, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 
 import { loading, loaded } from "../../App/functions/variable.slice"
@@ -24,12 +24,12 @@ const CartItem = ({ ft, itemId, productId, banner, title, qunatity, price }) => 
   }, [quantity]);
 
   async function orderNow() {
-        if (!user) {
-            navigator("/login");
-        } else {
-            navigator(`/shop/orders/details?pid=${productId}`);
-        }
+    if (!user) {
+      navigator("/login");
+    } else {
+      navigator(`/shop/orders/details?pid=${productId}`);
     }
+  }
 
   async function changeQunatity() {
     dispatch(loading())
@@ -83,7 +83,7 @@ const CartItem = ({ ft, itemId, productId, banner, title, qunatity, price }) => 
           <span className="quantity-display">{quantity}</span>
           <button onClick={() => setQunatity(quantity += 1)}>+</button>
         </div>
-          <button onClick={orderNow} style={{ backgroundColor: "lightgreen" }} className="remove-btn">Shop Now</button>
+        <button onClick={orderNow} style={{ backgroundColor: "lightgreen" }} className="remove-btn">Shop Now</button>
         <button className="remove-btn" onClick={remove}>Remove</button>
       </div>
     </div>
@@ -190,4 +190,4 @@ const Cart = () => {
   )
 }
 
-export default Cart
+export default Cart;
