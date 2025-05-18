@@ -2,18 +2,14 @@ import { useContext, useEffect, useState } from 'react'
 import { IoIosClose } from 'react-icons/io'
 import { MdMenu } from 'react-icons/md'
 import { FiSearch } from 'react-icons/fi'
-import { FaUserCircle } from 'react-icons/fa'
+import { FaUserCircle, FaShoppingBasket } from 'react-icons/fa'
 import { ImCart } from "react-icons/im";
 import { Link, NavLink } from 'react-router-dom'
 import { AppContext } from '../../context/AppContext'
 import { useDispatch, useSelector } from 'react-redux'
 import "./header.css"
 
-// LOgos
-// import logoB from "../../Assets/Logo/logo-black.png"
 import logoW from "../../Assets/Logo/logo-white-2.png"
-import logoLd from "../../Assets/Logo/loader-bg.png"
-
 import { logos } from "../../Assets/Assets"
 import { notScrolled, setScrolled } from '../../App/functions/variable.slice'
 
@@ -88,7 +84,7 @@ export function Header() {
                     windowWidth < 1150 ?
                         <div className="header-section-search-div" style={{ display: openSearch ? 'flex' : 'none' }}>
                             <div className="header-section-search" >
-                                <input type="text" placeholder='Search your product' className="header-section-search-input" />
+                                <input type="text" placeholder='Search your product' style={{ border: "none" }} className="header-section-search-input" />
                                 <IoIosClose onClick={() => setOpenSearch(false)} size={30} color='gray' style={{ cursor: 'pointer' }} />
                             </div>
                         </div> : <>
@@ -145,6 +141,9 @@ export function Header() {
                                 <Link to={"/shop/cart"}>
                                     <span className="login-signup-text"><ImCart size={30} color={scrolled ? 'black' : 'white'} /> </span>
                                 </Link>
+                                <Link to={"shop/orders"}>
+                                    <span className="login-signup-text"><FaShoppingBasket size={30} color={scrolled ? 'black' : 'white'} /> </span>
+                                </Link>
 
                             </>
                     }
@@ -152,9 +151,12 @@ export function Header() {
 
                 </div>
             </div>
-            <div className="header-section-search-resp -resp">
+            <div className="header-section-search-resp -resp" >
                 <Link to={"/shop/cart"}>
                     <span className="login-signup-text"><ImCart size={30} color={scrolled ? 'black' : 'white'} /> </span>
+                </Link>
+                <Link to={"/shop/orders"}>
+                    <span className="login-signup-text"><FaShoppingBasket size={30} color={scrolled ? 'black' : 'white'} /> </span>
                 </Link>
                 <p className={`header-section-options-item-p ${scrolled ? "txt-black" : ""}`}><FiSearch size={20} style={{ display: openSearch ? 'none' : 'flex', cursor: 'pointer' }} onClick={() => setOpenSearch(true)} /></p>
                 <p className={`header-section-options-item-p ${scrolled ? "txt-black" : ""}`}><MdMenu size={30} onClick={() => setOpenMenu(true)} /></p>

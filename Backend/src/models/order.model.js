@@ -28,13 +28,17 @@ const newSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    city: {
+      type: String,
+      required: true
+    },
     state: {
       type: String,
       required: true
     },
     status: {
       type: String,
-      enum: ["VERIFIED", "UNVERIFIED", "CANCELLED", "SHIPPING", "DELIVERED"],
+      enum: ["UNVERIFIED", "VERIFIED", "CANCELLED", "SHIPPED", "Out Of Delivery", "DELIVERED"],
       default: "UNVERIFIED",
       required: true
     }

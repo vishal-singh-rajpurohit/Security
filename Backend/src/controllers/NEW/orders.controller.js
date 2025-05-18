@@ -41,6 +41,7 @@ const placeOrder = asyncHandler(async (req, resp) => {
     mobileNumber: mobileNumber,
     pincode: pincode,
     state: state,
+    city: city,
   });
 
   const changedUser = await User.findByIdAndUpdate(user._id, {
@@ -95,6 +96,9 @@ const serveOrders = asyncHandler(async (req, resp) => {
       },
     },
     {
+      $sort: { createdAt: -1 },
+    },
+    {
       $lookup: {
         from: "products",
         foreignField: "_id",
@@ -112,15 +116,13 @@ const serveOrders = asyncHandler(async (req, resp) => {
     {
       $project: {
         _id: 1,
-        qunatity: 1,
+        quantity: 1,
         status: 1,
         createdAt: 1,
-        // product: 1
         "product._id": 1,
         "product.ProductName": 1,
         "product.DealPrice": 1,
         "product.FrontImage": 1,
-        "product.DealPrice": 1,
       },
     },
   ]);
@@ -171,6 +173,10 @@ const serveSingleOrder = asyncHandler(async (req, resp) => {
         qunatity: 1,
         status: 1,
         createdAt: 1,
+        location: 1,
+        city: 1,
+        state: 1,
+        pincode: 1,
         "product._id": 1,
         "product.ProductName": 1,
         "product.DealPrice": 1,
@@ -186,7 +192,9 @@ const serveSingleOrder = asyncHandler(async (req, resp) => {
 
   resp
     .status(200)
-    .json(new ApiResponse(200, { Order: whole_orders }, "Orders Served"));
+    .json(
+      new ApiResponse(200, { Order: whole_orders, User: user }, "Orders Served")
+    );
 });
 
 const verifyOrder = asyncHandler(async (req, resp) => {
@@ -245,7 +253,6 @@ const sendCancellationRequest = asyncHandler(async (req, resp) => {
   if (!product) {
     throw new ApiError(400, "Product not found");
   }
-
 
   const sendResult = await sendCancellationEmail(
     user.Email,

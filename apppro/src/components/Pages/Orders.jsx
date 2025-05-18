@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { NavLink } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { loading, loaded, setScrolled } from "../../App/functions/variable.slice";
 import { AppContext } from "../../context/AppContext";
@@ -28,15 +29,6 @@ const StatusButton = ({ status }) => {
       break;
   }
 
-  // return status === "PENDING" || "VERIFIED" ? (
-  //   <div class="order-status status-pending">VERIFIED</div>
-  // ) : status === "SHIPPED" ? (
-  //   <div class="order-status status-shipped">Shipped</div>
-  // ) : status === "DELIVERED" ? (
-  //   <div class="order-status status-delivered">Delivered</div>
-  // ) : status === "CANCELLED" ? (
-  //   <div class="order-status status-cancelled">Cancelled</div>
-  // ) : null;
 };
 
 const OrderCard = ({ orderId, title, ammount, date, status }) => {
@@ -90,7 +82,7 @@ const OrderCard = ({ orderId, title, ammount, date, status }) => {
           >
             Cancel
           </button>
-          <button class="show-btn">Show</button>
+          <NavLink to={`/shop/orders/status?orderid=${orderId}`}><button class="show-btn" style={{display: status === "CANCELLED"? "none": "flex"}} >Show</button></NavLink>
         </div>
       </div>
     </div>

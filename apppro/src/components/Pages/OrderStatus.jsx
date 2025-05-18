@@ -8,7 +8,7 @@ const OrderStatus = () => {
     const [searchParams] = useSearchParams();
     const orderId = searchParams.get('orderid');
 
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
 
     function fetchOrderStatus(params) {
         try {

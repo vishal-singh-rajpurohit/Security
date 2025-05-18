@@ -10,7 +10,7 @@ import Shop from "./components/Pages/Shop";
 import Cart from "./components/Pages/Cart";
 import Orders from "./components/Pages/Orders";
 import Profile from "./components/Pages/Profile";
-import OrderStatus from "./components/Pages/OrderStatus";
+import OrderStatus from "./components/Pages/Order/OrderStatus";
 import OrderDetails from "./components/Pages/OrderDetails";
 import { OrderCancel, OrderConform } from "./components/Pages/Order/OrderConform";
 import Reports from "./components/Pages/Reports";
