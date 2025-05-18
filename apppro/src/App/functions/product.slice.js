@@ -49,8 +49,7 @@ function fetchProductsError2(state) {
   state.error = true;
 }
 function fetchProductsSuccess2(state, action) {
-  console.log("Payloads: ", action.payload);
-  
+
   state.loading = false;
   state.error = false;
   state.trandingProducts = action.payload.products;

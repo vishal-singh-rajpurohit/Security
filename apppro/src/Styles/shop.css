@@ -216,15 +216,16 @@ button.shop-size {
 
 button.card-btn.shop-size {
     border: 1px solid;
-    color: #8aa6a6;
+    color: #216868;
     background: white;
 }
 
 button.buy-btn.shop-size {
-    background: #b5beda;
+    background: #6a7db8;
     color: white;
     font-weight: 700;
 }
+
 
 @media (max-width: 1200px) {
     section.shop-page {

@@ -37,8 +37,7 @@ const Signup = () => {
 
             dispatch(logingUser({ user: responce.data.data.User }));
 
-            navigate("/", { replace: true });
-
+             navigate(-1, { replace: true });
         } catch (error) {
             console.log("got error while hitting register ", error);
         }

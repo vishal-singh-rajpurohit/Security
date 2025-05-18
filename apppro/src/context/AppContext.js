@@ -8,14 +8,27 @@ import {
   fetchSelectedProductStart,
 } from "../App/functions/product.slice";
 import { logingUser } from "../App/functions/auth.slice";
+import { loading, loaded } from "../App/functions/variable.slice";
 
-// Create the context
 export const AppContext = createContext();
 
-// Create the provider component
 export const AppProvider = ({ children }) => {
   const dispatch = useDispatch();
   const pageNo = useSelector((state) => state.variable.page);
+  const [success, setSuccess] = useState(false);
+  const [fail, setFail] = useState(false);
+  const [successText, setSuccessText] = useState("Order placed successfully");
+
+  useEffect(() => {
+    if (success) {
+      const timer = setTimeout(() => {
+        setSuccess(false);
+        setFail(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [success]);
 
   // Navigation menu state
   const [openMenu, setOpenMenu] = useState(false);
@@ -27,6 +40,7 @@ export const AppProvider = ({ children }) => {
 
   // Methods
   async function checkAlreadyLoggedIn() {
+    dispatch(loading());
     try {
       const response = await axios.post(
         `http://localhost:5000/api/v2/user/check-already-loggedin`,
@@ -41,21 +55,24 @@ export const AppProvider = ({ children }) => {
       }
     } catch (error) {
       console.log("Error while checking login status ");
+    } finally {
+      dispatch(loaded());
     }
   }
 
   async function fetchProductFirst() {
     dispatch(fetchProductsStart());
+    dispatch(loading());
     try {
       const response = await axios.get(
         `http://localhost:5000/api/v2/main/serve/initail-serve`
       );
 
       dispatch(fetchProductsSuccess(response.data.data));
-
     } catch (error) {
-      console.log("Error while serving products ", error);
       dispatch(fetchProductsError());
+    } finally {
+      dispatch(loaded());
     }
   }
 
@@ -82,6 +99,12 @@ export const AppProvider = ({ children }) => {
     openMenu,
     setOpenMenu,
     Methods,
+    success,
+    setSuccess,
+    successText,
+    setSuccessText,
+    fail,
+    setFail,
   };
 
   return <AppContext.Provider value={data}>{children}</AppContext.Provider>;

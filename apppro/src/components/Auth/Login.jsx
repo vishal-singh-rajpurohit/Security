@@ -36,7 +36,7 @@ const Login = () => {
 
             dispatch(logingUser({ user: response.data.data.User }));
 
-            navigate("/", { replace: true });
+            navigate(-1, { replace: true });
             dispatch(notLoginError());
         } catch (error) {
             dispatch(hasLoginError());

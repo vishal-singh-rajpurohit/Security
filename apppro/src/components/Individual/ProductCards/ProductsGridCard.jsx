@@ -1,6 +1,5 @@
-import x from '../../../Assets/Backgrounds/log-bg-3.jpg'
 
-const ProductsGridCard = ({title, start, banner}) => {
+const ProductsGridCard = ({ title, start, banner }) => {
   return (
     <div class="prodcut-grid-card">
       <div class="prodcut-grid-card-top">

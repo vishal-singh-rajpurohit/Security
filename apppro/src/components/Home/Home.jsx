@@ -1,4 +1,3 @@
-import React from 'react'
 import { ImageSlider } from '../Individual/Slides'
 import ProductScroll from '../Individual/Views/ProductScroll'
 import ProductGrid from '../Individual/Views/ProductGrid'

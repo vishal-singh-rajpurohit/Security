@@ -4,7 +4,7 @@ import { MdMenu } from 'react-icons/md'
 import { FiSearch } from 'react-icons/fi'
 import { FaUserCircle } from 'react-icons/fa'
 import { ImCart } from "react-icons/im";
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { AppContext } from '../../context/AppContext'
 import { useDispatch, useSelector } from 'react-redux'
 import "./header.css"
@@ -79,9 +79,9 @@ export function Header() {
     return (
         <section id='header-section' className={`header-section ${openSearch ? "-brite" : ""}`}>
             <div className="header-section-logo">
-                {/* <img src={openSearch ? logoLite : scrolled ? logoLite : logoDark} alt="sewad infotech" className="header-section-logo-img" /> */}
-                <img src={scrolled ? logos[0] : logoW} alt="sewad infotech" className="header-section-logo-img" />
-                {/* <p className="logo-text">Sewad Infotech</p> */}
+                <NavLink to={"/"} >
+                    <img src={scrolled ? logos[0] : logoW} alt="sewad infotech" className="header-section-logo-img" />
+                </NavLink>
             </div>
             <div className="header-section-options">
                 {

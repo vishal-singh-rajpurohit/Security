@@ -1,0 +1,32 @@
+.popup.show {
+    /* top: -20px; */
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.popup.show.fail{
+    background-color: #dc3545;
+}
+
+
+.popup {
+    position: fixed;
+    z-index: 99;
+    top: 1rem;
+    right: 0rem;
+    transform: translateX(-50%);
+    background-color: #2ecc71;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.fail{
+    color: "#dc3545";
+}

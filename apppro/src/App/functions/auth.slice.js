@@ -16,11 +16,10 @@ const initialState = {
 };
 
 function setUserData(state, action) {
-  console.log("user data in payload: ", action.payload);
-  state.user.id = action.payload.user.id;
+  state.user.id = action.payload.user._id;
   state.user.name = action.payload.user.name;
-  state.user.email = action.payload.user.email;
-  state.user.phone = action.payload.user.phone;
+  state.user.email = action.payload.user.Email;
+  state.user.phone = action.payload.user.MobileNumber;
   state.user.address = action.payload.user.Address;
   state.user.city = action.payload.user.City;
   state.user.state = action.payload.user.State;

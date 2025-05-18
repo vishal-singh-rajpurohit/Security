@@ -1,8 +1,7 @@
 const asyncHandler = require("../../utils/asyncHandler.utils");
 const ApiResponse = require("../../utils/ApiResponse.utils");
 const ApiError = require("../../utils/ApiError.utils");
-const Product = require("../../models/product.model");
-const Order = require("../../models/order.model");
+const Cart = require("../../models/cart.model");
 
 
 

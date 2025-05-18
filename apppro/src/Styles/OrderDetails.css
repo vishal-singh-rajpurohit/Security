@@ -5,74 +5,95 @@ section.order-detals-seciton {
 ;
     justify-content: center;
     align-items: center;
+    padding-top: 4rem;
 }
 .form-container {
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      max-width: 400px;
+      background-color: #ffffff;
+      padding: 35px;
+      border-radius: 15px;
+      max-width: 420px;
       width: 100%;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .form-container:hover {
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
     }
 
     .form-container h2 {
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       text-align: center;
-      color: #333;
+      color: #2c3e50;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
     .form-group {
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
     label {
       display: block;
       margin-bottom: 6px;
-      color: #555;
+      color: #34495e;
       font-size: 14px;
+      font-weight: 500;
     }
 
     input[type="text"], input[type="tel"] {
       width: 100%;
-      padding: 10px;
-      border-radius: 6px;
+      padding: 12px;
+      border-radius: 8px;
       border: 1px solid #ccc;
-      font-size: 14px;
+      font-size: 15px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input[type="text"]:focus, input[type="tel"]:focus {
+      border-color: #3498db;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
     }
 
     .checkbox-container {
-      margin: 20px 0;
       display: flex;
       align-items: center;
+      margin: 20px 0;
     }
 
     .checkbox-container input {
+      width: 16px;
+      height: 16px;
       margin-right: 10px;
+      accent-color: #3498db;
     }
 
     .checkbox-container label {
       font-size: 14px;
-      color: #444;
+      color: #555;
     }
 
     .submit-btn {
       width: 100%;
-      padding: 12px;
-      background-color: #3498db;
-      color: white;
+      padding: 14px;
+      background: #3498db;
+      color: #fff;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, transform 0.2s ease;
     }
 
     .submit-btn:hover {
-      background-color: #2980b9;
+      background: #2980b9;
+      transform: translateY(-1px);
     }
 
     @media (max-width: 500px) {
       .form-container {
-        padding: 20px;
+        padding: 25px 20px;
       }
     }

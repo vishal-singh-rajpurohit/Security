@@ -20,8 +20,10 @@ const placeOrder = asyncHandler(async (req, resp) => {
   const { productId, quantity, mobileNumber, location, pincode, state, city } =
     req.body;
 
+    console.log("body: ", req.body);
+    
   if (!productId || !mobileNumber || !location || !pincode || !state || !city) {
-    throw new ApiError(400, "Product Id must required");
+    throw new ApiError(400, "All details must required");
   }
 
   const product = await Product.findById(productId);
