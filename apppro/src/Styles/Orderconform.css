@@ -10,7 +10,8 @@
     background: #fff;
     padding: 30px;
     border-radius: 10px;
-    max-width: 500px;
+    min-width: 500px;
+    max-width: 80%;
     width: 100%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -79,6 +80,12 @@
     background-color: #471e84;
 }
 
+
+@media (max-width:550px) {
+    .confirm-container {
+        min-width: auto;
+    }
+}
 
 @media (max-width: 500px) {
     .confirm-container {

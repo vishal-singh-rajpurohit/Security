@@ -90,8 +90,18 @@ export const AppProvider = ({ children }) => {
     }
   }
 
+  function formatDate(dateString) {
+        if (!dateString) return "";
+        const date = new Date(dateString);
+        const mm = String(date.getMonth() + 1).padStart(2, '0');
+        const dd = String(date.getDate()).padStart(2, '0');
+        const yy = String(date.getFullYear()).slice(-2);
+        return `${mm}-${dd}-${yy}`;
+    }
+
   const Methods = {
     fetchProductWill,
+    formatDate
   };
 
   const data = {

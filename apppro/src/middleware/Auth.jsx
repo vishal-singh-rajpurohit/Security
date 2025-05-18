@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 export const Auth = ({ children }) => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  
   return (
     <>
       {isLoggedIn ? children : <Login />}

@@ -1,13 +1,15 @@
 const express = require("express");
 const Auth = require("../middlewares/Auth.middleware");
-const { placeOrder, verifyOrder, sendCancellationRequest, cancleOrder, serveOrders, reportOrder,} = require("../controllers/NEW/orders.controller");
+const { placeOrder, verifyOrder,serveSingleOrder, sendCancellationRequest, cancleOrder, serveOrders, reportOrder, } = require("../controllers/NEW/orders.controller");
 const { serveMyReports } = require("../controllers/NEW/report.controller");
 
 const orderRoutes = express.Router();
 
 orderRoutes.route("/place-order").post(Auth, placeOrder);
 
-orderRoutes.route("/serve-projects").post(Auth, serveOrders);
+orderRoutes.route("/serve-orders").post(Auth, serveOrders);
+
+orderRoutes.route("/serve-one-order").post(Auth, serveSingleOrder);
 
 orderRoutes.route("/verify-order").post(Auth, verifyOrder);
 
@@ -18,5 +20,6 @@ orderRoutes.route("/conform-cancel-order").post(Auth, cancleOrder);
 orderRoutes.route("/report/report-order").post(Auth, reportOrder);
 
 orderRoutes.route("/report/serve-reports").post(Auth, serveMyReports);
+
 
 module.exports = orderRoutes;

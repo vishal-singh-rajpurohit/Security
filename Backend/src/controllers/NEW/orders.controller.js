@@ -9,6 +9,7 @@ const {
   sendCancellationEmail,
 } = require("../admin/sendMails/sendMail");
 const User = require("../../models/user.model");
+const { default: mongoose } = require("mongoose");
 
 const placeOrder = asyncHandler(async (req, resp) => {
   const user = req.user;
@@ -131,6 +132,61 @@ const serveOrders = asyncHandler(async (req, resp) => {
     .status(200)
     .json(new ApiResponse(200, { Orders: whole_orders }, "Orders Served"));
 });
+
+const serveSingleOrder = asyncHandler(async(req, resp) =>{
+  const user = req.user;
+
+  if (!user || !user.isVerified) {
+    throw new ApiError(400, "Unautharized Request");
+  }
+
+  const { orderId } = req.body;
+
+  const whole_orders = await Order.aggregate([
+    {
+      $match: {
+        _id: new mongoose.Types.ObjectId(orderId),
+        userId: user._id
+      },
+    },
+    {
+      $lookup: {
+        from: "products",
+        foreignField: "_id",
+        localField: "productId",
+        as: "product",
+      },
+    },
+    {
+      $addFields: {
+        product: {
+          $first: "$product",
+        },
+      },
+    },
+    {
+      $project: {
+        _id: 1,
+        qunatity: 1,
+        status: 1,
+        createdAt: 1,
+        "product._id": 1,
+        "product.ProductName": 1,
+        "product.DealPrice": 1,
+        "product.FrontImage": 1,
+        "product.DealPrice": 1,
+      },
+    },
+  ]);
+
+  if (!whole_orders) {
+    throw new ApiError(400, "Order not found");
+  }
+
+  resp
+    .status(200)
+    .json(new ApiResponse(200, { Order: whole_orders }, "Orders Served"));
+})
 
 const verifyOrder = asyncHandler(async (req, resp) => {
   const user = req.user;
@@ -304,6 +360,7 @@ module.exports = {
   placeOrder,
   verifyOrder,
   sendCancellationRequest,
+  serveSingleOrder,
   cancleOrder,
   setStatus,
   reportOrder,

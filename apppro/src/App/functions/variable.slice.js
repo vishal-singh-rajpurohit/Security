@@ -38,11 +38,9 @@ const variableSlice = createSlice({
     },
     loading: function (state) {
       state.loading = true;
-      console.log("Loading: ", state.loading);
     },
     loaded: function (state) {
       state.loading = false;
-      console.log("Loading: ", state.loading);
     },
   },
 });

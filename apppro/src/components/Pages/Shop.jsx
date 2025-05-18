@@ -28,7 +28,7 @@ const Shop = () => {
 
     async function selectProduct(product_id) {
         dispatch(fetchProductsStart());
-        dispatch(loading());
+
         try {
             const response = await axios.get(
                 `http://localhost:5000/api/v2/main/serve/select-product/?id=${product_id}`
@@ -71,6 +71,7 @@ const Shop = () => {
     });
 
     useEffect(() => {
+        dispatch(loading());
         selectProduct(productId);
     }, []);
 
@@ -166,7 +167,7 @@ const Shop = () => {
                         <ul className="product-detail-ul">
                             {
                                 Product.ProductFeatures?.map((feature, index) => (
-                                    <li className="product-details-li">{feature}</li>
+                                    <li className="product-details-li" key={index}>{feature}</li>
                                 ))
                             }
 

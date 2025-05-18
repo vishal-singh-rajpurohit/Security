@@ -46,7 +46,7 @@ const OrderDetails = () => {
                 }
             );
 
-            setSuccessText("Order submitted successfully");
+            setSuccessText("Please Check your Email! to Verify Order. Order submitted successfully");
             setSuccess(true);
 
             navigate(-1, { replace: true });
