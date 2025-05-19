@@ -1,0 +1,124 @@
+section.info-page-features-seciton {
+    margin-top: 3rem;
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100vw;
+    justify-items: center;
+}
+
+section.info-page-featureas-setion-left {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+h2.info-page-features-h2 {
+    font-size: 40px;
+}
+
+ul.inf-features-ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: larger;
+}
+
+section.info-page-featureas-setion-right {
+    width: 90%;
+}
+
+section.info-page-featureas-setion-right img {
+    width: 100%;
+    height: auto;
+    filter: blur(.4px);
+}
+
+.categories-description-p {
+    font-size: larger;
+}
+
+/* Pricing */
+.info-page-price-range-div {
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.-price-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+p.max-p-key {
+    font-size: x-large;
+    font-weight: 600;
+    font-family: monospace;
+}
+
+p.max-p-value {
+    font-size: larger;
+    font-family: cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Oreder now */
+
+
+section.categories-representative {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 100vw;
+    height: 10rem;
+    margin: 2rem 0;
+    display: flex;
+    background: #a3e2d0;
+}
+
+h3.cat-h5 {
+    font-size: xx-large;
+    font-family: sans-serif;
+}
+
+.cat-btn-div {
+    display: flex;
+    gap: 2rem;
+}
+
+button.cat-btn-button {
+    height: 2rem;
+    width: 7rem;
+    background: #49a1ff;
+    border: navajowhite;
+    color: white;
+    font-size: medium;
+}
+
+button.cat-btn-button.shop {
+    background: #10a197;
+}
+
+@media (max-width: 1000px) {
+    section.info-page-features-seciton {
+        display: flex
+    ;
+        flex-direction: column;
+    }
+}
+@media (max-width: 800px) {
+    h2.info-page-features-h2 {
+        font-size: 30px;
+    }
+}

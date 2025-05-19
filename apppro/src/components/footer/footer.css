@@ -1,6 +1,5 @@
 footer.section-footer {
-    display: grid
-;
+    display: grid;
     grid-template-columns: 3fr 7fr;
     gap: 1rem;
     justify-items: center;
@@ -8,44 +7,47 @@ footer.section-footer {
     min-height: 50vh;
     margin-top: 2rem;
 }
+
 .footer-left {
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
     width: 90%;
     height: 100%;
-    display: flex
-;
+    display: flex;
 }
+
 img.footer-login-img {
-    width: 6rem;
+    width: 12rem;
 }
+
 p.footer-left-text {
     font-size: larger;
     font-family: '__nextjs-Geist';
 }
+
 .footer-social-logo {
     width: 100%;
     height: 3rem;
-    display: flex
-;
+    display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
+
 .footer-right {
     width: 90%;
-    display: flex
-;
+    display: flex;
     justify-content: space-around;
     height: 100%;
     align-items: center;
 }
+
 .footer-right-childs {
-    display: flex
-;
+    display: flex;
     flex-direction: column;
     gap: 1rem;
 }
+
 p.footer-context {
     font-size: x-large;
     font-family: '__nextjs-Geist Mono';
@@ -53,17 +55,18 @@ p.footer-context {
 }
 
 ul.footer-context-ul {
-    display: flex
-;
+    display: flex;
     flex-direction: column;
     gap: 0.2rem;
     list-style: none;
     font-size: larger;
     font-family: sans-serif;
 }
+
 li.footer-context-li {
     cursor: pointer;
 }
+
 p.copy-text {
     font-size: medium;
     margin-bottom: 2rem;
@@ -81,38 +84,44 @@ p.copy-text span {
         gap: 3rem;
         padding-bottom: 2rem;
     }
+
     .footer-right {
-        display: grid
-    ;
+        display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         justify-items: center;
         gap: 1rem;
     }
+
     .footer-left {
         align-items: center;
         gap: 1rem;
     }
-    
+
 }
 
 @media (max-width: 550px) {
     p.copy-text {
         font-size: medium;
     }
+
     p.copy-text span {
         font-size: medium;
     }
+
     p.footer-context {
         font-size: large;
     }
+
     ul.footer-context-ul {
         font-size: small;
         gap: 0.5rem;
     }
+
     p.copy-text {
         font-size: small;
     }
 }
+
 @media (max-width: 500px) {
     /* .footer-right {
         grid-template-columns: 1fr;

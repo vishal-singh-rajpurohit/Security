@@ -1,6 +1,6 @@
-import React from 'react'
-import "./footer.css"
 
+import "./footer.css"
+import { logos } from "../../Assets/Assets"
 import { BsInstagram, BsLinkedin, BsWhatsapp } from 'react-icons/bs'
 
 import {Link} from "react-router-dom"
@@ -12,10 +12,14 @@ const FooterSect = ()  => {
     <footer className="section-footer">
       <div className="footer-left">
         <div className="footer-logo">
-          {/* <img style={{height: 'auto'}} className="footer-login-img" alt="" src={logo} /> */}
+          <img style={{height: 'auto'}} className="footer-login-img" alt="" src={logos[0]} />
         </div>
         <p className="footer-left-text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis perferendis voluptatibus saepe ipsam numquam error. Ea quod aperiam pariatur quae obcaecati, harum quaerat laboriosam delectus explicabo quos reiciendis et voluptatum!
+          Wings Lens Solutions offers advanced CCTV and surveillance solutions providing security systems for businesses, homes, and industries across India.
+          <br />
+          <span className="footer-highlight">
+            Take your business online with Wings Lens.
+          </span>
         </p>
       </div>
       <div className="footer-right">

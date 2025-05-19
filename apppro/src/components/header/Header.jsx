@@ -25,8 +25,7 @@ export function Header() {
 
     const [openSearch, setOpenSearch] = useState(false);
     const [windowWidth, setWindowWidth] = useState(0);
-    // const [scrolled, setScrolled] = useState(false);
-
+    
     useEffect(() => {
         const handleScroll = () => {
             const headerSection = document.getElementById("header-section");

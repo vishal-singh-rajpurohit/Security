@@ -1,0 +1,12 @@
+# Block all crawlers from the sign-up, sign-in, terms, and contact pages
+User-agent: *
+Disallow: /sign-up
+Disallow: /sing-in
+Disallow: /terms
+
+# Allow Googlebot (Google search crawler) to crawl everything
+User-agent: Googlebot
+Disallow: 
+
+# Sitemap
+Sitemap: https://www.smartcitycare.in/sitemap.xml

@@ -1,0 +1,121 @@
+section.categories-grid {
+    background-color: #f3f5f7;
+    width: 100vw;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.categories-inner {
+    width: 95%;
+    gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.categories-inner a{
+    text-align: center;
+    cursor: pointer;
+    background-color: #fff;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 18rem;
+    display: flex
+;
+    overflow: hidden;
+}
+
+.categories-about-grid-card {
+    width: 100%;
+    height: 18rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.categories-about-grid-card img {
+    width: 50%;
+}
+
+.categories-about-grid-card:hover img {
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+}
+
+p.categories-about-grid-card-text {
+    font-size: x-large;
+    font-weight: 600;
+    font-family: monospace;
+}
+
+section.categories-representative {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 100vw;
+    height: 10rem;
+    margin: 2rem 0;
+    display: flex;
+    background: #a3e2d0;
+}
+
+h3.cat-h5 {
+    font-size: xx-large;
+    font-family: sans-serif;
+}
+
+.cat-btn-div {
+    display: flex;
+    gap: 2rem;
+}
+
+button.cat-btn-button {
+    height: 2rem;
+    width: 7rem;
+    background: #49a1ff;
+    border: navajowhite;
+    color: white;
+    font-size: medium;
+}
+
+button.cat-btn-button.shop {
+    background: #10a197;
+}
+
+
+@media (max-width:1200) {
+    .categories-inner {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .categories-about-grid-card {
+        max-height: 20rem;
+        height: auto;
+        padding-bottom: 1rem;
+    }
+}
+
+@media (max-width:850px) {
+    .solutions-grid-div {
+        display: flex
+    ;
+        overflow: auto hidden;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+    }
+    .solutions-grid-card {
+        min-width: 20rem;
+    }
+}
