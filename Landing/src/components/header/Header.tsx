@@ -17,7 +17,7 @@ export function Header() {
     if (!context) {
         throw new Error('MenuContext must be used within a MenuProvider');
     }
-    const { setOpenMenu } = useContext(MenuContext);
+    const { setOpenMenu } = context;
 
     const [openSearch, setOpenSearch] = useState(false);
     const [windowWidth, setWindowWidth] = useState(0);
@@ -74,7 +74,9 @@ export function Header() {
     return (
         <section id='header-section' className={`header-section ${openSearch ? "-brite" : ""}`}>
             <div className="header-section-logo">
-                <Image src={openSearch ? logoLite : scrolled ? logoDark : logoLite} alt="wings lens logo" className="header-section-logo-img" height={70} />
+                <Link href={"/"}>
+                <Image src={openSearch ? logoLite : scrolled ? logoDark : logoLite} alt="wings lens logo" className="header-section-logo-img" height={ scrolled ? 70 : 50} />
+                </Link>
                 {/* <p className="logo-text">Sewad Infotech</p> */}
             </div>
             <div className="header-section-options">
@@ -132,7 +134,7 @@ export function Header() {
             </div>
             <div className="header-section-search-resp -resp">
                 <p className={`header-section-options-item-p ${scrolled ? "txt-black" : ""}`}><FiSearch size={20} style={{ display: openSearch ? 'none' : 'flex', cursor: 'pointer' }} onClick={() => setOpenSearch(true)} /></p>
-                <p className={`header-section-options-item-p ${scrolled ? "txt-black" : ""}`}><MdMenu size={30} onClick={() => setOpenMenu(true)} /></p>
+                <p className={`header-section-options-item-p ${scrolled ? "txt-black" : ""}`}><MdMenu size={30} onClick={() => setOpenMenu?.(true)} /></p>
             </div>
         </section>
     )
@@ -146,13 +148,13 @@ export function Menu() {
         throw new Error('MenuContext must be used within a MenuProvider');
     }
 
-    const { openMenu, setOpenMenu } = useContext(MenuContext);
+    const { openMenu, setOpenMenu } = context;
 
     return (
         <section className="menu-section" style={{ display: openMenu ? 'grid' : 'none' }}>
             <div className="menu-seciton-close">
                 <div className="menu-section-close-inner">
-                    <IoIosClose size={50} onClick={() => setOpenMenu(false)} />
+                    <IoIosClose size={50} onClick={() => setOpenMenu?.(false)} />
                 </div>
             </div>
             <div className="menu-section-div">

@@ -2,20 +2,27 @@
 import { MenuContext } from '@/context/Contexts.context';
 import React, { useEffect, useContext } from 'react';
 
-function SuccessPopup(){
-  const {status, setStatus } = useContext(MenuContext);
+function SuccessPopup() {
+
+  const context = useContext(MenuContext);
+
+  if (!context) {
+    throw new Error('MenuContext must be used within a MenuProvider');
+  }
+
+  const { status, setStatus } = context
 
   useEffect(() => {
     if (status === 'success') {
       const timer = setTimeout(() => {
-        setStatus('');
+        setStatus?.('');
       }, 3000);
 
       return () => clearTimeout(timer);
     }
     else if (status === 'error') {
       const timer = setTimeout(() => {
-        setStatus('');
+        setStatus?.('');
       }, 3000);
 
       return () => clearTimeout(timer);
@@ -28,8 +35,8 @@ function SuccessPopup(){
   // };
 
   return (
-    
-    
+
+
     <div style={{ position: 'absolute', top: 0, minHeight: '10vh', width: "100vw", padding: '' }}>
       {status === 'success' && (
         <div style={{
@@ -48,7 +55,7 @@ function SuccessPopup(){
         </div>
       )}
 
-       {status === 'error' && (
+      {status === 'error' && (
         <div style={{
           position: 'fixed',
           top: '20px',
@@ -78,4 +85,4 @@ function SuccessPopup(){
   );
 };
 
-export {SuccessPopup};
+export { SuccessPopup };

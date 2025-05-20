@@ -21,6 +21,8 @@ import CCTV_Camera_in_road_with_text_I_See_you from "@/Assets/About_page/CCTV_Ca
 import WIFI_CCTV_Camera_Connected_directly_With_Mobile_phone_wireless_Camera from "@/Assets/About_page/WIFI_CCTV_Camera_Connecte_directly_With_Mobile_phone_wireless_Camera.jpg";
 
 
+import tp1 from "@/Assets/SlideImage/ts.jpg"
+import tp2 from "@/Assets/About_page/CCTV_Camera_for_Outdoor_.jpg"
 
 import { AboutSlide } from "@/components/slide/AboutSlide";
 
@@ -40,7 +42,7 @@ export default function About() {
             </Head>
             <section className="info-page-section">
                 <div className="about-page-top">
-                    <AboutSlide />
+                    <AboutSlide img_bg={tp1} img_sm={tp2}  />
                     <div className="about-page-top-text">
                         <h1 className="but-h1">About Us</h1>
                         <p className="about-page-top-text-p">Reliable CCTV solutions for trusted security and protection</p>

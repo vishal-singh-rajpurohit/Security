@@ -1,7 +1,7 @@
 import Slide from "../components/slide/Slide";
 import Image from "next/image";
 import Head from "next/head";
-import "../Styles/main.css";
+import "@/Styles/main.css";
 
 import img1 from '../Assets/Stock/Security_camera_monitors.jpg';
 
@@ -69,14 +69,7 @@ export default function Home() {
             <p className="text-p">Complete CCTV solution with best services.</p>
           </div>
           <div className="landing-page-1-image-div">
-            <Image
-              src={img1}
-              alt="CCTV camera installation and services"
-              width={700}
-              height={475}
-              className="landing-page-1-image-div-img"
-              loading="lazy"
-            />
+            <Image src={img1} height={0} style={{ height: 'auto' }} alt="CCTV camera installaion and services" className="loanding-page-1-imgae-div-img" loading="lazy" />
           </div>
         </section>
 
@@ -101,8 +94,8 @@ export default function Home() {
                 <Image
                   src={slo1}
                   alt="CCTV solutions for hospitals, clinics and all health care buildings"
-                  width={400}
-                  height={250}
+                  height={0}
+                  style={{ height: 'auto' }}
                   className="solution-slider-image"
                   loading="lazy"
                 />
@@ -112,8 +105,8 @@ export default function Home() {
                 <Image
                   src={slo2}
                   alt="CCTV solutions for schools, colleges, library and for all education sectors"
-                  width={400}
-                  height={250}
+                  height={0}
+                  style={{ height: 'auto' }}
                   className="solution-slider-image"
                   loading="lazy"
                 />
@@ -123,8 +116,8 @@ export default function Home() {
                 <Image
                   src={slo3}
                   alt="CCTV solutions for all outdoor places, fully waterproof parks, street light, traffic signals, and roadside"
-                  width={400}
-                  height={250}
+                  height={0}
+                  style={{ height: 'auto' }}
                   className="solution-slider-image"
                   loading="lazy"
                 />
@@ -134,8 +127,8 @@ export default function Home() {
                 <Image
                   src={slo4}
                   alt="CCTV solutions for workplaces, shops, warehouses, and hotels"
-                  width={400}
-                  height={250}
+                  height={0}
+                  style={{ height: 'auto' }}
                   className="solution-slider-image"
                   loading="lazy"
                 />

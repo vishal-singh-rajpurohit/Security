@@ -6,11 +6,11 @@ export const productsSchema = {
     "description": "Ensure safety with our CCTV camera installation services in India. Expert installation, repair, and maintenance services near you. With top CCTV brands in India. Get in touch.",
     "brand": {
         "@type": "Brand",
-        "name": "Sewadinfotech"
+        "name": "wings lens"
     },
     "offers": {
         "@type": "AggregateOffer",
-        "url": "https://www.my-web-site.in/",
+        "url": "https://wings lens.shop/",
         "priceCurrency": "INR",
         "lowPrice": "1500",
         "highPrice": "1000000",
@@ -34,7 +34,7 @@ export const productsSchema = {
         },
         "publisher": {
             "@type": "Organization",
-            "name": "Sewadinfotech"
+            "name": "wings lens"
         }
     }
 }

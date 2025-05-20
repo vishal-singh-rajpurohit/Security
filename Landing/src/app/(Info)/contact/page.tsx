@@ -33,7 +33,13 @@ export default function Contact() {
 
     }, [])
 
-    const { setStatusfunc } = useContext(MenuContext)
+    const context = useContext(MenuContext)
+
+    if (!context) {
+        throw new Error('MenuContext must be used within a MenuProvider');
+    }
+
+    const { setStatus } = context;
     const [formData, setFormData] = useState({
         name: '',
         email: "",
@@ -50,7 +56,7 @@ export default function Contact() {
         e.preventDefault();
 
         if (formData.number < 1000) {
-            setStatusfunc('error')
+            setStatus?.('error')
         } else {
             console.log("formData.number < 1000", formData.number < 1000);
 
@@ -70,11 +76,11 @@ export default function Contact() {
                     message: ""
                 });
 
-                setStatusfunc('success')
+                setStatus?.('success')
 
             } catch (error) {
                 console.log("Error submit message: ", error)
-                setStatusfunc('error')
+                setStatus?.('error')
             }
         }
     }
@@ -134,7 +140,7 @@ export default function Contact() {
                                 <button type="submit" className="form-submit-btn">SUBMIT</button>
                             </div>
                         </form>
-                        
+
                     </div>
                 </div>
             </section>

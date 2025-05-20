@@ -4,10 +4,9 @@ import { createContext } from 'react';
 export interface MenuContextType {
   isSidebarOpen?: boolean;
   openMenu?: boolean;
-  setOpenMenu?: React.Dispatch<React.SetStateAction<boolean>>;
   status?: string;
-  setStatusfunc?:() =>void;
-  setOpenMenufunc?: ()=> void;
+  setOpenMenu?:(val: boolean) =>void;
+  setStatus?: (val: string)=> void;
 }
 
 // 👇 Create context with a default value (optional if using null)

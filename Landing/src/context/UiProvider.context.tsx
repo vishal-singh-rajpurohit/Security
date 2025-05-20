@@ -20,10 +20,10 @@ const MenuProvider = ({ children }: UiProviderProps) => {
   }
 
   const data: MenuContextType = {
+    status,
     openMenu,
-    setOpenMenu: setOpenMenu,
-    setOpenMenufunc,
-    setStatusfunc,
+    setOpenMenu: setOpenMenufunc,
+    setStatus: setStatusfunc,
   }
 
   return (

@@ -5,7 +5,14 @@ import { MenuContext } from '@/context/Contexts.context';
 
 function Cform() {
 
-    const { setStatus } = useContext(MenuContext);
+    const context = useContext(MenuContext);
+
+    if (!context) {
+        throw new Error('MenuContext must be used within a MenuProvider');
+    }
+
+    const { setStatus } = context;
+
     const [formData, setFormData] = useState({
         name: '',
         email: "",
@@ -23,7 +30,7 @@ function Cform() {
         if (formData.number.length < 10) {
             console.log("error");
 
-            setStatus('error')
+            setStatus?.('error')
         }
         else {
             try {
@@ -41,11 +48,11 @@ function Cform() {
                     message: ""
                 });
 
-                setStatus('success')
+                setStatus?.('success')
 
             } catch (error) {
                 console.log("Error submit message: ", error)
-                setStatus('error')
+                setStatus?.('error')
             }
 
         }
