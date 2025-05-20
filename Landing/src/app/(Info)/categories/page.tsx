@@ -3,22 +3,17 @@ import "@/Styles/main.css"
 import "@/Styles/about.css"
 import "@/Styles/categories.css"
 
-import tp1 from "@/Assets/SlideImage/ts.jpg"
-import tp2 from "@/Assets/About_page/CCTV_Camera_for_Outdoor_.jpg"
-
-
 // about1
 import cam from "@/Assets/Products/singledome.png"
 import { AboutSlide } from "@/components/slide/AboutSlide";
 import Link from "next/link";
-import OrderNow from "@/components/OrderNow";
 
 export default function categories() {
 
     return (
         <section className="info-page-section">
             <div className="about-page-top">
-                <AboutSlide img_sm={tp2} img_bg={tp1} />
+                <AboutSlide />
                 <div className="about-page-top-text">
                     <h1 className="but-h1">Categories</h1>
                     <p className="about-page-top-text-p">Reliable surveillance products for every need</p>

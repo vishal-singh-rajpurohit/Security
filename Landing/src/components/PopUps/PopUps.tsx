@@ -1,9 +1,9 @@
 'use client'
 import { MenuContext } from '@/context/Contexts.context';
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 
 function SuccessPopup(){
-  const {status, setStatus }= useContext(MenuContext);
+  const {status, setStatus } = useContext(MenuContext);
 
   useEffect(() => {
     if (status === 'success') {
@@ -20,11 +20,12 @@ function SuccessPopup(){
 
       return () => clearTimeout(timer);
     }
-  }, [status]);
+  }, [status, setStatus]);
 
-  const handleSuccess = () => {
-    setStatus('success');
-  };
+
+  // const handleSuccess = () => {
+  //   setStatus('success');
+  // };
 
   return (
     

@@ -17,7 +17,7 @@ export function Header() {
     if (!context) {
         throw new Error('MenuContext must be used within a MenuProvider');
     }
-    const { openMenu, setOpenMenu } = useContext(MenuContext);
+    const { setOpenMenu } = useContext(MenuContext);
 
     const [openSearch, setOpenSearch] = useState(false);
     const [windowWidth, setWindowWidth] = useState(0);

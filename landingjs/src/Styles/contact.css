@@ -1,0 +1,56 @@
+/* .about-page-top {
+    align-items: center;
+    gap: 2rem;
+    display: flex
+;
+    position: relative;
+    overflow: unset;
+} */
+.landing-contact-form-card {
+    background-color: white;
+    border: none;
+}
+.landing-page-5-div {
+    position: absolute;
+}
+.contact-op-logo {
+    background: #eeeeeeba;
+    color: white;
+    border-radius: 50%;
+}
+.landing-page-5-div {
+    position: absolute;
+    top: 2rem;
+}
+
+.about-page-top {
+    aspect-ratio: 72 / 27;
+    width: 100vw;
+    height: 100vh;
+    display: grid
+;
+    position: relative;
+    overflow: hidden;
+}
+.landing-page-5-div {
+    position: absolute;
+    top: 9rem;
+}
+.landing-page-5-left {
+    color: white;
+}
+footer.section-footer {
+    margin-top: 22vh;
+}
+
+@media (max-width: 1000px) {
+    .landing-page-5-div {
+        width: 100%;
+        margin-top: 2rem;
+    }
+    .landing-page-5-div {
+        position: absolute;
+        top: 5rem;
+    }
+    
+}

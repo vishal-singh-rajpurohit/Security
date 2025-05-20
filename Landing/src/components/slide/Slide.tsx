@@ -25,14 +25,16 @@ const Slider = () => {
 
     return ()=> window.removeEventListener('resize', handleResize);
 
-  },[])
+  },[width, setWidth]);
 
   useEffect(() => {
     const handleHashChange = () => setActiveSlide(window.location.hash);
+    console.log(activeSlide);
+    
     window.addEventListener('hashchange', handleHashChange);
     handleHashChange();
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+  }, [width, setWidth]);
 
   return (
     <section className="slider-section">

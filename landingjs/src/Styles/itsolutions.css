@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
+.about-page-top-text.about-page-top-text-2 {
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+h1.it-solutions-h1 {
+  font-size: 70px;
+  text-align: center;
+}
+
+.it-sol-h1-span {
+  color: #fecb4f;
+  filter: drop-shadow(2px 4px 6px black);
+}
+
+.it-sol-h1-span-2 {
+  color: #4ffecf;
+  ;
+  filter: drop-shadow(2px 4px 6px black);
+}
+
+p.it-soutions-page-top-text-p {
+  font-size: xx-large;
+  color: currentColor;
+  filter: drop-shadow(1px 1px 2px white);
+}
+
+/* Process */
+.process {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+.process-div {
+  width: 90vw;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+
+  margin-top: 3rem;
+}
+
+
+.step {
+  flex: 1;
+  min-width: 220px;
+  max-width: 300px;
+  text-align: center;
+}
+
+.step img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.step h3 {
+  font-size: 1.2rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.step p {
+  font-size: 0.95rem;
+  color: #607d8b;
+  line-height: 1.6;
+}
+
+/* Why choosing us */
+.container-why {
+  justify-content: center;
+  gap: 2rem;
+  width: 90vw;
+  max-height: 95vh;
+  margin-top: 3rem;
+  display: flex;
+  overflow: hidden;
+}
+
+section.header-section-why {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  width: 90vw;
+}
+
+.text-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.why {
+  font-size: xxx-large;
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  color: #8b8b8b
+}
+
+p.why-p {
+  font-family: "Source Code Pro", monospace;
+  font-size: small;
+  color: #545454;
+}
+
+section.features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+h3.it-sol-h3 {
+  font-size: larger;
+  color: #2f97af;
+}
+
+
+.it-sol-p {
+  font-family: "Source Code Pro", system-ui;
+  color: #545454;
+}
+
+
+/* Packages */
+section.it-solutions-packages {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 90%;
+  gap: 2rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.it-solutions-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  width: 80%;
+  box-shadow: 0 0 2px darkgray;
+  min-height: 17rem;
+  padding: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.it-solutions-card:hover {
+  box-shadow: 0 0 4px 1px darkgray;
+}
+
+.it-solution-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+h5.it-sol-h5 {
+    font-size: large;
+    font-family: '__nextjs-Geist';
+}
+ul.it-solutions-ul {
+    display: grid
+;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    width: 90%;
+    font-size: large;
+    font-family: monospace;
+    list-style-type: auto;
+}
+button.appoint-button {
+  width: 8rem;
+  height: 2rem;
+  cursor: pointer;
+  border: none;
+  font-size: large;
+  display: flex
+  ;
+  font-family: cursive;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #0ae43c;
+  color: white;
+  gap: 0.6rem;
+  box-shadow: 0 0 2px #3e4646;
+}
+button.appoint-button:hover {
+  background-color: #00c733;
+}
+
+@media (max-width: 1050px) {
+  section.img-left {
+    display: none;
+  }
+
+  .container-why {
+    max-height: max-content;
+  }
+
+  .it-solutions-card {
+    width: 100%;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 1050px) {
+  section.it-solutions-packages {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 520px) {
+  section.features {
+    grid-template-columns: 1fr;
+  }
+}

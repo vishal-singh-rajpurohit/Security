@@ -70,10 +70,10 @@ export default function page() {
                                 </span>
                             </h1>
                             <p className="why-p">
-                                In today's fast-paced digital world, standing out is everything. While we won’t promise
+                                In today is fast-paced digital world, standing out is everything. While we would not promise
                                 overnight miracles, we do promise dedication, strategy, and results that speak for
-                                themselves. At <strong>Wings Lens</strong>, we don’t deal in false hopes — only smart,
-                                sustainable success. Let’s build something remarkable together.
+                                themselves. At <strong>Wings Lens</strong>, we do not deal in false hopes — only smart,
+                                sustainable success. Let us build something remarkable together.
                             </p>
                         </div>
                         <section className="features">
@@ -103,7 +103,7 @@ export default function page() {
                             <div className="card">
                                 <h3 className="it-sol-h3">VALUE THAT DELIVERS</h3>
                                 <p className="it-sol-p">
-                                    We believe great design and functionality shouldn't break the bank. Our solutions are
+                                    We believe great design and functionality should not break the bank. Our solutions are
                                     tailored to your budget, delivering premium quality at competitive rates — no compromise.
                                 </p>
                             </div>
@@ -152,7 +152,7 @@ export default function page() {
                         <div className="it-solution-card-content">
                             <h3 className="card-heading">Starter Web Presence</h3>
                             <p className="it-sol-p">
-                                Starter Web Presence is the perfect entry-level solution for any local business or shop owner looking to establish a professional online footprint. This package includes a sleek, responsive website tailored to your brand, complete with a landing page, an "About Us" section, a contact page, and prominent call-to-action buttons to guide visitors. The integrated contact form allows customers to easily reach out, and all form submissions are stored and viewable in your own admin dashboard—giving you complete control and instant access to incoming inquiries. Designed for simplicity and impact, this service gives your business the online presence it needs to build trust, attract customers, and grow. No technical skills required—just tell us about your business and we’ll handle the rest.
+                                Starter Web Presence is the perfect entry-level solution for any local business or shop owner looking to establish a professional online footprint. This package includes a sleek, responsive website tailored to your brand, complete with a landing page, an <b>About Us</b> section, a contact page, and prominent call-to-action buttons to guide visitors. The integrated contact form allows customers to easily reach out, and all form submissions are stored and viewable in your own admin dashboard—giving you complete control and instant access to incoming inquiries. Designed for simplicity and impact, this service gives your business the online presence it needs to build trust, attract customers, and grow. No technical skills required—just tell us about your business and we will handle the rest.
                             </p>
                             <h5 className="it-sol-h5">Features & Service</h5>
                             <ul className="it-solutions-ul">
@@ -176,7 +176,7 @@ export default function page() {
                         <div className="it-solution-card-content">
                             <h3 className="card-heading">FullStack Commerce Pro</h3>
                             <p className="it-sol-p">
-                                FullStack Commerce Pro is a complete, end-to-end E-commerce solution built to power online sales for businesses of any size or type. Whether you're selling physical products, digital downloads, or services, this package includes everything you need to launch, manage, and scale your online store. The front-end is fully responsive and user-friendly, offering smooth shopping experiences across all devices. On the back end, a powerful admin dashboard lets you manage products, track orders, update pricing and inventory, create promotional offers, and more. From secure checkout systems and integrated payment gateways to product filtering and order notifications, every feature is built with performance and flexibility in mind. Designed for growth, this full stack solution is ready to support your business 24/7. Whether you're just starting or upgrading from an older system, FullStack Commerce Pro helps you sell smarter and manage faster.
+                                FullStack Commerce Pro is a complete, end-to-end E-commerce solution built to power online sales for businesses of any size or type. Whether you are selling physical products, digital downloads, or services, this package includes everything you need to launch, manage, and scale your online store. The front-end is fully responsive and user-friendly, offering smooth shopping experiences across all devices. On the back end, a powerful admin dashboard lets you manage products, track orders, update pricing and inventory, create promotional offers, and more. From secure checkout systems and integrated payment gateways to product filtering and order notifications, every feature is built with performance and flexibility in mind. Designed for growth, this full stack solution is ready to support your business 24/7. Whether you are just starting or upgrading from an older system, FullStack Commerce Pro helps you sell smarter and manage faster.
                             </p>
                             <h5 className="it-sol-h5">Features & Service</h5>
                             <ul className="it-solutions-ul">
@@ -201,7 +201,7 @@ export default function page() {
                         <div className="it-solution-card-content">
                             <h3 className="card-heading">Custom Web Solutions</h3>
                             <p className="it-sol-p">
-                                Custom Web Solutions is designed for businesses that need more than a standard template. We deliver fully customized websites and web applications built specifically around your unique goals, workflows, and customer experience. Whether you need a custom booking system, internal dashboards, client portals, or complex integrations—our team works closely with you to define, design, and develop a solution that fits your exact requirements. Every feature, page, and function is crafted to align with your brand and business process. With full-stack development capabilities, we can handle everything from database architecture to user interface design. You’ll also get an intuitive admin panel to manage your system efficiently. This is more than just a website—it's a digital tool built to empower your business. If you have a vision, we’ll bring it to life—exactly the way you want it.
+                                Custom Web Solutions is designed for businesses that need more than a standard template. We deliver fully customized websites and web applications built specifically around your unique goals, workflows, and customer experience. Whether you need a custom booking system, internal dashboards, client portals, or complex integrations—our team works closely with you to define, design, and develop a solution that fits your exact requirements. Every feature, page, and function is crafted to align with your brand and business process. With full-stack development capabilities, we can handle everything from database architecture to user interface design. You will also get an intuitive admin panel to manage your system efficiently. This is more than just a website—it is a digital tool built to empower your business. If you have a vision, we will bring it to life—exactly the way you want it.
                             </p>
                             <h5 className="it-sol-h5">Features & Service</h5>
                             <ul className="it-solutions-ul">

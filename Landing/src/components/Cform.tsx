@@ -1,11 +1,11 @@
 "use client"
 import React, { useContext, useState } from 'react'
 import axios from "axios"
-import { MenuContext, MenuContextType } from '@/context/Contexts.context';
+import { MenuContext } from '@/context/Contexts.context';
 
 function Cform() {
 
-    const { setStatus } = useContext(MenuContext)
+    const { setStatus } = useContext(MenuContext);
     const [formData, setFormData] = useState({
         name: '',
         email: "",
@@ -17,7 +17,7 @@ function Cform() {
         message: ""
     });
 
-    const handleSubmitForm = async (e: any) => {
+    const handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (formData.number.length < 10) {
@@ -27,7 +27,7 @@ function Cform() {
         }
         else {
             try {
-                const response = await axios.post("/api/contact", formData, {
+                await axios.post("/api/contact", formData, {
                     withCredentials: true
                 });
                 setFormData({

@@ -3,16 +3,12 @@ import Head from "next/head";
 
 import { FaRegCircle } from "react-icons/fa";
 import { GoGoal } from "react-icons/go";
-import { BsBrightnessAltHigh } from "react-icons/bs";
 import { LuCctv } from "react-icons/lu";
 
 import "@/Styles/main.css"
 import "@/Styles/about.css"
 
 
-// Hero section images
-import hero_section_image_desktop from "@/Assets/SlideImage/ts.jpg"
-import hero_section_image_mobile from "@/Assets/About_page/CCTV_Camera_for_Outdoor_.jpg"
 
 // Collage Images
 import CCTV_Camera_NV from "@/Assets/About_page/CCTV_camera_for_Night_Vision.jpg"
@@ -44,7 +40,7 @@ export default function About() {
             </Head>
             <section className="info-page-section">
                 <div className="about-page-top">
-                    <AboutSlide img_sm={hero_section_image_mobile} img_bg={hero_section_image_desktop} />
+                    <AboutSlide />
                     <div className="about-page-top-text">
                         <h1 className="but-h1">About Us</h1>
                         <p className="about-page-top-text-p">Reliable CCTV solutions for trusted security and protection</p>
@@ -108,7 +104,7 @@ export default function About() {
                 <section className="landing-page-1 about-landing-1">
                     <div className="text-div td-3">
                         <h1 className="text-h1 about-h2">Our Core Business</h1>
-                        <p className="text-p about-text-p">Wings Lens's core business centers around providing advanced surveillance and security solutions tailored to various environments, including commercial, educational, and public sectors. This includes the development and distribution of state-of-the-art CCTV systems, intelligent video analytics, and integrated management software. Their primary focus is on creating safe and secure spaces through innovative technology, ensuring peace of mind and operational efficiency for their clients.</p>
+                        <p className="text-p about-text-p">Wings Lens core business centers around providing advanced surveillance and security solutions tailored to various environments, including commercial, educational, and public sectors. This includes the development and distribution of state-of-the-art CCTV systems, intelligent video analytics, and integrated management software. Their primary focus is on creating safe and secure spaces through innovative technology, ensuring peace of mind and operational efficiency for their clients.</p>
                     </div>
                     <div className="loanding-page-1-imgae-div li3">
                         <Image src={WIFI_CCTV_Camera_Connected_directly_With_Mobile_phone_wireless_Camera} height={0} style={{ height: 'auto' }} alt="WIFI CCTV Camera Connected directly With Mobile phone wireless Camera" className="loanding-page-1-imgae-div-img" />
@@ -173,7 +169,7 @@ export default function About() {
                 <section className="landing-page-1 about-landing-1">
                     <div className="text-div td-3">
                         <h1 className="text-h1 about-h2">Complete IT Solution for Grow your Business</h1>
-                        <p className="text-p about-text-p">Wings Lens's core business centers around providing advanced surveillance and security solutions tailored to various environments, including commercial, educational, and public sectors. This includes the development and distribution of state-of-the-art CCTV systems, intelligent video analytics, and integrated management software. Their primary focus is on creating safe and secure spaces through innovative technology, ensuring peace of mind and operational efficiency for their clients.</p>
+                        <p className="text-p about-text-p">Wings Lens core business centers around providing advanced surveillance and security solutions tailored to various environments, including commercial, educational, and public sectors. This includes the development and distribution of state-of-the-art CCTV systems, intelligent video analytics, and integrated management software. Their primary focus is on creating safe and secure spaces through innovative technology, ensuring peace of mind and operational efficiency for their clients.</p>
                     </div>
                     <div className="loanding-page-1-imgae-div li3">
                         <Image src={CCTV_Camera_for_Streets} height={0} style={{ height: 'auto' }} alt="" className="loanding-page-1-imgae-div-img" />

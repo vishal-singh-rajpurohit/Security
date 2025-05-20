@@ -1,0 +1,437 @@
+[
+    {
+        "cat_id": 101,
+        "slug": "hd-cctv-camera",
+        "hero_section": {
+            "hero_section_desktop": "https://example.com/hd-cctv-desktop.jpg",
+            "hero_image_mobile": "@/Assets/About_page/CCTV_Camera_for_Outdoor_.jpg",
+            "alt": "HD CCTV Camera"
+        },
+        "category_name": "HD CCTV Camera",
+        "first_text": "High-definition analog surveillance solution",
+        "min_cost": 1500,
+        "max_cost": 7500,
+        "features": [
+            "720p to 1080p resolution",
+            "Infrared night vision",
+            "Weather-resistant housing",
+            "Wide dynamic range (WDR)",
+            "Motion detection",
+            "Real-time video output",
+            "Compatibility with analog DVRs"
+        ],
+        "description": "HD CCTV cameras offer high-definition video surveillance using traditional analog systems. They provide clear footage with resolutions ranging from 720p to 1080p, making them suitable for various security needs. Equipped with infrared night vision, these cameras ensure visibility in low-light conditions. Their weather-resistant housing allows for both indoor and outdoor installations. Features like wide dynamic range (WDR) enhance image quality in challenging lighting. Motion detection capabilities help in monitoring specific areas effectively. Real-time video output ensures immediate viewing without delays. Additionally, their compatibility with analog DVRs makes them a cost-effective upgrade for existing surveillance setups.",
+        "features_img": "@/Assets/SlideImage/hd_features.jpg",
+        "features_alt": "HD CCTV Camera Features",
+        "desc_img": "@/Assets/SlideImage/hd_description.jpg",
+        "desc_alt": "HD CCTV Camera Description",
+        "pricing_img": "@/Assets/SlideImage/hd_pricing.jpg",
+        "pricing_alt": "HD CCTV Camera Pricing"
+    },
+    {
+        "cat_id": 102,
+        "slug": "ip-cctv-camera",
+        "hero_section": {
+            "hero_section_desktop": "https://example.com/ip-cctv-desktop.jpg",
+            "hero_image_mobile": "@/Assets/About_page/IP_CCTV_Camera.jpg",
+            "alt": "IP CCTV Camera"
+        },
+        "category_name": "IP CCTV Camera",
+        "first_text": "Network-based digital surveillance solution",
+        "min_cost": 3000,
+        "max_cost": 15000,
+        "features": [
+            "Up to 4K resolution",
+            "Remote access via internet",
+            "Power over Ethernet (PoE)",
+            "Cloud and local storage options",
+            "Advanced motion detection",
+            "Two-way audio communication",
+            "Data encryption for security"
+        ],
+        "description": "IP CCTV cameras utilize network connectivity to deliver high-quality digital video surveillance. With resolutions reaching up to 4K, they provide detailed imagery suitable for critical monitoring. Remote access capabilities allow users to view live feeds from anywhere via the internet. Power over Ethernet (PoE) simplifies installation by combining power and data transmission through a single cable. These cameras support both cloud and local storage solutions, offering flexibility in data management. Advanced motion detection features enable precise monitoring and alerts. Two-way audio communication facilitates real-time interaction through the camera. Enhanced data encryption ensures secure transmission and storage of video footage.",
+        "features_img": "@/Assets/SlideImage/ip_features.jpg",
+        "features_alt": "IP CCTV Camera Features",
+        "desc_img": "@/Assets/SlideImage/ip_description.jpg",
+        "desc_alt": "IP CCTV Camera Description",
+        "pricing_img": "@/Assets/SlideImage/ip_pricing.jpg",
+        "pricing_alt": "IP CCTV Camera Pricing"
+    },
+    {
+        "cat_id": 103,
+        "slug": "wifi-cctv-camera",
+        "hero_section": {
+            "hero_section_desktop": "https://example.com/wifi-cctv-desktop.jpg",
+            "hero_image_mobile": "@/Assets/About_page/WiFi_CCTV_Camera.jpg",
+            "alt": "WiFi CCTV Camera"
+        },
+        "category_name": "WiFi CCTV Camera",
+        "first_text": "Wireless surveillance with smart features",
+        "min_cost": 2500,
+        "max_cost": 12000,
+        "features": [
+            "Wireless connectivity",
+            "Mobile app integration",
+            "Battery-powered options",
+            "Pan-Tilt-Zoom (PTZ) functionality",
+            "Smart motion alerts",
+            "Two-way audio",
+            "Easy installation"
+        ],
+        "description": "WiFi CCTV cameras offer wireless surveillance solutions with advanced smart features. Their wireless connectivity eliminates the need for extensive cabling, allowing flexible placement. Integration with mobile applications enables real-time monitoring and control from smartphones or tablets. Many models come with battery-powered options, ensuring operation during power outages. Pan-Tilt-Zoom (PTZ) functionality allows users to adjust the camera's view remotely for comprehensive coverage. Smart motion alerts notify users of any detected movement, enhancing security responsiveness. Two-way audio features facilitate communication through the camera, useful for entry points or monitoring areas. Their easy installation process makes them ideal for both residential and commercial setups.",
+        "features_img": "@/Assets/SlideImage/wifi_features.jpg",
+        "features_alt": "WiFi CCTV Camera Features",
+        "desc_img": "@/Assets/SlideImage/wifi_description.jpg",
+        "desc_alt": "WiFi CCTV Camera Description",
+        "pricing_img": "@/Assets/SlideImage/wifi_pricing.jpg",
+        "pricing_alt": "WiFi CCTV Camera Pricing"
+    },
+    {
+        "cat_id": 104,
+        "slug": "dome-cctv-camera",
+        "hero_section": {
+            "hero_section_desktop": "https://example.com/dome-cctv-desktop.jpg",
+            "hero_image_mobile": "@/Assets/About_page/Dome_CCTV_Camera.jpg",
+            "alt": "Dome CCTV Camera"
+        },
+        "category_name": "Dome CCTV Camera",
+        "first_text": "Discreet indoor surveillance solution",
+        "min_cost": 2000,
+        "max_cost": 8000,
+        "features": [
+            "Vandal-resistant design",
+            "Wide-angle coverage",
+            "Infrared night vision",
+            "Ceiling or wall mountable",
+            "Weatherproof variants available",
+            "Aesthetic design for indoor use",
+            "Available in fixed and PTZ models"
+        ],
+        "description": "Dome CCTV cameras are named for their dome-shaped housing, offering a discreet surveillance option suitable for both indoor and outdoor environments. Their design makes it difficult to determine the direction the camera is facing, deterring potential intruders. Equipped with features like infrared night vision and wide-angle lenses, they provide comprehensive coverage. Their vandal-resistant casing ensures durability, making them ideal for areas prone to tampering. Available in both fixed and PTZ (Pan-Tilt-Zoom) models, dome cameras offer flexibility in monitoring specific areas or broader spaces. Their aesthetic design allows them to blend seamlessly into various settings, from retail stores to office spaces.",
+        "features_img": "@/Assets/SlideImage/dome_features.jpg",
+        "features_alt": "Dome CCTV Camera Features",
+        "desc_img": "@/Assets/SlideImage/dome_description.jpg",
+        "desc_alt": "Dome CCTV Camera Description",
+        "pricing_img": "@/Assets/SlideImage/dome_pricing.jpg",
+        "pricing_alt": "Dome CCTV Camera Pricing"
+    },
+    {
+        "cat_id": 105,
+        "slug": "bullet-cctv-camera",
+        "hero_section": {
+            "hero_section_desktop": "https://example.com/bullet-cctv-desktop.jpg",
+            "hero_image_mobile": "@/Assets/About_page/Bullet_CCTV_Camera.jpg",
+            "alt": "Bullet CCTV Camera"
+        },
+        "category_name": "Bullet CCTV Camera",
+        "first_text": "Long-range outdoor surveillance solution",
+        "min_cost": 2500,
+        "max_cost": 9000,
+        "features": [
+            "Extended viewing range",
+            "Weatherproof housing",
+            "Infrared night vision",
+            "Visible deterrent design",
+            "Easy wall mounting",
+            "High-resolution imaging",
+            "Suitable for indoor and outdoor use"
+        ],
+        "description": "Bullet CCTV cameras are characterized by their long, cylindrical shape, making them easily noticeable and acting as a visual deterrent to potential intruders. Designed primarily for outdoor use, their weatherproof housing ensures durability against harsh environmental conditions. With extended viewing ranges and high-resolution imaging, they are ideal for monitoring large areas like parking lots or building perimeters. Infrared night vision capabilities allow for clear footage even in low-light conditions. Their straightforward design facilitates easy installation, typically mounted on walls or ceilings, making them a popular choice for both residential and commercial properties.",
+        "features_img": "@/Assets/SlideImage/bullet_features.jpg",
+        "features_alt": "Bullet CCTV Camera Features",
+        "desc_img": "@/Assets/SlideImage/bullet_description.jpg",
+        "desc_alt": "Bullet CCTV Camera Description",
+        "pricing_img": "@/Assets/SlideImage/bullet_pricing.jpg",
+        "pricing_alt": "Bullet CCTV Camera Pricing"
+    },
+    {
+        "cat_id": 106,
+        "slug": "ptz-cctv-camera",
+        "hero_section": {
+            "hero_section_desktop": "https://example.com/ptz-cctv-desktop.jpg",
+            "hero_image_mobile": "@/Assets/About_page/PTZ_CCTV_Camera.jpg",
+            "alt": "PTZ CCTV Camera"
+        },
+        "category_name": "PTZ CCTV Camera",
+        "first_text": "Dynamic surveillance with remote control",
+        "min_cost": 5000,
+        "max_cost": 20000,
+        "features": [
+            "Pan, Tilt, and Zoom functionality",
+            "Remote directional control",
+            "Preset patrol patterns",
+            "High-resolution imaging",
+            "Infrared night vision",
+            "Weather-resistant design",
+            "Ideal for large area monitoring"
+        ],
+        "description": "PTZ (Pan-Tilt-Zoom) CCTV cameras offer dynamic surveillance capabilities, allowing operators to remotely control the camera's direction and zoom to focus on specific areas or objects. This flexibility makes them ideal for monitoring expansive spaces such as parking lots, stadiums, or city centers. Equipped with high-resolution imaging and infrared night vision, PTZ cameras ensure clear footage regardless of lighting conditions. Their ability to follow preset patrol patterns automates the monitoring process, covering multiple areas sequentially. The robust, weather-resistant design ensures reliable performance in various environmental conditions, making them suitable for both indoor and outdoor applications.",
+        "features_img": "@/Assets/SlideImage/ptz_features.jpg",
+        "features_alt": "PTZ CCTV Camera Features",
+        "desc_img": "@/Assets/SlideImage/ptz_description.jpg",
+        "desc_alt": "PTZ CCTV Camera Description",
+        "pricing_img": "@/Assets/SlideImage/ptz_pricing.jpg",
+        "pricing_alt": "PTZ CCTV Camera Pricing"
+    },
+    {
+        "cat_id": 107,
+        "slug": "turret-cctv-camera",
+        "hero_section": {
+            "hero_section_desktop": "https://example.com/turret-cctv-desktop.jpg",
+            "hero_image_mobile": "@/Assets/About_page/Turret_CCTV_Camera.jpg",
+            "alt": "Turret CCTV Camera"
+        },
+        "category_name": "Turret CCTV Camera",
+        "first_text": "Versatile surveillance with flexible mounting",
+        "min_cost": 2200,
+        "max_cost": 8500,
+        "features": [
+            "Ball-and-socket design",
+            "Infrared night vision",
+            "No IR reflection issues",
+            "Easy angle adjustment",
+            "Compact and discreet",
+            "Suitable for indoor and outdoor use",
+            "High-definition video quality"
+        ],
+        "description": "Turret CCTV cameras, also known as 'eyeball' cameras, feature a ball-and-socket design that allows for flexible positioning and easy angle adjustments. Unlike dome cameras, turret cameras do not suffer from infrared reflection issues, ensuring clearer night vision footage. Their compact and discreet design makes them suitable for various settings, including homes, offices, and retail stores. Offering high-definition video quality, turret cameras provide reliable surveillance both indoors and outdoors. Their straightforward installation process and versatile mounting options make them a popular choice for users seeking a balance between functionality and aesthetics.",
+        "features_img": "@/Assets/SlideImage/turret_features.jpg",
+        "features_alt": "Turret CCTV Camera Features",
+        "desc_img": "@/Assets/SlideImage/turret_description.jpg",
+        "desc_alt": "Turret CCTV Camera Description",
+        "pricing_img": "@/Assets/SlideImage/turret_pricing.jpg",
+        "pricing_alt": "Turret CCTV Camera Pricing"
+    },
+    {
+        "cat_id": 108,
+        "slug": "c-mount-cctv-camera",
+        "hero_section": {
+            "hero_section_desktop": "https://example.com/c-mount-cctv-desktop.jpg",
+            "hero_image_mobile": "@/Assets/About_page/C_Mount_CCTV_Camera.jpg",
+            "alt": "C-Mount CCTV Camera"
+        },
+        "category_name": "C-Mount CCTV Camera",
+        "first_text": "Customizable surveillance with detachable lenses",
+        "min_cost": 3000,
+        "max_cost": 10000,
+        "features": [
+            "Detachable lenses for varied ranges",
+            "Extended viewing distances",
+            "Weatherproof housing",
+            "Infrared night vision",
+            "High-resolution imaging",
+            "Suitable for specialized applications",
+            "Flexible mounting options"
+        ],
+        "description": "C-Mount CCTV cameras are distinguished by their detachable lenses, allowing users to customize the camera's field of view and range according to specific surveillance needs. This adaptability makes them ideal for monitoring areas that require varying focal lengths, such as warehouses or roadways. Equipped with high-resolution imaging and infrared night vision, C-Mount cameras ensure clear footage in diverse lighting conditions. Their weatherproof housing enables reliable outdoor performance, while flexible mounting options facilitate installation in various environments. The versatility of C-Mount cameras makes them a preferred choice for specialized surveillance applications.",
+        "features_img": "@/Assets/SlideImage/cmount_features.jpg",
+        "features_alt": "C-Mount CCTV Camera Features",
+        "desc_img": "@/Assets/SlideImage/cmount_description.jpg",
+        "desc_alt": "C-Mount CCTV Camera Description",
+        "pricing_img": "@/Assets/SlideImage/cmount_pricing.jpg",
+        "pricing_alt": "C-Mount CCTV Camera Pricing"
+    },
+    {
+        "cat_id": 110,
+        "slug": "infrared-cctv-camera",
+        "hero_section": {
+            "hero_section_desktop": "https://example.com/images/infrared-cctv-desktop.jpg",
+            "hero_image_mobile": "@/Assets/About_page/Infrared_CCTV_Camera.jpg",
+            "alt": "Infrared CCTV Camera"
+        },
+        "category_name": "Infrared CCTV Camera",
+        "first_text": "Superior night vision with infrared technology",
+        "min_cost": 2800,
+        "max_cost": 9500,
+        "features": [
+            "Infrared (IR) LEDs for night vision",
+            "Captures clear images in complete darkness",
+            "Automatic IR cut filter for day/night switching",
+            "Weatherproof and dust-resistant design (IP66/IP67)",
+            "High-definition video quality (720p/1080p/4MP+)",
+            "Range up to 30-100 meters in low light",
+            "Ideal for outdoor and perimeter security"
+        ],
+        "description": "Infrared CCTV cameras are specifically designed to provide surveillance in low-light or completely dark environments. These cameras are equipped with infrared LEDs that emit IR light, which is invisible to the human eye but perfectly visible to the camera sensor. This allows them to capture clear, detailed footage even in total darkness. A key component, the IR cut filter, automatically switches between color during daylight and black-and-white at night, ensuring optimal image quality 24/7. Infrared CCTV cameras are commonly used in outdoor settings like parking lots, building exteriors, alleys, or areas with minimal lighting. Most models are housed in weatherproof casings rated IP66 or higher, making them resistant to dust, rain, and extreme temperatures. These cameras support high-resolution output, with options ranging from standard HD to 4MP or higher, and they often include features such as motion detection and wide dynamic range. The IR illumination range typically spans from 30 to 100 meters, depending on the model. Whether used for home, commercial, or industrial security, IR CCTV cameras deliver reliable and consistent monitoring regardless of lighting conditions.",
+        "features_img": "@/Assets/SlideImage/infrared_features.jpg",
+        "features_alt": "Infrared CCTV Camera Features",
+        "desc_img": "@/Assets/SlideImage/infrared_description.jpg",
+        "desc_alt": "Infrared CCTV Camera Description",
+        "pricing_img": "@/Assets/SlideImage/infrared_pricing.jpg",
+        "pricing_alt": "Infrared CCTV Camera Pricing"
+    },
+    {
+        "cat_id": 111,
+        "slug": "wireless-cctv-camera",
+        "hero_section": {
+            "hero_section_desktop": "https://example.com/images/wireless-cctv-desktop.jpg",
+            "hero_image_mobile": "@/Assets/About_page/Wireless_CCTV_Camera.jpg",
+            "alt": "Wireless CCTV Camera"
+        },
+        "category_name": "Wireless CCTV Camera",
+        "first_text": "Flexible installation with wireless connectivity",
+        "min_cost": 3000,
+        "max_cost": 12000,
+        "features": [
+            "No physical cabling required",
+            "Wi-Fi or RF-based connectivity",
+            "Mobile app live streaming and alerts",
+            "Cloud and local SD card storage options",
+            "Battery-powered or plug-in models",
+            "Two-way audio communication (in some models)",
+            "Easy DIY installation"
+        ],
+        "description": "Wireless CCTV cameras offer a modern, convenient alternative to traditional wired surveillance systems. They connect via Wi-Fi or other wireless protocols, eliminating the need for extensive cabling, which makes installation significantly easier—perfect for renters, temporary setups, or DIY users. Most wireless cameras are equipped with mobile app support, enabling remote live viewing, instant motion alerts, and playback directly from smartphones or tablets. These cameras often support cloud storage and/or onboard SD card recording, giving users flexible data storage options. Depending on the model, features such as night vision, motion detection, two-way audio, and even AI-based human detection may be included. Power can be supplied either through rechargeable batteries or a standard plug-in adapter. Many models are compact and designed for both indoor and outdoor use, with weatherproof housing available. Wireless CCTV cameras are ideal for homes, small offices, or areas where routing cables is impractical. While they rely on strong internet connectivity for optimal performance, their flexibility and user-friendliness have made them a popular choice for modern surveillance needs.",
+        "features_img": "@/Assets/SlideImage/wireless_features.jpg",
+        "features_alt": "Wireless CCTV Camera Features",
+        "desc_img": "@/Assets/SlideImage/wireless_description.jpg",
+        "desc_alt": "Wireless CCTV Camera Description",
+        "pricing_img": "@/Assets/SlideImage/wireless_pricing.jpg",
+        "pricing_alt": "Wireless CCTV Camera Pricing"
+    },
+    {
+        "cat_id": 112,
+        "slug": "4g-sim-cctv-camera",
+        "hero_section": {
+            "hero_section_desktop": "https://example.com/images/4g-sim-cctv-desktop.jpg",
+            "hero_image_mobile": "@/Assets/About_page/4G_SIM_CCTV_Camera.jpg",
+            "alt": "4G SIM CCTV Camera"
+        },
+        "category_name": "4G SIM CCTV Camera",
+        "first_text": "Remote surveillance with cellular connectivity",
+        "min_cost": 4500,
+        "max_cost": 15000,
+        "features": [
+            "Operates on 4G LTE network using SIM card",
+            "No dependency on Wi-Fi or wired internet",
+            "Supports remote access via mobile apps",
+            "Cloud & SD card storage options",
+            "Built-in rechargeable battery or solar panel",
+            "PIR motion detection with instant alerts",
+            "Ideal for off-grid or remote areas"
+        ],
+        "description": "4G SIM-based CCTV cameras are designed for remote and off-grid surveillance where Wi-Fi or wired internet isn't available. These cameras use a 4G LTE SIM card to transmit data, enabling users to monitor live footage or receive alerts from virtually anywhere. Ideal for construction sites, farms, vacation homes, and rural properties, they offer great flexibility. Most 4G cameras support app-based remote viewing, motion-triggered alerts, and two-way audio. Storage is typically managed via a local SD card or cloud service. Many models come with a rechargeable battery and support optional solar panels for energy efficiency. With PIR motion sensors, they reduce false alarms by detecting heat signatures from humans or vehicles. Their IP66 or higher weatherproof rating ensures reliable performance in outdoor conditions. Installation is easy and doesn't require any networking expertise. Whether you're securing an isolated warehouse or a moving asset like a van, 4G cameras offer consistent, real-time surveillance using just a mobile network.",
+        "features_img": "@/Assets/SlideImage/4g_features.jpg",
+        "features_alt": "4G SIM CCTV Camera Features",
+        "desc_img": "@/Assets/SlideImage/4g_description.jpg",
+        "desc_alt": "4G SIM CCTV Camera Description",
+        "pricing_img": "@/Assets/SlideImage/4g_pricing.jpg",
+        "pricing_alt": "4G SIM CCTV Camera Pricing"
+    },
+    {
+        "cat_id": 113,
+        "slug": "smart-ai-cctv-camera",
+        "hero_section": {
+            "hero_section_desktop": "https://example.com/images/smart-ai-cctv-desktop.jpg",
+            "hero_image_mobile": "@/Assets/About_page/Smart_AI_CCTV_Camera.jpg",
+            "alt": "Smart AI CCTV Camera"
+        },
+        "category_name": "Smart AI CCTV Camera",
+        "first_text": "AI-powered surveillance with intelligent detection",
+        "min_cost": 5500,
+        "max_cost": 18000,
+        "features": [
+            "AI-based human and vehicle detection",
+            "Face recognition and smart alerts",
+            "Intrusion detection and perimeter monitoring",
+            "Smart motion filtering (reduces false alarms)",
+            "Auto-tracking of moving objects",
+            "Cloud & local storage integration",
+            "Real-time analytics and notifications"
+        ],
+        "description": "Smart AI CCTV cameras use artificial intelligence to provide intelligent surveillance capabilities that go far beyond traditional video monitoring. These cameras can detect humans, vehicles, faces, and unusual activities using advanced algorithms, significantly reducing false alerts caused by animals, wind, or shadows. AI cameras are equipped with features such as facial recognition, people counting, license plate detection (in some models), and smart motion tracking. They automatically identify threats and send real-time notifications to users via mobile apps or software platforms. These systems are especially useful for commercial spaces, schools, public areas, and high-security zones. Some models include two-way audio, night vision, and wide dynamic range (WDR) for clarity in various lighting conditions. AI CCTV cameras often support both cloud and local storage, and can be integrated with centralized security platforms or smart home systems. Their ability to “learn” and adapt to different environments makes them highly efficient in reducing unnecessary data review and focusing attention on real threats. With smart detection, automation, and analytics, AI CCTV cameras represent the future of proactive security.",
+        "features_img": "@/Assets/SlideImage/ai_features.jpg",
+        "features_alt": "Smart AI CCTV Camera Features",
+        "desc_img": "@/Assets/SlideImage/ai_description.jpg",
+        "desc_alt": "Smart AI CCTV Camera Description",
+        "pricing_img": "@/Assets/SlideImage/ai_pricing.jpg",
+        "pricing_alt": "Smart AI CCTV Camera Pricing"
+    },
+    {
+        "cat_id": 114,
+        "slug": "solar-powered-cctv-camera",
+        "hero_section": {
+            "hero_section_desktop": "https://example.com/images/solar-cctv-desktop.jpg",
+            "hero_image_mobile": "@/Assets/About_page/Solar_CCTV_Camera.jpg",
+            "alt": "Solar Powered CCTV Camera"
+        },
+        "category_name": "Solar Powered CCTV Camera",
+        "first_text": "Eco-friendly security with solar energy",
+        "min_cost": 6000,
+        "max_cost": 20000,
+        "features": [
+            "Solar panel for continuous power",
+            "Built-in rechargeable battery",
+            "No wiring or electricity needed",
+            "Ideal for remote/off-grid locations",
+            "Wi-Fi or 4G connectivity options",
+            "Motion detection and instant alerts",
+            "Weatherproof and outdoor-rated"
+        ],
+        "description": "Solar-powered CCTV cameras are designed for remote or off-grid locations where traditional electricity is unavailable or costly to install. These cameras are equipped with high-efficiency solar panels and rechargeable batteries that keep them running 24/7, even during cloudy days. They are ideal for areas like farms, parking lots, construction sites, and vacation homes. Most solar-powered cameras feature motion detection, night vision, and app-based access for live streaming and alerts. Connectivity is typically achieved through Wi-Fi or 4G SIM, depending on the model. Their eco-friendly design not only lowers electricity bills but also makes them perfect for temporary setups or environments where wired infrastructure isn't feasible. With IP66 or higher weather resistance, these cameras are well-suited for outdoor use in all climates. Some models even support AI features such as human detection and auto-tracking. The installation process is simple, with no need for extensive cabling or drilling. Solar CCTV cameras offer a green, cost-effective, and efficient way to secure remote or hard-to-reach locations while maintaining uninterrupted surveillance.",
+        "features_img": "@/Assets/SlideImage/solar_features.jpg",
+        "features_alt": "Solar Powered CCTV Camera Features",
+        "desc_img": "@/Assets/SlideImage/solar_description.jpg",
+        "desc_alt": "Solar Powered CCTV Camera Description",
+        "pricing_img": "@/Assets/SlideImage/solar_pricing.jpg",
+        "pricing_alt": "Solar Powered CCTV Camera Pricing"
+    },
+    {
+        "cat_id": 115,
+        "slug": "ptz-cctv-camera",
+        "hero_section": {
+            "hero_section_desktop": "https://example.com/images/ptz-cctv-desktop.jpg",
+            "hero_image_mobile": "@/Assets/About_page/PTZ_CCTV_Camera.jpg",
+            "alt": "PTZ CCTV Camera"
+        },
+        "category_name": "PTZ CCTV Camera",
+        "first_text": "Full coverage with pan, tilt, and zoom control",
+        "min_cost": 8000,
+        "max_cost": 35000,
+        "features": [
+            "360° pan and 90° tilt movement",
+            "Optical zoom up to 36x",
+            "Auto-tracking of moving objects",
+            "Preset patrol routes and schedules",
+            "Remote directional control via app or PC",
+            "Ideal for large areas like malls, factories",
+            "HD to 4K resolution options"
+        ],
+        "description": "PTZ (Pan-Tilt-Zoom) CCTV cameras provide flexible and wide-area surveillance with their ability to rotate horizontally, tilt vertically, and zoom in optically on objects or areas of interest. These advanced cameras are ideal for covering expansive areas like industrial complexes, public spaces, airports, and large commercial buildings. With up to 36x optical zoom, users can capture fine details even from long distances without losing image quality. Most PTZ cameras support auto-tracking, where the camera locks onto and follows a moving object. They can be pre-programmed with patrol routes to automatically scan key zones at scheduled intervals. Remote control via mobile apps or centralized systems allows real-time direction and zoom adjustments. Many modern PTZ cameras offer high-definition video (1080p to 4K), night vision, and weather-resistant housings. Their intelligent features, combined with mechanical flexibility, make them a popular choice for applications where dynamic and proactive monitoring is required. Though more expensive than static cameras, their versatility and effectiveness in high-traffic or high-security environments justify the investment.",
+        "features_img": "@/Assets/SlideImage/ptz_features.jpg",
+        "features_alt": "PTZ CCTV Camera Features",
+        "desc_img": "@/Assets/SlideImage/ptz_description.jpg",
+        "desc_alt": "PTZ CCTV Camera Description",
+        "pricing_img": "@/Assets/SlideImage/ptz_pricing.jpg",
+        "pricing_alt": "PTZ CCTV Camera Pricing"
+    },
+    {
+        "cat_id": 116,
+        "slug": "thermal-cctv-camera",
+        "hero_section": {
+            "hero_section_desktop": "https://example.com/images/thermal-cctv-desktop.jpg",
+            "hero_image_mobile": "@/Assets/About_page/Thermal_CCTV_Camera.jpg",
+            "alt": "Thermal CCTV Camera"
+        },
+        "category_name": "Thermal CCTV Camera",
+        "first_text": "Vision beyond light — thermal surveillance",
+        "min_cost": 25000,
+        "max_cost": 120000,
+        "features": [
+            "Detects heat signatures instead of visible light",
+            "Works in total darkness and challenging weather",
+            "Temperature monitoring and fire detection",
+            "Ideal for perimeter defense and critical zones",
+            "Long-range detection up to several hundred meters",
+            "Can detect humans through fog, smoke, and foliage",
+            "Often used with AI for intrusion analytics"
+        ],
+        "description": "Thermal CCTV cameras are advanced surveillance devices that detect heat emitted by objects rather than relying on visible light. This allows them to operate flawlessly in complete darkness, fog, smoke, rain, or dusty environments. Unlike standard cameras, thermal models visualize the infrared radiation naturally emitted by humans, animals, or vehicles, making them especially useful for high-security areas such as borders, military facilities, power plants, or oil refineries. Their ability to detect heat signatures enables early fire detection, equipment overheating alerts, and even health screening in some configurations. These cameras are capable of long-range detection—sometimes up to 1 km—and can be integrated with AI analytics for automated threat identification and tracking. Since they do not depend on ambient lighting, thermal cameras provide consistent surveillance 24/7 with minimal false alarms. Their rugged, weather-resistant designs make them ideal for outdoor perimeter defense. While they are significantly more expensive than traditional CCTV, their unmatched performance in critical environments makes them indispensable for mission-critical security applications.",
+        "features_img": "@/Assets/SlideImage/thermal_features.jpg",
+        "features_alt": "Thermal CCTV Camera Features",
+        "desc_img": "@/Assets/SlideImage/thermal_description.jpg",
+        "desc_alt": "Thermal CCTV Camera Description",
+        "pricing_img": "@/Assets/SlideImage/thermal_pricing.jpg",
+        "pricing_alt": "Thermal CCTV Camera Pricing"
+    }
+]

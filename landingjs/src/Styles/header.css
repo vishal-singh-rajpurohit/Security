@@ -1,0 +1,237 @@
+.-resp {
+    display: none;
+}
+
+.-brite {
+    background-color: white;
+    color: black;
+}
+
+section.header-section {
+    grid-template-columns: 2fr 6fr 2fr;
+    place-items: center;
+    gap: 2rem;
+    height: 7rem;
+    display: grid;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+}
+
+.header-section-logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+}
+
+/* Options */
+.header-section-options {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-section-options-div {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    width: 90%;
+    justify-content: space-around;
+}
+
+p.header-section-options-item-p {
+    font-size: x-large;
+    font-family: monospace;
+    cursor: pointer;
+    color: white;
+}
+
+.header-section-options-item,
+p.header-section-options-item-p {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+p.header-section-options-item-p.txt-black {
+    color: black;
+}
+
+.underline-ani-span {
+    width: 0%;
+    height: 2px;
+    background: #ffffff;
+    display: block;
+    transition: width 0.5s ease-in-out;
+}
+
+/* Hovering the parent div triggers the underline animation */
+.header-section-options-item:hover .underline-ani-span {
+    animation: underline-ease-in 0.5s ease-in-out forwards;
+}
+
+p.header-section-options-item-p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Search */
+.header-section-search-div {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-section-search {
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    box-shadow: 0 0 3px #a9a9a9;
+    background: white;
+}
+
+input.header-section-search-input {
+    height: 100%;
+    width: 90%;
+    font-size: larger;
+    padding-left: 0.3rem;
+    border: none;
+    outline: none;
+}
+
+/* Button */
+button.header-section-shop-button {
+    width: 7rem;
+    height: 3rem;
+    background: #49a1ff;
+    border: none;
+    color: white;
+    font-size: x-large;
+    font-family: monospace;
+}
+
+/* MENU RESPONSIVE OPTIONS */
+
+section.menu-section {
+    display: grid;
+    grid-template-rows: 1fr 9fr;
+    height: 65vh;
+    padding-top: 1rem;
+    position: fixed;
+    z-index: 4;
+    top: 0;
+    background-color: white;
+    width: 100%;
+    gap: 0.5rem;
+    padding-bottom: 1rem;
+}
+
+.menu-seciton-close {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    padding-right: 1rem;
+}
+
+.menu-section-close-inner {
+    height: 2rem;
+    width: 2rem;
+    border: 2px solid #00ccccab;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+}
+
+.menu-section-div {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.menu-section-div a {
+    border-bottom: 1px solid #a9a9a9;
+    justify-content: start;
+    align-items: center;
+    width: 90%;
+    padding-bottom: 1rem;
+    display: flex;
+    color: black;
+}
+
+/* .menu-item {
+    width: 90%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid darkgray;
+} */
+
+p.menu-item-p {
+    font-size: xx-large;
+    font-family: monospace;
+}
+
+/* Scrolled */
+.header-section.scrolled {
+    color: #000;
+    background-color: #fff;
+    transition: background-color .3s;
+    animation: .5s forwards scrolled---;
+    box-shadow: 0 1px #f3eeee82;
+}
+
+p.header-section-options-item-p.blk-txt {
+    color: black;
+}
+
+/* Keyframes */
+@keyframes underline-ease-in {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes scrolled--- {
+    100% {
+        height: 6rem;
+    }
+}
+
+@media (max-width: 1150px) {
+    .resp-none {
+        display: none;
+    }
+
+    .header-section-options-div.resp-none {
+        display: none;
+    }
+
+    .-resp {
+        display: initial;
+    }
+
+    .header-section-search-resp.-resp {
+        display: flex;
+        gap: 2rem;
+    }
+}

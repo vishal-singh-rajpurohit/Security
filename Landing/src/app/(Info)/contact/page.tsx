@@ -18,8 +18,7 @@ import Head from "next/head";
 
 
 
-export default function contact() {
-
+export default function Contact() {
 
     const [width, setWidth] = useState(1500);
 
@@ -34,7 +33,7 @@ export default function contact() {
 
     }, [])
 
-    const { setStatus } = useContext(MenuContext)
+    const { setStatusfunc } = useContext(MenuContext)
     const [formData, setFormData] = useState({
         name: '',
         email: "",
@@ -47,16 +46,16 @@ export default function contact() {
     });
 
 
-    const handleSubmitForm = async (e: any) => {
+    const handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (formData.number < 1000) {
-            setStatus('error')
+            setStatusfunc('error')
         } else {
             console.log("formData.number < 1000", formData.number < 1000);
 
             try {
-                const response = await axios.post("/api/contact", formData, {
+                await axios.post("/api/contact", formData, {
                     withCredentials: true
                 });
 
@@ -71,11 +70,11 @@ export default function contact() {
                     message: ""
                 });
 
-                setStatus('success')
+                setStatusfunc('success')
 
             } catch (error) {
                 console.log("Error submit message: ", error)
-                setStatus('error')
+                setStatusfunc('error')
             }
         }
     }
@@ -107,24 +106,6 @@ export default function contact() {
                                     <p className="contact-value">+91 9509075612</p>
                                 </div>
                             </div>
-                            {/* <div className="contact-options-item">
-                                <div className="contact-op-logo">
-                                    <FaTelegramPlane size={30} />
-                                </div>
-                                <div className="contact-op-div">
-                                    <p className="contact-op-name">Mobile number</p>
-                                    <p className="contact-value">+91 9509075612</p>
-                                </div>
-                            </div>
-                            <div className="contact-options-item">
-                                <div className="contact-op-logo">
-                                    <FaTelegramPlane size={30} />
-                                </div>
-                                <div className="contact-op-div">
-                                    <p className="contact-op-name">Mobile number</p>
-                                    <p className="contact-value">+91 9509075612</p>
-                                </div>
-                            </div> */}
                         </div>
                     </div>
                     <div className="landing-contact-form-card">
@@ -153,7 +134,7 @@ export default function contact() {
                                 <button type="submit" className="form-submit-btn">SUBMIT</button>
                             </div>
                         </form>
-                        {/* </div> */}
+                        
                     </div>
                 </div>
             </section>
