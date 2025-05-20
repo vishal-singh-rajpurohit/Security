@@ -41,9 +41,9 @@ const Slider = () => {
       <div className="slider-wrapper">
         <div className="slider">
           <div className="slider-inner">
-            <Image id='slide-2' src={width > 850? sl2: sl5} alt="CCTV Camera Services Hero Section " />
-            <Image id='slide-1' src={width > 850? sl1: sl4} alt="CCTV Camera" />
-            <Image id='slide-3' src={width > 850? sl3: sl6} alt="CCTV Camera Hero Section " />
+            <Image id='slide-2' src={width > 850? sl2: sl5} alt="CCTV Camera Services Hero Section " loading='eager' />
+            <Image id='slide-1' src={width > 850? sl1: sl4} alt="CCTV Camera"  loading='eager' />
+            <Image id='slide-3' src={width > 850? sl3: sl6} alt="CCTV Camera Hero Section "  loading='eager' />
           </div>
         </div>
       </div>

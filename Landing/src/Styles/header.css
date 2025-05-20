@@ -222,9 +222,18 @@ p.header-section-options-item-p.blk-txt {
         display: none;
     }
 
+    .header-section-options{
+        display: none;
+    }
     .header-section-options-div.resp-none {
         display: none;
     }
+    section#header-section {
+    display: flex
+;
+    justify-content: space-between;
+    padding: 0 1em;
+}
 
     .-resp {
         display: initial;
