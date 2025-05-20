@@ -22,7 +22,7 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await axios
-                .post(`http://localhost:5000/api/v2/user/login`, loginData, {
+                .post(`${process.env.REACT_APP_API}/user/login`, loginData, {
                     withCredentials: true,
                     headers: {
                         "Content-Type": "application/json"

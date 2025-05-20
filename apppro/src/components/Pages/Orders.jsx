@@ -39,7 +39,7 @@ const OrderCard = ({ orderId, title, ammount, date, status }) => {
   async function requestCancel(orderId) {
     dispatch(loading());
     try {
-      await axios.post(`http://localhost:5000/api/v2/auth/orders/send-cancel-mail`,
+      await axios.post(`${process.env.REACT_APP_API}/auth/orders/send-cancel-mail`,
         { orderId },
         {
           withCredentials: true
@@ -98,7 +98,7 @@ const Orders = () => {
     dispatch(loading());
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/v2/auth/orders/serve-orders`,
+        `${process.env.REACT_APP_API}/auth/orders/serve-orders`,
         {},
         {
           withCredentials: true,

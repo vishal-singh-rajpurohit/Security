@@ -21,7 +21,7 @@ const Signup = () => {
         e.preventDefault();
         try {
             const responce = await axios
-                .post(`http://localhost:5000/api/v1/user/register`, signupData, {
+                .post(`${process.env.REACT_APP_API}/user/register`, signupData, {
                     withCredentials: true,
                     headers: {
                         "Content-Type": "application/json"

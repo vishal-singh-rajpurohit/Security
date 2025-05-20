@@ -31,7 +31,7 @@ const Shop = () => {
 
         try {
             const response = await axios.get(
-                `http://localhost:5000/api/v2/main/serve/select-product/?id=${product_id}`
+                `${process.env.REACT_APP_API}/main/serve/select-product/?id=${product_id}`
             );
 
             setProduct(response.data.data.ProductData);
@@ -83,7 +83,7 @@ const Shop = () => {
         } else {
             dispatch(loading());
             try {
-                await axios.post(`http://localhost:5000/api/v2/auth/cart/add-to-cart`, { productId }, {
+                await axios.post(`${process.env.REACT_APP_API}/auth/cart/add-to-cart`, { productId }, {
                     withCredentials: true
                 });
 

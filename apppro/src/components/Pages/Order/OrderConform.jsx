@@ -29,7 +29,7 @@ const OrderConform = () => {
     async function fetchOrder() {
         dispatch(loading());
         try {
-            const response = await axios.post(`http://localhost:5000/api/v2/auth/orders/serve-one-order`,
+            const response = await axios.post(`${process.env.REACT_APP_API}/auth/orders/serve-one-order`,
                 {
                     orderId
 
@@ -39,7 +39,6 @@ const OrderConform = () => {
                 }
             );
 
-            console.log("Order fetched: ", response.data.data.Order[0]);
             setOrder(response.data.data.Order[0]);
         } catch (error) {
             fetchOrder();
@@ -53,7 +52,7 @@ const OrderConform = () => {
     async function confirm() {
         dispatch(loading());
         try {
-            await axios.post(`http://localhost:5000/api/v2/auth/orders/verify-order`,
+            await axios.post(`${process.env.REACT_APP_API}/auth/orders/verify-order`,
                 {
                     orderId
                 },
@@ -138,7 +137,7 @@ const OrderCancel = () => {
     async function fetchOrder() {
         dispatch(loading());
         try {
-            const response = await axios.post(`http://localhost:5000/api/v2/auth/orders/serve-one-order`,
+            const response = await axios.post(`${process.env.REACT_APP_API}/auth/orders/serve-one-order`,
                 {
                     orderId
 
@@ -162,7 +161,7 @@ const OrderCancel = () => {
     async function confirm() {
         dispatch(loading());
         try {
-            await axios.post(`http://localhost:5000/api/v2/auth/orders/conform-cancel-order`,
+            await axios.post(`${process.env.REACT_APP_API}/auth/orders/conform-cancel-order`,
                 {
                     orderId
                 },

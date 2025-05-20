@@ -34,7 +34,7 @@ const CartItem = ({ ft, itemId, productId, banner, title, qunatity, price }) => 
   async function changeQunatity() {
     dispatch(loading())
     try {
-      await axios.post(`http://localhost:5000/api/v2/auth/cart/chage-qunatity-cart`,
+      await axios.post(`${process.env.REACT_APP_API}/auth/cart/chage-qunatity-cart`,
         {
           cartId: itemId,
           quantity: quantity
@@ -53,7 +53,7 @@ const CartItem = ({ ft, itemId, productId, banner, title, qunatity, price }) => 
   async function remove() {
     dispatch(loading())
     try {
-      await axios.post(`http://localhost:5000/api/v2/auth/cart/remove-from-cart`,
+      await axios.post(`${process.env.REACT_APP_API}/auth/cart/remove-from-cart`,
         {
           cartId: itemId
         },
@@ -109,7 +109,7 @@ const Cart = () => {
   async function clearCart() {
     dispatch(loading())
     try {
-      await axios.post(`http://localhost:5000/api/v2/auth/cart/clear-cart`,
+      await axios.post(`${process.env.REACT_APP_API}/auth/cart/clear-cart`,
         {},
         {
           withCredentials: true
@@ -128,7 +128,7 @@ const Cart = () => {
   async function fetchCart() {
     dispatch(loading())
     try {
-      const response = await axios.post(`http://localhost:5000/api/v2/auth/cart/serve-cart`,
+      const response = await axios.post(`${process.env.REACT_APP_API}/auth/cart/serve-cart`,
         {},
         {
           withCredentials: true

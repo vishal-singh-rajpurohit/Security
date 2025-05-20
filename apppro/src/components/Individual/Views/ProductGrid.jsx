@@ -6,9 +6,6 @@ import { useSelector } from "react-redux";
 const ProductGrid = () => {
   const products = useSelector((state) => state.product.products);
 
-  useEffect(() => {
-    console.log("Product: ", products, products.length);
-  }, [])
 
   return (
     <section className="prodcuts-grid-section">

@@ -45,7 +45,7 @@ const OrderStatus = () => {
   async function fetchOrder() {
     dispatch(loading());
     try {
-      const response = await axios.post(`http://localhost:5000/api/v2/auth/orders/serve-one-order`,
+      const response = await axios.post(`${process.env.REACT_APP_API}/auth/orders/serve-one-order`,
         {
           orderId
         },
@@ -54,7 +54,6 @@ const OrderStatus = () => {
         }
       );
 
-      console.log("Order fetched : ", response.data.data);
       setOrder(response.data.data.Order[0]);
       setUser(response.data.data.User)
 

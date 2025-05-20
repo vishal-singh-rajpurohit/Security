@@ -8,6 +8,7 @@ import { loading, loaded } from "../App/functions/variable.slice";
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
+  
   const dispatch = useDispatch();
   const pageNo = useSelector((state) => state.variable.page);
 
@@ -53,7 +54,7 @@ export const AppProvider = ({ children }) => {
     dispatch(loading());
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/v2/user/check-already-loggedin`,
+        `${process.env.REACT_APP_API}/user/check-already-loggedin`,
         {},
         {
           withCredentials: true,
@@ -75,7 +76,7 @@ export const AppProvider = ({ children }) => {
     dispatch(loading());
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/v2/main/serve/initail-serve`
+        `${process.env.REACT_APP_API}/main/serve/initail-serve`
       );
 
       dispatch(fetchProductsSuccess(response.data.data));
@@ -89,10 +90,8 @@ export const AppProvider = ({ children }) => {
   async function fetchProductWill() {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/v2/main/serve/serve-by-page?page=${pageNo}&limit=2?`
+        `${process.env.REACT_APP_API}/main/serve/serve-by-page?page=${pageNo}&limit=2?`
       );
-
-      console.log("Products Served: ", response);
 
       // dispatch(fetchProductsSuccess());
       dispatch(fetchByPageSuccess(response.data.data.Products));

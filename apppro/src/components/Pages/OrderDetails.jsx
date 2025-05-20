@@ -32,7 +32,7 @@ const OrderDetails = () => {
         try {
             dispatch(loading());
 
-            await axios.post(`http://localhost:5000/api/v2/auth/orders/place-order`,
+            await axios.post(`${process.env.REACT_APP_API}/auth/orders/place-order`,
                 {
                     productId: productId,
                     mobileNumber: orderDetails.phone,

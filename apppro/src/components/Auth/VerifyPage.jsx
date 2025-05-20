@@ -20,7 +20,7 @@ const VerifyPage = () => {
 
   const handleVerifyEmail = async () => {
     try {
-      await axios.post(`http://localhost:5000/api/v1/user/validate-user`, {
+      await axios.post(`${process.env.REACT_APP_API}/user/validate-user`, {
         token: token,
       }, {
         headers: {
