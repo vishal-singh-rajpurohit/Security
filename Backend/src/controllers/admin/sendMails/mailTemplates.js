@@ -11,7 +11,7 @@ const verificationTemplate = (refreshToken) => {
           <!-- Logo -->
           <tr>
             <td style="padding-bottom:25px;">
-              <img src="https://res.cloudinary.com/ddiaarexp/image/upload/c_crop,w_640,h_181/v1747382227/logo-black_pllaur.png" alt="Wings Lens Logo" width="100" height="100" style="border-radius:50%; display:block; margin:0 auto; background-color:#e0e7ff;">
+              <img src="https://res.cloudinary.com/ddiaarexp/image/upload/c_crop,w_640,h_181/v1747382227/logo-black_pllaur.png" alt="Wings Lens Logo" width="100" height="100" style="max-width: 100%; height: auto; width: 80%" >
             </td>
           </tr>
 
@@ -32,7 +32,7 @@ const verificationTemplate = (refreshToken) => {
           <!-- Button -->
           <tr>
             <td>
-              <a href="http://localhost:3000/verify-account?token=${refreshToken}" style="background-color:#0066ff; color:#ffffff; padding:14px 28px; text-decoration:none; border-radius:8px; font-size:16px; font-weight:bold; display:inline-block; box-shadow:0 4px 10px rgba(0,102,255,0.3);">
+              <a href="http://wingslens.shop/verify-account?token=${refreshToken}" style="background-color:#0066ff; color:#ffffff; padding:14px 28px; text-decoration:none; border-radius:8px; font-size:16px; font-weight:bold; display:inline-block; box-shadow:0 4px 10px rgba(0,102,255,0.3);">
                 Verify
               </a>
             </td>
@@ -91,7 +91,7 @@ const orderVerificationTemplate = (
           <!-- Logo -->
           <tr>
             <td align="center" style="padding-bottom: 20px;">
-              <img src="https://res.cloudinary.com/ddiaarexp/image/upload/c_crop,w_640,h_181/v1747382227/logo-black_pllaur.png" alt="Wings Lens Logo" style="max-width: 100%; height: auto;" />
+              <img src="https://res.cloudinary.com/ddiaarexp/image/upload/c_crop,w_640,h_181/v1747382227/logo-black_pllaur.png" alt="Wings Lens Logo" style="max-width: 100%; height: auto; width: 80% />
             </td>
           </tr>
 
@@ -138,7 +138,7 @@ const orderVerificationTemplate = (
           <!-- Button -->
           <tr>
             <td align="center" style="padding: 30px;">
-              <a href="http://localhost:3000/shop/orders/confirm?orderid=${orderId}" class="verify-btn" style="background-color: #007BFF; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none; font-size: 16px;">
+              <a href="https://wingslens.shop/shop/orders/confirm?orderid=${orderId}" class="verify-btn" style="background-color: #007BFF; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none; font-size: 16px;">
                 Verify Order
               </a>
             </td>
@@ -196,7 +196,7 @@ const cancelOrderTemplate = (
           <!-- Logo -->
           <tr>
             <td align="center" style="padding-bottom: 20px;">
-              <img src="https://res.cloudinary.com/ddiaarexp/image/upload/c_crop,w_640,h_181/v1747382227/logo-black_pllaur.png" alt="Wings Lens Logo" style="max-width: 100%; height: auto;" />
+              <img src="https://res.cloudinary.com/ddiaarexp/image/upload/c_crop,w_640,h_181/v1747382227/logo-black_pllaur.png" alt="Wings Lens Logo" style="max-width: 100%; height: auto; width: 80% />
             </td>
           </tr>
 
@@ -242,7 +242,7 @@ const cancelOrderTemplate = (
           <!-- Button -->
           <tr>
             <td align="center" style="padding: 30px;">
-              <a href="http://localhost:3000/shop/orders/cancel?orderid=${orderId}" class="cancel-btn" style="background-color: #e74c3c; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none; font-size: 16px;">
+              <a href="http://wingslens.shop/shop/orders/cancel?orderid=${orderId}" class="cancel-btn" style="background-color: #e74c3c; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none; font-size: 16px;">
                 Cancel Order
               </a>
             </td>

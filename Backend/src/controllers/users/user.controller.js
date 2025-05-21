@@ -8,6 +8,8 @@ const { sendVerificationEmail } = require("../admin/sendMails/sendMail");
 const { Options } = require("../../methods");
 
 const registerUser = asyncHandler(async (req, resp) => {
+  console.log("registration started");
+  
   let { name, password, conformPassword, email } = req.body;
 
   if (!name || !email || !password) {
@@ -18,22 +20,23 @@ const registerUser = asyncHandler(async (req, resp) => {
     throw new ApiError(400, "Both Passwrds are not matching");
   }
 
-  let isAlredy = await User.exists({ Email: email });
+  let isAlredy = await User.findOne({ Email: email });
 
-  if (isAlredy) {
+  if (isAlredy.isVerified) {
     throw new ApiError(401, "User Already Exists");
   }
 
-  const newUser = new User({
-    name,
-    Email: email,
-    Password: password,
-    isVerified: false,
-    UserType: "Customer",
-  });
-
-  let savedUser = await newUser.save();
-
+  console.log("registration cleared");
+  
+  isAlredy.name = name;
+  isAlredy.Email = email;
+  isAlredy.Password = password;
+  isVerified = false;
+  
+  
+  let savedUser = await isAlredy.save();
+  
+  console.log("registration cleared 2");
   let user = await User.findById(savedUser._id);
 
   if (!user) {
@@ -93,10 +96,10 @@ const registerUser = asyncHandler(async (req, resp) => {
     );
 });
 
-const checkAlreadyUser = asyncHandler(async (req, resp) =>{
+const checkAlreadyUser = asyncHandler(async (req, resp) => {
   const user = req.user;
 
-  if(!user){
+  if (!user) {
     throw new ApiError(400, "User Not Found");
   }
 
@@ -134,7 +137,6 @@ const checkAlreadyUser = asyncHandler(async (req, resp) =>{
         "User Found Successful"
       )
     );
-
 });
 
 const loginUser = asyncHandler(async (req, resp) => {
@@ -255,7 +257,6 @@ const verifyUser = asyncHandler(async (req, resp) => {
     throw new ApiError(400, "Invalid Token");
   }
 });
-
 
 module.exports = {
   checkAlreadyUser,

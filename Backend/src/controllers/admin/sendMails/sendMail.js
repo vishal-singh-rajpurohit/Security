@@ -1,4 +1,5 @@
 require("dotenv").config();
+const { Resend } = require('resend');
 const nodemailer = require("nodemailer");
 const ApiError = require("../../../utils/ApiError.utils");
 
@@ -7,6 +8,10 @@ const {
   orderVerificationTemplate,
   cancelOrderTemplate,
 } = require("./mailTemplates");
+
+
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const transport = nodemailer.createTransport({
   service: "gmail",
@@ -20,7 +25,7 @@ const transport = nodemailer.createTransport({
 
 const sendVerificationEmail = async (email, refreshToken) => {
   const mailOptions = {
-    from: "datasecourity@gmail.com",
+    from: 'Wing’s Lens Verification <noreply@wingslens.shop>',
     to: email,
     subject: "Verify your Wing's Lens account. :,",
     text: `Verify your Wing's Lens account by clicking the button below:`,
@@ -28,7 +33,7 @@ const sendVerificationEmail = async (email, refreshToken) => {
   };
 
   try {
-    const sendResult = await transport.sendMail(mailOptions);
+    const sendResult = await resend.emails.send(mailOptions);
 
     if (!sendResult) {
       throw new ApiError(400, "Email does not sent successfully");
