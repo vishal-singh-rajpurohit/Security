@@ -14,7 +14,7 @@ section.header-section {
     height: 7rem;
     display: grid;
     position: fixed;
-    width: 100%;
+    width: 100vw;
     z-index: 2;
 }
 
@@ -236,9 +236,10 @@ p.header-section-options-item-p.blk-txt {
         justify-items: start;
         gap: 0;
     }
+
     .header-section-logo {
-    padding-left: 0.5rem;
-}
+        padding-left: 0.5rem;
+    }
 
     .-resp {
         display: initial;

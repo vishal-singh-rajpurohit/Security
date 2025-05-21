@@ -76,7 +76,7 @@ p.copy-text span {
     font-weight: 600;
 }
 
-@media (max-width: 800) {
+@media (max-width: 800px) {
     footer.section-footer {
         grid-template-columns: 1fr;
         gap: 3rem;
