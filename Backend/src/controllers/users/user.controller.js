@@ -8,8 +8,7 @@ const { sendVerificationEmail } = require("../admin/sendMails/sendMail");
 const { Options } = require("../../methods");
 
 const registerUser = asyncHandler(async (req, resp) => {
-  console.log("registration started");
-  
+
   let { name, password, conformPassword, email } = req.body;
 
   if (!name || !email || !password) {
@@ -22,11 +21,10 @@ const registerUser = asyncHandler(async (req, resp) => {
 
   let isAlredy = await User.findOne({ Email: email });
 
-  if (isAlredy.isVerified) {
+  if (isAlredy?.isVerified) {
     throw new ApiError(401, "User Already Exists");
   }
 
-  console.log("registration cleared");
   
   isAlredy.name = name;
   isAlredy.Email = email;
@@ -36,7 +34,7 @@ const registerUser = asyncHandler(async (req, resp) => {
   
   let savedUser = await isAlredy.save();
   
-  console.log("registration cleared 2");
+
   let user = await User.findById(savedUser._id);
 
   if (!user) {
