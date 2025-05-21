@@ -8,7 +8,6 @@ const { sendVerificationEmail } = require("../admin/sendMails/sendMail");
 const { Options } = require("../../methods");
 
 const registerUser = asyncHandler(async (req, resp) => {
-
   let { name, password, conformPassword, email } = req.body;
 
   if (!name || !email || !password) {
@@ -16,32 +15,39 @@ const registerUser = asyncHandler(async (req, resp) => {
   }
 
   if (password !== conformPassword) {
-    throw new ApiError(400, "Both Passwrds are not matching");
+    throw new ApiError(400, "Both Passwords are not matching");
   }
 
-  let isAlredy = await User.findOne({ Email: email });
+  let existingUser = await User.findOne({ Email: email });
 
-  if (isAlredy && isAlredy?.isVerified) {
+  if (existingUser && existingUser.isVerified) {
     throw new ApiError(401, "User Already Exists");
   }
 
-  
-  isAlredy.name = name;
-  isAlredy.Email = email;
-  isAlredy.Password = password;
-  isVerified = false;
-  
-  
-  let savedUser = await isAlredy.save();
-  
+  let newUser;
 
-  let user = await User.findById(savedUser._id);
-
-  if (!user) {
-    throw new ApiError(500, "Somting Wents Wrong");
+  if (existingUser && !existingUser.isVerified) {
+    // Update unverified existing user
+    existingUser.name = name;
+    existingUser.Password = password; // Make sure `Password` is a valid field name in your model
+    newUser = await existingUser.save();
+  } else {
+    // Create new user
+    newUser = await User.create({
+      name,
+      Email: email,
+      Password: password,
+      isVerified: false,
+    });
   }
 
-  const { accessToken, refreshToken } = await genTokens(user?._id);
+  const user = await User.findById(newUser._id);
+
+  if (!user) {
+    throw new ApiError(500, "Something Went Wrong");
+  }
+
+  const { accessToken, refreshToken } = await genTokens(user._id);
 
   if (!accessToken || !refreshToken) {
     throw new ApiError(500, "refreshToken or accessToken not generated");
@@ -63,7 +69,7 @@ const registerUser = asyncHandler(async (req, resp) => {
   ).select("-Password -refreshToken");
 
   if (!authenticatedUser) {
-    throw new ApiError("Somthing went Wrong while Saving refreshToke to User");
+    throw new ApiError(500, "Something went wrong while saving refreshToken to user");
   }
 
   const sentMail = await sendVerificationEmail(user.Email, refreshToken);
@@ -72,7 +78,6 @@ const registerUser = asyncHandler(async (req, resp) => {
 
   if (!sentMail) {
     console.log("error in sending mail ", sentMail);
-
     await User.findByIdAndDelete(user._id);
     throw new ApiError(400, "Unable to send email");
   }
@@ -89,10 +94,11 @@ const registerUser = asyncHandler(async (req, resp) => {
           refreshToken,
           User: authenticatedUser,
         },
-        "User Singup Successful"
+        "User Signup Successful"
       )
     );
 });
+
 
 const checkAlreadyUser = asyncHandler(async (req, resp) => {
   const user = req.user;
