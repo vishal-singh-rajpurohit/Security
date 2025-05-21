@@ -10,6 +10,7 @@
 h1.it-solutions-h1 {
   font-size: 70px;
   text-align: center;
+  font-family: Bebas Neue, sans-serif;
 }
 
 .it-sol-h1-span {
@@ -65,6 +66,7 @@ p.it-soutions-page-top-text-p {
   font-size: 1.2rem;
   color: #2c3e50;
   margin-bottom: 10px;
+  font-family: Bebas Neue, sans-serif;
 }
 
 .step p {
@@ -106,7 +108,8 @@ section.header-section-why {
 }
 
 p.why-p {
-  font-family: "Source Code Pro", monospace;
+  font-family: "Barlow", sans-serif;
+  font-size: large;
   font-size: small;
   color: #545454;
 }
@@ -126,6 +129,7 @@ section.features {
 h3.it-sol-h3 {
   font-size: larger;
   color: #2f97af;
+  font-family: Bebas Neue, sans-serif;
 }
 
 
@@ -175,14 +179,13 @@ h5.it-sol-h5 {
     font-family: '__nextjs-Geist';
 }
 ul.it-solutions-ul {
-    display: grid
+    display: flex
 ;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-    width: 90%;
+    flex-direction: column;
+    gap: 01rem;
+    font-family: "STIX Two Text", sans-serif;
     font-size: large;
-    font-family: monospace;
-    list-style-type: auto;
+    width: 90%;
 }
 button.appoint-button {
     width: 8rem;
@@ -194,6 +197,7 @@ button.appoint-button {
     font-family: cursive;
     align-items: center;
     justify-content: center;
+     font-family: "STIX Two Text", sans-serif;
     text-align: center;
     background: #0ae43c;
     color: white;

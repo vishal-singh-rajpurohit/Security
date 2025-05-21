@@ -24,7 +24,7 @@ function FooterSect() {
         </p>
       </div>
       <div className="footer-right">
-        <div className="footer-right-childs">
+        {/* <div className="footer-right-childs">
           <p className="footer-context">Categories</p>
           <ul className="footer-context-ul">
             <li className="footer-context-li">WIFI CCTV Camera</li>
@@ -35,7 +35,7 @@ function FooterSect() {
             <li className="footer-context-li">HD CCTV Camera</li>
             <li className="footer-context-li">WIFI CCTV Camera</li>
           </ul>
-        </div>
+        </div> */}
         <div className="footer-right-childs">
           <p className="footer-context">Solutions</p>
           <ul className="footer-context-ul">

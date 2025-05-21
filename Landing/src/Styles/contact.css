@@ -6,6 +6,10 @@
     position: relative;
     overflow: unset;
 } */
+ section.contact-page {
+    /* min-height: 120vh; */
+    margin-bottom: 8rem;
+}
 .landing-contact-form-card {
     background-color: white;
     border: none;

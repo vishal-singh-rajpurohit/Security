@@ -54,9 +54,9 @@ section.categories-grid {
 }
 
 p.categories-about-grid-card-text {
-    font-size: x-large;
+    font-size: large;
     font-weight: 600;
-    font-family: monospace;
+    font-family: "Barlow", sans-serif;
 }
 
 section.categories-representative {
@@ -73,7 +73,7 @@ section.categories-representative {
 
 h3.cat-h5 {
     font-size: xx-large;
-    font-family: sans-serif;
+    font-family: Bebas Neue, sans-serif;
 }
 
 .cat-btn-div {

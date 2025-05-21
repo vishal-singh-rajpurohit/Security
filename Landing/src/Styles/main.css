@@ -18,13 +18,13 @@ section.landing-page-1 {
 }
 
 h1.text-h1 {
-    font-family: monospace;
+    font-family: Bebas Neue, sans-serif;
     font-size: 55px;
 }
 
 p.text-p {
     font-size: 1.25rem;
-    font-family: monospace;
+     font-family: "Barlow", sans-serif;
 }
 
 .loanding-page-1-imgae-div {
@@ -57,7 +57,7 @@ section.landing-page-2 {
 
 h2.solutions-text-h2 {
     font-size: xx-large;
-    font-family: serif;
+    font-family: Bebas Neue, sans-serif;
 }
 
 .solutions-buttons {
@@ -128,8 +128,8 @@ button.solutions-btn {
 }
 
 p.solutions-item-name {
-    font-size: xx-large;
-    font-family: monospace;
+    font-family: STIX Two Text, system-ui;
+    font-size: x-large;
 }
 
 /* Our Products */
@@ -339,13 +339,13 @@ section.landing-page-5 {
 }
 
 h2.text-h1 {
-    font-family: monospace;
+    font-family: Bebas Neue, sans-serif;
     font-size: 55px;
 }
 
 p.solution-teaxt-txt-2 {
     font-size: x-large;
-    font-family: math;
+    font-family: STIX Two Text, system-ui;
 }
 
 .connent-swap-button {
@@ -429,7 +429,7 @@ section.landing-page-6 {
 
 p.contact-op-name {
     font-size: x-large;
-    font-family: monospace;
+    font-family: "Barlow", sans-serif;
     font-weight: 700;
 }
 
@@ -530,7 +530,7 @@ button.form-submit-btn {
     border: none;
     font-size: x-large;
     color: white;
-    font-family: monospace;
+    font-family: STIX Two Text, system-ui;
 }
 
 @media (max-width: 1000px) {

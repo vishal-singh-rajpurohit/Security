@@ -42,7 +42,7 @@ export default function About() {
             </Head>
             <section className="info-page-section">
                 <div className="about-page-top">
-                    <AboutSlide img_bg={tp1} img_sm={tp2}  />
+                    <AboutSlide img_bg={tp1} img_sm={tp2} />
                     <div className="about-page-top-text">
                         <h1 className="but-h1">About Us</h1>
                         <p className="about-page-top-text-p">Reliable CCTV solutions for trusted security and protection</p>
@@ -96,11 +96,20 @@ export default function About() {
                         </div>
                         <h3 className="section-2-h3">Our Missions</h3>
                         <p className="text-p-3">
-                           At Wings Lens, our mission is to create secure and safe environments that empower individuals and organizations to thrive. We are dedicated to providing innovative surveillance solutions that not only protect assets but also foster peace of mind. Through cutting-edge technology and unwavering commitment, we aim to enhance safety and security for all, ensuring a resilient future for our communitie
+                            At Wings Lens, our mission is to create secure and safe environments that empower individuals and organizations to thrive. We are dedicated to providing innovative surveillance solutions that not only protect assets but also foster peace of mind. Through cutting-edge technology and unwavering commitment, we aim to enhance safety and security for all, ensuring a resilient future for our communitie
                         </p>
                     </div>
                     <div className="section-2-mission-image-div">
                         <Image height={0} style={{ height: "auto" }} src={CCTV_Camera_in_road_with_text_I_See_you} alt="CCTV Camera in road with text I See you" />
+                    </div>
+                    <div className="section-2-mission-txt">
+                        <div className="section-2-mission-image">
+                            <GoGoal size={30} />
+                        </div>
+                        <h3 className="section-2-h3">Our Missions</h3>
+                        <p className="text-p-3">
+                            At Wings Lens, our mission is to create secure and safe environments that empower individuals and organizations to thrive. We are dedicated to providing innovative surveillance solutions that not only protect assets but also foster peace of mind. Through cutting-edge technology and unwavering commitment, we aim to enhance safety and security for all, ensuring a resilient future for our communitie
+                        </p>
                     </div>
                 </section>
                 <section className="landing-page-1 about-landing-1">

@@ -231,19 +231,22 @@ p.header-section-options-item-p.blk-txt {
     }
 
     section#header-section {
-    display: grid
-;
-    grid-template-columns: 1fr 1fr;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: start;
+        gap: 0;
+    }
+    .header-section-logo {
+    padding-left: 0.5rem;
 }
 
     .-resp {
         display: initial;
     }
 
-        .header-section-search-resp.-resp {
+    .header-section-search-resp.-resp {
         gap: 2rem;
-        display: flex
-;
+        display: flex;
         width: 100%;
         flex-direction: row-reverse;
         padding-right: 1rem;

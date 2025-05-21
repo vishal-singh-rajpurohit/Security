@@ -22,7 +22,7 @@ img.footer-login-img {
 }
 p.footer-left-text {
     font-size: larger;
-    font-family: '__nextjs-Geist';
+    font-family: "Barlow", sans-serif;
 }
 .footer-social-logo {
     width: 100%;
@@ -48,7 +48,7 @@ p.footer-left-text {
 }
 p.footer-context {
     font-size: x-large;
-    font-family: '__nextjs-Geist Mono';
+    font-family: 'system-ui';
     font-weight: 600;
 }
 
@@ -63,6 +63,7 @@ ul.footer-context-ul {
 }
 li.footer-context-li {
     cursor: pointer;
+    font-family: Inter, sans-serif;
 }
 p.copy-text {
     font-size: medium;
