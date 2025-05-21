@@ -133,7 +133,7 @@ export function Header() {
                 <button className="header-section-shop-button">Shop Now</button>
             </div>
             <div className="header-section-search-resp -resp">
-                <p className={`header-section-options-item-p ${scrolled ? "txt-black" : ""}`}><FiSearch size={20} style={{ display: openSearch ? 'none' : 'flex', cursor: 'pointer' }} onClick={() => setOpenSearch(true)} /></p>
+                <p className={`header-section-options-item-p ${scrolled ? "txt-black" : ""}`} style={{display: "none"}}><FiSearch size={20} style={{ display: openSearch ? 'none' : 'flex', cursor: 'pointer' }} onClick={() => setOpenSearch(true)} /></p>
                 <p className={`header-section-options-item-p ${scrolled ? "txt-black" : ""}`}><MdMenu size={30} onClick={() => setOpenMenu?.(true)} /></p>
             </div>
         </section>
@@ -159,12 +159,12 @@ export function Menu() {
             </div>
             <div className="menu-section-div">
                 <Link href={"/about"} >
-                    <div className="menu-item">
+                    <div className="menu-item" onClick={() => setOpenMenu?.(false)}>
                         <p className="menu-item-p">About Us</p>
                     </div>
                 </Link>
                 <Link href={"/categories"} >
-                    <div className="menu-item">
+                    <div className="menu-item" onClick={() => setOpenMenu?.(false)}>
                         <p className="menu-item-p">Categories</p>
                     </div>
                 </Link>
@@ -173,11 +173,11 @@ export function Menu() {
                         <p className="menu-item-p">Solutions</p>
                     </div></Link> */}
                 <Link href={"tech-solutions"} >
-                    <div className="menu-item">
+                    <div className="menu-item" onClick={() => setOpenMenu?.(false)}>
                         <p className="menu-item-p">IT Solutions</p>
                     </div></Link>
                 <Link href={"contact"} >
-                    <div className="menu-item">
+                    <div className="menu-item" onClick={() => setOpenMenu?.(false)}>
                         <p className="menu-item-p">Contact</p>
                     </div></Link>
             </div>

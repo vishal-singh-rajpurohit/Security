@@ -222,25 +222,30 @@ p.header-section-options-item-p.blk-txt {
         display: none;
     }
 
-    .header-section-options{
+    .header-section-options {
         display: none;
     }
+
     .header-section-options-div.resp-none {
         display: none;
     }
+
     section#header-section {
-    display: flex
+    display: grid
 ;
-    justify-content: space-between;
-    padding: 0 1em;
+    grid-template-columns: 1fr 1fr;
 }
 
     .-resp {
         display: initial;
     }
 
-    .header-section-search-resp.-resp {
-        display: flex;
+        .header-section-search-resp.-resp {
         gap: 2rem;
+        display: flex
+;
+        width: 100%;
+        flex-direction: row-reverse;
+        padding-right: 1rem;
     }
 }
