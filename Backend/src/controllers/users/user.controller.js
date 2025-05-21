@@ -21,7 +21,7 @@ const registerUser = asyncHandler(async (req, resp) => {
 
   let isAlredy = await User.findOne({ Email: email });
 
-  if (isAlredy?.isVerified) {
+  if (isAlredy && isAlredy?.isVerified) {
     throw new ApiError(401, "User Already Exists");
   }
 
