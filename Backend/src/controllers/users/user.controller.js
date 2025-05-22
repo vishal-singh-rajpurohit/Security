@@ -20,13 +20,19 @@ const registerUser = asyncHandler(async (req, resp) => {
 
   let existingUser = await User.findOne({ Email: email });
 
+  console.log("User: ", existingUser);
+  
+
   if (existingUser && existingUser.isVerified) {
     throw new ApiError(401, "User Already Exists");
   }
 
   let newUser;
 
+  console.log("existingUser: ", existingUser);
+
   if (existingUser && !existingUser.isVerified) {
+
     // Update unverified existing user
     existingUser.name = name;
     existingUser.Password = password; // Make sure `Password` is a valid field name in your model
