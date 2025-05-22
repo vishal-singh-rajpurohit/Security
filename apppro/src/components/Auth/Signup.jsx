@@ -18,6 +18,8 @@ const Signup = () => {
     });
 
     const signUp = async (e) => {
+        console.log("signup called ");
+        
         e.preventDefault();
         try {
             const responce = await axios
@@ -49,7 +51,7 @@ const Signup = () => {
             <div className="loging-page-div">
                 <form action="" className="login-form" onSubmit={signUp}>
                     <div className="login-form-div">
-                        <input type="text" value={signupData.name} onChange={(e) => setSignupData({ ...signupData, name: e.target.value })} name="fullname" id="" placeholder="Full Name" className="login-form-input" />
+                        <input type="text" value={signupData.name} style={{width: '80%'}} onChange={(e) => setSignupData({ ...signupData, name: e.target.value })} name="fullname" id="" placeholder="Full Name" className="login-form-input" />
                     </div>
                     <div className="login-form-div">
                         <input type="email" value={signupData.email} onChange={(e) => setSignupData({ ...signupData, email: e.target.value })} name="email" id="" placeholder="Email" className="login-form-input" />

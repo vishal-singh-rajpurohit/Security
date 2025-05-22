@@ -25,7 +25,7 @@ export function Header() {
 
     const [openSearch, setOpenSearch] = useState(false);
     const [windowWidth, setWindowWidth] = useState(0);
-    
+
     useEffect(() => {
         const handleScroll = () => {
             const headerSection = document.getElementById("header-section");
@@ -88,30 +88,30 @@ export function Header() {
                             </div>
                         </div> : <>
                             <div className="header-section-options-div resp-none" style={{ display: openSearch ? 'none' : 'flex' }}>
-                                <Link to={"/about"} >
+                                <a href={"https://www.wingslens.shop/about"} target='_blank'>
                                     <div className={`header-section-options-item`}>
                                         <p className={`header-section-options-item-p ${scrolled ? "txt-black" : ""}`}>About Us</p>
                                         <span className="underline-ani-span"></span>
                                     </div>
-                                </Link>
-                                <Link to={"/categories"} >
+                                </a>
+                                <a href={"https://www.wingslens.shop/categories"} target='_blank' >
                                     <div className="header-section-options-item">
                                         <p className={`header-section-options-item-p ${scrolled ? "txt-black" : ""}`}>Categories</p>
                                         <span className="underline-ani-span"></span>
                                     </div>
-                                </Link>
-                                <Link to={"/solutions"} >
+                                </a>
+                                {/* <a to={"/solutions"} >
                                     <div className="header-section-options-item">
                                         <p className={`header-section-options-item-p ${scrolled ? "txt-black" : ""}`}>Solutions</p>
                                         <span className="underline-ani-span"></span>
                                     </div>
-                                </Link>
-                                <Link to={"tech-solutions"} >
+                                </a> */}
+                                <a href={"https://www.wingslens.shop/tech-solutions"} target='_blank'>
                                     <div className="header-section-options-item">
                                         <p className={`header-section-options-item-p ${scrolled ? "txt-black" : ""}`}>IT Solutions</p>
                                         <span className="underline-ani-span"></span>
                                     </div>
-                                </Link>
+                                </a>
                                 <div className="header-section-options-item">
                                     <p className={`header-section-options-item-p ${scrolled ? "txt-black" : ""}`}><FiSearch size={20} style={{ cursor: 'pointer' }} onClick={() => setOpenSearch(true)} /></p>
                                 </div>
@@ -151,12 +151,23 @@ export function Header() {
                 </div>
             </div>
             <div className="header-section-search-resp -resp" >
-                <Link to={"/shop/cart"}>
-                    <span className="login-signup-text"><ImCart size={30} color={scrolled ? 'black' : 'white'} /> </span>
-                </Link>
-                <Link to={"/shop/orders"}>
-                    <span className="login-signup-text"><FaShoppingBasket size={30} color={scrolled ? 'black' : 'white'} /> </span>
-                </Link>
+                {
+                    loggedIn ?
+                        <>
+                            <Link to={"/shop/cart"}>
+                                <span className="login-signup-text"><ImCart size={30} color={scrolled ? 'black' : 'white'} /> </span>
+                            </Link>
+                            <Link to={"/shop/orders"}>
+                                <span className="login-signup-text"><FaShoppingBasket size={30} color={scrolled ? 'black' : 'white'} /> </span>
+                            </Link>
+                        </>
+                        :
+                        <> <Link to={"/login"}>
+                            <span className="login-signup-text" style={{ color: scrolled ? 'black' : 'white' }}>Login</span>
+                        </Link>
+                        </>
+                }
+
                 <p className={`header-section-options-item-p ${scrolled ? "txt-black" : ""}`}><FiSearch size={20} style={{ display: openSearch ? 'none' : 'flex', cursor: 'pointer' }} onClick={() => setOpenSearch(true)} /></p>
                 <p className={`header-section-options-item-p ${scrolled ? "txt-black" : ""}`}><MdMenu size={30} onClick={() => setOpenMenu(true)} /></p>
             </div>
@@ -176,31 +187,31 @@ export function Menu() {
                 </div>
             </div>
             <div className="menu-section-div">
-                <Link to={"contact"} >
+                <Link to={"user/profile"}>
                     <div className="menu-item">
                         <p className="menu-item-p">User Account</p>
                     </div>
                 </Link>
-                <Link to={"/about"} >
+                <a href={"https://www.wingslens.shop/about"} target='_blank'>
                     <div className="menu-item">
                         <p className="menu-item-p">About Us</p>
                     </div>
-                </Link>
-                <Link to={"/categories"} >
+                </a>
+                <a href={"https://www.wingslens.shop/categories"} target='_blank' >
                     <div className="menu-item">
                         <p className="menu-item-p">Categories</p>
                     </div>
-                </Link>
-                <Link to={"/solutions"} >
+                </a>
+                {/* <a to={"/solutions"} >
                     <div className="menu-item">
                         <p className="menu-item-p">Solutions</p>
                     </div>
-                </Link>
-                <Link to={"tech-solutions"} >
+                </a> */}
+                <a href={"https://www.wingslens.shop/tech-solutions"} target='_blank' >
                     <div className="menu-item">
                         <p className="menu-item-p">IT Solutions</p>
                     </div>
-                </Link>
+                </a>
             </div>
         </section>
     )
