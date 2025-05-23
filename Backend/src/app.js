@@ -6,17 +6,29 @@ const cookieParser = require("cookie-parser")
 const app = express();
 app.use(express.json({ limit: "16kb" }));
 
-const allowedOrigins = ['https://www.sewadinfotech.shop', 'https://data-edit.onrender.com', 'http://localhost:3000', '*'];
+const allowedOrigins = [
+  'https://www.wingslens.shop',
+  'https://www.shop.wingslens.shop',
+  'https://www.admin.wingslens.shop',
+  'http://www.shop.wingslens.shop',
+  'http://www.admin.wingslens.shop',
+  'http://wingslens.shop',
+  'https://shop.wingslens.shop',
+  'https://admin.wingslens.shop',
+  'http://shop.wingslens.shop',
+  'http://admin.wingslens.shop',
+  'http://localhost:3000' // for Local testing
+];
 
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
+    if (origin && allowedOrigins.includes(origin)) { // <--- Pay attention here
+      callback(null, true); // Allow
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error("Not allowed by CORS")); // X Block
     }
   },
-  credentials: true,
+  credentials: true
 }));
 
 
