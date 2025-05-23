@@ -2,7 +2,7 @@
   "name": "sewad-infotech",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://security-api-7mvr.onrender.com/api/v1",
+  "proxy": "https://wingsapi.sewadinfotech.shop",
   "homepage": ".",
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.0",
